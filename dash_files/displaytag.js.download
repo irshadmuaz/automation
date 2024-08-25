@@ -1,0 +1,22 @@
+function addRowHandlersToDisplayTag(tableId, rowClassName) {
+    var previousClass = null;
+    var table = document.getElementById(tableId);
+    if(table)
+    {
+    var rows = table.getElementsByTagName("tr");
+    for (i = 1; i < rows.length; i++) {
+        rows[i].onmouseover = function(){
+            previousClass = this.className;
+            this.className = this.className + " " + rowClassName ;
+        };
+        
+        rows[i].onmouseout = function(){
+            this.className = previousClass;
+        };         
+        
+        rows[i].onclick = function(){
+        	this.className = previousClass;
+        };       
+    }
+    }
+  }

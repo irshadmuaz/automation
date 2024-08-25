@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!-- saved from url=(0153)https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&ESOLtitle=T/P/R%20Graph&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+  <title>Temperature/ Pulse/ Respiration Graph</title>  
+  
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+  <link type="text/css" rel="stylesheet" href="./c3-0.4.10.min.css">
+<link type="text/css" rel="stylesheet" href="./chartGenerator.css">
+<script src="./d3-3.5.5.min.js.download"></script>
+<script src="./c3-0.4.10.min.js.download"></script>
+<script src="./chartGenerator.js.download"></script>
+<link type="text/css" rel="stylesheet" href="./pccCharts.css">
+  <script src="./pccChartUtil.js.download"></script>
+  <style>
+    body                   {border:2px solid #CCCCCC;}
+    div#header             {width:100%; height:25px; padding-left:5px;color:#FFFFFF;font-size:12px;font-weight:bold;}
+	.c3-axis-x .tick text{
+		font-size:12px;
+	}
+  </style>
+  <script>
+  $(document).ready(function(){
+	  var chartData = {"Temperature":["96.7",null,null,"97.1","97",null,null,"97.8","97.8",null,null,null,null,null,null,null,null,null,null],"Pulse":["81","80","80","85","80","81",null,null,"78",null,null,null,null,null,null,null,null,null,null],"categories":["Aug/24/2024","Aug/24/2024","Aug/24/2024","Aug/23/2024","Aug/23/2024","Aug/22/2024","Aug/22/2024","Aug/22/2024","Aug/22/2024",null,null,null,null,null,null,null,null,null,null],"Respiration":["20","17","17","19","16",null,"18",null,"20",null,null,null,null,null,null,null,null,null,null]};
+	  if(Object.keys(chartData).length> 0){
+	    chart = c3.generate({
+	        bindto: '#chart',
+	        data: {
+	        	x: 'categories',
+	          json: chartData,
+	          colors: {
+	          	'Temperature': '#CC0066',
+	          	'Pulse': '#003399',
+	          	'Respiration': '#009900'
+	          },
+	          type: 'line'
+	        },
+	        axis: {
+	          x: {
+	            type: 'categorized',
+	            tick: {
+	            	rotate: 90,
+	            	width: 180
+	            }
+	          }
+	        },
+	        size: {
+	        	height: 200,
+	        	width: 1000
+	        },
+	        grid: {
+	      	  y: {
+	      	    show: true
+	      	  }
+	      	}
+	      });
+	  }else{
+		  $("#chart").html("No Values Found.");
+	  }
+  });
+  </script>
+ <link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head>
+ <body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;">
+ <div id="header" class="pccModuleBackgroundColor slBackgroundColor">
+    <span style="width:69%;vertical-align:middle">Temperature/ Pulse/ Respiration Graph</span>
+    <span style="width:29%;text-align:right;vertical-align:middle"><input type="hidden" name="ESOLclearpagecache">
+<img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="alert(this.title);" title="The information on this page is as of
+Sat Aug 24 2024 15:49:31 GMT-0700 (Pacific Daylight Time).">&nbsp;
+<script>
+genDate = new Date("Sat Aug 24 18:49:31 EDT 2024");
+document.getElementById('genTimestampImg').title="The information on this page is as of\n"+genDate+".";
+</script></span>
+  </div>		
+	<div class="dashboardChartWrapper" style="overflow-x: scroll; overflow-y: hidden; width: 100%">
+		<div id="chart" class="chart c3" style="max-height: 200px; position: relative;"><svg width="1000" height="200" style="overflow: hidden;"><defs><clippath id="c3-1724539773517-clip"><rect width="958" height="88.61458206176758"></rect></clippath><clippath id="c3-1724539773517-clip-xaxis"><rect x="-41" y="-20" width="1030" height="127.38541793823242"></rect></clippath><clippath id="c3-1724539773517-clip-yaxis"><rect x="-39" y="-4" width="60" height="112.61458206176758"></rect></clippath><clippath id="c3-1724539773517-clip-grid"><rect width="958" height="88.61458206176758"></rect></clippath><clippath id="c3-1724539773517-clip-subchart"><rect width="958"></rect></clippath></defs><g transform="translate(40.5,4.5)"><text class="c3-text c3-empty" text-anchor="middle" dominant-baseline="middle" x="479" y="44.30729103088379" style="opacity: 0;"></text><rect class="c3-zoom-rect" width="958" height="88.61458206176758" style="opacity: 0;"></rect><g clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip)" class="c3-regions" style="visibility: visible;"></g><g clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip-grid)" class="c3-grid" style="visibility: visible;"><g class="c3-ygrids"><line class="c3-ygrid" x1="0" x2="958" y1="87" y2="87"></line><line class="c3-ygrid" x1="0" x2="958" y1="78" y2="78"></line><line class="c3-ygrid" x1="0" x2="958" y1="69" y2="69"></line><line class="c3-ygrid" x1="0" x2="958" y1="60" y2="60"></line><line class="c3-ygrid" x1="0" x2="958" y1="51" y2="51"></line><line class="c3-ygrid" x1="0" x2="958" y1="43" y2="43"></line><line class="c3-ygrid" x1="0" x2="958" y1="34" y2="34"></line><line class="c3-ygrid" x1="0" x2="958" y1="25" y2="25"></line><line class="c3-ygrid" x1="0" x2="958" y1="16" y2="16"></line><line class="c3-ygrid" x1="0" x2="958" y1="7" y2="7"></line></g><g class="c3-xgrid-focus"><line class="c3-xgrid-focus" x1="-10" x2="-10" y1="0" y2="88.61458206176758" style="visibility: hidden;"></line></g></g><g clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip)" class="c3-chart"><g class="c3-event-rects c3-event-rects-single" style="fill-opacity: 0;"><rect class=" c3-event-rect c3-event-rect-0" x="0" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-1" x="107" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-2" x="213" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-3" x="320" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-4" x="426" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-5" x="533" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-6" x="639" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-7" x="746" y="0" width="108" height="88.61458206176758"></rect><rect class=" c3-event-rect c3-event-rect-8" x="852" y="0" width="108" height="88.61458206176758"></rect></g><g class="c3-chart-bars"><g class="c3-chart-bar c3-target c3-target-Temperature" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Temperature c3-bars c3-bars-Temperature" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-Pulse" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Pulse c3-bars c3-bars-Pulse" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-Respiration" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Respiration c3-bars c3-bars-Respiration" style="cursor: pointer;"></g></g></g><g class="c3-chart-lines"><g class="c3-chart-line c3-target c3-target-Temperature" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Temperature c3-lines c3-lines-Temperature"><path class=" c3-shape c3-shape c3-line c3-line-Temperature" d="M54,9.283041172913642M374,8.926013536150117L480,9.01527044534099M800,8.301215171813968L906,8.301215171813968" style="stroke: rgb(204, 0, 102); opacity: 1;"></path></g><g class=" c3-shapes c3-shapes-Temperature c3-areas c3-areas-Temperature"><path class=" c3-shape c3-shape c3-area c3-area-Temperature" d="M 54 9.283041172913642" style="fill: rgb(204, 0, 102); opacity: 0.2;"></path></g><g class=" c3-selected-circles c3-selected-circles-Temperature"></g><g class=" c3-shapes c3-shapes-Temperature c3-circles c3-circles-Temperature" style="cursor: pointer;"><circle class=" c3-shape c3-shape-0 c3-circle c3-circle-0" r="2.5" cx="54" cy="9.283041172913642" style="fill: rgb(204, 0, 102); opacity: 1;"></circle><circle class=" c3-shape c3-shape-1 c3-circle c3-circle-1" r="2.5" cx="161" cy="95.59447236049438" style="fill: rgb(204, 0, 102); opacity: 0;"></circle><circle class=" c3-shape c3-shape-2 c3-circle c3-circle-2" r="2.5" cx="267" cy="95.59447236049438" style="fill: rgb(204, 0, 102); opacity: 0;"></circle><circle class=" c3-shape c3-shape-3 c3-circle c3-circle-3" r="2.5" cx="374" cy="8.926013536150117" style="fill: rgb(204, 0, 102); opacity: 1;"></circle><circle class=" c3-shape c3-shape-4 c3-circle c3-circle-4" r="2.5" cx="480" cy="9.01527044534099" style="fill: rgb(204, 0, 102); opacity: 1;"></circle><circle class=" c3-shape c3-shape-5 c3-circle c3-circle-5" r="2.5" cx="587" cy="95.59447236049438" style="fill: rgb(204, 0, 102); opacity: 0;"></circle><circle class=" c3-shape c3-shape-6 c3-circle c3-circle-6" r="2.5" cx="693" cy="95.59447236049438" style="fill: rgb(204, 0, 102); opacity: 0;"></circle><circle class=" c3-shape c3-shape-7 c3-circle c3-circle-7" r="2.5" cx="800" cy="8.301215171813968" style="fill: rgb(204, 0, 102); opacity: 1;"></circle><circle class=" c3-shape c3-shape-8 c3-circle c3-circle-8" r="2.5" cx="906" cy="8.301215171813968" style="fill: rgb(204, 0, 102); opacity: 1;"></circle></g></g><g class="c3-chart-line c3-target c3-target-Pulse" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Pulse c3-lines c3-lines-Pulse"><path class=" c3-shape c3-shape c3-line c3-line-Pulse" d="M54,23.29637591588176L161,24.188945007790558L267,24.188945007790558L374,19.726099548246562L480,24.188945007790558L587,23.29637591588176M906,25.97408319160815" style="stroke: rgb(0, 51, 153); opacity: 1;"></path></g><g class=" c3-shapes c3-shapes-Pulse c3-areas c3-areas-Pulse"><path class=" c3-shape c3-shape c3-area c3-area-Pulse" d="M 54 23.29637591588176" style="fill: rgb(0, 51, 153); opacity: 0.2;"></path></g><g class=" c3-selected-circles c3-selected-circles-Pulse"></g><g class=" c3-shapes c3-shapes-Pulse c3-circles c3-circles-Pulse" style="cursor: pointer;"><circle class=" c3-shape c3-shape-0 c3-circle c3-circle-0" r="2.5" cx="54" cy="23.29637591588176" style="fill: rgb(0, 51, 153); opacity: 1;"></circle><circle class=" c3-shape c3-shape-1 c3-circle c3-circle-1" r="2.5" cx="161" cy="24.188945007790558" style="fill: rgb(0, 51, 153); opacity: 1;"></circle><circle class=" c3-shape c3-shape-2 c3-circle c3-circle-2" r="2.5" cx="267" cy="24.188945007790558" style="fill: rgb(0, 51, 153); opacity: 1;"></circle><circle class=" c3-shape c3-shape-3 c3-circle c3-circle-3" r="2.5" cx="374" cy="19.726099548246562" style="fill: rgb(0, 51, 153); opacity: 1;"></circle><circle class=" c3-shape c3-shape-4 c3-circle c3-circle-4" r="2.5" cx="480" cy="24.188945007790558" style="fill: rgb(0, 51, 153); opacity: 1;"></circle><circle class=" c3-shape c3-shape-5 c3-circle c3-circle-5" r="2.5" cx="587" cy="23.29637591588176" style="fill: rgb(0, 51, 153); opacity: 1;"></circle><circle class=" c3-shape c3-shape-6 c3-circle c3-circle-6" r="2.5" cx="693" cy="95.59447236049438" style="fill: rgb(0, 51, 153); opacity: 0;"></circle><circle class=" c3-shape c3-shape-7 c3-circle c3-circle-7" r="2.5" cx="800" cy="95.59447236049438" style="fill: rgb(0, 51, 153); opacity: 0;"></circle><circle class=" c3-shape c3-shape-8 c3-circle c3-circle-8" r="2.5" cx="906" cy="25.97408319160815" style="fill: rgb(0, 51, 153); opacity: 1;"></circle></g></g><g class="c3-chart-line c3-target c3-target-Respiration" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-Respiration c3-lines c3-lines-Respiration"><path class=" c3-shape c3-shape c3-line c3-line-Respiration" d="M54,77.74309052231843L161,80.42079779804482L267,80.42079779804482L374,78.63565961422722L480,81.3133668899536M693,79.52822870613602M906,77.74309052231843" style="stroke: rgb(0, 153, 0); opacity: 1;"></path></g><g class=" c3-shapes c3-shapes-Respiration c3-areas c3-areas-Respiration"><path class=" c3-shape c3-shape c3-area c3-area-Respiration" d="M 54 77.74309052231843" style="fill: rgb(0, 153, 0); opacity: 0.2;"></path></g><g class=" c3-selected-circles c3-selected-circles-Respiration"></g><g class=" c3-shapes c3-shapes-Respiration c3-circles c3-circles-Respiration" style="cursor: pointer;"><circle class=" c3-shape c3-shape-0 c3-circle c3-circle-0" r="2.5" cx="54" cy="77.74309052231843" style="fill: rgb(0, 153, 0); opacity: 1;"></circle><circle class=" c3-shape c3-shape-1 c3-circle c3-circle-1" r="2.5" cx="161" cy="80.42079779804482" style="fill: rgb(0, 153, 0); opacity: 1;"></circle><circle class=" c3-shape c3-shape-2 c3-circle c3-circle-2" r="2.5" cx="267" cy="80.42079779804482" style="fill: rgb(0, 153, 0); opacity: 1;"></circle><circle class=" c3-shape c3-shape-3 c3-circle c3-circle-3" r="2.5" cx="374" cy="78.63565961422722" style="fill: rgb(0, 153, 0); opacity: 1;"></circle><circle class=" c3-shape c3-shape-4 c3-circle c3-circle-4" r="2.5" cx="480" cy="81.3133668899536" style="fill: rgb(0, 153, 0); opacity: 1;"></circle><circle class=" c3-shape c3-shape-5 c3-circle c3-circle-5" r="2.5" cx="587" cy="95.59447236049438" style="fill: rgb(0, 153, 0); opacity: 0;"></circle><circle class=" c3-shape c3-shape-6 c3-circle c3-circle-6" r="2.5" cx="693" cy="79.52822870613602" style="fill: rgb(0, 153, 0); opacity: 1;"></circle><circle class=" c3-shape c3-shape-7 c3-circle c3-circle-7" r="2.5" cx="800" cy="95.59447236049438" style="fill: rgb(0, 153, 0); opacity: 0;"></circle><circle class=" c3-shape c3-shape-8 c3-circle c3-circle-8" r="2.5" cx="906" cy="77.74309052231843" style="fill: rgb(0, 153, 0); opacity: 1;"></circle></g></g></g><g class="c3-chart-arcs" transform="translate(479,39.30729103088379)"><text class="c3-chart-arcs-title" style="text-anchor: middle; opacity: 0;"></text></g><g class="c3-chart-texts"><g class="c3-chart-text c3-target c3-target-Temperature" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Temperature"></g></g><g class="c3-chart-text c3-target c3-target-Pulse" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Pulse"></g></g><g class="c3-chart-text c3-target c3-target-Respiration" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-Respiration"></g></g></g></g><g clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip-grid)" class="c3-grid c3-grid-lines"><g class="c3-xgrid-lines"></g><g class="c3-ygrid-lines"></g></g><g class="c3-axis c3-axis-x" clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip-xaxis)" transform="translate(0,88.61458206176758)" style="visibility: visible; opacity: 1;"><text class="c3-axis-x-label" transform="" style="text-anchor: end;" x="958" dx="-0.5em" dy="-0.5em"></text><g class="tick" transform="translate(54, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/24/2024</tspan></text></g><g class="tick" transform="translate(161, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/24/2024</tspan></text></g><g class="tick" transform="translate(267, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/24/2024</tspan></text></g><g class="tick" transform="translate(374, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/23/2024</tspan></text></g><g class="tick" transform="translate(480, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/23/2024</tspan></text></g><g class="tick" transform="translate(587, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><g class="tick" transform="translate(693, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><g class="tick" transform="translate(800, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><g class="tick" transform="translate(906, 0)" style="opacity: 1;"><line y2="0" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><path class="domain" d="M0,6V0H958V6"></path></g><g class="c3-axis c3-axis-y" clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip-yaxis)" transform="translate(0,0)" style="visibility: visible; opacity: 1;"><text class="c3-axis-y-label" transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em" dy="1.2em"></text><g class="tick" transform="translate(0,87)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">10</tspan></text></g><g class="tick" transform="translate(0,78)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">20</tspan></text></g><g class="tick" transform="translate(0,69)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">30</tspan></text></g><g class="tick" transform="translate(0,60)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">40</tspan></text></g><g class="tick" transform="translate(0,51)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">50</tspan></text></g><g class="tick" transform="translate(0,43)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">60</tspan></text></g><g class="tick" transform="translate(0,34)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">70</tspan></text></g><g class="tick" transform="translate(0,25)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">80</tspan></text></g><g class="tick" transform="translate(0,16)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">90</tspan></text></g><g class="tick" transform="translate(0,7)" style="opacity: 1;"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">100</tspan></text></g><path class="domain" d="M-6,1H0V88.61458206176758H-6"></path></g><g class="c3-axis c3-axis-y2" transform="translate(958,0)" style="visibility: hidden; opacity: 1;"><text class="c3-axis-y2-label" transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em" dy="-0.5em"></text><g class="tick" transform="translate(0,89)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0</tspan></text></g><g class="tick" transform="translate(0,80)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.1</tspan></text></g><g class="tick" transform="translate(0,72)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.2</tspan></text></g><g class="tick" transform="translate(0,63)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.3</tspan></text></g><g class="tick" transform="translate(0,54)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.4</tspan></text></g><g class="tick" transform="translate(0,45)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.5</tspan></text></g><g class="tick" transform="translate(0,37)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.6</tspan></text></g><g class="tick" transform="translate(0,28)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.7</tspan></text></g><g class="tick" transform="translate(0,19)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.8</tspan></text></g><g class="tick" transform="translate(0,10)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.9</tspan></text></g><g class="tick" transform="translate(0,1)" style="opacity: 1;"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">1</tspan></text></g><path class="domain" d="M6,1H0V88.61458206176758H6"></path></g></g><g transform="translate(20.5,200.5)" style="visibility: hidden;"><g clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip-subchart)" class="c3-chart"><g class="c3-chart-bars"></g><g class="c3-chart-lines"></g></g><g clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip)" class="c3-brush" style="pointer-events: all; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><rect class="background" x="0" width="978" style="visibility: hidden; cursor: crosshair;"></rect><rect class="extent" x="0" width="0" style="cursor: move;"></rect><g class="resize e" transform="translate(0,0)" style="cursor: ew-resize; display: none;"><rect x="-3" width="6" height="6" style="visibility: hidden;"></rect></g><g class="resize w" transform="translate(0,0)" style="cursor: ew-resize; display: none;"><rect x="-3" width="6" height="6" style="visibility: hidden;"></rect></g></g><g class="c3-axis-x" transform="translate(0,0)" clip-path="url(https://www19.pointclickcare.com/care/dashboards/res_tprgraph.jsp?ESOLviewId=50&amp;ESOLtitle=T/P/R%20Graph&amp;ESOLtabtype=C&amp;ESOLclientid=42344920&amp;ESOLcolspan=1#c3-1724539773517-clip-xaxis)" style="opacity: 1;"><g class="tick" transform="translate(54, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/24/2024</tspan></text></g><g class="tick" transform="translate(161, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/24/2024</tspan></text></g><g class="tick" transform="translate(267, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/24/2024</tspan></text></g><g class="tick" transform="translate(374, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/23/2024</tspan></text></g><g class="tick" transform="translate(480, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/23/2024</tspan></text></g><g class="tick" transform="translate(587, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><g class="tick" transform="translate(693, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><g class="tick" transform="translate(800, 0)" style="opacity: 1;"><line y2="6" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><g class="tick" transform="translate(906, 0)" style="opacity: 1;"><line y2="0" x1="54" x2="54"></line><text y="-3.5" x="0" transform="rotate(90)" style="text-anchor: start; display: block;"><tspan x="0" dy=".71em" dx="8">Aug/22/2024</tspan></text></g><path class="domain" d="M0,6V0H958V6"></path></g></g><g transform="translate(0,180)"><g class="c3-legend-item c3-legend-item-Temperature" style="visibility: visible; cursor: pointer;"><text x="402.4531240463257" y="9" style="pointer-events: none;">Temperature</text><rect class="c3-legend-item-event" x="388.4531240463257" y="-5" width="92.375" height="17.33333396911621" style="fill-opacity: 0;"></rect><rect class="c3-legend-item-tile" x="388.4531240463257" y="0" width="10" height="10" style="pointer-events: none; fill: rgb(204, 0, 102);"></rect></g><g class="c3-legend-item c3-legend-item-Pulse" style="visibility: visible; cursor: pointer;"><text x="494.8281240463257" y="9" style="pointer-events: none;">Pulse</text><rect class="c3-legend-item-event" x="480.8281240463257" y="-5" width="55.02083396911621" height="17.33333396911621" style="fill-opacity: 0;"></rect><rect class="c3-legend-item-tile" x="480.8281240463257" y="0" width="10" height="10" style="pointer-events: none; fill: rgb(0, 51, 153);"></rect></g><g class="c3-legend-item c3-legend-item-Respiration" style="visibility: visible; cursor: pointer;"><text x="549.8489580154419" y="9" style="pointer-events: none;">Respiration</text><rect class="c3-legend-item-event" x="535.8489580154419" y="-5" width="75.69791793823242" height="17.33333396911621" style="fill-opacity: 0;"></rect><rect class="c3-legend-item-tile" x="535.8489580154419" y="0" width="10" height="10" style="pointer-events: none; fill: rgb(0, 153, 0);"></rect></g></g></svg><div class="c3-tooltip-container" style="position: absolute; pointer-events: none; display: none;"></div></div>
+	</div>
+
+
+</body></html>

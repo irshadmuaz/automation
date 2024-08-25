@@ -1,0 +1,674 @@
+.residentWrapper{
+	background-color:#fff;
+	border-top:5px solid #fff;
+	border-left:5px solid #fff;
+	border-right:5px solid #fff;
+	margin:0;
+	padding:0;
+}
+
+.residentDetailsWrapper{
+	border-bottom:5px solid #fff;
+	border-left:5px solid #fff;
+	border-right:5px solid #fff;
+	margin:0;
+	padding:0;
+}
+
+/* Resident Name Bar */
+.residentNameBarWrapper{
+	border-right:1px solid #ccc;
+	padding:0;
+}
+
+.residentNameBar{
+	background-color:#ccc !important;
+	background-image:url('/images/resident-header-grad.png');
+	background-position:left 0;
+	background-repeat:repeat;
+	padding:0;
+}
+
+.residentNameBarName{
+	font-weight:bold;
+	font-size:16px;
+	padding:5px 0 0 10px;
+}
+
+.residentNameBarButtons{
+	line-height:25px;
+	padding-right:10px;
+}
+
+.residentNameBarButtons .crossNavButton {
+	margin-top: 1.5px;
+	box-sizing: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.12);
+	padding: 2px 16px;
+	font-family: 'Roboto';
+	font-style: normal;
+	font-size: 14px;
+	line-height: 20px;
+}
+.residentNameBarButtons .crossNavButton.left {
+    border-radius: 16px 0px 0px 16px;
+}
+.residentNameBarButtons .crossNavButton.right {
+    border-radius: 0px 16px 16px 0px;
+	margin-right: 16px;
+}
+.residentNameBarButtons .crossNavButton.on {
+	color: #05576F;
+	background-color: #B3E3E7;
+	font-weight: 500;
+	cursor: default;
+}
+.residentNameBarButtons .crossNavButton.off {
+	color: rgba(0, 0, 0, 0.64);
+	background-color: white;
+	font-weight: 400;
+	cursor: pointer;
+}
+.residentNameBarButtons .crossNavButton.off:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Resident Dropdown Links */
+.residentDropDownButtonLinks{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:left -42px;
+	background-repeat:no-repeat;
+	display:inline-block;
+	height:21px;
+	padding:0 0 0 10px;
+	text-decoration:none;
+}
+
+.residentDropDownButtonLinks span{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right 0;
+	background-repeat:no-repeat;
+	float:left;
+	height:21px;
+	line-height:21px;
+	padding:0 50px 0 0;
+}
+.residentDropDownButtonLinks a{
+	color:#000;
+	cursor:pointer;
+	font-weight:bold;
+	text-decoration:none;
+}
+.residentDropDownButtonLinks a:hover{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right -21px;
+	background-repeat:no-repeat;
+}
+.residentDropDownButtonLinks a:hover span{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right -21px;
+	background-repeat:no-repeat;
+	text-decoration:none;
+}
+
+.residentDropDownListLinks{
+	background-color:#fff;
+	border:1px solid #ccc;
+	border-radius:0 0 5px 5px;
+	display:none;
+	position:absolute;
+	margin:-1px 0 0 4px;
+	width:auto;
+}
+.residentDropDownListLinks ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.residentDropDownListLinks li{
+	padding:3px 10px;
+}
+.residentDropDownListLinks li a{
+	color:#000;
+	display:block;
+	height:100%;
+	margin:0;
+	text-decoration:none;
+	width:100%;
+}
+.residentDropDownListLinks li a:hover{
+	color:#fff;
+}
+
+.residentDropDownListLinks .hover-enabled{
+	background-color:#b0b0b0 !important;
+}
+
+.residentDropDownListLinks .alternate{
+	background-color:#f8f8f8;
+}
+
+/* Resident Dropdown Edit */
+.residentDropDownButtonEdit{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:left -42px;
+	background-repeat:no-repeat;
+	display:inline-block;
+	height:21px;
+	padding:0 0 0 10px;
+	text-decoration:none;
+}
+
+.residentDropDownButtonEdit span{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right 0;
+	background-repeat:no-repeat;
+	float:left;
+	height:21px;
+	line-height:21px;
+	padding:0 50px 0 0;
+}
+.residentDropDownButtonEdit a{
+	color:#333;
+	cursor:pointer;
+	font-weight:bold;
+	text-decoration:none;
+}
+.residentDropDownButtonEdit a:hover{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right -21px;
+	background-repeat:no-repeat;
+}
+.residentDropDownButtonEdit a:hover span{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right -21px;
+	background-repeat:no-repeat;
+	text-decoration:none;
+}
+
+.residentDropDownListEdit{
+	background-color:#fff;
+	border:1px solid #ccc;
+	border-radius:0 0 5px 5px;
+	display:none;
+	margin:-1px 0 0 4px;
+	position:absolute;
+	width:auto;
+}
+.residentDropDownListEdit ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.residentDropDownListEdit li{
+	padding:3px 10px;
+}
+.residentDropDownListEdit li a{
+	color:#000;
+	display:block;
+	height:100%;
+	margin:0;
+	text-decoration:none;
+	width:100%;
+}
+.residentDropDownListEdit li a:hover{
+	color:#fff;
+}
+
+.residentDropDownListEdit .hover-enabled{
+	background-color:#b0b0b0 !important;
+}
+
+.residentDropDownListEdit .alternate{
+	background-color:#f8f8f8;
+}
+
+/* Resident Dropdown Print */
+.residentDropDownButtonPrint{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:left -42px;
+	background-repeat:no-repeat;
+	display:inline-block;
+	height:21px;
+	padding:0 0 0 10px;
+	text-decoration:none;
+}
+
+.residentDropDownButtonPrint span{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right 0;
+	background-repeat:no-repeat;
+	float:left;
+	height:21px;
+	line-height:21px;
+	padding:0 50px 0 0;
+}
+.residentDropDownButtonPrint a{
+	color:#000;
+	cursor:pointer;
+	font-weight:bold;
+	text-decoration:none;
+}
+.residentDropDownButtonPrint a:hover{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right -21px;
+	background-repeat:no-repeat;
+}
+.residentDropDownButtonPrint a:hover span{
+	background-image:url('/images/schdropbkgd.png');
+	background-position:right -21px;
+	background-repeat:no-repeat;
+	text-decoration:none;
+}
+
+.residentDropDownListPrint{
+	background-color:#fff;
+	border:1px solid #ccc;
+	border-radius:0 0 5px 5px;
+	display:none;
+	margin:-1px 0 0 4px;
+	position:absolute;
+}
+.residentDropDownListPrint ul{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.residentDropDownListPrint li{
+	padding:3px 10px;
+}
+.residentDropDownListPrint li a{
+	color:#000;
+	display:block;
+	height:100%;
+	margin:0;
+	text-decoration:none;
+	width:100%;
+}
+.residentDropDownListPrint li a:hover{
+	color:#fff;
+}
+
+.residentDropDownListPrint .hover-enabled{
+	background-color:#b0b0b0 !important;
+}
+
+.residentDropDownListPrint .alternate{
+	background-color:#f8f8f8;
+}
+
+/* Resident Profile */
+.residentProfile{
+	border-left:1px solid #ccc;
+	border-top:1px solid #ccc;
+	padding:0;
+	margin:0;
+}
+
+.residentProfile img{
+	margin:0;
+	padding:0;
+}
+
+.residentProfileDetails{
+	padding:8px 0 0 5px;
+	min-width: 290px;
+}
+
+.residentProfileDetails p{
+	line-height:0;
+	margin:0;
+	padding:3px 0 2px 6px;
+}
+
+/* Resident Details */
+.residentDetails{
+	background-color:#fff;
+	border-right:2px solid #ccc;
+	border-left:2px solid #ccc;
+	cursor:pointer;
+	font-size:10px;
+}
+.residentDetails .wrapper{
+	float:left;
+	width:90%;
+}
+
+.slider{
+	background-color:#ccc;
+	float:left;
+	font-size:0;
+	height:9px;
+	line-height:0;
+	padding-top:0;
+	text-align:center;
+	width:100%;
+}
+
+.residentDetails .col{
+	float:left;
+	height:20px;
+	width:50%;
+}
+.residentDetails .col span{
+	float:left;
+	width:130px;
+}
+
+.residentDetailsInitial{
+	height:105px;
+	margin:5px;
+	overflow:auto;
+}
+
+/* Resident Status (BP|Temp|Pulse|Resp|BS|O2) */
+.residentDetailsStatusWrapper{
+	padding:5px 3px 0 0;
+}
+
+.residentDetailsStatus{
+	background-color:#ccc !important;
+	border-radius:5px 5px 0 0;
+	margin:0 3px 5px 0;
+}
+
+.residentDetailsStatus td{
+	font-size:12px;
+}
+.residentDetailsStatus td span{
+	font-size:10px;
+}
+.residentDetailsStatus td div{
+	white-space:nowrap;
+}
+
+.residentDetailsStatus .vital{
+	background-color:#fff;
+	height:28px;
+	padding:1px 8px 0px 26px;
+	vertical-align: middle;
+	width:84px;
+	cursor: pointer;
+}
+
+.residentDetailsStatus .vitalWithException{
+    background-color:#fff;
+    height:28px;
+    padding:1px 34px 0px 0px;
+    color:red;
+    vertical-align: middle;
+    width:84px;
+    cursor: pointer;
+}
+
+.residentDetailsStatus .vitalWithException .exceptionWarning{
+    float: left;
+    padding: 1px !important;
+}
+
+.residentDetailsStatus .vital .exceptionWarning{
+    float: left;
+    padding: 1px;
+    display: none;
+}
+
+.residentDetailsStatus .vitalWithException .vitalDetails{
+  display: inline;
+ 
+}
+
+/* Resident Specifics */
+table.residentDetailsSpecifics{
+  table-layout:fixed;
+}
+
+.residentDetailsSpecifics{
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+
+.residentDetailsSpecifics .label{
+	background-color:#f8f8f8;
+	font-weight:bold;
+	padding:3px 5px 7px 5px;
+	text-align:right;
+	width:100px;
+}
+
+.residentDetailsSpecifics .labelDetails{
+	padding:3px 10px 0 0;
+	padding-left:5px;
+}
+
+.residentDetailsSpecifics .labelDetailsWrap{
+	height:31px;
+	padding:3px 5px 0 5px;
+}
+
+.residentDetailsSpecificsExtended{
+	display:none;
+}
+
+
+/* Resident Allergies */
+.residentDetailsHeader{
+	background-color:#eee;
+	border-top:1px solid #ccc;
+	cursor:pointer;
+}
+
+/* Resident Allergies Bar */
+.residentDetailsBar{
+	background-color:#eee;
+}
+
+.residentDetailsLabel{
+	font-weight:bold;
+	padding-left:5px;
+	padding-right:5px;
+	text-align:right;
+}
+
+.allergyRed{
+	color:red;
+}
+.residentDetailsBarSummaryExtended{
+	background-color:#f5f5dc;
+	color:red;
+	padding:0 0 0 67px;
+}
+
+.residentDetailsSummary{
+	font-weight:normal;
+}
+
+/* Resident Allergies Extended Table */
+.allergiesExtendedTable td{
+	padding-left:10px
+}
+.allergiesExtendedTable{
+	border:1px solid #ccc;
+}
+.allergiesExtendedTable .odd{
+	background-color:#eee;
+	height:20px;
+}
+.allergiesExtendedTable .even{
+	background-color:#fff;
+	height:20px;
+}
+
+.allergiesExtended{
+	display:none;
+	height:120px;
+	overflow:auto;
+	margin:5px;
+}
+.residentInfoEmpty{
+	display:none;
+}
+
+table.pccData{
+	background-color:#eee;
+}
+
+.residentDetailsSpecifics td{
+	background-color:#eee;
+}
+.ui-progressbar{
+	position:relative;
+}
+.progress-label{
+	font-weight:bold;
+	position:relative;
+	text-align:center;
+	text-shadow:1px 1px 0 #fff;
+}
+
+.alertsSectionWrapper{
+	border-left:5px solid #fff;
+	border-right:5px solid #fff;
+}
+
+.alertsSectionBorder{
+	background-color:beige;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+
+td#residentConvLabel.clinicallabel{
+	font-weight:bold;
+	padding-left:5px;
+	padding-right:5px;
+	text-align:right;
+	width:170px;
+}
+
+td#residentConvLinks{
+	width:auto;
+}
+
+#clientCountSpan{
+	font-size:12px;
+	font-weight:bold;
+}
+
+/* The exception graph pop up style*/
+.wvgraph {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  z-index: 3;
+}
+
+.wvgraph-content .wv-loader {
+  display:block;
+  height:24px;
+  position:relative;
+  width:24px;
+}
+
+.wvgraph-content .wv-loader:before, 
+.wvgraph-content .wv-loader:after {
+  border-radius:100%;
+  content:'';
+  display:block;
+  height:24px;
+  left:50%;
+  margin:-12px 0 0 -12px;
+  position:absolute;
+  top:50%;
+  width:24px;
+}
+
+.wvgraph-content .wv-loader:before {
+  border:2px solid rgba(0, 0, 0, 0.1);
+}
+
+.wvgraph-content .wv-loader:after {
+  webkit-animation:rotate360 .75s linear;
+  animation:rotate360 .75s linear;
+  -webkit-animation-iteration-count:infinite;
+  animation-iteration-count:infinite;
+  border-color:#666 transparent transparent;
+  border-style:solid;
+  border-width:2px;
+}
+
+.wvgraph-content .wv-loader.wv-loader--inline {
+  display:inline-block;
+}
+
+.wvgraph-content .wv-loader.wv-loader--center {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* wv graph Modal Content */
+.wvgraph-content {
+  display: table;
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #888;
+}
+
+.wvgraph-content-table {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.wvgraph-content-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.wvTooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.wvTooltip .wvTooltiptext {
+  visibility: hidden;
+  width: 220px;
+  height: 16px;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #ffffff;
+  text-align: center;
+  background-color: #555;  
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text*/ 
+  position: absolute;
+  z-index: 3;
+  right: 100%;
+  bottom: 10%;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.wvTooltip:hover .wvTooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

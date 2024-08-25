@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!-- saved from url=(0198)https://www19.pointclickcare.com/clinical/dashboard/medicationmonitoring.xhtml?prescriptionType=2&ESOLviewId=129&ESOLtitle=Psychotropic%20Medication&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=2 -->
+<html class="_d-dashboard"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+	<title>Psychotropic Medication</title>
+	
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+	
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+	<meta http-equiv="expires" content="1">
+	<meta http-equiv="expires" content="Sat, 01 Jan 2000 00:00:00 GMT">
+	<meta name="format-detection" content="telephone=no">
+	
+
+	
+	
+		<link type="text/css" rel="stylesheet" href="./core.css">
+		<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+		
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+	
+	<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+
+	<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+	
+<link rel="stylesheet" href="./medicationMonitoring.css">
+
+
+	
+	
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+	
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+	
+	<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+	<script src="./jquery.dateField-2.0.0.js.download"></script>
+	
+
+
+
+
+
+
+	<script src="./ESOLvalidate.js.download"></script>
+	
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+	<script src="./core.js.download"></script>
+	<script src="./system-info.js.download"></script>
+	<script src="./pcc-overlay-dialogs.js.download"></script>
+	<script src="./wedate.js.download"></script>
+	
+	<script src="./coremenufunctions.js.download"></script>
+	
+	
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+	
+	
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+	
+	
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+	
+	
+
+
+	<script>var CONTEXT_PATH = '';</script>
+
+	
+
+	
+
+	
+
+	
+	
+	
+<script>
+	var appProps = appProps || {};
+	(function(){		
+		var moduleProps = {
+				core: {
+					dashboard: {
+						clinical: {
+							medicationMonitoring: {
+								timestampMsg: "The information on this page is as of\nSaturday, August 24, 2024 15:55:38 PDT",
+								numDaysFilter: 7,
+								antibioticGuidelines: [
+									"Antibiotic 72 hours Reassessment Guidelines",
+									"Contact providers 48-72 hours after the initiation of an antibiotic for reassessment (time-out) of the ongoing need for and choice of an antibiotic once more data is available including:",
+									"clinical response",
+									"additional diagnostic information",
+									"alternate explanations for the status change which prompted the antibiotic start",
+									"MEDICATION CLASSES USED TO POPULATE DASHBOARD:",
+									"Aminoglycosides, Antifungal, Antivirals, Anti-infective Agents- Misc., Antimycobacterial Agents, Cephalosporin, Fluoroquinolones, Macrolides, Ophthalmic Agents (Ophthalmic Antibiotics), Penicillin, Sulfonamides, Tetracyclines and Urinary Anti-Infectives."
+								],
+								psychotropicGuidelines: [
+									"Monitoring of Psychotropic Medications",
+									"Residents must not receive any psychotropic medications which are not clinically indicated to treat a specific condition. The attending physician or prescribing practitioner must document the diagnosed specific condition and indication for the medication in the medical record.",
+									"PRN orders for psychotropic medications (excluding antipsychotics) - Time Limitation 14 days - Exception: Order may be extended beyond 14 days if the attending physician or prescribing practitioner believes it is appropriate to extend the order. Attending physician or prescribing practitioner should document the rationale for the extended time period in the medical record and indicate a specific duration.",
+									"PRN orders for antipsychotic medications only &ndash; Time Limitation 14 days &ndash; Exception: None. If the attending physician or prescribing practitioner wishes to write a new order for the PRN antipsychotic, the attending physician or prescribing practitioner must first evaluate the resident to determine if the new order for the PRN antipsychotic is appropriate.",
+									"MEDICATION CLASSES USED TO POPULATE DASHBOARD:",
+									"Antianxiety Agents, Antidepressants, Antipsychotic/Antimanic Agents, Hypnotic/Sedative/Sleep Disorder Agents"
+								]
+							}
+						}
+					}
+				}
+			};
+		$.extend(true, appProps, moduleProps);
+	}());
+</script>
+<script src="./sorttable.js.download"></script>
+<script src="./medicationMonitoring.js.download"></script>
+
+<link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"></head>
+
+<body onload="" marginwidth="0" marginheight="0" style="zoom: 1;">
+  
+	<form name="frmData" action="https://www19.pointclickcare.com/clinical/dashboard/medicationmonitoring.xhtml">
+		<input type="hidden" name="ESOLclientid" id="ESOLclientid" value="42344920">
+		<input type="hidden" name="unit_id" id="unit_id" value="">
+		<input type="hidden" name="floor_id" id="floor_id" value="">
+		<input type="hidden" name="contact_id" id="contact_id" value="">
+		<input type="hidden" name="prescriptionType" id="prescriptionType" value="2">
+		<div id="dashboardPanelHeader" class="pccModuleHeader">
+			<table cellpadding="2" cellspacing="0" border="0" width="100%">
+				<tbody><tr>
+					<td width="33%"><span>Psychotropic Medication
+						<label for="numberDaysFilterDate">Ordered in last</label> 
+						<select name="numberDaysFilterDate" id="numberDaysFilterDate" onchange="this.form.submit();">
+							<option value="7">7 days</option>
+							<option value="14">14 days</option>
+							<option value="30">30 days</option>
+						</select>
+					</span></td>
+					<td width="33%" align="center">
+						
+					</td>
+					<td width="33%" align="right">
+						<img src="./pagecacheclock.gif" id="genTimestampImg" title="The information on this page is as of
+Saturday, August 24, 2024 15:55:38 PDT">
+						<a href="javascript:top.helper(&#39;medMonitoringInfoPsychotropic&#39;);" title="Click for Help"><img src="./icon-info-14.png" border="0"></a>
+						
+						
+							
+						
+						<a href="https://www19.pointclickcare.com/reporting/setup/runtime/orderreports.xhtml?action=setupReport&amp;report_id=0&amp;ESOLreportType=orders&amp;ESOLaction=run&amp;ESOLreportCatalogId=-2&amp;clientid=42344920" target="_blank" title="Order Listing Report"><img src="./reports.gif" height="25"></a>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+		<div id="dashboardPanelBody" style="height: 221px;">
+			<table class="pccResults jsSortable" width="100%">
+				<thead>
+					<tr>
+						
+						
+						<th class="sortable" width="20%"><span>Order</span></th>
+						<th class="sortable" width="10%"><span>Schedule</span></th>
+						<th class="sortable" width="10%"><span>Medication Class</span></th>
+						<th class="sortable" width="10%"><span>Order Status</span></th>
+						<th class="sortable sortedDescending" width="10%"><span>Start Date</span></th>
+						<th class="sortable" width="10%"><span>End Date</span></th>
+						<th class="sortable" width="10%"><span>Ordered By</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					
+						
+						
+						
+						
+						
+						
+						<tr>
+							
+							<td>
+								<a class="expandIcon"></a><div class="collapsepanelTitle">traZODone HCl Oral Tablet 50 MG</div>
+								<div class="collapsepanel">Give 0.5 tablet via G-Tube every 24 hours as needed for Insomnia m/b inability to sleep ***Give at bedtime***</div>
+							</td>
+							<td>PRN</td>
+							<td> ANTIDEPRESSANTS</td>
+							<td>Active</td>
+							<td data-iso-standard-date-time="2024/08/22 20:15:00">8/22/2024 20:15</td>
+							<td data-iso-standard-date-time="9999/12/31 00:00:00">-</td>
+							<td>Khan, Abdulhalim</td>
+						</tr>
+					
+				</tbody>
+			</table>
+		</div>
+	</form>
+
+
+</body></html>

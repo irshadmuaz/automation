@@ -1,0 +1,738 @@
+
+<!-- saved from url=(0163)https://www19.pointclickcare.com/care/dashboards/res_cpgoals.jsp?ESOLviewId=24&ESOLtitle=CP%20Goals%20Due/Overdue&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script><meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+<script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+
+  <title></title><style>  body{margin:0;padding:0;}  table.dboard                   {table-layout:fixed;border-collapse:collapse;empty-cells:show;width:100%;}  table.dboard tr th             {padding:2px;height:24px;font:bold 12px arial;color:#fff;vertical-align:middle;text-align:expression(previousSibling ? nextSibling ? 'center' : 'right' : 'left');}  table.dboard tr th a           {text-decoration:none;color:#fff;font-weight:bold;}  table.dboard tr th table       {border-collapse:collapse;empty-cells:show;}  table.dboard tr th table tr td {padding:0px;margin:2px;height:100%;vertical-align:middle;}  .impact{    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    font-weight:bold;    text-align:center;  }</style><link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head><body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;"><form name="frmData" method="post" action="https://www19.pointclickcare.com/care/dashboards/res_cpgoals.jsp"><input type="hidden" name="ESOLviewId" value="null"><input type="hidden" name="ESOLtitle" value="CP Goals Due/Overdue"><input type="hidden" name="floor_id" value=""><input type="hidden" name="unit_id" value=""><input type="hidden" name="contact_id" value=""><table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="100%"><table width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr height="20" class="pccModuleBackgroundColor slBackgroundColor"><td style="color:white;font-weight:bold;"> &nbsp;&nbsp;CP Goals Due/Overdue</td><td style="color:white;font-weight:bold;" align="right"><img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="alert(this.title);" title="The information on this page is as of
+Saturday, August 24, 2024 15:49:31 PDT">&nbsp;<script>completeMsg = "The information on this page is as of\nSaturday, August 24, 2024 15:49:31 PDT";document.getElementById('genTimestampImg').title= completeMsg;+"."</script></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" height="100%">
+	<div id="tableContainer" class="tableContainer">
+	<table border="0" cellpadding="3" cellspacing="0" width="100%" class="scrollTable">
+	<thead class="fixedHeader" id="fixedHeader">
+		<tr class="alternateRow">
+			<th scope="col" width="75%" class="detailColHeader" nowrap="nowrap" style="color:black;">Goal</th>
+			<th scope="col" width="25%" class="detailColHeader" nowrap="nowrap" style="text-align:center;color:black">Target Date</th>
+		</tr>
+	</thead>
+	<tbody>
+
+
+
+
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free from injury from seizure activity through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will be/remain free of seizure activity through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will remain free from injury related to seizure activity through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will have no s/sx of poor oxygen absorption through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free of aspiration through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will maintain adequate nutritional and hydration status aeb weight stable, no s/sx of malnutrition or dehydration through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will remain free of side effects or complications related to tube feeding through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident's insertion site will be free of s/sx of infection through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free from s/sx of dehydration through the review date
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will have electrolyte lab values within normal limits through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will have minimal or no emesis through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will not have significant weight loss through the review period.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free from s/sx of hypothyroidism through the review date. 
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will have no complications related to hyperthyroidism through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident's Thyroid function tests will be within normal limits through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								Wound Will Show Signs of Improvement
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								Management of Pressure Ulcer
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will remain free from discomfort, complications or s/sx related to dx of GERD through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will have fewer episodes of inability to sleep by review date. 
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will remain free of complications related to restraint use, including contractures, skin breakdown, altered mental status, isolation or withdrawal through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free of s/sx of respiratory infections through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will display optimal breathing patterns daily through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be/remain free from catheter-related trauma through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will show no s/sx of Urinary infection through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free from discomfort or adverse reactions related to anticoagulant use through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will be free of any discomfort or adverse side effects of hypnotic use through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be free from VAP (ventilator associated pneumonia) through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will be on the most appropriate ventilator and ventilator settings to maintain adequate ventilation: Mode: Respiratory Rate: Positive Pressure: Type of ventilator:
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will not experience episodes of respiratory distress during weaning process through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will remain free of complications related to ventilator dependence, including upper respiratory infection, pneumonia, atelectasis, decreased cardiac output, pneumothorax, subcutaneous emphysema, decreased renal perfusion, increased ICP, and hepatic congestion through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will be able to communicate basic needs on a daily basis through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will develop skills to cope with cognitive decline and maintain safety by the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will maintain current level of cognitive function through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will remain free from discomfort, complications related to presence of Peg-tube through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident's insertion site will be free of s/sx of infection through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will remain free from discomfort, complications or s/sx related to gastro-intestinal alterations through review date.  
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will have clear and equal breath sounds bilaterally through the review date.  
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will have no abnormal drainage around trach site through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will have no s/sx of infection through the review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The resident will have temp within normal limits through review date. 
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will have WBC count within normal limits through review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								Nancy will perform safe transfers and ambulation activities using appropriate assistive device by next review.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#efefef" class="normalRow">
+							<td valign="top" width="80%">
+								The resident will attend/participate in activities of choice 1-2 times a week by next review date.
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+						<tr bgcolor="#ffffff" class="alternateRow">
+							<td valign="top" width="80%">
+								The patient will be free form aspiration and complications related to aspiration
+							</td>
+
+							<td valign="top" style="text-align:center;" width="20%">
+11/20/2024							</td>
+
+
+						</tr>
+
+
+
+		</tbody>
+	</table>
+</div>
+
+</td></tr></tbody></table></form>
+</body></html>

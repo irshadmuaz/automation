@@ -1,0 +1,594 @@
+(function(){
+	var DELAY_BEFORE_EXPIRY_REDIRECT_MS = 2000;
+	var HANDLE_KEY = 'winHandle';
+	var HANDLE_KEY_SIZE = 4;
+	var LOGOUT_URL = '/home/logout.jsp';
+	var MIN_POLL_INTERVAL_MS = 1000;
+	var POLLER_URL = '/sec/timeoutMgmt.xhtml';
+	var THROTTLE_EVENTS_MS = 3000;
+	var activityCheckInterval;
+	var activityTimestamp = null;
+	var countdown;
+	var countdownModal;
+	var expiredModal;
+	var expiryPollTimeout;
+	var firstPollTimeout;
+	var BACK_OFF_MAX_COUNT = 1;
+	var backoffCount = 0;
+	var backoffTimeOut = 0;
+	var BACKOFF_MIN = 300000; // default backoff min expiry to 5 min
+	var BACKOFF_MAX = 900000; // default backoff max expiry to 15 min
+	var BACKOFF_PERCENT = 0.8; // backoff expiry to 80% of session timeout.
+	var backoffDelay = BACKOFF_MIN;
+	var lastPollTimestamp = null;
+	var logoutTimeout;
+	var pageLoaded = false;
+	var queryCount = 0;
+	var registeredPopups = [];
+	var sessionMsRemaining = null;
+	var throttleEvents = {};
+	var uniqueWindowHandleGenerated = false;
+	var warningMessage = false;
+	var warningPollTimeout;
+	var SESSION_TIMEOUT_WARNING_DIALOG_ID = 'session-timeout-warning-dialog';
+	var SESSION_TIMEOUT_EXPIRY_DIALOG_ID = 'session-timeout-expiry-dialog';
+	window.sessionTrackingEnabled = true;
+
+	//utility functions
+	function randomNumber(min, max){
+		return Math.floor((Math.random()*((max+1)-min))+min);
+	}
+
+	function generateRandomString(size, characters){
+		var chars = characters || 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+		var charsMax = chars.length - 1;
+		var strArr = [];
+		for(var i=0;i<size;i++){
+			strArr.push(chars[randomNumber(0, charsMax)]);
+		}
+		return strArr.join('');
+	}
+
+	function throttleEvent(eventName, ms, handler){
+		if(typeof(throttleEvents[eventName]) == 'undefined'){
+			throttleEvents[eventName] = 0;
+		}
+		if(throttleEvents[eventName] != 1){
+			throttleEvents[eventName] = 1;
+			handler();
+			setTimeout(function(){
+				throttleEvents[eventName] = 0;
+			}, ms);
+		}
+	}
+
+	var getAccessibleOpenerWindow = (function(){
+		var windowOpener = window.opener;
+		return function(){
+			//if there is an opener window, AND it is tracking the session for us (e.g. not a 3rd party/random link/automation), return it
+			if(windowOpener != null && typeof(windowOpener) == 'object' && !windowOpener.closed && windowOpener.sessionTrackingEnabled){
+				return windowOpener;
+			}
+			//if there is no accessible opener (OR it is closed or not tracking the session) redefine this function to return a constant null
+			getAccessibleOpenerWindow = function(){
+				return null;
+			};
+			return null;
+		};
+	})();
+	window.getAccessibleOpenerWindow = getAccessibleOpenerWindow;
+
+	//register popup with opener, if applicable
+	var windowOpener = getAccessibleOpenerWindow();
+	if(windowOpener){
+		//this window is a popup, register with the opener
+		if(typeof(windowOpener.registerPopupWindow) == 'function'){
+			windowOpener.registerPopupWindow(window);
+		}
+	}
+
+	function registerPopupWindow(windowObj){
+		var popupRegistered = false;
+		var windowRef;
+		for(var i=registeredPopups.length-1;i>-1;i--){
+			windowRef = registeredPopups[i];
+			//remove any stale window references
+			if(windowRef == null || typeof(windowRef) != 'object' || windowRef.closed){
+				//window no longer exists, remove it
+				registeredPopups.splice(i, 1);
+			} else {
+				//if we already have this window reference, ignore it
+				if(windowObj === windowRef){
+					popupRegistered = true;
+					break;
+				}
+			}
+		}
+		if(!popupRegistered){
+			registeredPopups.push(windowObj);
+		}
+	}
+	window.registerPopupWindow = registerPopupWindow;
+
+	function handleThrottledUserActivity(){
+		var windowOpener = getAccessibleOpenerWindow();
+		if(windowOpener){
+			if(typeof(windowOpener.handleUserActivity) == 'function'){
+				windowOpener.handleUserActivity();//recursive until no opener
+			}
+		} else {
+			trackUserActivity();
+		}
+	}
+	window.handleThrottledUserActivity = handleThrottledUserActivity;
+
+	function handleUserActivity(){
+		//don't track before page has loaded
+		if(pageLoaded){
+			//don't track if we are already showing the warning message
+			if(!warningMessage){
+				throttleEvent('activityOccurred', THROTTLE_EVENTS_MS, handleThrottledUserActivity);
+			}
+		}
+	}
+	window.handleUserActivity = handleUserActivity;
+
+    function handleUnThrottledUserActivity(){
+        var windowOpener = getAccessibleOpenerWindow();
+        if(windowOpener){
+            if(typeof(windowOpener.handleUnThrottledUserActivity) == 'function'){
+                windowOpener.handleUnThrottledUserActivity();//recursive until no opener
+            }
+        } else {
+            trackUserActivity();
+        }
+    }
+    window.handleUnThrottledUserActivity = handleUnThrottledUserActivity;
+
+	function trackUserActivity(){
+        activityTimestamp = new Date();
+	}
+
+	function sessionLogout(){
+		if(window.top != window.self){
+			//trapped in an [i]frame, let the parent handle it
+		} else if(typeof(window.opener) == 'object' && window.opener != null){
+			window.close();//close the window if a popup
+		} else {
+			//remove this window.name (if set) to ensure orphaned windows don't loopback to themselves
+			window.name = '';
+			location.href = LOGOUT_URL;
+		}
+	}
+	window.sessionLogout = sessionLogout;
+
+	function handleSessionLogout(){
+		var topLevelReached = true;
+		var windowOpener = getAccessibleOpenerWindow();
+		if(windowOpener){
+			if(typeof(windowOpener.handleSessionLogout) == 'function'){
+				topLevelReached = false;
+				windowOpener.handleSessionLogout();
+			}
+		}
+		if(topLevelReached){
+			forceSessionLogout();//recursively navigate and logout dependent windows
+		}
+	}
+	window.handleSessionLogout = handleSessionLogout;
+
+	function forceSessionLogout(){
+		//close dependent popup windows first
+		for(var i=0;i<registeredPopups.length;i++){
+			if(typeof(registeredPopups[i].forceSessionLogout) == 'function'){
+				registeredPopups[i].forceSessionLogout();
+			}
+		}
+		//logout this main window
+		sessionLogout();
+	}
+	window.forceSessionLogout = forceSessionLogout;
+
+	function updateCountdownClock(){
+		var ms = sessionMsRemaining;
+		var seconds = parseInt((ms / 1000) % 60);
+		var minutes = parseInt((ms / (1000 * 60)) % 60);
+		//Safety catch - if values are less than 0
+		if(minutes < 0){
+			minutes = 0;
+		}
+		if(seconds < 0){
+			seconds = 0;
+		}
+
+		minutes = (minutes < 10) ? '0' + minutes : minutes;
+		seconds = (seconds < 10) ? '0' + seconds : seconds;
+		$('._pccSessionCountdown').text(minutes + ':' + seconds);
+	}
+
+	function startCountdownTimer(){
+		window.clearInterval(countdown);//clear it if it already exists
+		countdown = window.setInterval(function(){
+			sessionMsRemaining = sessionMsRemaining - 1000;
+			updateCountdownClock();
+		}, 1000);
+	}
+
+	function stopCountdownTimer(){
+		window.clearInterval(countdown);
+	}
+
+	function showAllWarningModals(timeLeftInMs){
+		var topLevelReached = true;
+		var windowOpener = getAccessibleOpenerWindow();
+		if(windowOpener){
+			if(typeof(windowOpener.showAllWarningModals) == 'function'){
+				topLevelReached = false;
+				windowOpener.showAllWarningModals(timeLeftInMs);
+			}
+		}
+		if(topLevelReached){
+			showDependentWarningModals(timeLeftInMs);
+		}
+	}
+	window.showAllWarningModals = showAllWarningModals;
+
+	function showDependentWarningModals(timeLeftInMs){
+		showWarningModal(timeLeftInMs);
+		//also show on any dependent popup windows
+		for(var i=0;i<registeredPopups.length;i++){
+			if(typeof(registeredPopups[i].showDependentWarningModals) == 'function'){
+				registeredPopups[i].showDependentWarningModals(timeLeftInMs);
+			}
+		}
+	}
+	window.showDependentWarningModals = showDependentWarningModals;
+
+	function clearAllWarningModals(){
+		var topLevelReached = true;
+		var windowOpener = getAccessibleOpenerWindow();
+		if(windowOpener){
+			if(typeof(windowOpener.clearAllWarningModals) == 'function'){
+				topLevelReached = false;
+				windowOpener.clearAllWarningModals();
+			}
+		}
+		if(topLevelReached){
+			clearDependentWarningModals();
+		}
+	}
+	window.clearAllWarningModals = clearAllWarningModals;
+
+	function clearDependentWarningModals(){
+		clearWarningModal();
+		//also clear warning modals on any dependent popup windows
+		for(var i=0;i<registeredPopups.length;i++){
+			if(typeof(registeredPopups[i].clearDependentWarningModals) == 'function'){
+				registeredPopups[i].clearDependentWarningModals();
+			}
+		}
+	}
+	window.clearDependentWarningModals = clearDependentWarningModals;
+
+	function clearAllExpiredModals(){
+		clearExpiredModal();
+		//also clear expiry modals on any dependent popup windows
+		for(var i=0;i<registeredPopups.length;i++){
+			if(typeof(registeredPopups[i].clearExpiredModal) == 'function'){
+				registeredPopups[i].clearExpiredModal();
+			}
+		}
+	}
+
+	function showWarningModal(timeLeftInMs){
+		//clear out any activity interval timers
+		clearInterval(activityCheckInterval);
+		warningMessage = true;
+		if(!countdownModal){
+			sessionMsRemaining = timeLeftInMs;
+
+			let title = 'Timeout Warning';
+			let body = 'Your session will timeout in';
+
+			let dialogId = SESSION_TIMEOUT_WARNING_DIALOG_ID;
+			let resumeButtonText = 'Stay Logged in';
+			let resumeButtonId = dialogId + '_login';
+			let logoutButtonText = 'Logout';
+			let logoutButtonId = dialogId + '_logout';
+
+			let dialog = document.getElementById(dialogId);
+			if(dialog){
+				dialog.parentNode.removeChild(dialog);
+			}
+			dialog = document.createElement('dialog');
+			dialog.id = dialogId;
+			dialog.className = 'pccSessionMgmtOverlay evergreen';
+
+			dialog.innerHTML = '<h3>' + title + '</h3>' +
+				'<div class="pccSessionTimeoutModalMsg">' + body + '</div>' +
+				'<p style="font-size:24px;text-align:center;"><strong class="_pccSessionCountdown"></strong></p>' +
+				'<div class="actionButtonRow">' +
+					'<button class="primary _pccSessionResume" id="' + resumeButtonId + '">' + resumeButtonText + '</button>' +
+					'<button class="secondary _pccSessionLogout" id="' + logoutButtonId + '">' + logoutButtonText + '</button>' +
+				'</div>';
+
+			document.body.appendChild(dialog);
+			let resumeButton = document.getElementById(resumeButtonId);
+			let logoutButton = document.getElementById(logoutButtonId);
+			resumeButton.addEventListener('click', function(e){
+				e.preventDefault();
+				dialog.close('resume');
+			});
+			logoutButton.addEventListener('click', function(e){
+				e.preventDefault();
+				handleSessionLogout();
+				dialog.close('logout');
+			});
+			// Block the ESC key event
+			dialog.addEventListener('cancel', function(e){
+				e.preventDefault();
+			});
+			// Show dialog
+			dialog.showModal();
+
+			countdownModal = dialog;
+			updateCountdownClock();
+			//set the focus on the resume button (only if this is the active window, in IE11 this will cause an inactive window to steal the focus)
+			if(window.document.hasFocus()){
+				$('._pccSessionResume').focus();
+			}
+			startCountdownTimer();
+		}
+	}
+	window.showWarningModal = showWarningModal;
+
+	function showAllSessionExpired(){
+		showSessionExpired();//opener
+		//also show expiry modals on any dependent popup windows
+		for(var i=0;i<registeredPopups.length;i++){
+			if(typeof(registeredPopups[i].showSessionExpired) == 'function'){
+				registeredPopups[i].showSessionExpired();
+			}
+		}
+	}
+
+	function showSessionExpired(){
+		let title = 'Session Timeout'
+		let body = 'Your session has timed out.'
+
+		let dialogId = SESSION_TIMEOUT_EXPIRY_DIALOG_ID;
+		let loginButtonText = 'Login';
+		let loginButtonId = dialogId + '_login';
+
+		let dialog = document.getElementById(dialogId);
+		if(dialog){
+			dialog.parentNode.removeChild(dialog);
+		}
+
+		dialog = document.createElement('dialog');
+		dialog.id = dialogId;
+		dialog.className = 'pccSessionMgmtOverlay evergreen';
+
+		dialog.innerHTML = '<h3>' + title + '</h3>' +
+			'<div class="dialogBody">' + body + '</div>' +
+			'<div class="actionButtonRow">' +
+				'<button class="primary _pccSessionLogout" id="' + loginButtonId + '">' + loginButtonText + '</button>' +
+			'</div>';
+
+		document.body.appendChild(dialog);
+		// Set up Login button handler
+		let loginButton = document.getElementById(loginButtonId);
+		loginButton.addEventListener('click', function(e){
+			e.preventDefault();
+			dialog.close('login');
+		});
+		// Block the ESC key event
+		dialog.addEventListener('cancel', function(e){
+			e.preventDefault();
+		});
+		// Show dialog
+		dialog.showModal();
+
+		expiredModal = dialog;
+		var windowOpener = getAccessibleOpenerWindow();
+		if(!windowOpener){
+			logoutTimeout = window.setTimeout(forceSessionLogout, DELAY_BEFORE_EXPIRY_REDIRECT_MS);
+		}
+	}
+	window.showSessionExpired = showSessionExpired;
+
+	function clearWarningModal(){
+		if(countdownModal){
+			countdownModal.remove();
+			countdownModal = null;
+		}
+		stopCountdownTimer();
+		warningMessage = false;
+	}
+	window.clearWarningModal = clearWarningModal;
+
+	function clearExpiredModal(){
+		if(expiredModal){
+			expiredModal.remove();
+			expiredModal = null;
+		}
+	}
+	window.clearExpiredModal = clearExpiredModal;
+
+	function checkServerResponse(response){
+		backoffCount = 0;
+		backoffDelay = response.timeoutDuration*BACKOFF_PERCENT; //backoff expiry is set at BACKOFF_PERCENT of session timeout.
+		if(backoffDelay < BACKOFF_MIN)
+			backoffDelay = BACKOFF_MIN;
+
+		if(backoffDelay > BACKOFF_MAX)
+			backoffDelay = BACKOFF_MAX;
+
+		backoffTimeOut = backoffDelay + new Date().getTime();
+		var nextPollMs = response.touchInterval;
+		if(typeof(nextPollMs) != 'number' || nextPollMs < MIN_POLL_INTERVAL_MS){
+			nextPollMs = MIN_POLL_INTERVAL_MS;
+		}
+		var timeToWarning = response.timeToWarning;
+		var timeToExpiry = response.timeToExpiry;
+		if(timeToExpiry <= 0){
+			//Session has expired, logout
+			clearAllWarningModals();
+			showAllSessionExpired();
+		} else {
+			if(timeToWarning <= 0){
+				//At or beyond session timeout warning level
+				showAllWarningModals(timeToExpiry);
+			} else {
+				//Session is active, clear any modals
+				clearAllWarningModals();
+				clearAllExpiredModals();
+				//reset failsafe timeouts for session warning and session expiry
+				setWarningCheckTimer(timeToWarning);
+				setExpiryCheckTimer(timeToExpiry);
+				setActivityCheckTimer(nextPollMs);
+			}
+		}
+	}
+
+	function checkForActivitySinceLastPoll(){
+		//check for activity since last poll, if found, report it to keep the session updated, otherwise do nothing
+		if(lastPollTimestamp != null){
+			if(activityTimestamp != null){
+				var lastActivityTimestamp = activityTimestamp.getTime();
+				if(lastActivityTimestamp > lastPollTimestamp){
+					//activity has occurred since the last poll, query the server which will also update the server with client side user activity
+					queryServer();
+				}
+			}
+		}
+	}
+
+	function generateWindowHandle(){
+		return generateRandomString(HANDLE_KEY_SIZE);
+	}
+
+	function setWindowHandle(handle){
+		window.sessionStorage.setItem(HANDLE_KEY, handle);
+	}
+
+	var getWindowHandle = (function(){
+		var generateHandle = false;
+		var handle = window.sessionStorage.getItem(HANDLE_KEY);
+		if(handle != null){
+			//we have a handle, check that it was not cloned from the opener
+			if(!uniqueWindowHandleGenerated){
+				var windowOpener = getAccessibleOpenerWindow();
+				if(windowOpener != null){
+					var openerHandle = windowOpener.sessionStorage.getItem(HANDLE_KEY);
+					if(handle == openerHandle){
+						//we have a handle, but it was inherited from our opener?
+						generateHandle = true;
+					}
+				}
+			}
+		} else {
+			generateHandle = true;
+		}
+		if(generateHandle){
+			handle = generateWindowHandle();
+			setWindowHandle(handle);
+			uniqueWindowHandleGenerated = true;
+		}
+		//once we have a handle, redefine this function to return a constant value
+		return function(){
+			return handle;
+		};
+	})();
+
+	function queryServer(){
+		queryCount++;
+		var pollerParams = {
+			'q':queryCount,
+			'win':getWindowHandle(),
+			'warn':warningMessage
+		};
+		//only append activity timestamp if activity has occurred
+		if(activityTimestamp != null){
+			var lastActivityTimestamp = activityTimestamp.getTime();
+			pollerParams['lastActionAge'] = (new Date()).getTime() - lastActivityTimestamp;
+		}
+		lastPollTimestamp = new Date().getTime();
+
+		if(backoffCount < BACK_OFF_MAX_COUNT || lastPollTimestamp >  backoffTimeOut){
+			$.get(POLLER_URL, pollerParams, checkServerResponse).fail(function(){
+				backoffCount++;
+				backoffTimeOut = backoffDelay + new Date().getTime();
+			});
+		}
+	}
+
+	function handleQueryServer(){
+		var topLevelReached = true;
+		var windowOpener = getAccessibleOpenerWindow();
+		if(windowOpener){
+			if(typeof(windowOpener.handleQueryServer) == 'function'){
+				topLevelReached = false;
+				windowOpener.handleQueryServer();//recursive until no opener
+			}
+		}
+		if(topLevelReached){
+			queryServer();
+		}
+	}
+	window.handleQueryServer = handleQueryServer;
+
+
+	function startWatcher(){
+		//note: firstInterval is set in setheader
+
+		//if this window is the top/opener... queue first poll
+		var windowOpener = getAccessibleOpenerWindow();
+		if(!windowOpener){
+			firstPollTimeout = window.setTimeout(queryServer, firstInterval);
+		}
+
+		//track user mouse and keyboard activity
+		window.addEventListener('mousemove', function(){
+			//throttle mouse events (they fire thousands / second)
+			throttleEvent('mouseMoveActivityOccurred', THROTTLE_EVENTS_MS, handleUserActivity);
+		});
+		window.addEventListener('click', function(){
+			handleUserActivity();
+		});
+		window.addEventListener('keydown', function(){
+			handleUserActivity();
+		});
+		//flag when the page has loaded
+		window.addEventListener('load', function(){
+			pageLoaded = true;
+		});
+		$(document).on('click', '._pccSessionResume', function(){
+            handleUnThrottledUserActivity();
+			clearAllWarningModals();
+			handleQueryServer();
+		});
+		$(document).on('click', '._pccSessionLogout', function(){
+			handleSessionLogout();
+		});
+	}
+
+	function setWarningCheckTimer(msToWarning){
+		clearTimeout(warningPollTimeout);//clear any previous timeout
+		warningPollTimeout = window.setTimeout(function(){queryServer();}, msToWarning);
+	}
+
+	function setExpiryCheckTimer(msToExpiry){
+		clearTimeout(expiryPollTimeout);//clear any previous timeout
+		expiryPollTimeout = window.setTimeout(function(){queryServer();}, msToExpiry);
+	}
+
+	function setActivityCheckTimer(msToNextCheck){
+		clearInterval(activityCheckInterval);//clear any previous interval timer
+		activityCheckInterval = window.setInterval(function(){checkForActivitySinceLastPoll();}, msToNextCheck);
+	}
+
+	if(self == top){
+		startWatcher();
+	}
+}());

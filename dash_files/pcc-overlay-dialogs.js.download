@@ -1,0 +1,106 @@
+function showAlert(config){
+    //Generate an HTML <dialog>, or default to a JavaScript alert() if using Internet Explorer
+    let title = config.title || '';
+    let body = config.body || 'Attention!';
+    let okHandler = (config.actions && config.actions.ok && config.actions.ok.fn) ? config.actions.ok.fn : function(){};
+    let isIE = (navigator.userAgent.indexOf('Trident') != -1);
+    if(isIE){
+        alert(title + '\n\n' + body);
+        okHandler();
+    } else {
+        let dialogId = 'pcc-alert-dialog'; //All alert dialogs use the same DOM
+        let okButtonText = config.actions.ok.text || 'OK';
+        let okButtonId = dialogId + '_ok';
+        // Flush any existing dialog
+        let dialog = document.getElementById(dialogId);
+        if(dialog){
+            dialog.parentNode.removeChild(dialog);
+        }
+        dialog = document.createElement('dialog');
+        dialog.id = dialogId;
+        dialog.className = 'pccOverlay evergreen';
+        dialog.innerHTML = '<h3>' + title + '</h3>' +
+            '<div class="dialogBody">' + body + '</div>' +
+            '<div class="actionButtonRow">' +
+            '<button class="primary" id="' + okButtonId + '">' + okButtonText + '</button>' +
+            '</div>';
+        document.body.appendChild(dialog);
+        // Set up ok/dismiss handler
+        let okButton = document.getElementById(okButtonId);
+        okButton.addEventListener('click', function(e){
+            e.preventDefault();
+            dialog.close('ok');
+        });
+        // Handle the dialog close event
+        dialog.addEventListener('close', function(e){
+            let dialogCloseValue = dialog.returnValue; // Will be blank if the user clicks Esc (e.g. default to cancel)
+            if(dialogCloseValue == 'ok'){
+                okHandler();
+            } else {
+                okHandler();
+            }
+        });
+        // Show alert dialog
+        dialog.showModal();
+    }
+}
+
+
+function showConfirm(config){
+    //Generate an HTML <dialog>, or default to a JavaScript confirm() if using Internet Explorer
+    let title = config.title || '';
+    let body = config.body || 'Are you sure?';
+    let confirmHandler = (config.actions && config.actions.confirm && config.actions.confirm.fn) ? config.actions.confirm.fn : function(){};
+    let cancelHandler = (config.actions && config.actions.cancel && config.actions.cancel.fn) ? config.actions.cancel.fn : function(){};
+    let isIE = (navigator.userAgent.indexOf('Trident') != -1);
+    if(isIE){
+        if(confirm(title + '\n\n' + body)){
+            confirmHandler();
+        } else {
+            cancelHandler();
+        }
+    } else {
+        let dialogId = 'pcc-confirm-dialog'; //All Confirm dialogs use the same DOM
+        let confirmButtonText = config.actions.confirm.text || 'OK';
+        let cancelButtonText = config.actions.cancel.text || 'Cancel';
+        let confirmButtonId = dialogId + '_confirm';
+        let cancelButtonId = dialogId + '_cancel';
+        // Flush any existing dialog
+        let dialog = document.getElementById(dialogId);
+        if(dialog){
+            dialog.parentNode.removeChild(dialog);
+        }
+        dialog = document.createElement('dialog');
+        dialog.id = dialogId;
+        dialog.className = 'pccOverlay evergreen';
+        dialog.innerHTML = '<h3>' + title + '</h3>' +
+            '<div class="dialogBody">' + body + '</div>' +
+            '<div class="actionButtonRow">' +
+            '<button class="primary" id="' + confirmButtonId + '">' + confirmButtonText + '</button>' +
+            '<button class="secondary" id="' + cancelButtonId + '">' + cancelButtonText + '</button>' +
+            '</div>';
+        document.body.appendChild(dialog);
+        // Set up confirmation and cancel handlers
+        let confirmButton = document.getElementById(confirmButtonId);
+        let cancelButton = document.getElementById(cancelButtonId);
+        confirmButton.addEventListener('click', function(e){
+            e.preventDefault();
+            dialog.close('confirm');
+        });
+        cancelButton.addEventListener('click', function(e){
+            e.preventDefault();
+            dialog.close('cancel');
+        });
+        // Handle the dialog close event
+        dialog.addEventListener('close', function(e){
+            let dialogCloseValue = dialog.returnValue; // Will be blank if the user clicks Esc (e.g. default to cancel)
+            if(dialogCloseValue == 'confirm'){
+                confirmHandler();
+            } else {
+                cancelHandler();
+            }
+        });
+        // Show confirm dialog
+        dialog.showModal();
+    }
+}

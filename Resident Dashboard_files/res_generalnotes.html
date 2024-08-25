@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!-- saved from url=(0164)https://www19.pointclickcare.com/clinical/dashboard/res_generalnotes.xhtml?ESOLviewId=72&ESOLtitle=General%20Notes&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=2 -->
+<html class="_d-dashboard"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+	<title></title>
+	
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+	
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+	<meta http-equiv="expires" content="1">
+	<meta http-equiv="expires" content="Sat, 01 Jan 2000 00:00:00 GMT">
+	<meta name="format-detection" content="telephone=no">
+	
+
+	
+	
+		<link type="text/css" rel="stylesheet" href="./core.css">
+		<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+		
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+	
+	<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+
+	<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+	
+<link type="text/css" rel="stylesheet" href="./displaytagClinical.css">
+<style>
+	div.scrollbar{
+		background:#efefef;
+		border:2px solid #d5d5d5;
+		height:180px;
+		overflow:auto;
+		padding-bottom:10px;
+		top:-3px;
+	}
+	td.rowheader{
+  		text-align:"right";
+  		vertical-align:"top";
+	}
+</style>
+
+
+	
+	
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+	
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+	
+	<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+	<script src="./jquery.dateField-2.0.0.js.download"></script>
+	
+
+
+
+
+
+
+	<script src="./ESOLvalidate.js.download"></script>
+	
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+	<script src="./core.js.download"></script>
+	<script src="./system-info.js.download"></script>
+	<script src="./pcc-overlay-dialogs.js.download"></script>
+	<script src="./wedate.js.download"></script>
+	
+	<script src="./coremenufunctions.js.download"></script>
+	
+	
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+	
+	
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+	
+	
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+	
+	
+
+
+	<script>var CONTEXT_PATH = '';</script>
+
+	
+
+	
+
+	
+
+	
+	
+	
+<script src="./displaytag.js.download"></script>
+<script>
+  function submitForm()
+  {
+    frmData.submit();
+  }
+
+  function clickClock()
+  {
+    var genDate = new Date();
+    document.getElementById('genTimestampImg').title="The information on this page is as of\n"+genDate;
+    alert("The information on this page is as of\n"+genDate);
+  }
+
+  function edit(id)
+  {
+    openSizedLookup2("/clinical/setup_popup/gn/gneditcreate.xhtml?ESOLclientid=42344920&ESOLgnId=" + id, '', 550, 400, '');
+  }
+
+  function refreshMe()
+  {
+    frmData.submit();
+  }
+
+  function clickClock()
+  {
+    var genDate = new Date();
+    document.getElementById('genTimestampImg').title="The information on this page is as of\n"+genDate;
+    alert("The information on this page is as of\n"+genDate);
+  }
+</script>
+
+<link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head>
+
+<body class="clinical" onload="addRowHandlersToDisplayTag(&#39;gnlist&#39;,&#39;&#39;)" marginwidth="0" marginheight="0" style="zoom: 1;">
+  
+<form name="frmData" action="https://www19.pointclickcare.com/clinical/dashboard/res_generalnotes.xhtml">
+  <input type="hidden" name="ESOLminiToken" value="qGtrB87P359">
+  <input type="hidden" name="ESOLclientid" value="42344920">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+  <tbody><tr valign="middle" height="25">
+    <td nowrap="nowrap" class="pccModuleHeader" width="170">General Notes</td>
+
+    
+    
+
+    
+    <td nowrap="nowrap" class="pccModuleHeader" align="left">&nbsp;View:
+      <select name="ESOLgeneralnotesview" id="ESOLgeneralnotesview" onchange="submitForm();">
+        <option value="1">Last 24 Hours</option>
+        <option value="2" selected="">Last 7 Days</option>
+        <option value="3">Last 14 Days</option>
+        <option value="4">Last 30 Days</option>
+        <option value="5">All</option>
+      </select>
+      &nbsp;&nbsp;&nbsp;&nbsp;Type: <select name="ESOLgeneralnotestype" onchange="frmData.submit()"><option value="-1" selected="">All</option><option value="11">Chart Review</option><option value="2">Medicare Review</option><option value="31">Pre-admission Note</option></select>
+    </td>
+
+    
+    <td nowrap="nowrap" class="pccModuleHeader" align="right">
+      <a href="javascript:parent.goToGenNotesReportSetup();" style="color:#ffffff;text-decoration:none;" title="General Notes Report"><img src="./reports.gif" border="0" align="absmiddle" height="25">&nbsp;General Notes Report
+      </a>
+    </td>
+    <td nowrap="nowrap" class="pccModuleHeader" align="right">
+      <img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="clickClock();">&nbsp;&nbsp;
+    </td>
+  </tr>
+</tbody></table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tbody><tr>
+   <td colspan="99">
+   
+   <div class="scrollbar">
+     
+<table cellspacing="0" id="gnlist" class="displaytagClinical" cellpadding="0">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>Effective Date</th>
+<th>Note Text</th></tr></thead>
+<tfoot><tr bgcolor="#d5d5d5"><td colspan="20" style="height:4"></td></tr></tfoot>
+<tbody>
+         <tr class="empty" height="25"><td colspan="99" width="10%">&nbsp;<b>No General Notes.</b></td></tr>
+       </tbody></table></div><span class="pagelinks"></span>
+   </td>
+ </tr>
+</tbody></table>
+</form>
+
+
+</body></html>

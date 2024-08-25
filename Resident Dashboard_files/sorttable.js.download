@@ -1,0 +1,87 @@
+
+$(function() {
+	$('.jsSortable .sortable').on('click', sortTable);
+});
+
+function sortTable() {
+	var tableSorter = function() {
+		return new TableSorter();
+	};
+
+	var TableSorter = function() {
+	};	
+	
+	TableSorter.prototype = {
+		sort:function($sortingField) {
+			var tableSorterObject = this;
+			var sortClass = this.setSortClass($sortingField);
+			var currentSortingColumnNumber = $sortingField.index();
+			
+			$sortingField.closest('table').find('tr').not(':first').not('.expandableTableRow').each(function() {
+				var $currentRow = $(this);
+				var $currentSortingField = $currentRow.find('td:eq('+ currentSortingColumnNumber +')');		
+				var currentValue = tableSorterObject.parseValue($currentSortingField);
+				
+				// compare current row to rows after it
+				$currentRow.closest('tr').nextAll().not('.expandableTableRow').each(function() {
+					var $nextRow = $(this);
+					var $nextRowSortingField = $nextRow.find('td:eq('+ currentSortingColumnNumber +')');
+					var nextValue = tableSorterObject.parseValue($nextRowSortingField);
+					
+					// switch rows if sorting is needed
+					var sortDescending = (sortClass == 'sortedDescending' && currentValue < nextValue);
+					var sortAscending = (sortClass == 'sortedAscending' && currentValue > nextValue);
+					if(sortDescending || sortAscending) {
+						$currentRow.insertAfter($nextRow);
+					}
+				});
+			});
+			
+			$sortingField.closest('table').find('tr.expandableTableRow').each(function() {
+				var $currentRow = $(this),
+					matchingRowId = $(this).data('rowId'),
+					$matchingRow = $currentRow.closest('table').find('tr[data-row-id="' + matchingRowId + '"]').not('.expandableTableRow');
+				$currentRow.insertAfter($matchingRow);
+			});
+			
+			$sortingField.trigger('SORT_TABLE_SORTED_COMPLETE');
+		},
+		setSortClass:function($element) {
+			var sortClass = 'sortedAscending';
+			if($element.hasClass('sortedAscending')) {
+				$element.removeClass('sortedAscending');		
+				sortClass = 'sortedDescending';
+			}
+			else if($element.hasClass('sortedDescending')) {
+				$element.removeClass('sortedDescending');
+				sortClass = 'sortedAscending';
+			}
+			$element.addClass(sortClass);
+			$element.siblings('.sortable').each(function() {
+				$(this).removeClass('sortedAscending');
+				$(this).removeClass('sortedDescending');
+			});
+			return sortClass;
+		},
+		parseValue:function($element) {
+			var stringValue = $element.contents().text();
+			if($.isNumeric(stringValue)) {
+				return parseInt(stringValue);
+			}
+			else if($element.attr('data-iso-standard-date-time')){
+				return $element.data('isoStandardDateTime');
+			}
+			else if(this.isDate(stringValue)) {
+				return new Date(stringValue).getTime();
+			}
+			return stringValue;
+		},
+		isDate:function(val) {
+		    var d = new Date(val);
+		    return !isNaN(d.valueOf());
+		}
+	}
+	
+	var tableSorter = new tableSorter();
+	tableSorter.sort($(this));
+}

@@ -1,0 +1,30 @@
+img{
+	vertical-align:middle;
+}
+#dashboardPanelBody{
+	overflow-y:auto;
+}
+.expandIcon{
+	background:url(/images/newplus.gif) no-repeat transparent;
+	cursor:pointer;
+	display:block;
+	float:left;
+	height:11px;
+	margin-top:0.15em;
+	width:11px;
+}
+.expandIcon.isOpen{
+	background-image: url(/images/newminus.gif);
+}
+.collapsepanelTitle{
+	margin-left:1rem;
+}
+.collapsepanel{
+	display:none;
+	font-size:0.95em;
+	margin-left:1rem;
+	padding:0.25rem 0;
+}
+.pccResults tr>td{
+	vertical-align:top;
+}

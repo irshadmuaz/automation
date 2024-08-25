@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!-- saved from url=(0237)https://www19.pointclickcare.com/clinical/dashboard/showeinteractalerts.xhtml?ESOLdashboard=R&ESOLviewId=94&ESOLtitle=eINTERACT%20Stop%20&%20Watch%20And%20Change%20In%20Condition%20Alerts&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=2 -->
+<html class="_d-dashboard"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+	<title></title>
+	
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+	
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+	<meta http-equiv="expires" content="1">
+	<meta http-equiv="expires" content="Sat, 01 Jan 2000 00:00:00 GMT">
+	<meta name="format-detection" content="telephone=no">
+	
+
+	
+	
+		<link type="text/css" rel="stylesheet" href="./core.css">
+		<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+		
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+	
+	<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+
+	<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+	
+
+	
+	
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+	
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+	
+	<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+	<script src="./jquery.dateField-2.0.0.js.download"></script>
+	
+
+
+
+
+
+
+	<script src="./ESOLvalidate.js.download"></script>
+	
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+	<script src="./core.js.download"></script>
+	<script src="./system-info.js.download"></script>
+	<script src="./pcc-overlay-dialogs.js.download"></script>
+	<script src="./wedate.js.download"></script>
+	
+	<script src="./coremenufunctions.js.download"></script>
+	
+	
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+	
+	
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+	
+	
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+	
+	
+
+
+	<script>var CONTEXT_PATH = '';</script>
+
+	
+
+	
+
+	
+
+	
+	
+	
+	<script src="./autocomplete.js.download"></script>
+	
+		<script>
+			var currentIdx = -1;
+			var physOrderFormPopup = null;
+			var highRiskAlertIds = '';
+			function expandAlert(idx, clientId)
+			{
+				currentIdx = idx;
+				if ($('#childrow'+idx).is(':hidden'))
+				{
+					$('#img'+idx).attr('src', '/images/newminus.gif');
+					$.ajax({
+						type: "POST",
+						url: "/clinical/dashboard/einteractalertshelper/getVitals.xhtml",
+						data: {clientId: clientId},
+						success: function(response) {
+							processVitalsResponse(response);
+							$('#childrow'+idx).toggle();
+						},
+						error: function(e) {
+							alert('There was an error obtaining vitals for clientId = ' + clientId + '. Error is: ' + e.message);
+						}
+					});
+				}
+				else
+				{
+					$('#img'+idx).attr('src', '/images/newplus.gif');
+					$('#childrow'+idx).toggle();
+				}
+			}
+			function processVitalsResponse(response)
+			{
+				var idx = currentIdx;
+				currentIdx = -1;
+				var vitalsObj = response;
+				if (vitalsObj != null)
+				{
+					$('#weight' + idx).html(vitalsObj.weight);
+					$('#weightDate' + idx).html(localizeDate(vitalsObj.weightDate));
+					$('#bloodPressure' + idx).html(vitalsObj.bloodPressure);
+					$('#bloodPressureDate' + idx).html(localizeDate(vitalsObj.bloodPressureDate));
+					$('#temperature' + idx).html(vitalsObj.temperature);
+					$('#temperatureDate' + idx).html(localizeDate(vitalsObj.temperatureDate));
+					$('#pulse' + idx).html(vitalsObj.pulse);
+					$('#pulseDate' + idx).html(localizeDate(vitalsObj.pulseDate));
+					$('#respirations' + idx).html(vitalsObj.respirations);
+					$('#respirationsDate' + idx).html(localizeDate(vitalsObj.respirationsDate));
+					$('#bloodSugar' + idx).html(vitalsObj.bloodSugar);
+					$('#bloodSugarDate' + idx).html(localizeDate(vitalsObj.bloodSugarDate));
+					$('#o2Stats' + idx).html(vitalsObj.o2Stats);
+					$('#o2StatsDate' + idx).html(localizeDate(vitalsObj.o2StatsDate));
+					$('#height' + idx).html(vitalsObj.height);
+					$('#heightDate' + idx).html(localizeDate(vitalsObj.heightDate));
+				}
+			}
+			
+			function localizeDate(internalDateTime)
+			{
+				if (!internalDateTime) {
+					return internalDateTime;
+				}
+				var dateTokens = internalDateTime.split(" ");
+				var localizedDate = PCC.l10n.dateTime.internalDateToUserDate(dateTokens[0]); 
+				var time = dateTokens.length >= 2 ? dateTokens[1] : "";
+				return localizedDate + " " + time;
+			}
+			
+			function clickCheckAllChkbx()
+			{
+				if ($("input#checkAll").attr("checked")) {
+					checkAll();
+			    }
+			    else {
+			    	clearAll();
+			    }
+			}
+			
+			function checkAll()
+			{
+				$('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+					$(e).prop('checked', true);
+				});
+				$('input[id^="clientChkBx"]:checkbox').each(function(i,e){
+					$(e).prop('checked', true);
+				});
+			}
+			function clearAll()
+			{
+				$('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+					$(e).prop('checked', false);
+				});
+				$('input[id^="clientChkBx"]:checkbox').each(function(i,e){
+					$(e).prop('checked', false);
+				});
+			}
+			function clearAlerts()
+			{
+				var aIds = '';
+				$('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+					if ($(e).prop('checked') == true)
+					{
+						aIds += ($(e).val() + ',');
+					}
+				});
+				if (aIds.length > 0)
+				{
+					if (confirm('Has the appropriate care path been followed prior to clearing the selected alerts?'))
+					{
+						aIds = aIds.substring(0, aIds.length - 1);
+						var aIdsArr = aIds.split(',');
+						var hrIdsArr = highRiskAlertIds.split(',');
+						$.each(aIdsArr, function(i,e){
+							$.each(hrIdsArr, function(j,v){
+								if (e == v)
+								{
+									aIdsArr[i] += '_hr';
+								}
+							});
+						});
+						aIds = aIdsArr.join();
+						$.ajax({
+							type: "POST",
+							url: "/clinical/dashboard/einteractalertshelper/clearEinteractAlerts.xhtml",
+							data: {alertIds: aIds, highriskIds:""},
+							success: function(response) {
+								submitRefresh();
+							},
+							error: function(e) {
+								alert('There was an error clearing errors: ' + aIds + '. Error is: ' + e.message);
+							}
+						});
+					}
+				}
+				else
+				{
+					alert("Please check the alert before you clear it.");
+				}
+			}
+			function createNewAlert(clientId)
+			{
+				
+					
+					
+						openSizedLookup2("/clinical/cp_popup/createclientalert.xhtml?ESOLfromEAlerts=Y&client_id="+clientId,"",500,590,"");
+					
+				
+			}
+			function assess(clientid)
+			{
+				
+
+                var aIds = '';
+                $('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+                    if ($(e).prop('checked') == true)
+                    {
+                        aIds += ($(e).val() + ',');
+                    }
+                });
+
+                var multipleClients = false;
+                
+
+                if (multipleClients)
+                    alert("Please select alerts from one client.");
+                else if (clientid.length > 0)
+                  openSizedLookup2("/clinical/cp_popup/reasonGuide.xhtml?ESOLclientid="+clientid+"&ESOLalertids="+aIds+"&ESOLhralertids="+highRiskAlertIds,"",800,500,"");
+                else
+                  alert("Please select one client");
+			}
+			function openDescription(alertId)
+		    {
+		        openSizedLookup2('/clinical/cp_popup/alertDescriptionDisplay.xhtml?ESOLalertid='+alertId,'',350,200,'');
+		    }
+			function changeHistoryHours()
+		    {
+		      frmData.submit();
+		    }
+			function changeSortBy()
+		    {
+		      frmData.submit();
+		    }
+			function submitRefresh()
+		    {
+		        frmData.submit();
+		    }
+			function viewUDA(hrid,clientid)
+		    {
+		      openSizedLookup2("/care/chart/assess/viewhighriskalerts.jsp?ESOLhighriskid="+hrid+"&ESOLclientid="+clientid,"",500,300,"");
+		    }
+			function changeCheckAll(index)
+			{
+				if (!$("#alertChkBx"+index).is(":checked"))
+					$("#checkAll").attr('checked', false);					
+			}
+			function clickAlertCheckbox(index)
+			{
+				changeCheckAll(index);
+				if ($("#alertChkBx"+index).is(":checked"))
+				  $("#clientChkBx"+index).attr('checked', true);
+				else
+				  $("#clientChkBx"+index).attr('checked', false);
+			}
+
+			
+		</script>
+	
+
+<link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head>
+
+<body class="clinical" onload="" marginwidth="0" marginheight="0" style="zoom: 1;">
+  
+	
+		
+			<style>
+				.odd{
+					background-color:#fff;
+				}
+				.even{
+					background-color:#eee;
+				}
+			</style>
+			<link type="text/css" rel="stylesheet" href="./autocomplete.css">
+			<form name="frmData" method="post" action="https://www19.pointclickcare.com/clinical/dashboard/showeinteractalerts.xhtml">
+				<input type="hidden" name="ESOLdashboard" value="R">
+				
+					<input type="hidden" name="ESOLclientid" value="42344920">
+				
+				<table class="dboard" width="100%" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td width="100%">
+								<table width="100%" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td height="20" class="pccModuleBackgroundColor" style="width:55%;color:white;font-weight:bold;">
+												&nbsp;eINTERACT Stop &amp; Watch and Change in Condition Alerts&nbsp;
+											</td>
+											<td align="right" height="20" class="pccModuleBackgroundColor" style="color:#fff;font-weight:bold;">
+												<table cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td>
+																<span style="color:#ffffff;font-weight:bold;">Show Alerts in Last</span>&nbsp;
+																<select id="ESOLhistoryHours" name="ESOLhistoryHours" onchange="changeHistoryHours();">
+																	<option value="24">24 Hours</option>
+																	<option value="48" selected="selected">48 Hours</option>
+																	<option value="72">72 Hours</option>
+																	<option value="720">30 Days</option>
+																	<option value="1440">60 Days</option>
+																	<option value="2160">90 Days</option>
+																</select>&nbsp;&nbsp;
+															</td>
+															<td>
+																
+																	
+																		
+																			
+																			
+																				
+																					
+																					
+																						
+																					
+																				
+																				<a target="_blank" href="https://www19.pointclickcare.com/clinical/report/alertlistingreport.xhtml?client_id=42344920&amp;ESOLshowClearedAlerts=N&amp;ESOLunitid=-1&amp;ESOLfloorid=-1&amp;ESOLstartdate=2024-08-22%2018:49:31&amp;ESOLenddate=2024-08-24%2018:49:31&amp;ESOLsortby=0&amp;ESOLstatusid=-1&amp;ESOLreportOnSimple=Y&amp;ESOLreportOnComplex=Y&amp;ESOLcomplexAlertId=-1&amp;ESOLfromEAlerts=Y" style="color:#ffffff;text-decoration:none;" title="Alert Listing Report">
+																					<img src="./reports.gif" border="0" align="absmiddle" height="25">
+																					Alert Listing Report&nbsp;&nbsp;
+																				</a>
+																			
+																		
+																	
+																	
+																
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											
+												
+												
+													<td height="20" bgcolor="#efefef" style="color:black;font-weight:bold;">
+														&nbsp;&nbsp;<label><input id="ESOLshowClearedAlerts" name="ESOLshowClearedAlerts" type="checkbox" value="Y" onchange="submitRefresh();">Show Cleared Alerts</label>
+													</td>
+													<td height="20" bgcolor="#efefef" style="color:black;font-weight:bold;">
+														&nbsp;
+													</td>
+												
+											
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td width="100%" valign="top" height="100%">
+								<div id="listContainer" style="background:#efefef;top:-3px;border-right:2px solid #d5d5d5;border-top:2px solid #d5d5d5;border-left:2px solid #d5d5d5;border-bottom:2px solid #d5d5d5;overflow-y:auto;">
+							    	<input type="hidden" name="ESOLclearId" value="">
+							    	<input type="hidden" name="ESOLclearCheckedAlerts" value="N">
+							    	<input type="hidden" name="ESOLalertmoduletype" value="1">
+							    	
+							    		
+							    		
+							    			<table border="0" cellspacing="0" cellpadding="3" width="100%">
+				                           		<tbody>
+				                           			<tr>
+					                                    <td class="detailColHeader" style="width:25px;">&nbsp;</td>
+					                                    <td class="detailColHeader" style="width:37px;"><input type="checkbox" id="checkAll" onclick="clickCheckAllChkbx()"></td>
+					                                    <td class="detailColHeader" style="width:150px;" nowrap="nowrap">Effective Date</td>
+					                                    <td class="detailColHeader" style="width:300px;" nowrap="nowrap">Alert</td>
+					                                    <td class="detailColHeader" style="width:150px;" nowrap="nowrap">Cleared By</td>
+					                                    <td class="detailColHeader" style="width:150px;" nowrap="nowrap">Cleared Date</td>
+				                                    </tr>
+				                                </tbody>
+				                            </table>
+							    		
+							    	
+		                            <div style="height:145px;overflow:auto;">
+		                            	
+		                            		
+		                            		
+		                            			<table border="0" cellspacing="0" cellpadding="3" width="100%">
+				                            		<tbody>
+				                            			
+				                            				
+				                            					<tr class="odd">
+				                            						<td colspan="6">
+				                            							<span style="font-weight:bold">No records found.</span>
+				                            						</td>
+				                            					</tr>
+				                            				
+				                            				
+				                            			
+				       								</tbody>
+				       							</table>
+		                            		
+		                            	
+		       						</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table width="100%" cellpadding="0" cellspacing="2" border="0">
+									<tbody>
+										<tr style="height:25px;">
+											<td style="font-size:8pt;font-weight:bold;text-align:center;" nowrap="nowrap">
+												&nbsp;&nbsp;
+                                                
+                                                    
+                                                        
+                                                            <input type="button" class="pccButton" value="Assess" onclick="assess(&#39;42344920&#39;);return false;">
+                                                        
+                                                        
+                                                    
+                                                
+												
+												
+													<input type="button" class="pccButton" value="New Alert" onclick="createNewAlert(&#39;42344920&#39;);return false;">
+												
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			<script>
+				if (highRiskAlertIds.length > 0)
+				{
+					highRiskAlertIds = highRiskAlertIds.substring(0, highRiskAlertIds.length - 1);
+				}
+			</script>
+		
+		
+	
+
+
+</body></html>

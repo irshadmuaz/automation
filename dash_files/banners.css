@@ -1,0 +1,95 @@
+.greenBanner{
+    background-color:#86b324;
+    color:#fff;
+    font-weight:bold;
+    line-height:36px;
+    padding-left:16px;
+}
+
+.redBanner{
+    background-color:#f00;
+    color:#fff;
+    font-weight:bold;
+    line-height:36px;
+    padding-left:16px;
+}
+
+.yellowBanner{
+    background-color:#e3c300;
+    color:#fff;
+    font-weight:bold;
+    line-height:36px;
+    padding-left:16px;
+}
+
+p{
+    font-family:Arial, Helvetica, sans-serif !important;
+    margin:0;
+}
+
+#banner-messages{
+
+}
+.message{
+    background-color:#fff;
+    border:1px solid #ccc;
+    border-radius:3px;
+    box-sizing:border-box;
+    margin:1px;
+    padding:2px;
+    width:100%;
+}
+.message img{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+.message-level-0{
+    overflow-wrap: break-word;
+    display:inline-block;
+    padding-right: 8px;
+}
+.message-level-1{
+    overflow-wrap: break-word;
+    display:inline-block;
+    border:1px solid #05576f;
+    border-left-width:6px;
+    padding: 4px 8px 4px 14px;
+}
+.message-level-2{
+    overflow-wrap: break-word;
+    display:inline-block;
+    border:1px solid #f59a00;
+    border-left-width:6px;
+    padding: 4px 8px 4px 14px;
+}
+.message-level-3{
+    overflow-wrap: break-word;
+    display:inline-block;
+    border:1px solid #d60027;
+    border-left-width:6px;
+    padding: 4px 8px 4px 14px;
+}
+.message-dismiss{
+    background-color:#fff;
+    border-radius:8px;
+    color:#666;
+    cursor:pointer;
+    display:inline-block;
+    float:right;
+    font-size:12px;
+    height:16px;
+    position:relative;
+    right:-1px;
+    text-align:center;
+    width:16px;
+}
+.message.dismissible .message-text{
+    margin-right: 10px;
+    display: block;
+}
+
+.message-dismiss:hover{
+    background-color:#eef;
+    color:#0674e3;
+}

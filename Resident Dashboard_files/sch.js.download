@@ -1,0 +1,253 @@
+$(document).ready(function(){
+	$('.residentDetailsHeader').click(function(){
+		loadExtendedClientDetails(getCurrentClientId());
+		if($('.residentDetailsSpecificsExtended').is(':visible')){
+			$('.residentDetailsInitial').css("height", "160px");
+		} else {
+			$('.residentDetailsInitial').css("height", "105px");
+		}
+		return false;
+	});
+
+	$('.residentLinkEdit').click(function(){
+		$('.residentDropDownListEdit').css('display', 'block');
+		$('#listcontainerEdit li:nth-child(odd)').addClass('alternate');
+		$('.residentDropDownListEdit li').hover(function(){
+			$(this).addClass('hover-enabled');
+		}, function(){
+			$(this).removeClass('hover-enabled');
+		});
+
+		$(".residentDropDownWrapperEdit").mouseleave(function(){
+			$(".residentDropDownListEdit").css('display', 'none');
+		});
+	});
+
+	$('.residentLinkNew').click(function(){
+		$('.residentDropDownListNew').css('display', 'block');
+		$('#listcontainerNew li:nth-child(odd)').addClass('alternate');
+		$('.residentDropDownListNew li').hover(function(){
+			$(this).addClass('hover-enabled');
+		}, function(){
+			$(this).removeClass('hover-enabled');
+		});
+
+		$(".residentDropDownWrapperNew").mouseleave(function(){
+			$(".residentDropDownListNew").css('display', 'none');
+		});
+	});
+	
+	$('.residentLinkLinks').click(function(){
+		$('.residentDropDownListLinks').css('display', 'block');
+		$('#listcontainerLinks li:nth-child(odd)').addClass('alternate');
+		$('.residentDropDownListLinks li').hover(function(){
+			$(this).addClass('hover-enabled');
+		}, function(){
+			$(this).removeClass('hover-enabled');
+		});
+
+		$(".residentDropDownWrapperLinks").mouseleave(function(){
+			$(".residentDropDownListLinks").css('display', 'none');
+		});
+	});
+
+	$('.residentLinkPrint').click(function(){
+		$('.residentDropDownListPrint').css('display', 'block');
+		$('#listcontainerPrint li:nth-child(odd)').addClass('alternate');
+		$('.residentDropDownListPrint li').hover(function(){
+			$(this).addClass('hover-enabled');
+		}, function(){
+			$(this).removeClass('hover-enabled');
+		});
+		
+		$(".residentDropDownWrapperPrint").mouseleave(function(){
+			$(".residentDropDownListPrint").css('display', 'none');
+		});
+	});
+
+	$(".residentDropDownButtonEdit").hover(function(){
+		$(this).css('background-position', 'left -62px');
+	}, function(){
+		$(this).css('background-position', 'left -42px');
+	});
+
+	$(".residentDropDownButtonNew").hover(function(){
+		$(this).css('background-position', 'left -62px');
+	}, function(){
+		$(this).css('background-position', 'left -42px');
+	});
+	
+	$(".residentDropDownButtonLinks").hover(function(){
+		$(this).css('background-position', 'left -62px');
+	}, function(){
+		$(this).css('background-position', 'left -42px');
+	});
+
+	$(".residentDropDownButtonPrint").hover(function(){
+		$(this).css('background-position', 'left -62px');
+	}, function(){
+		$(this).css('background-position', 'left -42px');
+	});
+});
+
+function editDemographicInfo(tabType,clientId){
+	if(true)
+	{
+		 window.location.hash = '#/demographic/${client.clientId}';
+	}
+	else
+	{
+		var url;
+		if(tabType == "admin"){
+			url = "/admin/client/clientedit.jsp?ESOLtabType=P&ESOLclientid=" + clientId;
+		} else {
+			url = "/admin/client/clientedit.jsp?ESOLtabType=C&ESOLclientid=" + clientId;
+		}
+		location.href = url;
+
+	}
+}
+
+function displayPhoto(clientId){
+	openPopupWin("/tools/images/displayphoto.jsp?ESOLclientid="+clientId+"&ESOLtabtype=C", 'residentPhoto', 575, 480, 'scrollbars=1');
+}
+
+function displayCareProfile(clientId, clientNameNumber){
+	careProfileFormPopup = openPopupWin("/clinical/client/careprofile/showCareProfile.xhtml?ESOLclientid="+clientId+"&clientNameNumber="+clientNameNumber, 'careProfileFormPopup', 1300, 600, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=no');
+}
+
+function importPhoto(clientId){
+	openSizedLookup2('/tools/fileimport.jsp?ESOLcid='+clientId+'&ESOLtype=client', '', 530, 200, '');
+}
+
+function editAllergies(clientId){
+	openSizedLookup('/admin/client/editallergies.jsp?ESOLclientid='+clientId,450,240);
+}
+
+function openAuditDemographics(mpiId,clientId){
+	openSizedLookup2('/admin/client/mpihistory.jsp?ESOLclientid='+mpiId+'&ESOLcid='+clientId,'auditDemographicPopUp',800,450,'scrollbars');
+}
+
+function generateEHR(clientId){
+	location.href='/care/ehr/print_ehr_chart_reports.xhtml?ESOLtabType=C&ESOLclientid='+clientId;
+}
+
+function generateCCD(clientId,clientNameNumber,tabType){
+	if(tabType == "admin"){
+		openSizedLookup2('/clinical/ccd_summary/ccdsummary.xhtml?ESOLcid='+clientId+'&clientNameNumber='+clientNameNumber+'&ESOLmodule=P', '', 800, 600, 'scrollbars');
+	} else {
+		openSizedLookup2('/clinical/ccd_summary/ccdsummary.xhtml?ESOLcid='+clientId+'&clientNameNumber='+clientNameNumber+'&ESOLmodule=C', '', 800, 600, 'scrollbars');
+	}
+}
+
+function initDisplay(val){
+	var str = "inline";
+	if(val == 1){
+		str = "none";
+	}
+	if(val != 1){
+		updateAllTabs("inline");
+		document.getElementById('expandClientHeaderInfo').innerHTML = '<a href=\"javascript:showClientInfoHeader(1)\" tabindex=-1><img src=\"/images/newminus.gif\" border=0></a>';
+	} else {
+		updateAllTabs("none");
+		document.getElementById('expandClientHeaderInfo').innerHTML = '<a href=\"javascript:showClientInfoHeader(0)\" tabindex=-1><img src=\"/images/newplus.gif\" border=0></a>';
+	}
+}
+
+function editClient(tabType, clientId){
+	var url = "/admin/client/clientedit.jsp?ESOLtabType=" + tabType + "&ESOLclientid=" + clientId;
+	location.href = url;
+}
+
+function addHCValues(description,value){
+	if(description.length > 0){
+		$('.hcDesc').html(description+":");
+	}
+	$('.hcValue').html(value);
+	$('.hcValue').append("&nbsp;");
+}
+
+function addDiagnosis(diagnosisDetails){
+	var diagnosis = "";
+	for(var i=0;i<diagnosisDetails.length;i++){
+		if(i > 0){
+			diagnosis += ";&nbsp;";
+		}
+		diagnosis += diagnosisDetails[i].icdCodeLongDesc;
+	}
+	$('.medicalDiagnosis').html(diagnosis);
+	$('.medicalDiagnosis').append("&nbsp;");
+}
+
+function loadExtendedClientDetails(clientId){
+	var url = '/admin/client/standardclientheader/clientExtendedDetails.xhtml';
+	var progressLabel = $(".progress-label");
+	if($('#currentState').val().length> 1 && $('#currentState').val() == "expanded"){
+		var emptyCheck = $('.residentInfoEmpty');
+		if(emptyCheck.length == 0){
+			//already expanded
+			$('.residentInfoEmptyExpanded').addClass('residentInfoEmpty');
+ 			$('.residentInfoEmpty').removeClass('residentInfoEmptyExpanded');
+			headerExpandedStatus("N");
+		} else {
+			//re-expanding
+			$('.residentInfoEmpty').addClass('residentInfoEmptyExpanded');
+			$('.residentInfoEmptyExpanded').removeClass('residentInfoEmpty');
+			headerExpandedStatus("Y");
+		}
+		$('.residentDetailsSpecificsExtended').toggle();
+		if($('.residentDetailsSpecificsExtended:visible').length){
+			$('#idExtendedDetailSlider').attr('alt', "Hide Extended Detail");
+		} else {
+			$('#idExtendedDetailSlider').attr('alt', "Show Extended Detail");
+		}
+		progressLabel.text("");
+	} else {
+		progressLabel.text("Loading...");
+		$('#currentState').val("expanded");
+		$.ajax({
+			url: url,
+			dataType: "json",
+			cache: false,
+			data: { clientId : clientId},
+			success: function(data){
+				//add diet information
+				$(".dietDescriptions").empty();
+				var listOfDiet = $.map(data.dietaryInfoList, function(item){
+					var statusString = "";
+					if(item.status.toUpperCase() === "ON HOLD") {
+						statusString = " " + "<div style=\"color:red;display:inline;\">\"" + item.status + "\"</div>";
+					}
+					return item.description.trim() + statusString;
+				}).join(" <BR> ");
+				$('.dietDescriptions').append(listOfDiet);
+				addDiagnosis(data.medicalDiagnosis);
+				addHCValues(data.hcDesc,data.hcValue);
+				$('.residentInfoEmpty').addClass('residentInfoEmptyExpanded');
+				$('.residentInfoEmptyExpanded').removeClass('residentInfoEmpty');
+				$('.residentDetailsSpecificsExtended').toggle();
+				$('#idExtendedDetailSlider').attr('alt', "Hide Extended Detail");
+				progressLabel.text("");
+				headerExpandedStatus("Y");
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				alert("Error Loading Extended Details :"+XMLHttpRequest.responseText);
+			}
+		});
+	}
+}
+
+function headerExpandedStatus(expanded){
+	var url = '/admin/client/standardclientheader/clientHeaderStatus.xhtml';
+	$.ajax({
+		url: url,
+		dataType: "text",
+		cache: false,
+		data: { headerOpen : expanded },
+		success: function(data){
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+			alert("Error Setting/Reading Extended Header Status :"+XMLHttpRequest.responseText);
+		}
+	});
+}

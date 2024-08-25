@@ -1,0 +1,24 @@
+    div.tabContent{
+        border:1px solid #91a7b4;
+        display:none;
+        margin-top:-1px;
+    }
+    div.activeTabContent{
+        display:block;
+    }
+    .ui-widget-header{
+      border:none !important;
+    }
+    .ui-autocomplete{
+      width:inherit !important;
+    }
+    li.defaultTabLink{
+        padding-top:7px;
+        padding-right:5px;
+        padding-left:20px;
+    }
+    li.defaultTabLink a{
+        color:#00f !important;
+        font-size:9pt;
+        text-decoration:underline;
+    }

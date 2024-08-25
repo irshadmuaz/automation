@@ -1,0 +1,98 @@
+/*
+	All Evergreen styles are applied only to DOM elements descending from an element with the class name "evergreen" (typically the body tag or a section tag)
+*/
+
+/*
+	Colors:
+		Background Accent Green:
+			Main: rgba(151,204,4,1);
+			Dark: rgba(44,115,0,1);
+			Light: rgba(206,230,150,0.5);
+		Background Surfaces:
+			Base: rgba(255,255,255,1);
+			Dark: rgba(245,245,245,1);
+			Scrim: rgba(0,0,0,0.5);
+*/
+
+.evergreen{
+	box-sizing:border-box;
+	color:rgba(0,0,0,0.88);
+	font-family:Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+	font-size:16px;
+	font-weight:400;
+	letter-spacing:0.15px;
+	line-height:24px;
+}
+
+/* Tables need to be explicitly declared to inherit font styles */
+.evergreen td{
+	font-family:Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+	font-size:14px;
+	font-weight:400;
+	letter-spacing:0.25px;
+	line-height:20px;
+}
+.evergreen th{
+	font-size:12px;
+	font-weight:500 !important;
+	letter-spacing:0.4px;
+	line-height:16px;
+}
+
+/* Page Title */
+.evergreen .pageTitle{
+	display:inline-block;
+	font-size:28px;
+	font-weight:400;
+	line-height:34px;
+	letter-spacing:-0.15px;
+	padding:24px;
+}
+
+/* Section Title "Table headers" */
+.evergreen .pccModuleHeader{
+	font-size:20px;
+	font-weight:500;
+	line-height:28px;
+}
+
+/* Tabs */
+.evergreen ul.pccTabs > li > a{
+	font-family:Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+	font-size:14px;
+	font-weight:500 !important;
+	letter-spacing:1.25px;
+	line-height:16px;
+}
+
+
+/* FORMS */
+
+/* Override Select elements font */
+.evergreen select{
+	font-family:Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+}
+
+/* Override Button font */
+/*
+.evergreen input.pccButton, .evergreen input.dropDownButton, .evergreen button.pccButton{
+	background-color:#fff;
+	background-image:none;
+	border:none;
+	border-radius:3px;
+	box-shadow:0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	font-family:Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+	font-size:14px;
+	font-weight:500 !important;
+	height:36px;
+	letter-spacing:1.25px;
+	line-height:16px;
+	margin:6px 8px 6px 8px;
+	min-width:88px;
+	outline:none;
+	padding:6px 8px 6px 8px;
+	text-align:center;
+	text-shadow:none;
+	text-transform:uppercase;
+}
+*/

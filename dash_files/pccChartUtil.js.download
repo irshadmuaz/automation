@@ -1,0 +1,187 @@
+/**
+ * Adds a title and/or subtitle to a c3 chart You must adjust the padding: {top: #}
+ * on the chart yourself while creating it through c3
+ * 
+ * @param id
+ *            id of the div containing the chart
+ * @param title
+ *            text for the title
+ * @param subtitle
+ *            text for the subtitle
+ */
+function addTitle(id, title, subtitle) {
+	if (typeof id === "string") {
+		if (typeof title === "string" && title.length > 0) {
+			d3.select('#' + id + ' svg').append('text')
+					.attr(
+							'x',
+							d3.select('#' + id + ' svg').node()
+									.getBoundingClientRect().width / 2).attr(
+							'y', 16).attr('text-anchor', 'middle').attr(
+							'class', 'chartTitle').text(title);
+		}
+		if (typeof subtitle === "string" && subtitle.length > 0) {
+			d3.select('#' + id + ' svg').append('text')
+					.attr(
+							'x',
+							d3.select('#' + id + ' svg').node()
+									.getBoundingClientRect().width / 2).attr(
+							'y', 30).attr('text-anchor', 'middle').attr(
+							'class', 'chartSubTitle').text(subtitle);
+		}
+	}
+}
+
+/**
+ * Adds tooltips to c3 grid: {line: [] } on hover. When using y axis lines, call
+ * this ins a setTimeout with a delay of 500 or more
+ * 
+ * @param {type}
+ *            selector must select the "g" element that wraps the line
+ * @param {type}
+ *            width width of hoverable area
+ */
+function gridLineTooltip(selector, width) {
+	// create tooltip div
+	var tooltipDiv = $('<div></div>').hide().attr("id", "pccChartToolTip");
+	tooltipDiv.append($("<span></span>").attr("id", "pccChartToolTipLabel"));
+	document.body.appendChild(tooltipDiv[0]);
+	var xLineGroups = d3.selectAll(selector);
+	xLineGroups.each(function(d, i) {
+		$(this).children("text").css("display", "none");
+		var g = d3.select(this);
+		var line = g.selectAll("line")[0];
+		if ($(g[0]).attr("class").indexOf("c3-xgrid-line") > -1) {
+			g.append("rect").attr("x", $(line).attr("x1") - (width / 2)).attr(
+					"y", 0).attr("width", width).attr("height",
+					$(line).attr("y2")).style({
+						stroke : "rgba(0,0,0,0)",
+						fill : "rgba(0,0,0,0)"
+					});
+		} else {
+			g.append("rect").attr("y", $(line).attr("y1") - (width / 2)).attr(
+					"x", 0).attr("width", $(line).attr("x2")).attr("height",
+					width).style({
+				stroke : "rgba(0,0,0,0)",
+				fill : "rgba(0,0,0,0)"
+			});
+		}
+		// add hover rect
+		var hoverRect = $(this).children('rect');
+		// add listeners
+		hoverRect.mouseover(function() {
+			$(this).mousemove(
+					function(e) {
+						var siblingText = $(this).siblings("text").text();
+						if (typeof siblingText !== "undefined"
+								&& siblingText.length > 0) {
+							$(tooltipDiv).offset({
+								top : e.pageY + 10,
+								left : e.pageX + 10
+							});
+							$(tooltipDiv).show();
+							var toolTipLabel = $(tooltipDiv).children(
+									"#pccChartToolTipLabel");
+							$(toolTipLabel).html(siblingText);
+							$(tooltipDiv).width($(toolTipLabel).width() + 3);
+						}
+					});
+		});
+		hoverRect.mouseout(function() {
+			$(tooltipDiv).hide();
+		});
+	});
+}
+
+/**
+ * adds a scrollable legend next to a c3 chart
+ * @param selector must point to the same object as c3's "bindto" (the div containing the chart)
+ * @param chart the c3 chart object
+ */
+function addScrollingLegend(selector, chart){
+
+	function toggle(id) {
+	    chart.toggle(id);
+	}
+
+	var data = chart.data();
+	if(!(data.length > 0)){
+		return;
+	}
+	
+	var SPACE_BETWEEN_ROWS = 18;
+	var legendIndex = 0;
+	var graph = d3.select(chart.element);
+	graph.style('float', 'left');
+
+	var legendLabels = [];
+	for (var x in data){
+	    legendLabels.push(data[x].id);
+	}
+	d3.select(selector)
+	    .insert('div').attr('class', 'legendScroller').style('max-height', graph.style('height')).style('overflow', 'auto').insert('svg').attr('class', 'legend').attr('height', (legendLabels.length+2) * SPACE_BETWEEN_ROWS).attr('width', graph.style("width")).style('float', 'left')
+	    .append('g').attr('class', 'legendGroup').attr('transform', 'translate(10,8)').selectAll()
+	    .data(legendLabels)
+	  .enter().append('g')
+	    .attr('data-id', function (id) { return id; })
+	    .each(function (id) {
+	    var group = d3.select(this);
+	    	group.attr('transform', 'translate(0, ' + SPACE_BETWEEN_ROWS * legendIndex++ + ')');
+	    	group.append('rect')
+	        	.style('fill', chart.color(id))
+	        	.attr("height", 10)
+	        	.attr("width", 10)
+	    	group.append('text')
+	        	.attr("x", 15)
+	        	.attr('y', 8)
+	        	.text(id);
+	    })
+	    .on('mouseover', function (id) {
+	        chart.focus(id);
+	    })
+	    .on('mouseout', function (id) {
+	        chart.revert();
+	    })
+	    .on('click', function (id) {
+	        chart.toggle(id);
+	    });
+}
+
+
+/**
+ * Trims axis labels down to a specific character length
+ * call this function inside of the onrendered event handler to support any dynamic chart chages
+ * (e.g data changes or resizing)
+ * @param chartSelector the selector string for the chart (e.g #chart)
+ * @param maxLength the maximum length an axis label can be
+ * @param axis which axis to trim (can be "x" or "y")
+ */
+function trimAxisLabels(chartSelector, maxLength, axis){
+	axis = axis.toLowerCase();
+  if(axis == null || axis == undefined){
+  	axis = "x";
+  }
+  if(axis == "x" || axis == "y"){
+		var texts = d3.select(chartSelector).selectAll(".c3-axis.c3-axis-"+axis).selectAll("text");
+    
+    texts.each(function(d){
+      var remove = false;
+    	var length = 0;
+    	var tspans = d3.select(this).selectAll('tspan');
+      tspans.each(function(d, i){
+      var spanElement = d3.select(this);
+      	if(remove){
+        	d3.select(this).remove();
+          return;
+        }
+        var text = spanElement.text();
+        var textLength = text.length;
+        if((length+textLength) > maxLength){
+        	spanElement.text(text.substring(0,(maxLength-length)) + "...");
+        	remove = true;
+        }
+        length += textLength;
+      });
+    });
+  }
+}

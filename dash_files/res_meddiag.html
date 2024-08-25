@@ -1,0 +1,308 @@
+
+<!-- saved from url=(0157)https://www19.pointclickcare.com/care/dashboards/res_meddiag.jsp?ESOLviewId=74&ESOLtitle=Active%20Diagnoses&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script><meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+<script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+<script>
+function newDiagnosis(clientid)
+{
+  openSizedLookup2("/care/chart/cp/clientdiag.jsp?ESOLclientid=" + clientid +"&fromDash=Y",'', 600,600);
+}
+
+function refreshMe()
+{
+	document.location.reload(true);
+}
+</script>
+  <title></title><style>  body{margin:0;padding:0;}  table.dboard                   {table-layout:fixed;border-collapse:collapse;empty-cells:show;width:100%;}  table.dboard tr th             {padding:2px;height:24px;font:bold 12px arial;color:#fff;vertical-align:middle;text-align:expression(previousSibling ? nextSibling ? 'center' : 'right' : 'left');}  table.dboard tr th a           {text-decoration:none;color:#fff;font-weight:bold;}  table.dboard tr th table       {border-collapse:collapse;empty-cells:show;}  table.dboard tr th table tr td {padding:0px;margin:2px;height:100%;vertical-align:middle;}  .impact{    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    font-weight:bold;    text-align:center;  }</style><link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"></head><body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;"><form name="frmData" method="post" action="https://www19.pointclickcare.com/care/dashboards/res_meddiag.jsp"><input type="hidden" name="ESOLviewId" value="null"><input type="hidden" name="ESOLtitle" value="Active Diagnoses"><input type="hidden" name="floor_id" value=""><input type="hidden" name="unit_id" value=""><input type="hidden" name="contact_id" value=""><table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="100%"><table width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr height="20" class="pccModuleBackgroundColor slBackgroundColor"><td style="color:white;font-weight:bold;"> &nbsp;&nbsp;Active Diagnoses</td><td style="color:white;font-weight:bold;" align="right"><img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="alert(this.title);" title="The information on this page is as of
+Saturday, August 24, 2024 15:55:38 PDT">&nbsp;<script>completeMsg = "The information on this page is as of\nSaturday, August 24, 2024 15:55:38 PDT";document.getElementById('genTimestampImg').title= completeMsg;+"."</script><a href="https://www19.pointclickcare.com/care/reports/rp_diagnosis.jsp?ESOLclientid=42344920&amp;ESOLgroupby=1&amp;ESOLsortclient=2" target="_blank" style="color:#fff;text-decoration:none;" title="Diagnosis Report"><img src="./reports.gif" border="0" align="middle" height="20">Diagnoses Report&nbsp;</a></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" height="100%">
+
+  <div id="tableContainer" class="tableContainer">
+  <table border="0" cellpadding="3" cellspacing="0" width="100%" class="scrollTable">
+   <thead class="fixedHeader" id="fixedHeader">
+   
+    <tr class="alternateRow">
+      <th scope="col" class="detailColHeader" style="color:black;">Date</th>
+      <td class="detailColHeader">&nbsp;</td>
+      
+	      <th scope="col" class="detailColHeader" style="color:black;">ICD-9</th>
+	      <th scope="col" class="detailColHeader" style="color:black;">ICD-10</th>
+      
+      <th scope="col" class="detailColHeader" style="color:black;">Short Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>J96.21</td><td>ACUTE AND CHRONIC RESPIRATORY FAILURE WITH HYPOXIA</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>J96.22</td><td>ACUTE AND CHRONIC RESPIRATORY FAILURE WITH HYPERCAPNIA</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>J44.9</td><td>CHRONIC OBSTRUCTIVE PULMONARY DISEASE, UNSPECIFIED</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>J81.0</td><td>ACUTE PULMONARY EDEMA</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>L89.153</td><td>PRESSURE ULCER OF SACRAL REGION, STAGE 3</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>E03.9</td><td>HYPOTHYROIDISM, UNSPECIFIED</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z43.1</td><td>ENCOUNTER FOR ATTENTION TO GASTROSTOMY</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>G93.40</td><td>ENCEPHALOPATHY, UNSPECIFIED</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>G47.33</td><td>OBSTRUCTIVE SLEEP APNEA (ADULT) (PEDIATRIC</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>G40.901</td><td>EPILEPSY, UNSP, NOT INTRACTABLE, WITH STATUS EPILEPTICUS</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>I50.32</td><td>CHRONIC DIASTOLIC (CONGESTIVE) HEART FAILURE</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z43.0</td><td>ENCOUNTER FOR ATTENTION TO TRACHEOSTOMY</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>E44.0</td><td>MODERATE PROTEIN-CALORIE MALNUTRITION</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>N13.8</td><td>OTHER OBSTRUCTIVE AND REFLUX UROPATHY</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>D64.9</td><td>ANEMIA, UNSPECIFIED</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>G93.89</td><td>OTHER SPECIFIED DISORDERS OF BRAIN</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z87.891</td><td>PERSONAL HISTORY OF NICOTINE DEPENDENCE</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>E66.9</td><td>OBESITY, UNSPECIFIED</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z96.0</td><td>PRESENCE OF UROGENITAL IMPLANTS</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z90.2</td><td>ACQUIRED ABSENCE OF LUNG [PART OF</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z85.118</td><td>PERSONAL HISTORY OF MALIGNANT NEOPLASM OF BRONCHUS AND LUNG</td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>&nbsp;</td><td></td><td>Z86.61</td><td>PERSONAL HISTORY OF INFECTIONS OF THE CENTRAL NERVOUS SYSTEM</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</td></tr></tbody></table></form></body></html>

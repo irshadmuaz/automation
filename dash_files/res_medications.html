@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<!-- saved from url=(0154)https://www19.pointclickcare.com/care/dashboards/res_medications.jsp?ESOLviewId=25&ESOLtitle=Medications&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+  
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+  <script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+<link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"></head>
+<body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;">
+
+  <title></title><style>  body{margin:0;padding:0;}  table.dboard                   {table-layout:fixed;border-collapse:collapse;empty-cells:show;width:100%;}  table.dboard tr th             {padding:2px;height:24px;font:bold 12px arial;color:#fff;vertical-align:middle;text-align:expression(previousSibling ? nextSibling ? 'center' : 'right' : 'left');}  table.dboard tr th a           {text-decoration:none;color:#fff;font-weight:bold;}  table.dboard tr th table       {border-collapse:collapse;empty-cells:show;}  table.dboard tr th table tr td {padding:0px;margin:2px;height:100%;vertical-align:middle;}  .impact{    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    font-weight:bold;    text-align:center;  }</style><form name="frmData" method="post" action="https://www19.pointclickcare.com/care/dashboards/res_medications.jsp"><input type="hidden" name="ESOLviewId" value="null"><input type="hidden" name="ESOLtitle" value="Medications"><input type="hidden" name="floor_id" value=""><input type="hidden" name="unit_id" value=""><input type="hidden" name="contact_id" value=""><table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="100%"><table width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr height="20" class="pccModuleBackgroundColor slBackgroundColor"><td style="color:white;font-weight:bold;"> &nbsp;&nbsp;Medications</td><td style="color:white;font-weight:bold;" align="right"><img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="alert(this.title);" title="The information on this page is as of
+Saturday, August 24, 2024 15:55:38 PDT">&nbsp;<script>completeMsg = "The information on this page is as of\nSaturday, August 24, 2024 15:55:38 PDT";document.getElementById('genTimestampImg').title= completeMsg;+"."</script></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" height="100%">
+
+
+
+
+
+  <style>
+  tr.lightgrey{background-color:#FAFAFA}
+  tr.grey{background-color:#EFEFEF}
+  tr.darkgrey{background-color:#DFDFDF}
+
+  .displayFiltersBar {
+    background-color: rgb(101, 100, 82);
+  }
+
+  .ordersListBar { /*styleNotUsed*/
+    color: #fff;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: rgb(82, 117, 181);
+    vertical-align: middle;
+  }
+
+  .actionLink
+  {
+    font-size: 8pt;
+    color: #000;
+  }
+
+  .popupmenu
+  {
+    margin-right: 20px;
+  }
+
+  .popupmenu .alink
+  {
+    display:block;
+  }
+  
+  .buttons
+  {
+     float: left;
+     position: relative;
+     width: 160px;
+  }
+  .popupoptions
+  {
+    list-style:none;
+    position:absolute;
+    display:none;
+    left:0;
+    top:100%;
+    padding-bottom: 8px;
+  }
+   
+  .popupmenu a:hover
+  { 
+    color: #FFF;
+   }        
+  .popupitem
+  { 
+    display:block;
+  }        
+  .popupitem a
+  { 
+    color: #000;        
+    display: block;
+    padding: 5px 5px 5px 5px;
+    text-decoration:none;
+  }        
+  .popupitem a:hover
+  { 
+    color: #FFF;
+    background: #5275b5        
+  }    
+  .fieldname
+  {
+    font-weight: bold;
+  }
+  
+  a.orderdesc
+  {
+    text-decoration:none;
+    color: #000;        
+    cursor:pointer;
+  }
+  
+  .sortableCol
+  {
+    text-decoration:none;
+    color: #000;        
+    cursor:pointer;
+  }
+  
+  .orderhover 
+  {
+    position:absolute;
+    display:none;
+    background: #E5E5E5;
+    width: 230px;
+    padding: 5px 5px 5px 5px;
+    border: 1px solid;
+  }
+  .collapsepanel
+  {
+    display:none;
+    margin:0;
+  }
+  .orderhover li
+  {
+    margin-bottom: 3px;
+  }    
+  
+  .plussign_img
+  { 
+    padding-bottom: 1px;
+    padding-left: 1px;
+    padding-right: 1px; 
+    cursor: pointer; 
+    padding-top: 1px;
+    border:0;
+  }     
+  #displayFilters
+  {
+    margin: 0px, 15px, 0px, 15px;
+  }
+  .expandblueheader
+  {
+    color: white;        
+    font-weight: bold;        
+  }    
+    .collapsepanel tr td 
+    {
+        white-space:nowrap;
+    }
+    .expansiontable
+    {
+    border-collapse:collapse;
+    border: 1px solid #000;
+    border-spacing: 0px;
+  }
+  .expansiontable td
+  {
+    border:1px solid #000;
+    padding-left:5px;
+  }
+  .alertred
+  {
+    color: red;        
+  }
+</style>
+
+<script>
+  $(document).ready(function() {
+//    $('#orderlist tr:odd').addClass("lightgrey");
+//      $('#orderlist tr:even').addClass("grey");
+
+
+      $('.popupmenu').hover(
+              function() {
+              $(this).find("div").css("display","block");
+              $(this).find("img").attr({src:"/images/arrowdown_gray.gif"});
+                  },
+              function() {
+                      $(this).find("img").attr({src:"/images/arrowright_gray.gif"});
+                  $(this).find("div").css("display","none");
+                      }
+      );      
+
+      $('a.orderdesc').hover(
+              function() {                
+                  $(this).parent().siblings(".orderhover").css("display","block").animate({ opacity: "show" }, "slow");
+                  },
+              function() { 
+                  $(this).parent().siblings(".orderhover").css("display","none").animate({ opacity: "hide" }, "fast");
+                      }
+      );      
+      
+      $(".plussign").click(
+              function()  {
+//                $(this).parent().siblings(".collapsepanel").toggle();
+                  var name = $(this).attr("name");
+                  $(".collapsepanel#id"+ name).toggle();
+      });
+
+      $(".plussign").toggle(
+              function(){
+                   $(this).parent().parent().next().slideDown();
+                  $(this).find("img").attr({src:"/images/newminus.gif"});
+              },
+              function(){ 
+                   $(this).parent().parent().next().slideUp();  
+                  $(this).find("img").attr({src:"/images/newplus.gif"});
+              } );
+      
+      $(".sortableCol").click(
+              function()  {
+                  var sortBy =  $('input[name=sortBy]').val()  
+                  var sortByDir =  $('[name=sortByDir]').val()  
+                  var nameClicked = $(this).attr("name");
+                  $('[name=sortBy]').val(nameClicked);
+                  if( nameClicked == sortBy )
+                  {
+                      if( "asc" == sortByDir || sortByDir=="")
+                      {
+                          $('[name=sortByDir]').val('desc');
+                      }
+                      else
+                     {
+                          $('[name=sortByDir]').val('asc');
+                     }                    
+                  }
+                  else
+                  {
+                      if( nameClicked == "ColRevisionDate" || nameClicked == "ColLastOrdered" )
+                      {
+                          $('[name=sortByDir]').val('desc')
+                      }
+                      else
+                     {
+                          $('[name=sortByDir]').val('asc')
+                     }
+                          
+                  }
+                  
+                  $("#filterForm").submit();
+      });
+  });
+
+  
+  $(function() {
+      var value =  $('[name=isFilterOpen]').val()  
+      if( value=="true" )
+      {
+        $('#displayFilters').css( "display", "");
+        $('#filterTrigger>img').attr( {src:"/images/newminus.gif"} );
+      }
+      else
+     {
+        $('#displayFilters').css( "display", "none");            
+        $('#filterTrigger>img').attr( {src:"/images/newplus.gif"} );
+     }
+  });
+  
+  $(function() {
+      var sortBy =  $('[name=sortBy]').val();  
+      var sortByDir =  $('[name=sortByDir]').val();  
+      if( sortBy != "" )
+      {
+          if( sortByDir == "asc")
+          {
+              $(' <img src="/images/arrowup_selected.gif">').appendTo(".sortableCol[name=" + sortBy+"]");
+          }
+          else
+         {
+              $(' <img src="/images/arrowdown_selected.gif">').appendTo(".sortableCol[name=" + sortBy+"]");
+         }
+      }
+  });
+
+  
+  function toggleFilters()
+  {
+    var value =  $('[name=isFilterOpen]').val()  
+    if( value=="true" )
+    { 
+        $('[name=isFilterOpen]').val('false');
+        $('#filterTrigger>img').attr( {src:"/images/newplus.gif"} );
+    }
+    else
+    {
+        $('[name=isFilterOpen]').val('true');
+        $('#filterTrigger>img').attr( {src:"/images/newminus.gif"} );
+    }
+        
+    $('#displayFilters').slideToggle('fast');
+  }
+  
+  function openNewPhysOrderFormPopup(clientId){
+      var pwidth = 1010;
+      var pheight = 800;
+      physOrderFormPopup = openPopupWin("/clinical/pho/popup/enhancedOrderEntry/newOrder.xhtml?ESOLclientid="+clientId, 'physorderformpopup', pwidth, pheight, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=no');
+  }
+
+  function viewPhysOrderFormPopup(physOrderId, clientId){
+      var pwidth = 1010;
+      var pheight = 800;
+      physOrderFormPopup = openPopupWin("/clinical/pho/popup/enhancedOrderEntry/viewOrder.xhtml?ESOLpoid="+physOrderId+"&ESOLclientid="+clientId+"&readOnly=Y", 'physorderformpopup', pwidth, pheight, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+  }
+
+  function updatePhysOrderFormPopup(physOrderId, clientId){
+      var pwidth = 1010;
+      var pheight = 800;            
+      physOrderFormPopup = openPopupWin("/clinical/pho/popup/enhancedOrderEntry/loadOrder.xhtml?ESOLpoid="+physOrderId+"&ESOLclientid="+clientId, 'physorderformpopup', pwidth, pheight, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+  }
+
+  function auditHistoryReport(physOrderId)
+  {
+      var pwidth = 800;
+      var pheight = 600;
+      var top = (screen.height-pheight)/2;
+      var left = (screen.width-pwidth)/2;
+      
+     iHref = "/reports/physOrdersHistoryReport.xhtml?physOrderId=" + physOrderId+"&ESOLclientid=-1";
+     window.open(iHref, 'report', "top="+top+",left="+left+",width="+pwidth+",height="+pheight+",toolbar=no,status=no,directories=no,menubar=no,resizable=yes");          
+  }
+  
+  function pnPopup(physOrderId, clientId)
+  {
+      var pwidth = 640;
+      var pheight = 540;
+      var top = (screen.height-pheight)/2;
+      var left = (screen.width-pwidth)/2;
+     iHref = "/care/chart/ipn/newipn.jsp?ESOLphysorderid=" + physOrderId+"&ESOLclientid="+clientId;
+     window.open(iHref, 'report', "top="+top+",left="+left+",width="+pwidth+",height="+pheight+",toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollbars");          
+  }
+  
+  function reorderPopup( physOrderId, clientId )
+  {
+      alert( "reorderPopup physOrderId=" + physOrderId );
+  }
+  
+  function strikeoutPopup( physOrderId, clientId )
+  {
+      alert( "strikeoutPopup physOrderId=" + physOrderId );
+  }
+  
+  function discontinuePopup( physOrderId, clientId )
+  {  
+     openSizedLookup2("/clinical/pho/newphysorderdiscontinue.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=N", "DiscontinueOrderPopUp","800","330","scrollbars");
+  }
+
+  function addOrderGroup(clientId)
+  {
+     openSizedLookup2("/clinical/pho/addordergroup.xhtml?ESOLclientid=" + clientId, "addOrderGroupPopup","980","770","scrollbars"); 
+  }
+  
+  
+  function holdPopup( physOrderId, clientId )
+  {
+      openSizedLookup2("/clinical/pho/newphysorderhold.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=N", "HoldOrderPopUp","800","385","scrollbars");
+  }
+  
+  function resumePopup( physOrderId, clientId )
+  {
+      openSizedLookup2("/clinical/pho/newPhysOrderResume.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=N", "ResumePopUp","800","325","scrollbars");
+  }
+  
+  function cancelReorderPopup( physOrderId, clientId )
+  {
+      alert( "cancelReorderPopup physOrderId=" + physOrderId );
+  }
+
+  function changeFromEnteralTube( clientId )
+  {
+      openSizedLookup2("/clinical/pho/batchChangeFromEnteralTube.xhtml?ESOLclientid=" + clientId, "changeFromEnteralPopUp","980","770","scrollbars");
+  }
+  function changeToEnteralTube( clientId )
+  {
+      openSizedLookup2("/clinical/pho/batchChangeToEnteralTube.xhtml?ESOLclientid=" + clientId, "changeToEnteralPopUp","980","770","scrollbars");
+  }
+  function batchDiscontinue( clientId )
+  {
+     openSizedLookup2("/clinical/pho/newphysorderdiscontinue.xhtml?ESOLpoid=&ESOLclientid="+clientId+"&ESOLBatchOrder=Y&isReadOnly=N", "DiscontinueOrderPopUp","980","750","scrollbars");
+  }
+  function batchPutOnHold( clientId )
+  {
+      openSizedLookup2("/clinical/pho/newphysorderhold.xhtml?ESOLpoid=&ESOLclientid="+clientId+"&ESOLBatchOrder=Y&isReadOnly=N", "BatchHoldOrderPopUp","980","780","scrollbars");
+  }
+  function reassignPharmacy( clientId )
+  {
+      openSizedLookup2("/clinical/pho/batchReassignPharmacy.xhtml?ESOLclientid=" + clientId, "reassignPopUp","980","750","scrollbars");
+  }
+  function batchResume( clientId )
+  {
+      openSizedLookup2("/clinical/pho/newPhysOrderResume.xhtml?ESOLpoid=&ESOLclientid="+clientId+"&ESOLBatchOrder=Y&isReadOnly=N", "BatchResumePopUp","980","780","scrollbars");
+  }
+
+  function batchRenew( clientId )
+  {
+     
+     openSizedLookup2("/clinical/pho/ordersrenew.xhtml?ESOLclientid=" + clientId, "renewOrders","980","770","scrollbars"); 
+    
+  }
+  
+  function administartionRecord( clientId )
+  {
+      window.location = "/care/reports/rp_administrationreport.jsp?ESOLclientid=" + clientId;     
+  }
+  function administrationRecordNew( clientId )
+  {
+      window.location = "/clinical/pho/reports/administrationReport.xhtml?action=setupReport&ESOLclientid=" + clientId;     
+  }
+  function consolidatedOrders( clientId )
+  {
+      window.location = "/care/reports/rp_chart.jsp?ESOLclientid=" + clientId;     
+  }
+  function pharmacyRequisition( clientId )
+  {
+      window.location = "/care/reports/rp_pharmacyrequisition.jsp?ESOLclientid=" + clientId;
+  }
+  function telVerbalOrder( clientId )
+  {
+      window.location = "/care/reports/rp_telephoneorderreport.jsp?ESOLclientid=" + clientId;     
+  }
+  
+  function viewAdminPopup( adminOrderId, physOrderId, clientId, orderStatus )
+  {
+      if(orderStatus == 'Discontinue')
+            openSizedLookup2("/clinical/pho/newphysorderdiscontinue.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=Y&ESOLAdminOrderId="+adminOrderId, "DiscontinueOrderPopUp","800","380","scrollbars");
+          else if(orderStatus == 'Hold')
+              openSizedLookup2("/clinical/pho/newphysorderhold.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=Y&ESOLAdminOrderId="+adminOrderId, "HoldOrderPopUp","800","430","scrollbars");
+          else if(orderStatus == 'Resume')
+              openSizedLookup2("/clinical/pho/newPhysOrderResume.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=Y&ESOLAdminOrderId="+adminOrderId, "ResumeOrderPopUp","800","385","scrollbars");
+  }
+  
+  function confirmAdminPopup( adminOrderId, physOrderId, clientId, orderStatus )
+  {
+    if(orderStatus == 'Discontinue')
+        openSizedLookup2("/clinical/pho/newphysorderdiscontinue.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=Y&ESOLAdminOrderId="+adminOrderId, "DiscontinueOrderPopUp","800","380","scrollbars");
+    else if(orderStatus == 'Hold')
+        openSizedLookup2("/clinical/pho/newphysorderhold.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=Y&ESOLAdminOrderId="+adminOrderId+"&ESOLisConfirming=Y", "HoldOrderPopUp","800","450","scrollbars");
+    else if(orderStatus == 'Resume')
+        openSizedLookup2("/clinical/pho/newPhysOrderResume.xhtml?ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLBatchOrder=N&isReadOnly=Y&ESOLAdminOrderId="+adminOrderId, "ResumeOrderPopUp","800","385","scrollbars");
+  }
+  
+  function updateSupplyPopup( orderSupplyId, physOrderId, clientId )
+  {      
+      openSizedLookup2("/clinical/pho/popup/updateSupply.xhtml?action=edit&ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLorderSupplyId="+orderSupplyId, "OrderSupplyPopUp","800","340","scrollbars");
+  }
+  
+  function rcvPopup( orderSupplyId, physOrderId, clientId )
+  {      
+      openSizedLookup2("/clinical/pho/popup/updateSupply.xhtml?action=rcv&ESOLpoid=" + physOrderId+"&ESOLclientid="+clientId+"&ESOLorderSupplyId="+orderSupplyId, "OrderSupplyPopUp","800","340","scrollbars");
+  }
+  
+  function reloadChart()
+  {
+      
+     document.forms['filterForm'].submit();
+  }
+
+  // PCC-27399 open phys order form with queued orders
+  // used on renew and add order group
+  function openQueuePhysOrderForm(clientId)
+  {
+      var pwidth = 1010;
+      var pheight = 550;
+      physOrderFormPopup = openPopupWin("/clinical/pho/popup/enhancedOrderEntry/loadQueue.xhtml?loadQueued=Y&ESOLclientid="+clientId, 'physorderformpopup', pwidth, pheight, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+  }
+
+  function setDefaultView( tabView )
+  {
+      window.location ="/clinical/ordersPortal.xhtml?tabView=" + tabView + "&action=setDefaultView";
+  }
+
+  function viewAlertPopup(alertId)
+  {
+      openSizedLookup2('/clinical/cp_popup/alertDescriptionDisplay.xhtml?ESOLalertid='+alertId,'',350,200,'');
+  }    
+</script>
+
+  <script>
+    function viewAlertDescriptionPopup(physOrderId, clientId, alertId){
+      physOrderFormPopup = openPopupWin("/clinical/pho/view_alertdescription.xhtml?ESOLpoid="+physOrderId+"&ESOLclientid="+clientId+"&ESOLalertid="+alertId+"&ESOLfacid=-1"+"&readOnly=Y", 'physorderformpopup', 500, 300, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=no');
+    }
+
+    function showDuplicates(history, physOrderId, currPhysOrderDesc, extLibMedId)
+    {
+      var pwidth = 980;
+      var pheight = 450;
+
+      // show active duplicates
+      duplicatePopup = openSizedLookup2("/clinical/pho/popup/showduplicates.xhtml?ESOLclientid=42344920&ESOLphysorderid="+physOrderId+"&currPhysOrderDesc="+encodeURIComponent(currPhysOrderDesc)+"&pnid="+extLibMedId, "ShowDuplicatesPopup", pwidth, pheight, "scrollbars");
+    }
+  </script>
+
+  <div id="tableContainer" class="tableContainer">
+    <table border="0" cellpadding="3" cellspacing="0" width="100%" class="scrollTable">
+      <thead class="fixedHeader" id="fixedHeader">
+        <tr class="alternateRow">
+          <td class="detailColHeader">Duplicate</td>
+          <td class="detailColHeader">Alert</td>
+          <td class="detailColHeader">Order</td>
+          <td class="detailColHeader">Order Status</td>
+          <td class="detailColHeader" width="60">Revised</td>
+          <td class="detailColHeader" width="80">Last Ordered</td>
+        </tr>
+      </thead>
+      <tbody>
+
+
+      
+        
+          
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Levothyroxine Sodium Oral Tablet 75 MCG (Levothyroxine Sodium)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube in the morning for x Hypothyroidism</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Phenytoin Infatabs Oral Tablet Chewable 50 MG (Phenytoin)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 2 tablet via G-Tube three times a day for x Seizure</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15535082, &#39;&#39;, 461);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Acetaminophen Oral Tablet 325 MG (Acetaminophen)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 2 tablet via G-Tube every 6 hours as needed for x mild pain 1-3</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Multivitamin Liquid (Multiple Vitamins-Minerals)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 5 milliliter via G-Tube one time a day for x Supplement</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15535309, &#39;&#39;, 461);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Acetaminophen Oral Tablet 325 MG (Acetaminophen)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 2 tablet via G-Tube every 6 hours as needed for x Temp above 101</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15535363, &#39;&#39;, 403);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Docusate Sodium Liquid 50 MG/5ML
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 10 ml via G-Tube one time a day for Constipation</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15535464, &#39;&#39;, 4920);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Dulcolax Suppository 10 MG (Bisacodyl)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td></td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Insert 1 suppository rectally as needed for Constipation every 3rd day if Milk of Magnesia is ineffective</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15535465, &#39;&#39;, 10568);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Milk of Magnesia Suspension 400 MG/5ML (Magnesium Hydroxide)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td></td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 30 ml by mouth as needed for constipation give every 3rd day if no bowel movement</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15535467, &#39;&#39;, 1974);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Senna Oral Tablet 8.6 MG (Sennosides)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube two times a day for for BOWEL CARE ***Hold for loose stool***</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      levETIRAcetam Oral Tablet 1000 MG (Levetiracetam)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube two times a day for x Seizure</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Famotidine Oral Tablet 20 MG (Famotidine)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube two times a day for x GERD</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Lovenox Injection Solution Prefilled Syringe 40 MG/0.4ML (Enoxaparin Sodium)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Inject 40 mg subcutaneously one time a day for x clot prevention</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Lactulose Oral Solution 20 GM/30ML (Lactulose)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 45 ml via G-Tube every 24 hours as needed for x Constipation</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Ascorbic Acid Tablet 500 MG
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube one time a day for x supplement</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Scopolamine Base Patch 72 Hour 1.5 MG
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Apply 1 patch transdermally one time a day every 3 day(s) for nausea and vomiting  and remove per schedule</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Zofran Oral Tablet 4 MG (Ondansetron HCl)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube every 4 hours as needed for x nausea &amp; vomiting</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Melatonin Oral Tablet 5 MG (Melatonin)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube every 24 hours as needed for x Circadian Rhythm</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Budesonide Inhalation Suspension 0.5 MG/2ML (Budesonide (Inhalation))
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>2 ml via trach two times a day for COPD</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Formoterol Fumarate Inhalation Nebulization Solution 20 MCG/2ML (Formoterol Fumarate)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>2 ml via trach two times a day for COPD</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15537448, &#39;&#39;, 56180);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Ipratropium-Albuterol Inhalation Solution 0.5-2.5 (3) MG/3ML (Ipratropium-Albuterol)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>3 ml via trach every 4 hours as needed for dyspnea</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15537644, &#39;&#39;, 98164);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Revefenacin Inhalation Solution 175 MCG/3ML (Revefenacin)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>3 ml via trach one time a day for COPD</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15538867, &#39;&#39;, 16844);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Tubersol Solution 5 UNIT/0.1ML (Tuberculin PPD)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td></td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Inject 0.1 ml intradermally one time a day  every 12 month(s)  starting on the 22nd  for 1 day(s) for Tuberculosis Screening Do not repeat if positive results.</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15538868, &#39;&#39;, 12263);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Tuberculin PPD Solution 5 UNIT/0.1ML
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/22/2024</td>
+                <td></td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Inject 0.1 ml intradermally one time only for Step 1 of 2 Tuberculosis Prophylaxis until 08/22/2024 23:00 AND Inject 0.1 ml intradermally one time only for Step 2 of 2 Tuberculosis Prophylaxis until 08/29/2024 18:00</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      traZODone HCl Oral Tablet 50 MG (Trazodone HCl)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/22/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 0.5 tablet via G-Tube every 24 hours as needed for Insomnia m/b inability to sleep ***Give at bedtime***</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15545357, &#39;&#39;, 41);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Atropine Sulfate Ophthalmic Solution 1 % (Atropine Sulfate (Ophthalmic))
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/23/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 3 drop sublingually three times a day for Excessive oral secretions</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#fff;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15545426, &#39;&#39;, 1905);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Glycopyrrolate Oral Tablet 1 MG (Glycopyrrolate)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/24/2024</td>
+                <td>8/23/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#fff;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube one time a day for excessive salivation</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+            
+              <tr style="vertical-align:top;background-color:#efefef;" class="normalRow">
+                <td>
+                  
+                    <img src="./warn_icon_16.png" id="duplicatesLink" class="duplicateImg" onclick="showDuplicates(false, 15545743, &#39;&#39;, 7706);" title="This order is potentially duplicated by other orders on the chart. Click to view details.">
+                  
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  
+                    
+                      
+                        <a class="plussign row_toggle"><img class="plussign_img" src="./newplus.gif"></a>&nbsp;
+                      
+                      Hyoscyamine Sulfate Oral Tablet 0.125 MG (Hyoscyamine Sulfate)
+                    
+                    
+                  
+                </td>
+                <td>
+                  Active
+                </td>
+                <td>8/23/2024</td>
+                <td>8/23/2024</td>
+              </tr>
+              
+              <tr style="display:none; vertical-align:top;background-color:#efefef;" class="alternateRow">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Give 1 tablet via G-Tube two times a day for Oral Hyper secretions</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            
+          
+          
+        
+      </tbody>
+    </table>
+  </div>
+</td></tr></tbody></table></form>
+    
+    
+</body></html>

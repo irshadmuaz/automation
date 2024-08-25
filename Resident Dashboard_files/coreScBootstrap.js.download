@@ -1,0 +1,37 @@
+if (!window.secureConversationsV2) {
+  window.secureConversationsV2 = {};
+}
+
+try {
+    let sharedWorkerSessionStorageKey = 'sc:sharedWorkerState';
+    let sharedWorkerStateStr = sessionStorage.getItem(sharedWorkerSessionStorageKey);
+    sessionStorage.removeItem(sharedWorkerSessionStorageKey);
+    let sharedWorkerState = sharedWorkerStateStr ? JSON.parse(sharedWorkerStateStr) : null;
+    if (!!window.SharedWorker && sharedWorkerState && sharedWorkerState.loadSharedWorker === true) {
+      window.secureConversationsV2.scSharedworker = new SharedWorker('/app/sc/static/worker/sharedWorker.js');
+    }
+} catch (e) {
+    sharedWorkerState = null;
+}
+$(function () {
+  $.getJSON("/app/sc/asset-manifest.json", function (json) {
+    json.entrypoints.forEach(function (url) {
+      var extension = url.substring(url.lastIndexOf('.') + 1);
+      var encodedUrl = encodeURI(url);
+      switch (extension) {
+        case 'css':
+          var link = document.createElement('link');
+          link.setAttribute('href', "/app/sc/" + encodedUrl);
+          link.setAttribute('rel', 'stylesheet');
+          document.getElementsByTagName("head")[0].appendChild(link);
+          break;
+        case 'js':
+        default:
+          var bundle = document.createElement('script');
+          bundle.setAttribute('src', "/app/sc/" + encodedUrl);
+          document.body.appendChild(bundle);
+          break;
+      }
+    });
+  });
+});

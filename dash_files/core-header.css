@@ -1,0 +1,220 @@
+.core-header-wrapper{
+    color:rgba(0,0,0,0.87);
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:9pt;
+}
+.core-header-wrapper label{
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+.core-header-wrapper a[href],
+.core-header-wrapper a[onclick]{
+    color:#05576f;
+    cursor:pointer;
+    text-decoration:none;
+}
+.core-header-wrapper h5{
+    font-weight:bold;
+}
+.core-header-wrapper .appAriaHide{
+    display:none;
+}
+.core-header-wrapper #pendo-resource-hub-icon-container{
+    box-sizing:content-box;
+    display:inline-block;
+    font-size:14px;
+    height:24px;
+    line-height:38px;
+    margin:0 12px 0 12px;
+    position:relative;
+    width:24px;
+    z-index:19000;
+}
+.core-header-wrapper #pendo-resource-hub-icon{
+    background-image:url('/assets/core/images/resource-hub.svg');
+    box-sizing:border-box;
+    cursor:pointer;
+    display:inline-block;
+    height:24px;
+    line-height:24px;
+    margin:0;
+    position:relative;
+    vertical-align:middle;
+    width:24px;
+}
+
+/* Default FORM FIELD rendering (in key header zones) */
+.core-header-wrapper .core-form-styles select{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:9pt;
+    min-height:20px;
+    scroll-behavior:smooth;
+}
+.core-header-wrapper .core-form-styles input,
+.core-header-wrapper .core-form-styles textarea{
+    font-family:"Courier New", Courier, monospace;
+    font-size:9pt;
+}
+.core-header-wrapper .core-form-styles input::-ms-clear{
+    display:none;
+}
+
+/* Text based form elements (in header) */
+.core-header-wrapper .core-form-styles input[type="text"],
+.core-header-wrapper .core-form-styles input[type="search"],
+.core-header-wrapper .core-form-styles select{
+    background-color:#fff;
+    border:1px solid rgba(0, 0, 0, 0.42);
+    margin:0;
+    outline:none;
+    padding:2px 1px 2px 1px;
+    -webkit-transition:all 0.10s ease-in-out;
+    -moz-transition:all 0.10s ease-in-out;
+    -ms-transition:all 0.10s ease-in-out;
+    -o-transition:all 0.10s ease-in-out;
+    transition:all 0.10s ease-in-out;
+}
+
+/* Reset select padding (in header) */
+.core-header-wrapper .core-form-styles select{
+    line-height:14px;
+    padding:1px;
+}
+
+.core-header-wrapper .core-form-styles input[type="text"]:hover,
+.core-header-wrapper .core-form-styles input[type="search"]:hover,
+.core-header-wrapper .core-form-styles select:hover{
+    border:1px solid rgba(0, 0, 0, 0.88);
+}
+
+.core-header-wrapper .core-form-styles input[type="text"]:focus,
+.core-header-wrapper .core-form-styles input[type="search"]:focus,
+.core-header-wrapper .core-form-styles select:focus,
+.core-header-wrapper .core-form-styles textarea:focus{
+    border:1px solid #00a0af;
+    box-shadow:0 0 5px rgba(0, 160, 175,0.4);
+}
+
+/* Override (back) any checkbox/radio buttons (in header) */
+.core-header-wrapper .core-form-styles input[type="checkbox"],
+.core-header-wrapper .core-form-styles input[type="checkbox"]:hover,
+.core-header-wrapper .core-form-styles input[type="radio"],
+.core-header-wrapper .core-form-styles input[type="radio"]:hover{
+    border:none;
+    background-color:transparent;
+}
+
+.core-header-wrapper .core-form-styles input[type="checkbox"],
+.core-header-wrapper .core-form-styles input[type="radio"]{
+    accent-color:#05576f;
+}
+
+.core-header-wrapper .core-form-styles input[type="checkbox"]:hover,
+.core-header-wrapper .core-form-styles input[type="radio"]:hover{
+    accent-color:#176379;
+}
+
+/* Standard PCC Buttons (in header) */
+.core-header-wrapper .core-form-styles input.pccButton{
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#fcfcfc, endColorstr=#cfcfcf);/* IE8 Quirks/Compat */
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#fcfcfc, endColorstr=#cfcfcf)";/* IE8+9 Standards */
+    background-image:linear-gradient(to bottom, #fcfcfc 0, #cfcfcf 100%);
+    border:1px solid #707070;
+    border-radius:4px;
+    color:#333;
+    cursor:pointer;
+    display:inline-block;
+    font-family:Arial, Helvetica, sans-serif;/*TODO: Remove this when set by default font*/
+    font-size:10pt;
+    font-weight:bold;
+    line-height:10pt;/*MUST match font-size*/
+    margin:1px 3px 1px 3px;
+    overflow:visible;/*Fixes extra wide buttons in IE (1/2)*/
+    padding:3px 5px 3px 5px;
+    text-align:center;
+    text-decoration:none;
+    text-shadow:0 1px 0 rgba(255, 255, 255, 0.25);
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;/* IE10+ only */
+    -o-user-select:none;/* Although technically correct, Opera ignores this ATM */
+    user-select:none;
+    width:auto;/*Fixes extra wide buttons in IE (2/2)*/
+}
+
+/* Fix additional Firefox issues with button sizing http://davidwalsh.name/firefox-buttons */
+.core-header-wrapper .core-form-styles input.pccButton::-moz-focus-inner{
+    border:0;
+    padding:0;
+}
+.core-header-wrapper .core-form-styles input.pccButton:hover{
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#fcfcfc, endColorstr=#9be0ef);/* IE8 Quirks/Compat */
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#fcfcfc, endColorstr=#9be0ef)";/* IE8+9 Standards */
+    background-image:linear-gradient(to bottom, #fcfcfc 0, #9be0ef 100%);
+    border-color:#3f76b7;
+}
+.core-header-wrapper .core-form-styles input.pccButton:focus{
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#fcfcfc, endColorstr=#b1e1f5);/* IE8 Quirks/Compat */
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#fcfcfc, endColorstr=#b1e1f5)";/* IE8+9 Standards */
+    background-image:linear-gradient(to bottom, #fcfcfc 0, #b1e1f5 100%);
+    border-color:#3f76b7;
+    box-shadow:0 0 5px rgba(63, 118, 183, 0.5), 0 0 10px #fff inset;
+    outline:medium none;
+}
+.core-header-wrapper .core-form-styles input.pccButton:active{
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#94d2dd, endColorstr=#77d9ef);/* IE8 Quirks/Compat */
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#94d2dd, endColorstr=#77d9ef)";/* IE8+9 Standards */
+    background-image:linear-gradient(to bottom, #fff 0, #94d2dd 50%, #77d9ef 100%);
+    border-color:#3f76b7;
+    color:#111;
+}
+.headerMessageDiv{
+}
+.headerMessage{
+    background-color:#F3D35F;
+    overflow-wrap: break-word;
+    display:inline-block;
+    width: 100%;
+    padding-top: 10px;
+    border: 1px solid #ccc;
+}
+.headerMessage-text{
+    display:inline-block;
+    margin-right: 10px;
+    margin-left: 2px;
+    float:left;
+    background-image: url(/assets/core/images/top-messages-warn.svg);
+    background-repeat: no-repeat;
+    background-position: 0px -3px;
+    overflow: auto;
+    padding: 0px 20px 0px 34px;
+}
+.headerMessage-dismiss{
+    background-color:#F3D35F;
+    border-radius:8px;
+    color:#666;
+    cursor:pointer;
+    display:inline-block;
+    float:right;
+    font-size:12px;
+    height:16px;
+    position:relative;
+    right:-1px;
+    top: -4px;
+    text-align:center;
+    width:16px;
+    margin-right: 10px;
+}
+.headerMessage-dismiss.dismissible .headerMessage-text{
+    margin-right: 10px;
+    display: block;
+}
+
+.headerMessage-dismiss:hover{
+    background-color:#eef;
+    color:#0674e3;
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!-- saved from url=(0171)https://www19.pointclickcare.com/clinical/dashboard/dashBoardAllergyList.xhtml?ESOLviewId=82&ESOLtitle=Active%20Allergies&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html class="_d-dashboard"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+	<title></title>
+	
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+	
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+	<meta http-equiv="expires" content="1">
+	<meta http-equiv="expires" content="Sat, 01 Jan 2000 00:00:00 GMT">
+	<meta name="format-detection" content="telephone=no">
+	
+
+	
+	
+		<link type="text/css" rel="stylesheet" href="./core.css">
+		<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+		
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+	
+	<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+
+	<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+	
+
+	
+	
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+	
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+	
+	<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+	<script src="./jquery.dateField-2.0.0.js.download"></script>
+	
+
+
+
+
+
+
+	<script src="./ESOLvalidate.js.download"></script>
+	
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+	<script src="./core.js.download"></script>
+	<script src="./system-info.js.download"></script>
+	<script src="./pcc-overlay-dialogs.js.download"></script>
+	<script src="./wedate.js.download"></script>
+	
+	<script src="./coremenufunctions.js.download"></script>
+	
+	
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+	
+	
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+	
+	
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+	
+	
+
+
+	<script>var CONTEXT_PATH = '';</script>
+
+	
+
+	
+
+	
+
+	
+	
+	
+<script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+<script>
+  function submitForm()
+  {
+    frmData.submit();
+  }
+
+  function refreshMe()
+  {
+    frmData.submit();
+  }
+
+  
+  function clickClock()
+  {
+	var completeMsg = "The information on this page is as of\nSaturday, August 24, 2024 15:55:38 PDT";
+    document.getElementById('genTimestampImg').title=completeMsg;
+    alert(completeMsg);
+  }
+  
+	function openAllergy(clientid, allergyId, readonly)  {
+	  	  var params = "ESOLclientid=" + clientid + "&ESOLallergyid=" + allergyId + "&fromDash=Y";
+	  	  var p_width = 600;
+	  	  var p_height = 600;
+	  		if(readonly) {
+	  			params = params + "&ESOLaction=V";
+	  			p_height = 700;
+	  		}
+	  		if(allergyId != -1) {
+	  			p_height = 700;
+	  		}
+	      openSizedLookup2("/clinical/allergy/pop_up/allergyEdit.xhtml?" + params, '', p_width, p_height); 
+	    }
+</script>
+
+<link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"></head>
+
+<body class="clinical" onload="" marginwidth="0" marginheight="0" style="zoom: 1;">
+  
+<form name="frmData" action="https://www19.pointclickcare.com/clinical/dashboard/dashBoardAllergyList.xhtml">
+  <input type="hidden" name="ESOLminiToken" value="GDGuuuPiC59">
+  <input type="hidden" name="ESOLclientid" value="42344920">
+  <input type="hidden" name="fromDash" value="null">
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+  <tbody><tr valign="middle" height="20">
+    <td nowrap="nowrap" class="pccModuleHeader" width="170">Active Allergies</td>
+    <td nowrap="nowrap" class="pccModuleHeader" style="text-align:right"></td>
+    <td nowrap="nowrap" class="pccModuleHeader" align="right">
+     	 
+     
+     <a href="https://www19.pointclickcare.com/reporting/setup/runtime/orderreports.xhtml?action=setupReport&amp;report_id=-46&amp;ESOLreportType=orders&amp;ESOLaction=run&amp;ESOLreportCatalogId=-5&amp;clientid=42344920" target="_blank" style="color: #ffffff; text-decoration: none;" title="Allergy Report"><img src="./reports.gif" height="20" border="0" align="absmiddle">Allergy Report </a>
+      
+      &nbsp;<img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="clickClock()">&nbsp;&nbsp;
+    </td>
+  </tr>
+</tbody></table>
+<div id="tableContainer" class="tableContainer">
+<table border="0" cellpadding="3" cellspacing="0" width="100%" class="scrollTable" style="table-layout:fixed; width:100%; word-wrap: break-word">
+ <tbody><tr><td colspan="4"></td></tr>
+  </tbody><thead class="fixedHeader" id="fixedHeader">
+
+ 
+    <tr>
+      <td class="detailColHeader">Category</td>
+      <td class="detailColHeader" colspan="2">Allergen</td>
+      <td class="detailColHeader">Reaction</td>
+    </tr>
+  </thead>
+ <tbody>
+  
+      
+      <tr>
+	      <td>Drug</td>
+	      <td colspan="2">Codeine</td>      
+	      <td></td>
+    </tr>
+        
+    </tbody>
+  </table>
+</div>
+</form>
+
+
+</body></html>

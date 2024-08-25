@@ -1,0 +1,3411 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+<title>Resident Dashboard</title>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./dash_files/core.css">
+<link type="text/css" rel="stylesheet" href="./dash_files/legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./dash_files/roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./dash_files/icon">
+<link type="text/css" rel="stylesheet" href="./dash_files/evergreen.css">
+<link type="text/css" rel="stylesheet" href="./dash_files/pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./dash_files/jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./dash_files/pendo.js.download"></script><script src="./dash_files/l10n.djs"></script>
+
+
+    <script src="./dash_files/jquery-1.9.0.min.js.download"></script>
+    <script src="./dash_files/jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./dash_files/jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./dash_files/jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./dash_files/ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./dash_files/core.js.download"></script>
+<script src="./dash_files/system-info.js.download"></script>
+<script src="./dash_files/pcc-overlay-dialogs.js.download"></script>
+<script src="./dash_files/wedate.js.download"></script>
+
+<script src="./dash_files/coremenufunctions.js.download"></script>
+
+
+<script src="./dash_files/pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./dash_files/usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./dash_files/sessionTimeout.css">
+        <script src="./dash_files/sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./dash_files/help.js.download"></script>
+
+
+
+
+
+  <link type="text/css" rel="stylesheet" href="./dash_files/qi_analysis_tabs.css">
+  <link type="text/css" rel="stylesheet" href="./dash_files/eInteract.css">
+
+<script>
+function printableView()
+{
+	var showClearedAlerts         = checkClearedAlerts("res_alerts");
+	var showClearedCOTAlerts      = checkClearedAlerts("res_alerts_cots");
+	var showClearedHighRiskUDA    = checkClearedAlerts("res_highriskuda");
+	var genNotesViewTimeRange     = getSelectedGeneralNotesViewTimeRange();
+	var genNotesViewType          = getSelectedGeneralNotesViewType();
+	var includePlannedThMin       = getTherapyMinutesIncludePlannedMinutes();
+	var historyCotAlertHours      = getHistoryHoursAlerts("cotalerts");
+	var historyClinicalAlertHours = getHistoryHoursAlerts("res_alerts");
+
+	client.target="blank";
+	client.action="/care/reports/resdashprintableview.jsp?ESOLclientid=42344920&ESOLshowClearedAlerts="+showClearedAlerts+"&ESOLshowClearedCOT="+showClearedCOTAlerts+"&ESOLshowClearedHighRiskUDA="+showClearedHighRiskUDA+"&ESOLgeneralnotesview="+genNotesViewTimeRange+"&ESOLgeneralnotestype="+genNotesViewType+"&ESOLcotHistoryHours="+historyCotAlertHours+"&ESOLalertsHistoryHours="+historyClinicalAlertHours+"&ESOLthIncludePlanned="+includePlannedThMin;
+	client.method="post";
+	client.submit();
+	client.target = "";
+	client.action="/admin/client/cp_residentdashboard.jsp";
+}
+
+function checkClearedAlerts(dashboard)
+{
+	var ret = "";
+
+	for(var i = 0;i<window.frames.length;i++)
+	{
+		var IFrameObj = frames[i];
+		var doc = IFrameObj.document;
+		try
+		{
+			if(dashboard == "res_highriskuda" && doc.URL.indexOf(dashboard) != -1)
+			{
+				ret = doc.getElementById("ESOLshowcleared").checked? "Y" : "N";
+				break;
+			}
+			else if(dashboard == "res_alerts" && doc.URL.indexOf(dashboard) != -1)
+			{
+				ret = doc.getElementById("show_cleared").checked? "Y" : "N";
+				break;
+			}
+			else if(dashboard == "cotalerts" && doc.URL.indexOf(dashboard) != -1)
+			{
+				ret = doc.getElementById("show_cleared").checked? "Y" : "N";
+				break;
+			}
+		}
+		catch(e)
+		{}
+	}
+	return ret;
+}
+
+function getHistoryHoursAlerts(dashboard)
+{
+	var ret = "";
+
+	for(var i = 0;i<window.frames.length;i++)
+	{
+		var IFrameObj = frames[i];
+		var doc = IFrameObj.document;
+		try
+		
+		{
+			if(dashboard == "cotalerts" && doc.URL.indexOf(dashboard) != -1)
+			{
+				ret = doc.getElementsByName("ESOLhistoryHours")[0].value;
+				break;
+			}
+			else if(dashboard == "res_alerts" && doc.URL.indexOf(dashboard) != -1)
+			{
+				ret = doc.getElementsByName("ESOLhistoryHours")[0].value;
+				break;
+			}
+			
+		}
+		catch(e)
+		{}
+	}
+	return ret;
+}
+
+function getTherapyMinutesIncludePlannedMinutes()
+{
+	var ret = "";
+
+  for(var i = 0;i<window.frames.length;i++)
+  {
+    var IFrameObj = frames[i];
+    var doc = IFrameObj.document;
+    try
+    {
+      if(doc.URL.indexOf("res_therapy") != -1)
+      {
+        if(doc.getElementById("ESOLthIncludePlanned").checked)
+        {
+        	ret = "Y";
+        }
+        else
+        {
+        	ret = "N";
+        }
+        break;
+      }
+    }
+    catch(e)
+    {}
+  }
+  return ret;
+}
+
+function getSelectedGeneralNotesViewTimeRange()
+{
+  var ret = "";
+
+  for(var i = 0;i<window.frames.length;i++)
+  {
+    var IFrameObj = frames[i];
+    var doc = IFrameObj.document;
+    try
+    {
+      if(doc.URL.indexOf("res_generalnotes") != -1)
+      {
+        ret = doc.getElementById("ESOLgeneralnotesview").value;
+        break;
+      }
+    }
+    catch(e)
+    {}
+  }
+  return ret;
+}
+function getSelectedGeneralNotesViewType()
+{
+  var ret = "";
+
+  for(var i = 0;i<window.frames.length;i++)
+  {
+    var IFrameObj = frames[i];
+    var doc = IFrameObj.document;
+    try
+    {
+      if(doc.URL.indexOf("res_generalnotes") != -1)
+      {
+        ret = doc.getElementById("ESOLgeneralnotestype").value;
+        break;
+      }
+    }
+    catch(e)
+    {}
+  }
+  return ret;
+}
+
+function goToGenNotesReportSetup()
+{
+  var currentDate = new Date();
+  currentDate.setHours(0);
+  currentDate.setMinutes(0);
+  currentDate.setSeconds(0);
+
+  var clientId = 42344920;
+  var startDate = getGenNotesDashStartDate();
+  var startDateStr = (startDate.getMonth()+1)+"/"+startDate.getDate()+"/"+startDate.getFullYear();
+  var endDateStr = (currentDate.getMonth()+1)+"/"+currentDate.getDate()+"/"+currentDate.getFullYear();
+  var genNoteTypeId = getSelectedGeneralNotesViewType();
+
+  window.location = "/care/reports/rp_generalnotes.jsp?client_id="+clientId+"&ESOLstartDate="+startDateStr+"&ESOLendDate="+endDateStr+"&ESOLgeneralNotesTypeId="+genNoteTypeId;
+}
+
+function getGenNotesDashStartDate()
+{
+  var selectedTimeRangeId = getSelectedGeneralNotesViewTimeRange();
+  var currentDate = new Date(); 
+  currentDate.setHours(0);
+  currentDate.setMinutes(0);
+  currentDate.setSeconds(0);
+
+  if (selectedTimeRangeId == 1)
+  {
+    currentDate.setDate(currentDate.getDate() - 1);
+    return currentDate;
+  }
+  else if (selectedTimeRangeId == 2)
+  {
+    currentDate.setDate(currentDate.getDate() - 7);
+    return currentDate;
+  }
+  else if (selectedTimeRangeId == 3)
+  {
+    currentDate.setDate(currentDate.getDate() - 14);
+    return currentDate;
+  }
+  else if (selectedTimeRangeId == 4 || selectedTimeRangeId == 5)
+  {
+    currentDate.setDate(currentDate.getDate() - 30);
+    return currentDate;
+  }
+}
+
+function helper(db)
+{
+	var text = "";
+	if (db == "medMonitoringInfoAntibiotic"  && typeof generateAntibioticMedicationGuidelines !== 'undefined')
+   	{
+		text = generateAntibioticMedicationGuidelines();
+   	}
+    else if (db == "medMonitoringInfoPsychotropic"  && typeof generatePsychotropicMedicationGuidelines !== 'undefined')
+    {
+    	text = generatePsychotropicMedicationGuidelines();
+    }
+    
+    var tmpAction = client.action;
+    var tmpTarget = client.target;
+    client.ESOLquestion.value = text;
+    client.action = "/tools/infopopup.jsp";
+    client.target = "info";
+    pccPopup("", "info", 600, 400, '');
+    client.submit();
+    client.action = tmpAction;
+    client.target = tmpTarget;
+}
+
+</script>
+
+
+<script>resHeaderPage = true;</script>
+<link href="./dash_files/main.ae9acf26.css" rel="stylesheet"><style data-jss="" data-meta="MuiCssBaseline">
+#scAppRoot *::-webkit-scrollbar {
+  width: 16px;
+  background-color: #fff;
+}
+#scAppRoot *::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+#scAppRoot *::-webkit-scrollbar-thumb {
+  border: 4px solid #fff;
+  min-height: 48px;
+  border-radius: 16px;
+  background-color: #babac0;
+}
+#scAppRoot *::-webkit-scrollbar-button {
+  display: none;
+}
+#scAppRoot * {
+  scrollbar-width: thin;
+}
+</style><style data-jss="" data-meta="MuiButtonBase">
+.scApp-MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.scApp-MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.scApp-MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+@media print {
+  .scApp-MuiButtonBase-root {
+    -webkit-print-color-adjust: exact;
+  }
+}
+</style><style data-jss="" data-meta="MuiIconButton">
+.scApp-MuiIconButton-root {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}
+.scApp-MuiIconButton-root:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.scApp-MuiIconButton-root.Mui-disabled {
+  color: rgba(153, 153, 153, 1);
+  background-color: transparent;
+}
+@media (hover: none) {
+  .scApp-MuiIconButton-root:hover {
+    background-color: transparent;
+  }
+}
+.scApp-MuiIconButton-edgeStart {
+  margin-left: -12px;
+}
+.scApp-MuiIconButton-sizeSmall.scApp-MuiIconButton-edgeStart {
+  margin-left: -3px;
+}
+.scApp-MuiIconButton-edgeEnd {
+  margin-right: -12px;
+}
+.scApp-MuiIconButton-sizeSmall.scApp-MuiIconButton-edgeEnd {
+  margin-right: -3px;
+}
+.scApp-MuiIconButton-colorInherit {
+  color: inherit;
+}
+.scApp-MuiIconButton-colorPrimary {
+  color: rgba(0, 160, 175, 1);
+}
+.scApp-MuiIconButton-colorPrimary:hover {
+  background-color: rgba(0, 160, 175, 0.04);
+}
+@media (hover: none) {
+  .scApp-MuiIconButton-colorPrimary:hover {
+    background-color: transparent;
+  }
+}
+.scApp-MuiIconButton-colorSecondary {
+  color: rgba(0, 160, 175, 1);
+}
+.scApp-MuiIconButton-colorSecondary:hover {
+  background-color: rgba(0, 160, 175, 0.04);
+}
+@media (hover: none) {
+  .scApp-MuiIconButton-colorSecondary:hover {
+    background-color: transparent;
+  }
+}
+.scApp-MuiIconButton-sizeSmall {
+  padding: 3px;
+  font-size: 1.125rem;
+}
+.scApp-MuiIconButton-label {
+  width: 100%;
+  display: flex;
+  align-items: inherit;
+  justify-content: inherit;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.scApp-scApp7 {
+  min-width: 88px;
+}
+.scApp-scApp8 {
+  font-size: 14px;
+  font-style: normal;
+  font-family: Roboto, Helvetica, Arial, sans-serif !important;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+.scApp-scApp12 {
+  color: #fff;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+  background-color: rgba(5, 87, 111, 1);
+}
+.scApp-scApp12:hover {
+  color: #fff;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: rgba(23, 99, 121, 1);
+}
+.scApp-scApp12:link {
+  color: #fff;
+  text-decoration: none;
+}
+.scApp-scApp12:visited {
+  color: #fff;
+  text-decoration: none;
+}
+.scApp-scApp12:disabled {
+  color: rgba(135, 135, 135, 1);
+  box-shadow: none;
+  background-color: rgba(219, 219, 219, 1);
+}
+.scApp-scApp12:focus {
+  color: #fff;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  background-color: rgba(35, 107, 128, 1);
+}
+.scApp-scApp12.scApp-scApp11 {
+  color: #fff;
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+  background-color: rgba(35, 107, 128, 1);
+}
+.scApp-scApp13 {
+  color: rgba(0, 0, 0, 0.64);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent;
+}
+.scApp-scApp13:hover {
+  color: rgba(0, 0, 0, 0.88);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.scApp-scApp13:disabled {
+  color: rgba(0, 0, 0, 0.4);
+  background-color: transparent;
+}
+.scApp-scApp13:focus {
+  color: rgba(0, 0, 0, 0.88);
+  background-color: rgba(179, 227, 231, 0.6);
+}
+.scApp-scApp13.scApp-scApp11 {
+  color: rgba(0, 0, 0, 0.88);
+  background-color: rgba(179, 227, 231, 0.5);
+}
+.scApp-scApp14 {
+  color: rgba(5, 87, 111, 1);
+  padding: 10px 16px;
+}
+.scApp-scApp14:hover {
+  color: rgba(5, 87, 111, 1);
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.scApp-scApp14:link {
+  color: rgba(5, 87, 111, 1);
+  text-decoration: none;
+}
+.scApp-scApp14:visited {
+  color: rgba(5, 87, 111, 1);
+  text-decoration: none;
+}
+.scApp-scApp14.scApp-scApp10 {
+  color: rgba(153, 153, 153, 1);
+  background-color: transparent;
+}
+.scApp-scApp14.scApp-scApp9 {
+  color: rgba(5, 87, 111, 1);
+  background-color: rgba(179, 227, 231, 0.6);
+}
+.scApp-scApp14.scApp-scApp11 {
+  color: rgba(5, 87, 111, 1);
+  background-color: rgba(179, 227, 231, 0.5);
+}
+.scApp-scApp15 {
+  color: rgba(5, 87, 111, 1);
+  border-color: rgba(0, 0, 0, 0.12);
+  background-color: transparent;
+}
+.scApp-scApp15:hover {
+  color: rgba(5, 87, 111, 1);
+  border-color: rgba(0, 0, 0, 0.24);
+  background-color: rgba(245, 245, 245, 1);
+}
+.scApp-scApp15:link {
+  color: rgba(5, 87, 111, 1);
+  text-decoration: none;
+}
+.scApp-scApp15:visited {
+  color: rgba(5, 87, 111, 1);
+  text-decoration: none;
+}
+.scApp-scApp15.scApp-scApp10 {
+  color: rgba(153, 153, 153, 1);
+  background-color: transparent;
+}
+.scApp-scApp15.scApp-scApp9 {
+  color: rgba(5, 87, 111, 1);
+  border-color: rgba(0, 0, 0, 0.24);
+  background-color: rgba(179, 227, 231, 0.6);
+}
+.scApp-scApp15.scApp-scApp11 {
+  color: rgba(5, 87, 111, 1);
+  border-color: rgba(0, 0, 0, 0.24);
+  background-color: rgba(201, 235, 238, 1);
+}
+.scApp-scApp16 {
+  height: 24px;
+  padding: 4px 16px;
+  font-size: 14px;
+}
+.scApp-scApp17 {
+  height: 36px;
+  padding: 10px 16px;
+}
+.scApp-scApp18 {
+  padding: 4px 8px;
+}
+.scApp-scApp19 {
+  padding: 10px 8px;
+}
+</style><style data-jss="" data-meta="MuiDialog">
+@media print {
+  .scApp-MuiDialog-root {
+    position: absolute !important;
+  }
+}
+.scApp-MuiDialog-scrollPaper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scApp-MuiDialog-scrollBody {
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+}
+.scApp-MuiDialog-scrollBody:after {
+  width: 0;
+  height: 100%;
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+}
+.scApp-MuiDialog-container {
+  height: 100%;
+  outline: 0;
+}
+@media print {
+  .scApp-MuiDialog-container {
+    height: auto;
+  }
+}
+.scApp-MuiDialog-paper {
+  margin: 32px;
+  position: relative;
+  overflow-y: auto;
+}
+@media print {
+  .scApp-MuiDialog-paper {
+    box-shadow: none;
+    overflow-y: visible;
+  }
+}
+.scApp-MuiDialog-paperScrollPaper {
+  display: flex;
+  max-height: calc(100% - 64px);
+  flex-direction: column;
+}
+.scApp-MuiDialog-paperScrollBody {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.scApp-MuiDialog-paperWidthFalse {
+  max-width: calc(100% - 64px);
+}
+.scApp-MuiDialog-paperWidthXs {
+  max-width: 444px;
+}
+@media (max-width:507.95px) {
+  .scApp-MuiDialog-paperWidthXs.scApp-MuiDialog-paperScrollBody {
+    max-width: calc(100% - 64px);
+  }
+}
+.scApp-MuiDialog-paperWidthSm {
+  max-width: 600px;
+}
+@media (max-width:663.95px) {
+  .scApp-MuiDialog-paperWidthSm.scApp-MuiDialog-paperScrollBody {
+    max-width: calc(100% - 64px);
+  }
+}
+.scApp-MuiDialog-paperWidthMd {
+  max-width: 960px;
+}
+@media (max-width:1023.95px) {
+  .scApp-MuiDialog-paperWidthMd.scApp-MuiDialog-paperScrollBody {
+    max-width: calc(100% - 64px);
+  }
+}
+.scApp-MuiDialog-paperWidthLg {
+  max-width: 1280px;
+}
+@media (max-width:1343.95px) {
+  .scApp-MuiDialog-paperWidthLg.scApp-MuiDialog-paperScrollBody {
+    max-width: calc(100% - 64px);
+  }
+}
+.scApp-MuiDialog-paperWidthXl {
+  max-width: 1920px;
+}
+@media (max-width:1983.95px) {
+  .scApp-MuiDialog-paperWidthXl.scApp-MuiDialog-paperScrollBody {
+    max-width: calc(100% - 64px);
+  }
+}
+.scApp-MuiDialog-paperFullWidth {
+  width: calc(100% - 64px);
+}
+.scApp-MuiDialog-paperFullScreen {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  max-width: 100%;
+  max-height: none;
+  border-radius: 0;
+}
+.scApp-MuiDialog-paperFullScreen.scApp-MuiDialog-paperScrollBody {
+  margin: 0;
+  max-width: 100%;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.scApp-scApp22 {
+  padding: 0 1.5rem 1rem;
+}
+.scApp-scApp23 {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+.scApp-scApp24 {
+  padding: 1rem 1.5rem;
+}
+.scApp-scApp24 > :not(:first-child) {
+  margin-left: 16px;
+}
+.scApp-scApp25 {
+  margin-bottom: unset;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.scApp-scApp20:hover {
+  fill: rgba(0, 0, 0, 0.88);
+}
+</style><style data-jss="" data-meta="makeStyles">
+</style><style data-jss="" data-meta="makeStyles">
+.scApp-scApp1 {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(0, 160, 175, 1);
+}
+.scApp-scApp2 {
+  display: flex;
+  padding: 5px;
+  justify-content: flex-end;
+}
+.scApp-scApp3 {
+  color: rgba(255, 255, 255, 1);
+  padding: 8px;
+}
+.scApp-scApp4 {
+  top: 12px;
+  right: 11px;
+  width: 7px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  height: 7px;
+  position: absolute;
+  box-sizing: unset;
+  border-radius: 50px;
+  background-color: rgba(255, 0, 0, 1);
+}
+.scApp-scApp5 {
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+.scApp-scApp6 {
+  padding: 0;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.scApp-scApp27 {
+  top: 20px;
+  flex: 1;
+  right: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 1300;
+  position: fixed;
+  max-width: 20vw;
+  min-width: 384px;
+  background: #F1F1F1;
+  margin-top: 40px;
+  max-height: 80vh;
+  min-height: 500px;
+  text-align: left;
+  border-radius: 4px;
+  flex-direction: column;
+}
+</style><style data-jss="" data-meta="makeStyles">
+.scApp-scApp26 {
+  display: flex;
+  justify-content: center;
+}
+</style><link href="./dash_files/main.9add7ac7.css" rel="stylesheet"><style data-jss="" data-meta="makeStyles">
+.jss1 {
+  width: 24px;
+  cursor: pointer;
+  height: 24px;
+}
+.jss2 {
+  width: 84px;
+  cursor: pointer;
+  height: 24px;
+}
+</style><link type="text/css" rel="stylesheet" href="./dash_files/guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="https://pendo-static-5991889151721472.storage.googleapis.com/guide-content/B6DucuwbY0zYleVgoEK04Vahons@nNkeVFoedlfe5iFYbUSTCDtYLSM/8aFGFf5se9_IG52cyzU8e_4y7fA/4EIVnOD7laepQeBIvJDy33CpO-o.guide.css?sha256=U0MY2X8i-CH0iSoYyNEJWMk_3qwNvC28FAr-XQ9UV0k"><link type="text/css" rel="stylesheet" href="https://pendo-static-5991889151721472.storage.googleapis.com/guide-content/IqWlyOQJ8xMzshGT778OHM1u8IY@nNkeVFoedlfe5iFYbUSTCDtYLSM/0Mm1KtAYO_-NPwvD08MPIKbKJvA/HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css?sha256=9djLIwqUC5x29Wc7ZfwI1OEcujTOBfPht0lh1wMwhFE"></head>
+<body class="clinical" style="margin: 0px 10px; zoom: 1;">
+
+
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="./dash_files/core-header.css">
+<link type="text/css" rel="stylesheet" href="./dash_files/banners.css">
+
+<div class="core-header-wrapper">
+	<h1 class="appAriaHide" id="appAriaHeaderOne" aria-hidden="false">Resident Dashboard</h1>
+	
+	<link type="text/css" rel="stylesheet" href="./dash_files/coremenu.css">
+	<script src="./dash_files/medicare.js.download"></script>
+	
+	<script>
+		document.body.style.margin = '0 10px';
+		// variables required for coremenufunctions.js
+		var isInitialsSet = false;
+		//var checkInitialsFlag = false;
+		var facilityListURL = "/tools/faclist.jsp?facilityList=true&allowEMCModeCheck=false";
+		var isTouchEnabledFlag = false;
+		var inEMCflag = false;
+		var isInFGCflag = false;
+
+		// required for function submitSearchNew() in coremenufunctions.js
+		var inEMCFGC = false
+		if (inEMCflag || isInFGCflag) {
+			inEMCFGC = true;
+		}
+
+		
+			var tabType = 'C';
+		
+
+		// Update menu URLS for touch
+		if (typeof resHeaderPage != 'undefined' && resHeaderPage == true) {
+			var isResHeaderPage = true;
+		}
+
+		document.addEventListener('DOMContentLoaded', function(e) {
+			$(document).on('click', '.js-webapp-user-logout-btn', function(e){
+				localStorage.removeItem('SLRM.ps.rowsPerPage');
+				$(this).trigger('webapp/user/logout');
+			});
+		});
+
+		$(document).ready(function() {
+			$('.headerMessage-dismiss').click(function (e) {
+				e.stopPropagation();
+				var msgId = $(this).parent().attr('id');
+				$.post("/home/dismissBannerMessage.xhtml?messageId=" + msgId, function () {
+					$('#' + msgId).slideUp(350, function () {
+						$(this).remove();
+					});
+				}).fail(function () {
+					//This should not happen, but if it does, we want to know about it.
+					alert("An error occurred closing the message. Please sign out and sign back in.");
+				});
+
+				PccUsageAnalytics.trackEvent("banner-headerMessage-dismiss", {
+					"ua": navigator.userAgent,
+					"id": msgId
+				});
+			});
+
+			$('#headerMessageDiv .headerMessage').not('.headerMessage-dismiss').click(function () {
+				PccUsageAnalytics.trackEvent("banner-headerMessage-click", {
+					"ua": navigator.userAgent,
+					"id": $(this).attr('id')
+				});
+			});
+		});
+	</script>
+
+	
+
+	
+	
+	
+
+	
+	<style>
+		html{
+			min-height:100%;
+			position:relative;
+		}
+
+		
+			body{
+				margin-bottom:150px !important;
+			}
+		
+
+		div.footertext{
+			bottom:10px;
+			left:10px;
+			min-width:800px;
+			position:absolute;
+			right:10px;
+			width:auto;
+		}
+		@media print{
+			
+				body{
+					margin-bottom:0 !important;
+				}
+			
+			div.footertext{
+				position:relative !important;
+				width:100% !important;
+			}
+		}
+	</style>
+
+	
+
+	<script>
+		// Required for main menu
+		var currentTab = "3";
+		var touchEnabled = false;
+		var currentClientId = "42344920";
+		var clientJumpTab = "adminnotelisting.xhtml";
+		var careJumpTab = "cp_residentdashboard.jsp";
+
+		if (typeof resHeaderPage != 'undefined' && resHeaderPage == true) {
+			var isResHeaderPage = true;
+		}
+		var tabsMenuLoaded = true;
+	</script>
+	<script src="./dash_files/menu40a2604a-62d0-4839-a6e6-586b91164124.xhtml"></script>
+
+	<div class="headerMessageDiv" id="headerMessageDiv">
+		
+	</div>
+
+	<div id="resident-search-root"></div>
+	<header id="slHeader">
+		<table id="mainPageHeader" width="100%" border="0" cellspacing="0" cellpadding="0" style="min-height:40px;">
+			<tbody><tr>
+				<td valign="top" class="slPccLogo"><img src="./dash_files/pointclickcare.svg" width="170" height="20" alt="Point Click Care logo"></td>
+				<td align="right" valign="top" class="slTopNav">
+					
+
+<h3 class="appAriaHide" aria-hidden="false">Facility Selection</h3>
+<form id="facSelectForm" action="https://www19.pointclickcare.com/facilityGroup/facilitygroupconsole.xhtml" method="post">
+	<input type="hidden" name="setFacGroupId" id="setFacGroupId" value="">
+	<input type="hidden" name="setFacType" id="setFacType" value="">
+</form>
+
+
+
+	<a id="pccFacLink" title="Roseville Point Health &amp; Wellness Center" href="javascript:void(0)" class="headerLink innerfac navLink arrowDrop darkArrowDrop">Roseville Point Health &amp; Wellness Center</a>
+	<input type="hidden" name="current_fac_id" value="59">
+
+	<script>
+		function displayFacilityGroupConsole(facGroupID, facGroupType){
+			$('#facSelectForm').attr('action', '/facilityGroup/facilitygroupconsole.xhtml');
+			$('#setFacGroupId').val(facGroupID);
+			$('#setFacType').val(facGroupType);
+			$('#facSelectForm').submit();
+		}
+	</script>
+	<div id="pccFacMenu" class="core-form-styles dropDownList" style="display:none;">
+		<div style="height:100px;padding:50px 0 0 217px"><img src="./dash_files/loading-circle.gif" width="16" height="16" border="0"></div>
+	</div>
+
+
+					
+					
+
+					
+
+					
+					
+
+<span id="pendo-resource-hub-icon-container">
+  <span id="pendo-resource-hub-icon" title="Resource Hub" role="button" aria-label="Resource Hub"></span>
+</span>
+					
+					
+
+
+
+<style>
+    .secureConversationMessageBubble{
+        display:inline-block;
+        height:48px;
+        margin:0 12px 0 12px;
+        vertical-align:middle;
+        width:48px;
+    }
+    .secureConversationHidden{
+        display:none;
+    }
+</style>
+
+
+    
+    
+
+    <span>
+    <div id="scAppRoot" resident-id="42344920" resident-firstname="Nancy" start-time="1724540137507" resident-lastname="Jones" facility-id="59" has-admin-or-clinical-resident-access="true" class="secureConversationMessageBubble"><div class=""><button class="scApp-MuiButtonBase-root scApp-MuiIconButton-root scApp-scApp13 scApp-scApp6 evergreen-btn scApp-MuiIconButton-colorPrimary scApp-MuiIconButton-sizeSmall" tabindex="0" type="button" data-testid="chat-icon" aria-label="close" data-cy="sc-message-bubble"><span class="scApp-MuiIconButton-label scApp-scApp8"><svg class="scApp-scApp20 scApp-scApp21" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path id="IconContainer" d="M32 14H16C14.9 14 14.01 14.9 14.01 16L14 34L18 30H32C33.1 30 34 29.1 34 28V16C34 14.9 33.1 14 32 14ZM18 21H30V23H18V21ZM26 26H18V24H26V26ZM30 20H18V18H30V20Z"></path></svg></span></button></div><div class="scApp-scApp26"></div></div>
+</span>
+
+    <script type="text/javascript">
+        $(function () {
+            var scAppRoot = $('#scAppRoot');
+            scAppRoot.on('scAppRootVisibility', function (event) {
+                if (event.originalEvent.detail.visible === true) {
+                    scAppRoot.removeClass('secureConversationHidden');
+                    scAppRoot.addClass('secureConversationMessageBubble');
+                } else {
+                    scAppRoot.removeClass('secureConversationMessageBubble');
+                    scAppRoot.addClass('secureConversationHidden');
+                }
+            });
+
+            $('#scAppRoot').on('click', '.scInfoBannerResidentName, .scConversationListResidentName', function () {
+                const residentId = $(this).attr('data-resid');
+                const hasAdminResidentAccess = 'false';
+                const hasClinicalResidentAccess = 'true';
+                if (hasClinicalResidentAccess === 'true') {
+                    location.href = "/admin/client/cp_careclientprofile.jsp?ESOLclientid=" + residentId;
+                } else if (hasAdminResidentAccess === 'true') {
+                    location.href = "/admin/client/cp_adminclientprofile.jsp?ESOLclientid=" + residentId;
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="./dash_files/coreScBootstrap.js.download">
+    </script>
+
+
+					
+					
+
+					
+					
+								
+
+
+
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="./dash_files/c3-0.4.10.min.css">
+<link type="text/css" rel="stylesheet" href="./dash_files/chartGenerator.css">
+<script src="./dash_files/d3-3.5.5.min.js.download"></script>
+<script src="./dash_files/c3-0.4.10.min.js.download"></script>
+<script src="./dash_files/chartGenerator.js.download"></script>
+
+<link rel="stylesheet" type="text/css" href="./dash_files/smartalertsnotifications.css">
+
+
+<link type="text/css" rel="stylesheet" href="./dash_files/chosen-0.9.8.css">
+<script src="./dash_files/chosen.jquery-0.9.8.min.js.download"></script>
+<script>
+  if(typeof AbstractChosen == 'undefined') {
+    var chosenLibPath = "/srug/v2076679807/assets/core/jquery/plugins/chosen.jquery-0.9.8.min.js";
+    document.write("<script src='"+ chosenLibPath +"'></"+"script>");
+  }
+</script>
+<script>
+  'use strict';
+  window.clinicalSmartAlerts = window.clinicalSmartAlerts || {};
+
+  window.clinicalSmartAlerts.moduleProps = {
+    canAddPN: true,
+    canAddCarePlan: false,
+    canAssessAlerts: true,
+    clientId: '42344920'.trim(),
+    facId: 59,
+    isESignatureForPNEnabled: true,
+    isCICOnline: true,
+    isNewLogin: false,
+    maxVitalsInChart: 7,
+    cicOtherCICReasonId: '31',
+    months: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ],
+
+    termMap: {
+      alert: 'Alert',
+      alerts: 'alerts',
+      alertsCap: 'Alerts',
+      alertsDescription: 'Alert Description',
+      assessment: 'Assessment',
+      careplan: 'Care Plan',
+      clinicalAlert: 'Clinical Alert',
+      effectiveDate: 'Effective Date',
+      facility: 'Facility',
+      highRiskAlert: 'High Risk Alert',
+      inboundClinicalAlert: 'Inbound Clinical Alert',
+      less: 'less',
+      minutesAgo: '{{minutes}}m ago',
+      more: 'more',
+      noAlerts: 'No Alerts',
+      clientTerm: 'Resident',
+      admissionTerm: 'admission',
+      pendingPatient: 'Pending {0}',
+      resident: 'Resident',
+      task: 'Task',
+      vitalExceptionAlert: 'Vital Exception Alert',
+      orderAlert: 'Order Alert',
+      trend: 'Trend',
+      baseline :'Baseline',
+      diastolicBaseline : 'Diastolic Baseline',
+      systolicBaseline :  'Systolic Baseline',
+      eInteractAlert: 'eInteract Alert',
+      eInteractHeading: 'eINTERACT Alerts (Stop &amp; Watch and/or Change in Condition): ',
+      all:   'All',
+      multipleSelected: 'Multiple Options Selected',
+      selectCategory: 'Select Category',
+      pendingPatientApproval: 'Pending {0} Approval' ,
+      complexAlert: 'Complex Alert',
+      clear: 'Clear',
+      clearAll: 'Clear All',
+      createProgressNote:'Create Progress Note',
+      createProgressNoteForAll:'Create Progress Note For All',
+      value: 'Value'
+
+    },
+    
+    failureMsgs: {
+      saveGeneral: 'Failed to create one of the selected item(s).\n'
+    },
+    
+    alertDescriptions: {
+      inboundClinicalAlertDescription: 'Inbound clinical data has been updated',
+      pendingPatientAlertDescription: 'Confirm pending {0} details prior to {1}'
+    },
+
+    dynamicTags: {
+      eInteractHeadingTag:'<span class="c-einteract-heading">%s</span>'
+    },
+	   
+    vitalMap: {
+      weights: 'Weights',
+      respiration: 'Respiration',
+      bloodPressure: 'Blood Pressure',
+      temperature: 'Temperature',
+      pulse: 'Pulse',
+      bloodSugar: 'Blood Sugar',
+      heights: 'Heights',
+      o2Sats: 'O2 Sats',
+      painLevel: 'Pain Level'
+    },
+	   
+    complexApproaches : [
+      'Staff document one of these response(s) more than {0} time(s) within {1} {2}',
+      'Staff document one of these response(s) less than {0} time(s) within {1} {2}',
+      'Staff document one of these response(s) {0} time(s) within {1} {2}',
+      'Staff document only these response(s) within {1}'
+    ],
+       
+    complexDurations : [
+      'Hour(s)',
+      'Days(s)',
+      'Week(s)'
+    ],
+       
+    defaultChartOpts : {
+      data: {
+        columns: []
+      },
+      color: {
+        pattern: ['#57c5bb', '#f5a623']
+      },
+      interaction: {
+        enabled: true
+      },
+      y: {
+        padding: {
+          bottom: 0
+        },
+        min: 0
+      },
+      axis: {
+        x: {
+          tick : {
+            values : []
+          }
+        },
+        y : {
+        }
+      },
+      size : {
+        height: 250
+      }
+    },
+
+    // indexed by vital type
+    chartOpts : [
+      {},
+      // Weight
+      {
+        data : {
+          columns: [['Weight']],
+          columnKeys: ['value']
+        },
+        isInteger : false
+      },
+      // Respiration
+      {
+        data : {
+          columns: [['Respiration']],
+          columnKeys: ['value']
+        },
+        isInteger : true
+      },
+      // Blood pressure
+      {
+        data : {
+          columns: [['Systolic'], ['Diastolic'] ],
+          columnKeys: ['value', 'diastolicValue']
+        },
+        isInteger : true
+      },
+      // BP Dystolic -- currently doesn't generate alerts
+      {},
+      // Temperature
+      {
+        data : {
+          columns: [['Temperature']],
+          columnKeys: ['value']
+        },
+        isInteger : false
+      },
+      // Pulse
+      {
+        data : {
+          columns: [['Pulse']],
+          columnKeys: ['value']
+        },
+        isInteger : true
+      },
+      // Blood Sugar
+      {
+        data : {
+          columns: [['Blood Sugar']],
+          columnKeys: ['value']
+        },
+        isInteger : false
+      },
+      // Height (currently doesn't trigger alerts)
+      {},
+      // O2 Sats
+      {
+        data : {
+          columns: [['O2 Sats']],
+          columnKeys: ['value']
+        },
+        isInteger : false
+      },
+      // Pain Level
+      {
+        data : {
+          columns: [['Pain Level']],
+          columnKeys: ['value']
+        },
+        isInteger : true
+      }
+    ],
+        
+    userId: '178019'.trim()
+	};
+</script>
+<script src="./dash_files/recursivecloseredirect.js.download"></script>
+<script defer="" src="./dash_files/core(1).js.download"></script>
+<script defer="" src="./dash_files/state.js.download"></script>
+<script defer="" src="./dash_files/rootReducer.js.download"></script>
+<script defer="" src="./dash_files/StatefulComponent.js.download"></script>
+<script defer="" src="./dash_files/CardComponent.js.download"></script>
+<script defer="" src="./dash_files/DropdownComponent.js.download"></script>
+<script defer="" src="./dash_files/MultiSelectFilterDropdownComponent.js.download"></script>
+<script defer="" src="./dash_files/FilterComponent.js.download"></script>
+<script defer="" src="./dash_files/PanelComponent.js.download"></script>
+<script defer="" src="./dash_files/DrawerComponent.js.download"></script>
+<script defer="" src="./dash_files/NotificationToggleComponent.js.download"></script>
+<script defer="" src="./dash_files/App.js.download"></script>
+<script defer="" src="./dash_files/SuggestionsSubComponent.js.download"></script>
+
+<script>
+	'use strict';
+	var selectedAssignmentId=
+	selectedAssignmentId=selectedAssignmentId||'';
+	document.addEventListener('DOMContentLoaded', function(e) {
+		clinicalSmartAlerts.App.init(
+			 {}
+		);
+	});
+</script>
+
+<span class="core-form-styles smart-alerts-notification-wrapper js-clinical-smart-alerts s-clinical-smart-alerts">
+  
+      
+      
+         <div id="qtf-csa-notificationToggle" class="js-notification-toggle c-notification-toggle c-notification-toggle--has-alerts"></div>
+      
+  
+
+  <div class="js-drawer c-drawer c-drawer--is-hidden u-no-transition">
+    <div class="js-panel c-panel">
+        <ul class="js-tabs js-sticky-header c-tabs">
+            
+            <li id="qtf-csa-drawerTabAll" class="js-tab c-tabs__tab " data-tab-type="all">
+                <span class="c-tabs__label">All</span>
+            </li>
+            
+                <li id="qtf-csa-drawerTabClient" class="js-tab c-tabs__tab" data-tab-type="client">
+                    <span class="c-tabs__label">Resident</span>
+                </li>
+            
+            
+            <li class="c-tabs__tab__filter ">
+                <input id="smartalerts-filter-toggle" class="c-filter_icon" type="image" src="./dash_files/smartalert_filter_opener.svg" align="right">
+            </li>
+        </ul>
+        <div id="smart-alert-filter" class="js-filters u-hidden c-filter_dropdown js-sticky-filter">
+            <div class="js-unit-and-floor-filter c-unit-and-floor-filter">
+                <div class="c-filter_dropdown_unit">
+                    <label class="c-label j-unitfloor-label u-mb-0">Unit</label>
+                    <div id="qtf-csa-unitDropdown" class="js-dropdown-unit js-dropdown c-dropdown c-filter_dropdown_border" data-type="unit">
+                        <a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" id="qtf-csa-unitDropdown__trigger" class="js-dropdown-trigger c-dropdown__trigger" data-option="">All</a>
+                        <ul class="js-dropdown-content c-dropdown__content">
+                            <li><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" id="qtf-csa-unitDropdown__optionAll" class="c-dropdown-option-all" data-option="">All</a></li>
+                        <li><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" data-option="894">1</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" data-option="895">2</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" data-option="896">3</a></li></ul>
+                    </div>
+                </div>
+                <div class="c-filter_dropdown_floor">
+                    <label class="c-label j-unitfloor-label u-mb-0">Floor</label>
+                    <div id="qtf-csa-floorDropdown" class="js-dropdown-floor js-dropdown c-dropdown c-filter_dropdown_border" data-type="floor">
+                        <a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" id="qtf-csa-floorDropdown__trigger" class="js-dropdown-trigger c-dropdown__trigger" data-option="">All</a>
+                        <ul class="js-dropdown-content c-dropdown__content">
+                            <li><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" id="qtf-csa-floorDropdown__optionAll" class="c-dropdown-option-all" data-option="">All</a></li>
+                        <li><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" data-option="152">Floor 1</a></li></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="c-filter_dropdown_category">
+                <label class="c-label u-mb-0">
+                    Category
+                </label>
+                <div id="qtf-csa-categoryDropdown" class="js-dropdown-category js-dropdown c-dropdown c-filter_dropdown_border_category" data-type="category">
+                    <a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920#" id="qtf-csa-categoryDropdown__trigger" class="js-dropdown-trigger c-dropdown__trigger" data-option="">Multiple Options Selected</a>
+                    <ul id="smartalerts_categories_filter_dropdown_content" class="js-multiselectdropdown-content c-multiselectdropdown__content" style="display: none;"><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="All"><label>All</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Clinical Alert"><label>Clinical Alert</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Clinical Standards"><label>Clinical Standards</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Complex Alert"><label>Complex Alert</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="High Risk Alert"><label>High Risk Alert</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Nursing Advantage Memo"><label>Nursing Advantage Memo</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Order Alert"><label>Order Alert</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Pending Patient Approval"><label>Pending Resident Approval</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="Vitals Exception"><label>Vitals Exception</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="eINTERACT CIC"><label>eINTERACT CIC</label></li><li style="display:table; padding:0 6px; width:100%"><input type="checkbox" name="eINTERACT Stop And Watch"><label>eINTERACT Stop &amp; Watch</label></li></ul>
+                </div>
+            </div>
+            <div class="u-text-align-right c-filter_button_row">
+                <button id="apply_smartalerts_filter_button" class="c-button c-button--primary js-filter-apply u-text-uppercase">Apply Filters</button>
+            </div>
+        </div>
+        <div class="js-panel-content c-panel__content">
+          <div id="new-alert-bubble" class="new-alert-bubble c-button c-button--primary" style="display:none;">
+              <img class="tail-up" src="./dash_files/whitearrow.png">New Alerts
+          </div>
+          <div class="js-panel-alerts c-panel-alerts c-panel-alerts--has-no-alerts">No Alerts</div>
+        </div>
+    </div>
+  </div>
+  <script id="tmpl-csa-alert-card" type="text/template">
+    <div id="js-csa-alert-card-{{type}}-{{id}}" class="js-alert-card c-card" data-alert-type="{{type}}" data-alert-id="{{id}}" data-grouped-alert-ids="{{groupedAlertIds}}" data-client-id="{{clientId}}" data-created-timestamp="{{createdTimestamp}}" data-module="{{module}}"
+      data-vital-type="{{vitalType}}" data-pn-id="{{pnId}}" data-clear-alert-permission="{{clearAlertPermission}}" data-alert-description="{{description}}" data-wv-pn-description="{{pn_description}}" data-auto-populate-pn-description="{{autoPopulateProgressNote}}" data-assessment-linked="{{assessment_linked}}" data-pending-patient-id="{{pendingPatientId}}">
+      <div class="c-card__header">
+        <div class="l-table-row u-mb-0">
+          <span class="c-card__type l-table-row__col l-table-row__col--70 u-text-uppercase u-text-subdued">{{formattedType}}</span>
+          <a href="javascript:void(0)" class="js-alert-card-clear c-card__clear l-table-row__col l-table-row__col--30 u-text-uppercase u-text-subdued u-text-align-right" style="display:{{clearAlertPermission}}">{{clearSmartAlert}}</a>
+        </div>
+      </div>
+      <div class="c-card__content">
+        <div class="l-table-row">
+          <div class="l-table-row__col l-table-row__col--70">
+            <h4 class="t-h4 u-mb-0">{{formattedName}} <span style="display:{{hideClientNumber}}">(<div style="display: inline;" class="qtf-csa-alertClientNumber">{{clientNumber}}</div>)</span></h4>
+            <span style="display:{{hideRoomNumber}}">Room <span class="qtf-csa-alertRoomNumber">{{room}}</span></span>
+          </div>
+          <div class="l-table-row__col l-table-row__col--30 u-text-align-right">
+            <small class="u-text-subdued">{{timeSince}}</small>
+          </div>
+        </div>
+        <div class="js-more-less"><p class="js-alert-description">{{eInteractHeading}}{{description}}</p></div>
+        <a id="grouped-alerts-indicator" href="javascript:void(0)" class="u-hidden c-grouped-alert-expand_toggle js-grouped-alerts-div js-grouped-alerts-link c-grouped-alerts-link">{{groupSize}}</a>
+        <div id="grouped-alerts" class="u-hidden js-grouped-alerts-desc">
+          <div class="pccMessage pccError alert-details-error-message-box u-hidden u-width-100p">
+            Cannot load grouped alert description.
+          </div>
+        </div>
+        <hr class="o-hr"/>
+
+        <div class="js-show-hide js-card-expander c-show-hide c-card-expander">
+          <div class="c-show-hide__content">
+            <div class="js-show-hide js-alert-details-expander c-show-hide c-details-expander">
+              <a href="javascript:void(0)" class="js-show-hide-toggle js-alert-details-expander-toggle c-show-hide__toggle">Alert Details</a>
+              <div class="c-show-hide__content">
+                <div id="js-csa-alert-card-details-{{type}}-{{id}}" class="s-clinical-smart-alert-details">
+                  <div style="width: 100%; display: none;" class="pccMessage pccError alert-details-error-message-box">
+                    Failed to load alert details
+                  </div>
+                  <div class="pending-patient-user-info-section" style="display:{{displayPendingPatientData}};">
+                    <table width="100%">
+                      <tbody>
+                        <tr><td>First Name:</td><td id="{{type}}-{{id}}-first-name"></td></tr>
+                        <tr><td>Middle Name:</td><td id="{{type}}-{{id}}-middle-name"></td></tr>
+                        <tr><td>Surname:</td><td id="{{type}}-{{id}}-surname"></td></tr>
+                        <tr><td>Gender:</td><td id="{{type}}-{{id}}-gender"></td></tr>
+                        <tr><td>Date of Birth:</td><td id="{{type}}-{{id}}-dob"></td></tr>
+                        <tr><td>Social Security Number:</td><td id="{{type}}-{{id}}-ssn"></td></tr>
+                        <tr><td>Medicare (HIC) Number:</td><td id="{{type}}-{{id}}-medicare"></td></tr>
+                        <tr><td>Medicaid Number:</td><td id="{{type}}-{{id}}-medicaid"></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="l-detail-row" style="display:{{hideAlertDetailsEffectiveDate}}">
+                    <h4 class="t-h4 u-mb-0 c-alert-detail">Effective Date: </h4>
+                    <div class="c-alert-detail qtf-csa-AlertEffectiveDate">{{effectiveDate}}</div>
+                  </div>
+                  <div style="display:{{displayExtendedDetails}};">
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">{{Assessment}} Description: </h4> 
+                      <div class="c-alert-detail c-assess-description">{{assess_description}}</div>
+                    </div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">{{Assessment}} Created Date: </h4>
+                      <div class="c-alert-detail c-assess-date">{{assess_date}}</div>
+                    </div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">{{Assessment}} Type: </h4>
+                      <div class="c-alert-detail c-assess-type">{{assess_type}}</div>
+                    </div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">Triggering Question: </h4>
+                      <div class="c-alert-detail c-trigger-question">{{trigger_question}}</div>
+                    </div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">Triggering Response: </h4>
+                      <div class="c-alert-detail c-trigger-response">{{trigger_response}}</div>
+                    </div>
+                  </div>
+                  <div style="display:{{displayComplexDetails}};">
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">{{Task}} Description: </h4>
+                      <div class="c-alert-detail c-task-description"><ul></ul></div>
+                    </div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">Follow Up Question: </h4>
+                      <div class="c-alert-detail c-followup-question">{{followup_question}}</div>
+                    </div>
+                    <div class="l-detail-row">&nbsp;</div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail c-approach-description">{{complex_description}} </h4>
+                    </div>
+                    <div class="l-detail-row">&nbsp;</div>
+                    <div class="l-detail-row">
+                      <h4 class="t-h4 u-mb-0 c-alert-detail">Response Pick List: </h4>
+                      <div class="c-alert-detail c-response-pick-list"><ul></ul></div>
+                    </div>
+                  </div>
+                  <div style="display:{{displayInboundClinicalData}};">
+                    <div class="l-detail-row">
+                      <div class="c-alert-detail c-inbound-list qtf-csa-inboundClinicalAlertDetails"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flipcard-container c-hidden">
+                  <div class="flipcard">
+                    <div class="flipcard-wrapper">
+                      <div class="flipcard-side flipcard-side-front flipcard-is-active">
+                        <div class="trendgraph"></div>
+                      </div>
+                      <div class="flipcard-side flipcard-side-back c-hidden">
+                        <table class="c-alert-details-table js-alert-details-table">
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flipcard-chevron-container">
+                    <div class="flipcard-chevron"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="suggestions-section">
+                <p class="c-suggestion-heading">Suggestions:</p>
+                <div style="display:{{hideSuggestionLinks}};">
+                  <ul class="other-suggestions"></ul>
+                  <div class="js-suggested-care-plan-section">
+                    <a class="smart-alert-card-link" id="qtf-csa-care-plan-link-{{type}}-{{id}}" href="{{carePlanAction}}">Add Care Plan Item</a>
+                  </div>
+                  <div class="js-suggested-task-section">
+                    <a class="smart-alert-card-link" id="qtf-csa-add-tasks-link-{{type}}-{{id}}" href="/admin/client/cp_tasks.jsp?ESOLclientid={{clientId}}">Add Task</a>
+                  </div>
+                  <div class="js-suggested-vitals-section">
+                    <a class="smart-alert-card-link" id="qtf-csa-add-vitals-{{type}}-{{id}}" href="/admin/client/cp_weightsandvitals.jsp?ESOLclientid={{clientId}}">Add Vital</a>
+                  </div>
+                  <div class="js-suggested-assessment-section">
+                    <a class="smart-alert-card-link" id="qtf-csa-assessment-link-{{type}}-{{id}}" href="/admin/client/cp_assessment.jsp?ESOLclientid={{clientId}}">Add Assessment</a>
+                  </div>
+                </div>
+                <div style="display:{{displayInboundClinicalData}};">
+                  <a class="smart-alert-card-link" id="qtf-csa-review-inbound-data-link-{{type}}-{{id}}" href="/clinical/inbound/inboundclinicaldata.xhtml?ESOLclientid={{clientId}}">Review Inbound Clinical Data</a>
+                </div>
+                <div style="display:{{displayPendingPatientData}};">
+                  <a class="smart-alert-card-link" id="qtf-csa-review-pending-patient-link-{{type}}-{{id}}" href="/admin/client/pendingpatient.xhtml">Review Pending Resident</a>
+                  <br>
+                  <div style="margin-bottom: 10px; width: 100%; display: none;" class="pccMessage pccError pending-patient-delete-alert-error-message-box">Failed to delete pending resident</div>
+                  <div class="js-show-hide js-carousel-pending-patient c-carousel">
+                    <div class="pending-patient-buttons js-carousel-item c-carousel__item">
+                      <button class="js-accept-pending-patients-button c-button c-button--primary" onclick="location.href='/admin/client/pendingpatient.xhtml?smartalertaction=accept&pendingpatientid={{pendingPatientId}}';">Accept</button>
+                      <button class="js-delete-pending-patients-button c-button c-button--primary-inverse js-button-show-delete-pending-patient-section">Delete</button>
+                    </div>
+                    <div class="pending-patient-delete-confirmation-section js-carousel-item c-carousel__item">
+                      <div>Are you sure that you wish to DELETE this pending resident record from your database?</div>
+                      <br>
+                      <div class="pending-patient-delete-confirmation-section-buttons">
+                        <button class="js-delete-yes-pending-patients c-button c-button--primary js-button-delete-pending-patient">Yes</button>
+                        <button class="js-delete-no-pending-patients c-button c-button--primary-inverse js-button-hide-delete-pending-patient-section">No</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+              <div class="js-show-hide c-show-hide c-assessment-create-wrapper js-assessment-create-wrapper js-show-hide-checkbox js-einteract-assessment">
+                <label class="u-mt-8 c-custom-checkbox">
+                  eINTERACT Change in Condition
+                  <input type="checkbox" class="js-show-hide-toggle c-show-hide__toggle"  />
+                  <span class="c-custom-checkbox__checkmark"></span>
+                </label>
+                <div class="c-show-hide__content c-form u-mt-16">
+                  <div class="u-mt-16 u-mb-16">
+                    <div>
+                      <label>Effective Date: </label>
+                    </div>
+                    <div class="assessment-date-picker">
+                      <input id="qtf-effective-date-{{type}}-{{id}}" name="effective_date" type="hidden"/><input id="qtf-effective-date-{{type}}-{{id}}_dummy" name="effective_date_dummy" class="pccDateField c-dropdown" type="text" value="" size="10" maxlength="10"/>
+                      <select name="hour" class="c-dropdown" id="qtf-effective-hour-{{type}}-{{id}}">
+                        
+                          <option value="0">00</option>
+                        
+                          <option value="1">01</option>
+                        
+                          <option value="2">02</option>
+                        
+                          <option value="3">03</option>
+                        
+                          <option value="4">04</option>
+                        
+                          <option value="5">05</option>
+                        
+                          <option value="6">06</option>
+                        
+                          <option value="7">07</option>
+                        
+                          <option value="8">08</option>
+                        
+                          <option value="9">09</option>
+                        
+                          <option value="10">10</option>
+                        
+                          <option value="11">11</option>
+                        
+                          <option value="12">12</option>
+                        
+                          <option value="13">13</option>
+                        
+                          <option value="14">14</option>
+                        
+                          <option value="15">15</option>
+                        
+                          <option value="16">16</option>
+                        
+                          <option value="17">17</option>
+                        
+                          <option value="18">18</option>
+                        
+                          <option value="19">19</option>
+                        
+                          <option value="20">20</option>
+                        
+                          <option value="21">21</option>
+                        
+                          <option value="22">22</option>
+                        
+                          <option value="23">23</option>
+                        
+                      </select>
+                      <select name="min" class="c-dropdown" id="qtf-effective-minute-{{type}}-{{id}}">
+                        
+                          <option value="0">00</option>
+                        
+                          <option value="1">01</option>
+                        
+                          <option value="2">02</option>
+                        
+                          <option value="3">03</option>
+                        
+                          <option value="4">04</option>
+                        
+                          <option value="5">05</option>
+                        
+                          <option value="6">06</option>
+                        
+                          <option value="7">07</option>
+                        
+                          <option value="8">08</option>
+                        
+                          <option value="9">09</option>
+                        
+                          <option value="10">10</option>
+                        
+                          <option value="11">11</option>
+                        
+                          <option value="12">12</option>
+                        
+                          <option value="13">13</option>
+                        
+                          <option value="14">14</option>
+                        
+                          <option value="15">15</option>
+                        
+                          <option value="16">16</option>
+                        
+                          <option value="17">17</option>
+                        
+                          <option value="18">18</option>
+                        
+                          <option value="19">19</option>
+                        
+                          <option value="20">20</option>
+                        
+                          <option value="21">21</option>
+                        
+                          <option value="22">22</option>
+                        
+                          <option value="23">23</option>
+                        
+                          <option value="24">24</option>
+                        
+                          <option value="25">25</option>
+                        
+                          <option value="26">26</option>
+                        
+                          <option value="27">27</option>
+                        
+                          <option value="28">28</option>
+                        
+                          <option value="29">29</option>
+                        
+                          <option value="30">30</option>
+                        
+                          <option value="31">31</option>
+                        
+                          <option value="32">32</option>
+                        
+                          <option value="33">33</option>
+                        
+                          <option value="34">34</option>
+                        
+                          <option value="35">35</option>
+                        
+                          <option value="36">36</option>
+                        
+                          <option value="37">37</option>
+                        
+                          <option value="38">38</option>
+                        
+                          <option value="39">39</option>
+                        
+                          <option value="40">40</option>
+                        
+                          <option value="41">41</option>
+                        
+                          <option value="42">42</option>
+                        
+                          <option value="43">43</option>
+                        
+                          <option value="44">44</option>
+                        
+                          <option value="45">45</option>
+                        
+                          <option value="46">46</option>
+                        
+                          <option value="47">47</option>
+                        
+                          <option value="48">48</option>
+                        
+                          <option value="49">49</option>
+                        
+                          <option value="50">50</option>
+                        
+                          <option value="51">51</option>
+                        
+                          <option value="52">52</option>
+                        
+                          <option value="53">53</option>
+                        
+                          <option value="54">54</option>
+                        
+                          <option value="55">55</option>
+                        
+                          <option value="56">56</option>
+                        
+                          <option value="57">57</option>
+                        
+                          <option value="58">58</option>
+                        
+                          <option value="59">59</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+                  <p class='u-hidden has-error js-date-error'>Assessment Date Cannot Be In The Future.</p>
+                  <div class="c-einteract-assessment c-einteract-assessment__hidden">
+                    <p>
+                      <span class="c-einteract-heading alert-SW-conds">Stop &amp; Watch Alerts: </span>
+                    </p>
+                    <p class="c-einteract-heading">Change in Condition(s): </p>
+                    <select name="cic_reason_{{id}}" id="cic_reason_{{id}}" data-placeholder="Choose an option..." class="chzn-select" multiple="multiple"
+                      style="width:100%;">
+                    </select>
+                    <div class="c-cic-other-symptoms u-hidden">
+                      <p class="c-einteract-heading">Other Change in Condition (describe): </p>
+                      <input type="text" class="c-cic-other-symptoms-input u-mb-16" id="other-symp-{{type}}-{{id}}" maxlength="50" size="50" />(50 max)<span style="color: red;">&nbsp;*</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+
+            
+              
+                
+                  <div class="js-show-hide js-carousel-esignature c-carousel" style="display:{{hideProgressNote}}">
+                    <div class=" js-show-hide js-create-pn-wrapper js-show-hide-checkbox c-show-hide js-carousel-item c-carousel__item">
+                
+                
+              
+              <label class="u-mt-8 u-mb-8 c-custom-checkbox pn-create">
+                {{createSAProgressNote}}
+                <input type="checkbox" class="js-show-hide-toggle c-show-hide__toggle" />
+                <span class="c-custom-checkbox__checkmark"></span>
+              </label>
+              <label class="u-mt-8 c-custom-checkbox pn-view">
+                View Progress Note
+                <input type="checkbox" class="js-show-hide-toggle c-show-hide__toggle" />
+                <span class="c-custom-checkbox__checkmark"></span>
+              </label>
+              <div class="c-show-hide__content c-form u-mt-16 js-pn-interactive-section"></div>
+                <button class="js-button-save-interactive-suggestions c-button c-button--primary u-mt-16">Save</button>
+                <button class="js-button-cancel-interactive-suggestions c-button c-button--primary-inverse">Cancel</button>
+              </div>
+              
+                <div class="js-carousel-item c-carousel__item js-pn-esignature-wrapper">
+                  <h4 class="t-h4 u-mt-16">Attestation Statement</h4>
+                  <p>By electronically signing this record, I attest that the information recorded was entered by me and that I am authorized by the facility to record and sign this record.</p>
+                  <hr class="o-hr"/>
+                  <div class="c-form u-mt-16 u-mb-16">
+                    <div class="l-table-row">
+                      <div class="l-table-row__col l-table-row__col--30">
+                        <label>User:</label>
+                      </div>
+                      <div class="l-table-row__col l-table-row__col--70">
+                        AKhan2
+                      </div>
+                    </div>
+                    <div class="l-table-row">
+                      <div class="l-table-row__col l-table-row__col--30">
+                        <label>Password:</label>
+                      </div>
+                      <div class="l-table-row__col l-table-row__col--70">
+                        <form class="js-esignature-form" autocomplete="off">
+                          <input class="js-input-esignature-password" type="password" autocomplete="off"/>
+                          <div class="js-esignature-form-status-msg c-form__status-msg"></div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="l-table-row">
+                      <div class="l-table-row__col l-table-row__col--30"></div>
+                        <div class="l-table-row__col l-table-row__col--70">
+                          <button class="js-button-sign-esignature c-button c-button--primary">Sign</button> 
+                          <button class="js-button-cancel-esignature c-button c-button--primary-inverse">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+            
+            
+          </div>
+          <div class="js-show-hide-toggle js-card-expander-toggle c-show-hide__toggle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </script>
+  <script id="tmpl-csa-alert-card-checkbox" type="text/template">
+    <label class="u-mt-8 u-mb-8 c-custom-checkbox" style="display: block;" data-item-id="{{item_id}}" data-suggestion-type="{{suggestion_type}}" data-suggestion-id="{{suggestion_id}}">
+      {{checkbox_label}}
+      <input type="checkbox">
+      <span class="c-custom-checkbox__checkmark"></span>
+    </label>
+  </script>
+  <script id="tmpl-csa-alert-card-clinical-assessment-show-hide" type="text/template">
+    <div class="js-show-hide c-show-hide c-assessment-create-wrapper js-assessment-create-wrapper js-system-assessment js-show-hide-checkbox c-show-hide" id="js-system-assessment-{{type}}-{{id}}-{{item_id}}">
+      <div class="c-show-hide__content c-form u-mb-16">
+        <div class="assessment-date-picker u-mb-8">
+          <input id="qtf-assessment-date-{{type}}-{{id}}-{{suggestion}}" name="effective_date" type="hidden"/><input id="qtf-assessment-date-{{type}}-{{id}}-{{suggestion}}_dummy" name="effective_date_dummy" class="pccDateField c-dropdown" type="text" value="" size="10" maxlength="10"/>
+          <select name="hour" class="c-dropdown" id="qtf-assessment-hour-{{type}}-{{id}}-{{suggestion}}">
+            
+              <option value="0">00</option>
+            
+              <option value="1">01</option>
+            
+              <option value="2">02</option>
+            
+              <option value="3">03</option>
+            
+              <option value="4">04</option>
+            
+              <option value="5">05</option>
+            
+              <option value="6">06</option>
+            
+              <option value="7">07</option>
+            
+              <option value="8">08</option>
+            
+              <option value="9">09</option>
+            
+              <option value="10">10</option>
+            
+              <option value="11">11</option>
+            
+              <option value="12">12</option>
+            
+              <option value="13">13</option>
+            
+              <option value="14">14</option>
+            
+              <option value="15">15</option>
+            
+              <option value="16">16</option>
+            
+              <option value="17">17</option>
+            
+              <option value="18">18</option>
+            
+              <option value="19">19</option>
+            
+              <option value="20">20</option>
+            
+              <option value="21">21</option>
+            
+              <option value="22">22</option>
+            
+              <option value="23">23</option>
+            
+          </select>
+          <select name="min" class="c-dropdown" id="qtf-assessment-minute-{{type}}-{{id}}-{{suggestion}}">
+            
+              <option value="0">00</option>
+            
+              <option value="1">01</option>
+            
+              <option value="2">02</option>
+            
+              <option value="3">03</option>
+            
+              <option value="4">04</option>
+            
+              <option value="5">05</option>
+            
+              <option value="6">06</option>
+            
+              <option value="7">07</option>
+            
+              <option value="8">08</option>
+            
+              <option value="9">09</option>
+            
+              <option value="10">10</option>
+            
+              <option value="11">11</option>
+            
+              <option value="12">12</option>
+            
+              <option value="13">13</option>
+            
+              <option value="14">14</option>
+            
+              <option value="15">15</option>
+            
+              <option value="16">16</option>
+            
+              <option value="17">17</option>
+            
+              <option value="18">18</option>
+            
+              <option value="19">19</option>
+            
+              <option value="20">20</option>
+            
+              <option value="21">21</option>
+            
+              <option value="22">22</option>
+            
+              <option value="23">23</option>
+            
+              <option value="24">24</option>
+            
+              <option value="25">25</option>
+            
+              <option value="26">26</option>
+            
+              <option value="27">27</option>
+            
+              <option value="28">28</option>
+            
+              <option value="29">29</option>
+            
+              <option value="30">30</option>
+            
+              <option value="31">31</option>
+            
+              <option value="32">32</option>
+            
+              <option value="33">33</option>
+            
+              <option value="34">34</option>
+            
+              <option value="35">35</option>
+            
+              <option value="36">36</option>
+            
+              <option value="37">37</option>
+            
+              <option value="38">38</option>
+            
+              <option value="39">39</option>
+            
+              <option value="40">40</option>
+            
+              <option value="41">41</option>
+            
+              <option value="42">42</option>
+            
+              <option value="43">43</option>
+            
+              <option value="44">44</option>
+            
+              <option value="45">45</option>
+            
+              <option value="46">46</option>
+            
+              <option value="47">47</option>
+            
+              <option value="48">48</option>
+            
+              <option value="49">49</option>
+            
+              <option value="50">50</option>
+            
+              <option value="51">51</option>
+            
+              <option value="52">52</option>
+            
+              <option value="53">53</option>
+            
+              <option value="54">54</option>
+            
+              <option value="55">55</option>
+            
+              <option value="56">56</option>
+            
+              <option value="57">57</option>
+            
+              <option value="58">58</option>
+            
+              <option value="59">59</option>
+            
+          </select>
+        </div>
+        <p class='u-hidden has-error js-date-error'>Assessment Date Cannot Be In The Future.</p>
+        <div class="u-mb-8">Assessment Type</div>
+        <select name="assessment_type" class="u-pad-2" id="qtf-assessment-type-{{type}}-{{id}}-{{suggestion}}" ></select>
+      </div>
+    </div>
+  </script>
+</span>
+					
+
+					<span class="pccUserMenuWrapper">
+						
+							
+								<a href="javascript:void(0);" id="pccUserLink" class="headerLink arrowDrop darkArrowDrop"><span class="userLabel">Abdulhalim Khan</span></a>
+							
+						
+					</span>
+					<div id="pccUserMenu" class="dropDownList">
+						<ul>
+							
+								<li><a href="javascript:editUserProfile(&#39;/home/editmyprofile.jsp?ESOLuserid=178019&amp;retURL=/home/home.jsp&#39;);">Edit Profile</a></li>
+								<li><a href="javascript:javascript:void(window.open(&#39;/admin/reports/user_access.jsp&#39;, &#39;detail&#39;));">User Access</a></li>
+								
+								
+								
+							
+							<li><a href="https://www19.pointclickcare.com/home/logout.jsp" class="js-webapp-user-logout-btn">Sign Out</a></li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+	</header>
+	<table id="mainPageNavigation" width="100%" border="0" cellspacing="0" cellpadding="0" class="slMainNav">
+		<tbody><tr>
+			<td valign="top" class="slMainNavTabsContainer">
+				<div class="slMainNavTabs"><ul id="topTabs"><li id="QTF_HomePageTab" class=""><a href="https://www19.pointclickcare.com/home/home.jsp" class="arrowDrop darkArrowDrop">Home</a><div class="megaMenu mmHomeBox"><div class="mmBoxes"><h5>Dashboards</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/home/home.jsp">Home</a></li><li><a href="https://www19.pointclickcare.com/admin/admindashboard.jsp">Admin Dashboard</a></li><li><a href="https://www19.pointclickcare.com/care/clinicaldashboard.jsp?fromMenu=Y">Clinical Dashboard</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Modules</h5><ul class="mmList"><li><a href="javascript:void((function(){closePopupIfOpen(&#39;pocWindow&#39;);window.pocWindow=window.open(&#39;/poc/loginBypass.xhtml?initcheck=YY&amp;frompage=PCC&amp;closeWindowOnLogout=Y&#39;,&#39;pocWin&#39;)})());">POC</a></li><li><a href="javascript:goToEMAR();">eMAR</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>External Links</h5><ul class="mmList"><li><a href="javascript:openPopupWinNR(&#39;/common/popup/extlinks.xhtml?ESOLclientid=&#39;+getClientIdIfAvailable(), &#39;extlinkspopup&#39;, 500, 600, &#39;&#39;);">View all links</a></li></ul><br><h5>Other</h5><ul class="mmList"></ul></div><p></p></div></li><li id="QTF_AdminTab" class=""><a href="https://www19.pointclickcare.com/admin/client/adminnotelisting.xhtml?ESOLclientid=42344920" class="arrowDrop darkArrowDrop">Admin</a><div class="megaMenu mmAdminBox"><div class="mmBoxes"><h5>People</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/admin/client/clientlist.jsp?ESOLtabtype=P">Residents</a></li></ul><br><h5>Actions</h5><ul class="mmList"></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Financial Management</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/admin/admindashboard.jsp">Dashboard</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Other</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/enterprisereporting/listing-redirect.xhtml?sourcePath=admin">Reports</a></li><li><a href="https://www19.pointclickcare.com/admin/setup/eadminsetup.jsp">Setup</a></li></ul></div><p></p></div></li><li id="QTF_ClinicalTab" class="ClinicalTab activeTab"><a href="https://www19.pointclickcare.com/admin/client/clientlist.jsp?ESOLtabtype=C" class="arrowDrop darkArrowDrop">Clinical</a><div class="megaMenu mmClinicalBox"><div class="mmBoxes"><h5>People</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/admin/client/clientlist.jsp?ESOLtabtype=C">Residents</a></li></ul><br><h5>Actions</h5><ul class="mmList"><li><a href="javascript:openSizedLookup2(&#39;/admin/client/residentpopup.jsp?ESOLclientid=-1&#39;, &#39;&#39;, 550, 250, &#39;scrollbars&#39;)">New Resident</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Care Management</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/care/clinicaldashboard.jsp?fromMenu=Y">Dashboard</a></li><li><a href="https://www19.pointclickcare.com/clinical/hospitalPortal.xhtml">Hospital Tracking</a></li><li><a href="https://www19.pointclickcare.com/care/communications.jsp">Communications</a></li><li><a href="https://www19.pointclickcare.com/clinical/ordersPortal.xhtml">Orders</a></li><li><a href="https://www19.pointclickcare.com/clinical/results/resultsportal.xhtml">Lab/Rx Results</a></li><li><a href="https://www19.pointclickcare.com/clinical/inc/incidentportal.xhtml?ESOLview=S">Risk Management</a></li><li><a href="https://www19.pointclickcare.com/care/weightsandvitalsportal.jsp">Weights and Vitals</a></li><li><a href="https://www19.pointclickcare.com/care/chart/assess/assessscheduler.jsp">UDA</a></li><li><a href="https://www19.pointclickcare.com/clinical/cpg/carepathwaysportal.xhtml">Care Pathways</a></li><li><a href="https://www19.pointclickcare.com/clinical/ipc/app.xhtml">Infection Control</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Quick Entry</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/clinical/therapy/therapyquickentry.xhtml">Therapy Minutes</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Modules</h5><ul class="mmList"><li><a href="javascript:void((function(){closePopupIfOpen(&#39;pocWindow&#39;);window.pocWindow=window.open(&#39;/poc/loginBypass.xhtml?initcheck=YY&amp;frompage=PCC&amp;closeWindowOnLogout=Y&#39;,&#39;pocWin&#39;)})());">POC</a></li><li><a href="javascript:goToEMAR();">eMAR</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Other</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/enterprisereporting/listing-redirect.xhtml?sourcePath=clinical">Reports</a></li></ul></div><p></p></div></li><li id="QTF_AnalyticsTab" class=""><a href="javascript:void(window.open(&#39;/insights/perf-insights/app.xhtml&#39;))" class="noArrowDrop">Insights</a><div class="megaMenu mmInsightsBox"></div></li><li id="QTF_documentManagerTab" class=""><a href="https://www19.pointclickcare.com/documentmanager/dashboard/dashboard.xhtml" class="arrowDrop darkArrowDrop">Document Manager</a><div class="megaMenu mmDocument ManagerBox"><div class="mmBoxes"><h5>Document Manager</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/documentmanager/dashboard/dashboard.xhtml">Dashboard</a></li></ul></div><div class="mmBoxes mmBoxesSeperator"></div><div class="mmBoxes"><h5>Other</h5><ul class="mmList"><li><a href="https://www19.pointclickcare.com/documentmanager/userpreferences/list.xhtml">User Preferences</a></li><li><a href="https://www19.pointclickcare.com/documentmanager/doctemplatefields.xhtml">Resources</a></li></ul></div><p></p></div></li><li id="QTF_reportingTab" class=""><a href="https://www19.pointclickcare.com/enterprisereporting/listing.xhtml" class="noArrowDrop">Reports</a><div class="megaMenu mmReportsBox"></div></li></ul></div>
+				<div class="core-form-styles slResidentSearch" style="float:right;">
+					
+					
+						<form name="slsearch" onsubmit="return false;">
+							<input type="hidden" name="basequery">
+							<table border="0" cellspacing="0" cellpadding="0">
+								<tbody><tr>
+									<td width="45">
+										
+											<div id="searchSelect">
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tbody><tr>
+														<td width="34"><img class="facility" src="./dash_files/facilityIcon.png" title="This Facility"></td>
+														
+															<td><img class="arrow" src="./dash_files/down-arrow.png" aria-hidden="true"></td>
+														
+													</tr>
+												</tbody></table>
+											</div>
+										
+										
+										
+                                        <input type="hidden" name="isFeatureFlagCoreRevertCORE129465Enabled" value="false">
+                                        <input type="hidden" name="isFeatureFlagBrowserNavPSEnabled" value="true">
+									</td>
+									<td>
+										<input type="text" id="searchField" name="substring" autocomplete="off">
+									</td>
+									<td>
+										<input type="button" class="pccButton" value="Search" onclick="submitSearchNew();">
+									</td>
+								</tr>
+							</tbody></table>
+							
+								<div id="searchAll" style="border:1px solid #999;box-shadow:8px 8px 4px -6px #999;display:none;">
+									<input type="hidden" name="ESOLglobalclientsearch" value="N">
+									<table border="0" cellspacing="0" cellpadding="0">
+										<tbody><tr onclick="switchFacImg(&#39;facilityIcon&#39;);switchToGlobalSearch(false);">
+											<td style="text-align:center;"><img class="facility" src="./dash_files/facilityIcon.png" title="This Facility"></td>
+											<td>This Facility</td>
+										</tr>
+										<tr onclick="switchFacImg(&#39;facilityAllIcon&#39;);switchToGlobalSearch(true);">
+											<td><img class="facility" src="./dash_files/facilityAllIcon.png" title="All Facilities"></td>
+											<td>All Facilities</td>
+										</tr>
+									</tbody></table>
+								</div>
+							
+							
+						</form>
+					
+				</div>
+			</td>
+		</tr>
+	</tbody></table>
+</div>
+	
+
+
+
+
+
+
+
+
+<table class="secondNav" width="100%" cellpadding="0" cellspacing="0">
+  <tbody><tr>
+    <td align="left">
+      <ul class="secondNavList"></ul>
+    </td>
+    <td valign="top" align="right" width="85">
+
+
+
+
+
+
+
+
+			
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./dash_files/sch.js.download"></script>
+
+<script>
+function getCurrentClientId(){
+   return "42344920";
+}
+
+function getCurrentClientIdNumber() {
+    return "22011302";
+}
+
+function getCurrentClientName() {
+    return "Jones, Nancy";
+}
+
+function getCurrentMpiId() {
+    return "305615";
+}
+
+function getExtendDetailStatus(){
+	
+	return "N";
+}
+
+function printedReport()
+{
+    window.open("/reporting/setup/runtime/clinicalreports.xhtml?action=runReport&ESOLreportId=-1013&ESOLclientid="+getCurrentClientId()+"&ESOLtabType=C&ESOLmoduleId=2&ESOLreportType=billing&ESOLaction=run&reportFormatType=pdf");
+}
+
+function openTelehealth()
+{
+  if (window.document.documentMode) {
+    alert('Telehealth is not supported in this browser, please try one of the following supported browsers: Chrome, Firefox, or Safari.');
+    return;
+  }
+    $.ajax({
+        url: '/clinical/telehealth/token.xhtml',
+        type: 'GET',
+        data: {},
+        dataType: "json",
+        success: function (data){
+
+            if(data.error !== undefined && data.error != '')
+            {
+                alert("We are unable to complete your request. If it is a federal holiday, weekend or 5pm-8am on a weekday, " +
+                    "please call 1-800-715-8353 to reach a Physician by phone. Otherwise, contact your system administrator for help.");
+            }
+            else
+            {
+                var url = 'https://pointclickcare.amnvcm.com/clinician.access';
+                var teleHealthToken = data.token;
+                window.open(url + "?jwt=" + teleHealthToken);
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+
+        }
+    });
+
+}
+
+
+
+
+
+
+function viewInboundClinicalData() {
+    $('#careQualityDocViewBanner').hide();
+    location.href = '/clinical/inbound/inboundclinicaldata.xhtml?ESOLclientid=' + getCurrentClientId();
+}
+
+
+
+function generateClientTransactions() {
+
+    var params = {
+        "client_id_number" : getCurrentClientIdNumber(),
+        "client_name" : getCurrentClientName()
+    }
+    openSizedLookup2WithPost("/admin/billing/generatetrans.jsp?ESOLtabtype=P&ESOLsaveflag=N&ESOLsingleclient=Y&ESOLgenall=N&ESOLrefreshParent=N&client_id=" + getClientIdIfAvailable() , "genTrans", 500, 340, "resizable=yes",params);
+
+}
+
+function editDemographics(tabType, clientId) {
+    var url;
+    if (tabType == "admin") {
+        url = "/admin/client/clientedit.jsp?ESOLtabType=P&ESOLclientid=" + clientId;
+    } else {
+        url = "/admin/client/clientedit.jsp?ESOLtabType=C&ESOLclientid=" + clientId;
+    }
+    location.href = url;
+}
+
+function openDietaryManagementApp(clientId)
+{
+    window.open("/fetch-vendor-url.xhtml?resourceId="+clientId+"&context=DIETARY&screenLocation=dietary-management", '_blank').focus();
+}
+
+function viewAdvancedDirectives(e){
+    e.stopPropagation();
+    if (tabType == "P") {
+        location.href = '/upload/adminfilesdisplay.xhtml?ESOLclientid=42344920&category_id=51&isFilterOpen=true';
+    } else {
+        location.href = '/upload/filesdisplay.xhtml?ESOLclientid=42344920&category_id=51&isFilterOpen=true';
+    }
+}
+</script>
+
+<link type="text/css" rel="stylesheet" href="./dash_files/clientheader.css" media="screen,print">
+
+
+
+  
+  
+    <script>var onLeave = false;</script>
+    
+      
+      
+    
+  
+
+
+
+
+  
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="residentWrapper">
+  <tbody><tr>
+    
+      <td valign="top" class="residentProfile">
+        
+          
+            
+            
+            
+              
+              
+                
+                  
+                  
+                    <img src="./dash_files/no_image_found.gif" height="115" alt="No Image Found" title="No Image Found">
+                  
+                  
+                  
+                  
+                
+              
+            
+          
+          
+        
+      </td>
+    
+    <td valign="top" width="100%" class="residentNameBarWrapper">
+      <table width="100%" border="0" cellspacing="0" cellpadding="2" class="residentNameBar">
+        <tbody><tr>
+          
+          
+          
+          
+          
+          
+          
+          
+            <td valign="top" class="residentNameBarName">
+              <span id="name" style="vertical-align: super;">Jones, Nancy M. (22011302)</span>
+              <span id="nickName" style="vertical-align: super;">"Nancy"</span>
+              
+                <span id="ipcBadgeRoot" client-id="42344920" data-source-type="residentHeader" client-name-number="Jones, Nancy (22011302)" data-core-theme="April2023Theme"><img src="./dash_files/ipcBadgeIcon.40f54b8a2f87c3c8965c7d6eb237d39f.svg" alt="" class="jss1"></span>
+              
+            </td>
+            <td valign="top" align="right" class="residentNameBarButtons">
+              
+              <span id="clientCountSpan">
+                
+                  
+                  
+                  
+                    
+                      <script>
+function navNewClient(targetClientId){
+	var url = window.location.pathname + "?ESOLclientid=" + targetClientId;
+	location.href = url;
+}
+</script>
+1 of 1
+<input type="button" class="pccButton" value="Prev" onclick="navNewClient(42344920)">
+<input type="button" class="pccButton" value="Next" onclick="navNewClient(42344920)">
+                    
+                  
+                
+              </span>
+            </td>
+          </tr>
+        </tbody></table>
+        
+          
+            
+              
+              
+                
+              
+            
+          
+          
+          
+          
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tbody><tr>
+            
+            <td valign="top" class="residentProfileDetails">
+              
+              <p>Status: <span id="res_status">Current
+                </span>&nbsp;&nbsp;&nbsp;Location:&nbsp;<span id="res_unitRoomBed">2 120-A</span>
+                
+              </p><br>
+              <p>
+                
+                Gender:
+                
+                  
+                  
+                    Female
+                  
+                  
+                  
+                
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                DOB:
+                
+                  8/8/1946
+                
+                
+                
+                  
+                  
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  Age: 78
+                
+                </p><br>
+                <p>Physician: Abdulhalim Khan</p><br>
+                <table class="actionBar" cellpadding="0" cellspacing="0" border="0">
+                  <tbody><tr>
+                    <td valign="top" class="careProfileBtn">
+                      
+                        
+                          <div style="padding-bottom: 2px;">
+                            
+                            <input type="button" id="careProfileResidentBtn" class="pccButton" onclick="displayCareProfile(42344920,&#39;Jones, Nancy (22011302)&#39;)" value="Care Profile">
+                          </div>
+                        
+                      
+                      
+                    </td>
+                    <td valign="top">
+                      
+                        <div class="residentDropDownWrapperEdit" style="margin:1px 3px 1px 3px;">
+                          <div class="residentDropDownButtonEdit"><a href="javascript:void(0)" class="residentLinkEdit"><span>Edit</span></a></div>
+                          <div class="residentDropDownListEdit">
+                            <ul id="listcontainerEdit">
+                              
+                              
+                                <li><a href="javascript:editDemographics(&#39;nonAdmin&#39;, 42344920)">Demographics</a></li>
+                              
+                              <li><a href="javascript:displayPhoto(42344920)">Photo</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      
+                    </td>
+                    <td valign="top">
+                      
+                        
+                          <div class="residentDropDownWrapperPrint" style="margin:1px 3px 1px 3px;">
+                            <div class="residentDropDownButtonPrint"><a href="javascript:void(0)" class="residentLinkPrint"><span>Print</span></a></div>
+                            <div class="residentDropDownListPrint">
+                              <ul id="listcontainerPrint">
+                                
+                                  
+                                    
+                                    
+                                      <li><a href="javascript:generateEHR(42344920)">View&nbsp;Clinical&nbsp;Chart</a></li>
+                                    
+                                    
+                                  
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                              
+                            </ul>
+                          </div>
+                        </div>
+                      
+                    
+                  </td>
+                  
+                  
+                  
+                    <td valign="top" class="carequalityBtn">
+                      <div id="carequality-app" data-app-context="clinical" data-mpi-id="305615" data-client-id="42344920"><div> <div id="carequalityAppModalMask" class="_iframe-overlay-container-mask overlay-mask-background"></div> <div style="padding-bottom: 2px;"> <input type="button" id="pointclickcareConnectBtn" class="pccButton" onclick="openPccConnectApp()" style="display: block;" value="PointClickCare Connect"> </div> <div id="carequalityAppModal"> <div id="carequalityProgressBar"></div> <div id="carequalityCloseButtonWrapper" style="display: none;"> <button id="carequalityCloseButton" onclick="closeCarequalityConnectApp()" style="display: none;"> Close </button> </div> <iframe id="carequalityConnectAppIframe" scrolling="no" frameborder="0" width="100%" height="100%" title="Carequality" src="./dash_files/saved_resource.html"></iframe> </div> <style type="text/css" scoped=""> #carequalityAppModal { border-radius: 0px; height: calc(100vh - 95px); width: 0px; position: fixed; left: 50%; transform: translate(-50%, 95px); z-index: 2; top: 0; right: 0; background-color: white; overflow-x: hidden; } #carequalityConnectAppIframe { overflow: hidden; display: none; } #carequalityAppModalMask { z-index: 1; display: none; } #carequalityProgressBar { display: block; } #carequalityProgressBar, #carequalityProgressBar:before { height: 4px; width: 100%; margin: 0; display: block; } #carequalityProgressBar { background-color: rgb(5, 87, 111, 0.4); display: -webkit-flex; display: flex; } #carequalityProgressBar:before { background-color: rgb(5, 87, 111); content: ""; -webkit-animation: carequality-running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; animation: carequality-running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; } @-webkit-keyframes carequality-running-progress { 0% { margin-left: 0px; margin-right: 100%; } 50% { margin-left: 25%; margin-right: 0%; } 100% { margin-left: 100%; margin-right: 0; } } @keyframes carequality-running-progress { 0% { margin-left: 0px; margin-right: 100%; } 50% { margin-left: 25%; margin-right: 0%; } 100% { margin-left: 100%; margin-right: 0; } } #carequalityCloseButton { position: fixed; bottom: 64px; display: none; box-sizing: border-box; border: solid 1px; border-color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.24); border-radius: 4px; padding: 0 16px; min-width: 64px; height: 36px; vertical-align: middle; text-align: center; text-overflow: ellipsis; text-transform: uppercase; color: rgb(5, 87, 111); background-color: transparent; font-family: var( --pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system ); font-size: 14px; font-weight: 500; line-height: 34px; overflow: hidden; outline: none; cursor: pointer; } #carequalityCloseButton::-moz-focus-inner { border: none; } /* Overlay */ #carequalityCloseButton::before { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background-color: currentColor; opacity: 0; transition: opacity 0.2s; } /* Ripple */ #carequalityCloseButton::after { content: ""; position: absolute; left: 50%; top: 50%; border-radius: 50%; padding: 50%; width: 32px; height: 32px; background-color: currentColor; opacity: 0; transform: translate(-50%, -50%) scale(1); transition: opacity 1s, transform 0.5s; } /* Hover, Focus */ #carequalityCloseButton:hover::before { opacity: 0.04; } #carequalityCloseButton:focus::before { opacity: 0.12; } #carequalityCloseButton:hover:focus::before { opacity: 0.16; } /* Active */ #carequalityCloseButton:active::after { opacity: 0.16; transform: translate(-50%, -50%) scale(0); transition: transform 0s; } /* Disabled */ #carequalityCloseButton:disabled { color: rgba(var(--pure-material-onsurface-rgb, 0, 0, 0), 0.38); background-color: transparent; cursor: initial; } #carequalityCloseButton:disabled::before { opacity: 0; } #carequalityCloseButton:disabled::after { opacity: 0; } #carequalityCloseButtonWrapper { text-align: center; } </style> </div></div>
+                      <script defer="" src="./dash_files/carequality-ui-builder.js.download"></script>
+                    </td>
+                  
+                  
+                  
+                  
+                  
+                    
+                  
+              </tr>
+            </tbody></table>
+            
+          </td>
+          
+            <td valign="top" align="right" class="residentDetailsStatusWrapper">
+              
+              <table id="vitals" class="pccData residentDetailsStatus" cellpadding="2" cellspacing="1" border="0">
+                <tbody>
+                  <tr>
+                    <td valign="top" colspan="3"><b>Current Vitals</b></td>
+                    <td align="right" colspan="1">
+                      <div class="wvTooltip" align="right">
+                        <img src="./dash_files/wv_info.png">
+                        <span class="wvTooltiptext">Click on any vitals to see graph.</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    
+                      
+                        <td valign="top" class="vitalWithException" onclick="openExceptionTrendingGraph(getCurrentClientId(), 3);">
+                      
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>BP:</b>
+                          
+                            117/53
+                            mmHg
+                          
+                          <div>
+                            
+                              8/24/2024 08:29
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    
+                      
+                        <td valign="top" class="vitalWithException" onclick="openExceptionTrendingGraph(getCurrentClientId(), 5);">
+                      
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>Temp:96.7</b>
+                          °F
+                        </div>
+                        <div>8/24/2024 08:29</div>
+                      </div>
+                    </td>
+                    
+                      
+                      
+                        <td valign="top" class="vital" onclick="openExceptionTrendingGraph(getCurrentClientId(), 6);">
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>Pulse:81</b>
+                          bpm
+                        </div>
+                        <div>8/24/2024 08:29</div>
+                      </div>
+                    </td>
+                    
+                      
+                      
+                        <td valign="top" class="vital" onclick="openExceptionTrendingGraph(getCurrentClientId(), 1);">
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>Weight:222</b>
+                          Lbs
+                        </div>
+                        <div>8/23/2024 11:42</div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    
+                      
+                      
+                        <td valign="top" class="vital" onclick="openExceptionTrendingGraph(getCurrentClientId(), 2);">
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>Resp:20</b>
+                          Breaths/min
+                        </div>
+                        <div>8/24/2024 08:29</div>
+                      </div>
+                    </td>
+                    
+                      
+                      
+                        <td valign="top" class="vital" onclick="openExceptionTrendingGraph(getCurrentClientId(), 7);">
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>BS:</b>
+                          
+                        </div>
+                        <div></div>
+                      </div>
+                    </td>
+                    
+                      
+                      
+                        <td valign="top" class="vital" onclick="openExceptionTrendingGraph(getCurrentClientId(), 9);">
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>O2:98</b>
+                          %
+                        </div>
+                        <div>8/24/2024 08:35</div>
+                      </div>
+                    </td>
+                    
+                      
+                      
+                        <td valign="top" class="vital" onclick="openExceptionTrendingGraph(getCurrentClientId(), 10);">
+                      
+                    
+                      <div class="exceptionWarning"><img src="./dash_files/wv_warning.png"></div>
+                      <div class="vitalDetails">
+                        <div>
+                          <b>Pain:0</b>
+                          
+                        </div>
+                        <div>8/24/2024 08:20</div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </td>
+          
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+
+
+<div id="trendingGraph" class="wvgraph">
+  <div class="wvgraph-content-table">
+    <div class="wvgraph-content-table-cell">
+      <div class="wvgraph-content">
+        <div class="wvgraph-clientTrendgraph"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./dash_files/clientinfonew.js.download"></script>
+
+
+<script>
+  window.addEventListener('load', function () {
+    setTimeout(()=>{
+      const links = document.getElementsByClassName("ssoLink");
+      for (let i = 0; i < links.length; i++) {
+        links.item(i).removeAttribute("style")
+      }
+    }, 3000)
+  })
+</script>
+
+
+<script>
+window.clientInfoGraph = window.clientInfoGraph || {};
+window.clientInfoGraph.moduleProps  = {
+
+	    termMap: {
+	      trend: 'Trend',
+	      baseline :'Baseline',
+	      diastolicBaseline : 'Diastolic Baseline',
+	      systolicBaseline :  'Systolic Baseline'
+	    },
+
+	    vitalMap: {
+	      weights: 'Weights',
+	      respiration: 'Respiration',
+	      bloodPressure: 'Blood Pressure',
+	      temperature: 'Temperature',
+	      pulse: 'Pulse',
+	      bloodSugar: 'Blood Sugar',
+	      heights: 'Heights',
+	      o2Sats: 'O2 Sats',
+	      painLevel: 'Pain Level'
+	    },
+
+	    defaultChartOpts : {
+	      data: {
+	        columns: [],
+	      },
+	      color: {
+	        pattern: ['#57c5bb', '#f5a623', ],
+	      },
+	      interaction: {
+	        enabled: true,
+	      },
+	      y: {
+	        padding: {
+	          bottom: 0,
+	        },
+	        min: 0,
+	      },
+	      axis: {
+	        x: {
+	            tick: {
+	            	values: [],
+	            },
+	        },
+	        y : {
+	        },
+	      },
+	      size : {
+	    	width: 400,
+	        height: 250,
+	      },
+	    },
+
+	    // indexed by vital type
+	    chartOpts : [
+	      {},
+	      // Weight
+	      {
+	        data : {
+	          columns: [['Weight']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : false,
+	      },
+	      // Respiration
+	      {
+	        data : {
+	          columns: [['Respiration']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : true,
+	      },
+	      // Blood pressure
+	      {
+	        data : {
+	          columns: [['Systolic'], ['Diastolic'] ],
+	          columnKeys: ['value', 'diastolicValue'],
+	        },
+	        isInteger : true,
+	      },
+	      // BP Dystolic -- currently doesn't generate alerts
+	      {},
+	      // Temperature
+	      {
+	        data : {
+	          columns: [['Temperature']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : false,
+	      },
+	      // Pulse
+	      {
+	        data : {
+	          columns: [['Pulse']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : true,
+	      },
+	      // Blood Sugar
+	      {
+	        data : {
+	          columns: [['Blood Sugar']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : false,
+	      },
+	      // Height (currently doesn't trigger alerts)
+	      {},
+	      // O2 Sats
+	      {
+	        data : {
+	          columns: [['O2 Sats']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : false,
+	      },
+	      // Pain Level
+	      {
+	        data : {
+	          columns: [['Pain Level']],
+	          columnKeys: ['value'],
+	        },
+	        isInteger : true,
+	      },
+	    ],
+
+	    userId: ''.trim()
+		};
+</script>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="residentDetailsWrapper">
+  <tbody><tr>
+    <td valign="top">
+      <div class="residentDetailsHeader">
+        
+        <div class="residentDetailsBar">
+          <table cellpadding="4" cellspacing="0" border="0" width="100%" class="pccData residentDetailsSpecifics" style="width:100%;">
+            <colgroup>
+              
+                
+                
+                  <col style="width: 180px">
+                
+              
+              <col style="width: 185px">
+              <col style="width: 180px">
+              <col>
+            </colgroup>
+            
+            
+              
+              <tbody><tr>
+                <td valign="top" class="residentDetailsLabel ">Allergies:</td>
+                
+                
+                  
+                  
+                
+                <td valign="top" colspan="3" class="residentDetailsSummary allergyRed ">Codeine&nbsp;</td>
+              </tr>
+            
+            
+            
+              
+                
+              
+              <tr>
+                <td valign="top" class="residentDetailsLabel residentInfoEmpty">Code Status:</td>
+                <td valign="top" colspan="3" class="residentDetailsSummary residentInfoEmpty">
+                    
+                    
+                      (<a href="javascript:void(0);" onclick="viewAdvancedDirectives(event);">Advance Directives</a>)&nbsp;
+                    
+                    
+                </td>
+              </tr>
+            
+            
+            
+            
+              <tr>
+                
+                <td valign="top" class="residentDetailsLabel ">Special Instructions:</td>
+                <td valign="top" colspan="3" class="residentDetailsSummary ">Daily Skilled Nursing services, asst &amp; monitoring resp status r/t acute on chronic resp failure, acute pulm. edema, COPD (SOB while lying flat) breathing tx, tracheostomy/gastrostomy care, suctioning, vent at night, daily wound care/tx on stage 3 PI on coccyx, LFA wound ( h/o IV infiltration site), cognitive status r/t encephalopathy, FC care/monitoring x patency &amp; potential complications, pain mgt, meds mgt(anticougulant, antidepressant&nbsp;</td>
+              </tr>
+            
+            
+            
+            
+              <tr class="residentDetailsSpecificsExtended">
+                <td valign="top" class="residentDetailsLabel">Diet:</td>
+                <td valign="top" colspan="3" class="residentDetailsSummary dietDescriptions">&nbsp;</td>
+              </tr>
+            
+            
+            
+              <tr class="residentDetailsSpecificsExtended">
+                <td valign="top" class="residentDetailsLabel">Diagnosis:</td>
+                
+                <td valign="top" colspan="3" class="residentDetailsSummary medicalDiagnosis">
+                  
+                </td>
+              </tr>
+            
+            <tr class="residentDetailsSpecificsExtended">
+              <td valign="top" class="residentDetailsLabel">Admission (Re-entry):</td>
+              <td valign="top" class="residentDetailsSummary">
+                
+                  8/22/2024&nbsp;
+                
+              </td>
+              <td valign="top" class="residentDetailsLabel hcDesc" align="right">&nbsp;</td>
+              <td valign="top" class="residentDetailsSummary hcValue" align="left">&nbsp;</td>
+            </tr>
+            <tr class="residentDetailsSpecificsExtended">
+              
+                
+                
+                
+                  <td valign="top" class="residentDetailsLabel">Initial Admission Date (MDS):</td>
+                
+              
+              <td valign="top" class="residentDetailsSummary">
+                
+                  8/22/2024&nbsp;
+                
+              </td>
+              
+                
+                  <td valign="top" class="residentDetailsLabel">Enterprise ID:</td>
+                  <td valign="top" class="residentDetailsSummary">305615&nbsp;</td>
+                
+                
+              
+            </tr>
+            <tr class="residentDetailsSpecificsExtended">
+              <td valign="top" class="residentDetailsLabel">Discharge Date:</td>
+              <td valign="top" class="residentDetailsSummary">
+                
+              </td>
+              
+                
+                
+                  <td colspan="2">&nbsp;</td>
+                
+              
+            </tr>
+            
+          </tbody></table>
+        </div>
+        <div id="progressbar"><div class="progress-label"></div></div>
+        <div class="slider">
+          <img id="idExtendedDetailSlider" alt="Show/Hide Extended Detail" title="Show/Hide Extended Detail" src="./dash_files/schslider.png">
+        </div>
+        <input type="hidden" name="currentState" id="currentState" value="">
+        <script>
+          if(getExtendDetailStatus() == 'Y'){
+            $('td.residentInfoEmpty').addClass('residentInfoEmptyExpanded');
+            $('td.residentInfoEmptyExpanded').removeClass('residentInfoEmpty');
+            $('tr.residentDetailsSpecificsExtended').toggle();
+          }
+        </script>
+      </div>
+    </td>
+  </tr>
+</tbody></table>
+<div id="careQualityDocViewBanner" class="pccMessageHeader pccInfo" style="max-height: 28px; display: none;">
+  Document import is successful
+  <input type="button" id="viewInboundClinicalDataBtn" class="pccButton" value="View" onclick="viewInboundClinicalData();">
+</div>
+
+  
+    <script type="text/javascript">
+      setTimeout(function() {
+        $.getJSON("/app/ipc/badge/asset-manifest.json", function(json) {
+          json.entrypoints.forEach(function(url) {
+            var extension = url.substr(url.lastIndexOf('.') + 1);
+            if(extension === 'css') {
+              var link = document.createElement('link');
+              link.setAttribute('href', encodeURI("/app/ipc/badge/" + url));
+              link.setAttribute('rel', 'stylesheet');
+              document.getElementsByTagName("head")[0].appendChild(link);
+            }
+          });
+          json.entrypoints.forEach(function(url) {
+            var extension = url.substr(url.lastIndexOf('.') + 1);
+            if(extension !== 'css') {
+              var bundle = document.createElement('script');
+              bundle.setAttribute('src', encodeURI("/app/ipc/badge/" + url));
+              document.body.appendChild(bundle);
+            }
+          });
+        });
+      }, 4000);
+
+    </script>
+  
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="clientInfoTabs">
+  <tbody><tr height="5" class="clientInfoLine"><td></td></tr>
+  <tr><td nowrap="nowrap" colspan="2">
+  <ul class="pccTabs"><li class="pccActiveTab"><a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920">&nbsp;&nbsp;Dash&nbsp;&nbsp;</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_careclientprofile.jsp?ESOLclientid=42344920">Profile</a></li><li><a href="https://www19.pointclickcare.com/profile/census/clinicaldisplay.xhtml?ESOLclientid=42344920">Census</a></li><li><a href="https://www19.pointclickcare.com/clinical/meddiag/medDiagChart.xhtml?ESOLclientid=42344920">Med Diag</a></li><li><a href="https://www19.pointclickcare.com/clinical/allergyList.xhtml?ESOLclientid=42344920">Allergy</a></li><li><a href="https://www19.pointclickcare.com/clinical/immunedisplay.xhtml?ESOLclientid=42344920">Immun</a></li><li><a href="https://www19.pointclickcare.com/clinical/ordersChart.xhtml?ESOLclientid=42344920">Orders</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_weightsandvitals.jsp?ESOLclientid=42344920">Wts/Vitals</a></li><li><a href="https://www19.pointclickcare.com/clinical/lab/labResults.xhtml?ESOLclientid=42344920">Results</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_mds.jsp?ESOLclientid=42344920">&nbsp;&nbsp;&nbsp;MDS&nbsp;&nbsp;&nbsp;</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_assessment.jsp?ESOLclientid=42344920">Assmnts</a></li><li><a href="https://www19.pointclickcare.com/clinical/therapy/therapy.xhtml?ESOLclientid=42344920">Therapy</a></li><li><a href="https://www19.pointclickcare.com/clinical/client/progressnotes.xhtml?ESOLclientid=42344920">Prog Note</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_careplans_rev.jsp?ESOLclientid=42344920">Care Plan</a></li><li><a href="https://www19.pointclickcare.com/admin/client/cp_tasks.jsp?ESOLclientid=42344920">Tasks</a></li><li><a href="https://www19.pointclickcare.com/clinical/cpg/carepathwaytab.xhtml?ESOLclientid=42344920"> Care Pathways</a></li><li><a href="https://www19.pointclickcare.com/upload/filesdisplay.xhtml?ESOLclientid=42344920">Documents</a></li></ul>
+    </td>
+  </tr>
+</tbody></table>
+
+<script>var jsPrevTbSel;</script>
+
+
+
+
+
+<form method="post" name="client" action="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920">
+<input type="hidden" name="ESOLsave" value="N">
+<input type="hidden" name="ESOLclientid" value="42344920">
+<input type="hidden" name="ESOLminiToken" value="GDGuuuPiC59">
+<input type="hidden" name="ESOLpnid" value="3">
+<input type="hidden" name="ESOLsaveFlag" value="N">
+
+<input type="hidden" name="ESOLquestion" value="">
+<input type="hidden" name="ESOLtabType" value="C">
+
+
+
+  <div id="tabs" class="ui-tabs ui-widget ui-widget-content">
+    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header">
+      <li class="ui-tabs-selected ui-state-active">
+        <a href="https://www19.pointclickcare.com/admin/client/cp_residentdashboard.jsp?ESOLclientid=42344920"><span>Resident Dashboard</span></a>
+      </li>
+	  
+    </ul>
+  </div>
+
+			<table width="100%">
+        <tbody><tr class="pccModuleHeader">
+          <td colspan="2">
+            
+            <span><input type="button" class="pccButton" value="Printable View" id="idPrintableViewBtn" title="Printable View" onclick="printableView();"></span>
+          </td>
+        </tr>
+	<tr>
+		<td>
+			<script src="./dash_files/dashboard-drag.js.download"></script>
+			<input type="hidden" name="ESOLlayout" value=""><input type="hidden" name="ESOLviewId" value=""><input type="hidden" name="ESOLdashId" value="2"><input type="hidden" name="ESOLstayOnPage" value=""><table width="100%" cellpadding="0" cellspacing="2" border="0"><tbody><tr><td colspan="2"><table cellpadding="3" cellspacing="4" border="0"><tbody><tr><td align="left" class="btbl" bgcolor="#ffffff" nowrap="nowrap">&nbsp;<b>Views:</b> &nbsp;&nbsp;<b>Main</b></td></tr></tbody></table></td><td align="right"></td></tr></tbody></table><table width="100%" height="100%" cellpadding="0" cellspacing="2" border="0" id="dragArea" class="dashboardTable"><tbody><tr height="250">
+<td colspan="1" id="15">
+<iframe name="MostRecentVitals" title="Most Recent Vitals" marginwidth="0" marginheight="0" id="iFramePanel_MostRecentVitals" src="./dash_files/res_mostrecentvitals.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="16">
+<iframe name="ProceedtoCarePlanRAPsCAAs" title="Proceed to Care Plan R A Ps/C A As" marginwidth="0" marginheight="0" id="iFramePanel_ProceedtoCarePlanRAPsCAAs" src="./dash_files/res_cpraps.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="17">
+<iframe name="Diet" title="Diet" marginwidth="0" marginheight="0" id="iFramePanel_Diet" src="./dash_files/res_diet.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="18">
+<iframe name="ActivitiesofDailyLiving" title="Activities of Daily Living" marginwidth="0" marginheight="0" id="iFramePanel_ActivitiesofDailyLiving" src="./dash_files/res_activities.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="19">
+<iframe name="MDSScores" title="M D S  Scores" marginwidth="0" marginheight="0" id="iFramePanel_MDSScores" src="./dash_files/res_mdsscore.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="20">
+<iframe name="UDAScores" title="U D A  Scores" marginwidth="0" marginheight="0" id="iFramePanel_UDAScores" src="./dash_files/res_udascores.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="21">
+<iframe name="HighPriorityProgressNotes" title="High Priority Progress Notes" marginwidth="0" marginheight="0" id="iFramePanel_HighPriorityProgressNotes" src="./dash_files/res_pnotes.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="22">
+<iframe name="AdvanceDirective" title="Advance Directive" marginwidth="0" marginheight="0" id="iFramePanel_AdvanceDirective" src="./dash_files/res_directives.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="23">
+<iframe name="ScheduledEvents" title="Scheduled Events" marginwidth="0" marginheight="0" id="iFramePanel_ScheduledEvents" src="./dash_files/res_scheduleevents.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="24">
+<iframe name="CPGoalsDueOverdue" title="C P  Goals Due/Overdue" marginwidth="0" marginheight="0" id="iFramePanel_CPGoalsDueOverdue" src="./dash_files/res_cpgoals.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="25">
+<iframe name="Medications" title="Medications" marginwidth="0" marginheight="0" id="iFramePanel_Medications" src="./dash_files/res_medications.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="26">
+<iframe name="QualityIndicatorsandQualityMeasures" title="Quality Indicators and Quality Measures" marginwidth="0" marginheight="0" id="iFramePanel_QualityIndicatorsandQualityMeasures" src="./dash_files/res_quality.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="49">
+<iframe name="ResidentPhoto" title="Resident Photo" marginwidth="0" marginheight="0" id="iFramePanel_ResidentPhoto" src="./dash_files/res_photo.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="50">
+<iframe name="TPRGraph" title="T/P/R Graph" marginwidth="0" marginheight="0" id="iFramePanel_TPRGraph" src="./dash_files/res_tprgraph.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="51">
+<iframe name="BloodPressureGraph" title="Blood Pressure Graph" marginwidth="0" marginheight="0" id="iFramePanel_BloodPressureGraph" src="./dash_files/res_bpgraph.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="54">
+<iframe name="Alerts" title="Alerts" marginwidth="0" marginheight="0" id="iFramePanel_Alerts" src="./dash_files/res_alerts.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="124">
+<iframe name="COTAlerts" title="C O T  Alerts" marginwidth="0" marginheight="0" id="iFramePanel_COTAlerts" src="./dash_files/cotalerts.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="94">
+<iframe name="eINTERACTStopWatchAndChangeInConditionAlerts" title="eINTERACT Stop &amp; Watch And Change In Condition Alerts" marginwidth="0" marginheight="0" id="iFramePanel_eINTERACTStopWatchAndChangeInConditionAlerts" src="./dash_files/showeinteractalerts.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="61">
+<iframe name="TherapyMinutesSummaryInTheLast7Days" title="Therapy Minutes Summary In The Last 7 Days" marginwidth="0" marginheight="0" id="iFramePanel_TherapyMinutesSummaryInTheLast7Days" src="./dash_files/res_therapy.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="72">
+<iframe name="GeneralNotes" title="General Notes" marginwidth="0" marginheight="0" id="iFramePanel_GeneralNotes" src="./dash_files/res_generalnotes.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="73">
+<iframe name="ProgressNotesinLast30Days" title="Progress Notes in Last 30 Days" marginwidth="0" marginheight="0" id="iFramePanel_ProgressNotesinLast30Days" src="./dash_files/res_pn.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="74">
+<iframe name="ActiveDiagnoses" title="Active Diagnoses" marginwidth="0" marginheight="0" id="iFramePanel_ActiveDiagnoses" src="./dash_files/res_meddiag.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="75">
+<iframe name="CensusSummary" title="Census Summary" marginwidth="0" marginheight="0" id="iFramePanel_CensusSummary" src="./dash_files/res_censussummary.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="82">
+<iframe name="ActiveAllergies" title="Active Allergies" marginwidth="0" marginheight="0" id="iFramePanel_ActiveAllergies" src="./dash_files/dashBoardAllergyList.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="87">
+<iframe name="LaboratoryResults" title="Laboratory Results" marginwidth="0" marginheight="0" id="iFramePanel_LaboratoryResults" src="./dash_files/res_labresults.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="100">
+<iframe name="OrderAlerts" title="Order Alerts" marginwidth="0" marginheight="0" id="iFramePanel_OrderAlerts" src="./dash_files/res_alerts_orders.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="134">
+<iframe name="IntegratedPharmacyAlerts" title="Integrated Pharmacy Alerts" marginwidth="0" marginheight="0" id="iFramePanel_IntegratedPharmacyAlerts" src="./dash_files/res_integrated_pharmacy_alerts.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="106">
+<iframe name="UndocumentedPRNOrders" title="Undocumented P R N  Orders" marginwidth="0" marginheight="0" id="iFramePanel_UndocumentedPRNOrders" src="./dash_files/undocumentedprnorders.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="1" id="108">
+<iframe name="UnreviewedRadiologyResults" title="Unreviewed Radiology Results" marginwidth="0" marginheight="0" id="iFramePanel_UnreviewedRadiologyResults" src="./dash_files/res_radiologyresults.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+<td colspan="1" id="111">
+<iframe name="AdministeredPRNOrdersResident" title="Administered P R N  Orders - Resident" marginwidth="0" marginheight="0" id="iFramePanel_AdministeredPRNOrdersResident" src="./dash_files/res_administered_prn_list.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="128">
+<iframe name="AntibioticMedication" title="Antibiotic Medication" marginwidth="0" marginheight="0" id="iFramePanel_AntibioticMedication" src="./dash_files/medicationmonitoring.html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+<tr height="250">
+<td colspan="2" id="129">
+<iframe name="PsychotropicMedication" title="Psychotropic Medication" marginwidth="0" marginheight="0" id="iFramePanel_PsychotropicMedication" src="./dash_files/medicationmonitoring(1).html" width="100%" height="248px" scrolling="no" frameborder="0" style="border:1px solid #a9a9a9;"></iframe></td>
+</tr>
+</tbody></table>
+
+		</td>
+	</tr>
+</tbody></table>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="appAriaHide" aria-hidden="false">Footer Section</h2>
+
+
+
+<div class="footertext">
+	<div>
+		<b>Roseville Point Health &amp; Wellness Center</b><br>
+		600 Sunrise Ave <br>
+		Roseville, CA 956614110<br>
+		
+			Phone: (916) 782-3131
+		
+			|
+		
+		Fax: (916) 786-6065
+		
+		
+		
+			<br>PCC Facility ID: 1208
+		
+		
+	</div>
+	<div>
+
+		<b>PointClickCare</b><br>
+		5570 Explorer Drive<br>
+		Mississauga, Ontario L4W 0C4<br>
+
+	</div>
+	<div>
+		<a href="https://pointclickcare.com/us/privacy-policy/" target="_blank">Privacy Policy</a><br>
+		Version <span class="version">4.4.34.2</span>  www19-pcc-web-reporting-58698877df-kjdpg<br>
+		Copyright 2000-2024 PointClickCare Technologies Inc. All rights reserved.<br>
+		<span id="deviceID"></span>
+	</div>
+</div>
+
+
+
+  
+
+
+
+
+
+<script src="./dash_files/main.d5e5f35d.js.download"></script><script src="./dash_files/main.11bb853d.js.download"></script></body></html>

@@ -11,10 +11,8 @@ class Automation:
         self.service = Service('chromedriver.exe')
         self.driver = webdriver.Chrome(service=self.service)
     
-    def click(self,xpath, driver):
-        if not driver:
-            driver = self.driver
-        elements = WebDriverWait(driver, 100).until(lambda x:x.find_elements(By.XPATH, xpath))
+    def click(self,xpath):
+        elements = WebDriverWait(self.driver, 100).until(lambda x:x.find_elements(By.XPATH, xpath))
         for element in elements:
             try:
                 element.click()
@@ -22,19 +20,56 @@ class Automation:
             except:
                 continue
     
-    def new_tab(self):
-        newdriver = webdriver.Chrome(service=self.service)
-        newdriver.get('https://google.com')
-        searchbox = newdriver.find_element(By.CLASS_NAME, "gLFyf")
-        searchbox.send_keys('let go on an adventure' + Keys.ENTER)
+    def find(self, xpath):
+        return WebDriverWait(self.driver, 100).until(lambda x:x.find_element(By.XPATH, xpath))
+    
+    def sendkeys(self, element, keys):
+        element.send_keys(keys + Keys.ENTER)
     
     def execute(self):
-        self.driver.get('https://google.com')
-        self.new_tab()
-        searchbox = self.driver.find_element(By.CLASS_NAME, "gLFyf")
-        searchbox.send_keys('let go home' + Keys.ENTER)
-        #self.click('//button[@data-event="attributeName"]')
-        #self.click('//a[@class="thumbnailTitle "]')
-        time.sleep(100)
+        # Go to point click 
+        self.driver.get('https://pointclickcare.com/')
+        # Click login
+        self.click('//span[@class="menu-text"]')
 
-Automation().execute()
+        # variable
+        name = "jones nancy"
+        element = self.find('//input[@id="searchField"]')
+        element.send_keys(name + Keys.ENTER)
+
+        #todo copy medications and vitals
+    
+    def eclinic(self):
+        self.driver.get('https://caazadhaw3mrvlx9ayapp.ecwcloud.com/mobiledoc/jsp/webemr/login/newLogin.jsp#/mobiledoc/jsp/webemr/jellybean/officevisit/officeVisits.jsp')
+        self.click('//a[@id="jellybean-panelLink65"]')
+        searchbox = self.find('//input[@id="searchText"]')
+        #variable
+        name = "carpenter, diana"
+        self.sendkeys(searchbox, name)
+        time.sleep(1)
+        self.click('//span[@id="patientLName1"]')
+
+        #patientLName1
+        time.sleep(100)
+    
+    def extract_vitals(self, iframeName):
+        #self.driver.get('file:///C:/Users/irsha/Documents/Github/selenium/dash.html')
+        vitals_frame = self.find('//iframe[@name="{0}"]'.format(iframeName))
+        self.driver.switch_to.frame(vitals_frame)
+
+        cols = self.driver.find_elements(By.XPATH,'//td[@class="detailColHeader"]')
+        columns = [c.text for c in cols]
+        rows = [columns]
+        tablerows = self.driver.find_elements(By.XPATH, '//tr[@class="normalRow"]')
+        for row in tablerows:
+            rows.append([c.text for c in row.find_elements(By.TAG_NAME, 'td')])
+        
+        for row in rows:
+            print(row)
+
+        self.driver.switch_to.default_content()
+
+
+automation = Automation()
+automation.extract_vitals('MostRecentVitals')
+automation.extract_vitals('Medications')

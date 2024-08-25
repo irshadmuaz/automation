@@ -1,0 +1,608 @@
+
+<!-- saved from url=(0144)https://www19.pointclickcare.com/care/dashboards/res_alerts.jsp?ESOLviewId=54&ESOLtitle=Alerts&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=2 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script><meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+<script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+
+
+  <title></title><style>  body{margin:0;padding:0;}  table.dboard                   {table-layout:fixed;border-collapse:collapse;empty-cells:show;width:100%;}  table.dboard tr th             {padding:2px;height:24px;font:bold 12px arial;color:#fff;vertical-align:middle;text-align:expression(previousSibling ? nextSibling ? 'center' : 'right' : 'left');}  table.dboard tr th a           {text-decoration:none;color:#fff;font-weight:bold;}  table.dboard tr th table       {border-collapse:collapse;empty-cells:show;}  table.dboard tr th table tr td {padding:0px;margin:2px;height:100%;vertical-align:middle;}  .impact{    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    font-weight:bold;    text-align:center;  }</style><link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head><body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;"><form name="frmData" method="post" action="https://www19.pointclickcare.com/care/dashboards/res_alerts.jsp"><input type="hidden" name="ESOLviewId" value="null"><input type="hidden" name="ESOLtitle" value="Alerts"><input type="hidden" name="floor_id" value=""><input type="hidden" name="unit_id" value=""><input type="hidden" name="contact_id" value=""><table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="100%"><table width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr><td height="20" style="color:white;font-weight:bold;" class="pccModuleBackgroundColor slBackgroundColor">&nbsp; Clinical Alerts &nbsp;</td><td align="right" height="20" style="color:white;font-weight:bold;" class="pccModuleBackgroundColor slBackgroundColor"><a target="_blank" href="https://www19.pointclickcare.com/clinical/report/complexalertdocumentationreport.xhtml?ESOLresidentId=42344920&amp;complexAlertId=-1&amp;ESOLstartdate=8/17/2024&amp;ESOLenddate=8/24/2024&amp;includeClearedAlerts=Y&amp;includeLegend=Y&amp;includeOnlyResidentWithAlertInDateRange=Y&amp;ESOLsortby=0" style="color:#fff;text-decoration:none;" title="Complex Alert Documentation Report"><img src="./reports.gif" border="0" align="absmiddle" height="25">Complex Alert Documentation Report&nbsp;&nbsp;</a><a target="_blank" href="https://www19.pointclickcare.com/clinical/report/alertlistingreport.xhtml?client_id=42344920&amp;ESOLshowClearedAlerts=N&amp;ESOLunitid=-1&amp;ESOLfloorid=-1&amp;ESOLstartdate=2024-08-22%2018:49:31&amp;ESOLenddate=2024-08-24%2018:49:31&amp;ESOLsortby=0&amp;ESOLstatusid=-1&amp;ESOLreportOnSimple=Y&amp;ESOLreportOnComplex=Y&amp;ESOLcomplexAlertId=-1&amp;ESOLalertType=NON_ORDER_ALERTS" style="color:#fff;text-decoration:none;" title="Clinical Alerts Listing Report"><img src="./reports.gif" border="0" align="absmiddle" height="25">Clinical Alerts Listing Report&nbsp;&nbsp;</a></td></tr><tr class="slBackgroundColor"><td height="20" bgcolor="#EFEFEF" style="color:black;font-weight:bold;">&nbsp;Show Alerts in Last&nbsp;<select name="ESOLhistoryHours" onchange="changeHistoryHours()"><option value="24">24 Hours</option><option value="48" selected="">48 Hours</option><option value="72">72 Hours</option><option value="120">5 Days</option><option value="336">14 Days</option><option value="720">30 Days</option><option value="1440">60 Days</option><option value="2160">90 Days</option></select>&nbsp;&nbsp;&nbsp;&nbsp;<label><input type="checkbox" onclick="showClearedAlerts();" id="show_cleared">Show Cleared Alerts</label></td><td height="20" bgcolor="#EFEFEF" style="color:black;font-weight:bold;"></td></tr><tr><td colspan="2"><table width="100%" cellpadding="2" cellspacing="0" border="0"><tbody><tr></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" height="100%">
+<script>
+	function clear(id)
+	{
+		frmData.ESOLclearId.value=id;
+		frmData.submit();
+	}
+	////////////////////////////
+	//Opens new alert window.
+	////////////////////////////
+	function newAlert()
+	{
+		var width=500;
+		var height=600;
+		openSizedLookup2("/clinical/cp_popup/createclientalert.xhtml?client_id=42344920","",width,height,"");
+	}
+	////////////////////////////
+	//refreshes window.
+	////////////////////////////
+	function submitRefresh()
+	{
+		frmData.submit();
+	}
+
+    function viewUDA(hrid,clientid)
+    {
+      openSizedLookup2("../chart/assess/viewhighriskalerts.jsp?ESOLhighriskid="+hrid+"&ESOLclientid="+clientid,"",500,300,"");
+    }
+
+  function viewPhysOrderFormPopup(physOrderId, clientId){
+	    physOrderFormPopup = openPopupWin("/clinical/pho/popup/enhancedOrderEntry/viewOrder.xhtml?ESOLpoid="+physOrderId+"&ESOLclientid="+clientId+"&readOnly=Y", 'physorderformpopup', 1010, 600, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+	}
+
+	  
+    function viewAlertDescriptionPopup(physOrderId, clientId, alertId){
+        physOrderFormPopup = openPopupWin("/clinical/pho/view_alertdescription.xhtml?ESOLpoid="+physOrderId+"&ESOLclientid="+clientId+"&ESOLalertid="+alertId+"&ESOLfacid=-1"+"&readOnly=Y", 'physorderformpopup', 725, 500, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+    }
+
+    function viewCOTAlertDescriptionPopup(clientId, alertId){
+        physOrderFormPopup = openPopupWin("/clinical/pho/view_alertdescription.xhtml?ESOLclientid="+clientId+"&ESOLalertid="+alertId, 'physorderformpopup', 725, 500, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+    }
+
+	function updateAlertCheckBox(shouldCheck)
+	{
+		var elementArray = document.getElementsByName("ESOLalertIds");
+		if(elementArray)
+		{
+			for(var i = 0; i < elementArray.length; i++)
+			{
+				elementArray[i].checked = shouldCheck;
+			}
+		}
+	}
+	function clearCheckedAlerts()
+	{
+		var isAlertSelected = false;
+		var elementArray = document.getElementsByName("ESOLalertIds");
+		if(elementArray)
+		{
+			for(var i = 0; i < elementArray.length; i++)
+			{
+				if (elementArray[i].checked)
+				{
+					isAlertSelected = true;
+					break;
+				}
+			}
+		}
+		if (isAlertSelected)
+		{
+			if(confirm('Has the appropriate care path been followed prior to clearing the selected alerts?') )
+			{
+				frmData.ESOLclearCheckedAlerts.value = "Y";
+				frmData.submit();
+			}
+		}
+		else
+		{
+			alert("Please check the alert before you clear it.");
+		}
+	}
+
+	function showClearedAlerts()
+	{
+		frmData.ESOLshowClearedAlerts.value = document.getElementById("show_cleared").checked ? "Y" : "N";
+		frmData.submit();
+	}
+
+	function openDetails(alertId,clientId)
+	{
+		openSizedLookup2('/clinical/cp_popup/alerttriggerdetails.xhtml?ESOLalertid='+alertId+'&ESOLclientId='+clientId,'',700,500,'');
+	}
+
+	function openDescription(alertId)
+	{
+		openSizedLookup2('/clinical/cp_popup/alertDescriptionDisplay.xhtml?ESOLalertid='+alertId,'',350,200,'');
+	}
+
+	var EXPAND_ROW=0;
+	var SHRINK_ROW=1;
+
+	function expandShrink(type, id)
+	{
+	  var row = $(".row"+id);
+		var onlyOneRow = (row.length==1);
+
+		if (type == EXPAND_ROW)
+		{
+			if (document.getElementById('symbol'+id))
+			{
+				document.getElementById('symbol'+id).innerHTML="<a href=\"javascript:expandShrink(SHRINK_ROW,'" + id + "')\"><img border=0 src='/images/newminus.gif'></a>";
+				displayString = '';
+			}
+		}
+		else if (type == SHRINK_ROW)
+		{
+			if (document.getElementById('symbol'+id))
+			{
+				document.getElementById('symbol'+id).innerHTML="<a href=\"javascript:expandShrink(EXPAND_ROW,'" + id + "')\"><img border=0 src='/images/newplus.gif'></a>";
+				displayString = 'none';
+			}
+		}
+
+		if(onlyOneRow)
+			row[0].style.display=displayString;
+		else 
+			for(var i=0; i<row.length;i++)
+				row[i].style.display=displayString;
+	}
+
+	function checkChildren(key, ths)
+	{
+		if (ths.checked)
+		{
+			var foundChild = false;
+			var elementArray = document.getElementsByName("ESOLalertIds");
+			if(elementArray)
+			{
+				for(var i = 0; i < elementArray.length; i++)
+				{
+					if(elementArray[i].id == 'child' + key)
+					{
+						elementArray[i].checked = true;
+						foundChild = true;
+					}
+				}
+				if (foundChild)
+					expandShrink(EXPAND_ROW, new String(key));
+			}
+		}
+	}
+
+	function changeHistoryHours()
+	{
+	  frmData.submit();
+	}
+
+	function changeSortBy()
+	{
+	  frmData.submit();
+	}
+	
+	
+    function clearAndCreateProgressNote(alertId, clientId, isHighRisk, pnTypeId, pnId) {
+        cf = confirm("The alert will now be cleared and the system will prompt you to \n"
+                + "complete a progress note. \n \nAre you sure you would like to clear this"
+                + " alert? \nClick OK to clear the alert. Otherwise, click Cancel.");
+
+        if (cf) {
+            if (pnId == '-1') {
+                createProgressNote(alertId, clientId, isHighRisk, pnTypeId);
+            } else {
+                viewProgressNote(pnId, clientId);
+            }
+            if ('Y' == isHighRisk) {
+                clear(alertId + "_hr");
+            } else {
+                clear(alertId);
+            }
+        }
+    }
+
+    function createProgressNote(alertId, clientId, isHighRisk, pnTypeId) {
+
+        if ('Y' === isHighRisk) {
+            openSizedLookup2('/care/chart/ipn/newipn.jsp?ESOLclientid='
+                    + clientId + '&pn_type_id=' + pnTypeId + '&ESOLalertid='
+                    + alertId + '&ESOLhighrisk=Y&ESOLpnid=-1&ESOLtypechange=Y',
+                    '', 705, 505, '');
+
+        } else {
+            openSizedLookup2('/care/chart/ipn/newipn.jsp?ESOLclientid='
+                    + clientId + '&pn_type_id=' + pnTypeId + '&ESOLalertid='
+                    + alertId + '&ESOLpnid=-1&ESOLtypechange=Y', '', 705, 505,
+                    '');
+
+        }
+
+    }
+
+    function viewProgressNote(pnId, clientId) {
+        openSizedLookup2('/care/chart/ipn/newipn.jsp?ESOLclientid=' + clientId
+                + '&ESOLpnid=' + pnId, '', 705, 505, '');
+    }
+</script>
+
+
+
+	<input type="hidden" name="ESOLclearId" value="">
+	<input type="hidden" name="ESOLclientid" value="42344920">
+	<input type="hidden" name="ESOLclearCheckedAlerts" value="N">
+	<input type="hidden" name="ESOLshowClearedAlerts" value="N">
+
+    <div id="tableContainer" style="background: #efefef;top:-3px; border-right: 2px solid #d5d5d5; border-top: 2px solid #d5d5d5; border-left: 2px solid #d5d5d5;border-bottom: 2px solid #d5d5d5; overflow: auto; height:173px;">
+	<table border="0" cellpadding="3" cellspacing="0" width="100%">
+
+		<tbody><tr>
+			<td class="detailColHeader"></td>
+			<td class="detailColHeader"></td>
+			<td class="detailColHeader"></td>
+			<td class="detailColHeader">Effective Date</td>
+			<td class="detailColHeader">Alert</td>
+			<td class="detailColHeader">Cleared By</td>
+			<td class="detailColHeader">Cleared Date</td>
+		</tr>
+
+
+	
+										
+						<tr style="display:" class="parentrow">
+						<td style="background:ffffff" valign="top" id="symbol42344920_5302">
+										<a href="javascript:expandShrink(EXPAND_ROW,&#39;42344920_5302&#39;);"><img border="0" src="./newplus.gif"></a>
+									</td>
+								
+							<td style="background:ffffff" valign="top">
+				             <input type="checkbox" name="ESOLalertIds" value="7062142" onclick="checkChildren(&#39;42344920_5302&#39;, this);" "=""> 
+			                 </td>
+
+                            
+							<td style="background:ffffff" valign="top">
+							<a href="javascript:clearAndCreateProgressNote(7062142, 42344920,&#39;N&#39;, 120,  -1);">pn</a>&nbsp;&nbsp; 
+					 	 	   <a href="javascript:openDetails(7062142,42344920)">view</a>
+					 	 	
+              </td>
+                            
+							<td style="background:ffffff" valign="top">
+								8/24/2024 09:34
+							</td>
+
+                            
+                            
+							<td style="background:ffffff; " valign="top">
+                             Consumed less than 50% of meal
+
+                            &nbsp;
+                            </td>
+							<td style="background:ffffff" valign="top">&nbsp;</td>
+							<td style="background:ffffff" valign="top">
+							&nbsp;</td>
+						</tr>
+										
+						<tr style="display:none" class="row42344920_5302">
+						<td style="background:ffffff" valign="top"></td>
+							<td style="background:ffffff" valign="top">
+				             <input type="checkbox" name="ESOLalertIds" value="7057672" id="child42344920_5302" "=""> 
+			                 </td>
+
+                            
+							<td style="background:ffffff" valign="top">
+							<a href="javascript:clearAndCreateProgressNote(7057672, 42344920,&#39;N&#39;, 120,  -1);">pn</a>&nbsp;&nbsp; 
+					 	 	   <a href="javascript:openDetails(7057672,42344920)">view</a>
+					 	 	
+              </td>
+                            
+							<td style="background:ffffff" valign="top">
+								8/23/2024 17:33
+							</td>
+
+                            
+                            
+							<td style="background:ffffff; " valign="top">
+                             Consumed less than 50% of meal
+
+                            &nbsp;
+                            </td>
+							<td style="background:ffffff" valign="top">&nbsp;</td>
+							<td style="background:ffffff" valign="top">
+							&nbsp;</td>
+						</tr>
+										
+						<tr style="display:" class="parentrow">
+						<td style="background:#eeeeee" valign="top"></td>
+							<td style="background:#eeeeee" valign="top">
+				            
+			                 </td>
+
+                            
+							<td style="background:#eeeeee" valign="top">
+							<a href="javascript:createProgressNote(503455, 42344920,&#39;Y&#39;, 120);">pn</a>&nbsp;&nbsp;
+                <a href="javascript:viewUDA(503455, 42344920)">view</a>
+              
+              </td>
+                            
+							<td style="background:#eeeeee" valign="top">
+								8/22/2024 21:58
+							</td>
+
+                            
+                            
+							<td style="background:#eeeeee; " valign="top">
+                             RN Review Needed for Admission Evaluation
+
+                            &nbsp;
+                            </td>
+							<td style="background:#eeeeee" valign="top">&nbsp;</td>
+							<td style="background:#eeeeee" valign="top">
+							&nbsp;</td>
+						</tr>
+						
+					
+
+
+
+	</tbody></table>
+    </div>
+    
+    </td></tr><tr class="slBackgroundColor"><td colspan="2"><table width="100%" cellpadding="2" cellspacing="0" border="0" <tr=""><tbody><tr><td style="font-weight:bold;background-color:#efefef;text-align:center;" nowrap="">&nbsp;<input type="button" class="pccButton" value="Check All" onclick="updateAlertCheckBox(true);"><input type="button" class="pccButton" value="Clear All" onclick="updateAlertCheckBox(false);"><input type="button" class="pccButton" value="Clear Alerts" onclick="clearCheckedAlerts();"><input type="button" class="pccButton" value="New Alert" onclick="newAlert();"></td></tr></tbody></table></td></tr>
+    
+<!--cut and replace code between these comments ... UP-->	
+</tbody></table></form>		
+
+
+</body></html>

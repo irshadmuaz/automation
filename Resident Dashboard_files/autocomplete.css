@@ -1,0 +1,156 @@
+/* Core styles for the Standalone Autocomplete Widget */
+.autocomplete-w1{
+	background:url(../images/shadowAlpha.png) no-repeat bottom right;
+	left:0;
+	margin:8px 0 0 6px;
+	position:absolute;
+	top:0;
+}
+.autocomplete{
+	background:#fff;
+	border:1px solid #999;
+	cursor:default;
+	margin:-6px 6px 6px -6px;
+	max-height:350px;
+	overflow:auto;
+	text-align:left;
+}
+.autocomplete .selected{
+	background:#f0f0f0;
+}
+.autocomplete div{
+	padding:2px 5px;
+	white-space:nowrap;
+}
+.autocomplete strong{
+	color:#39f;
+	font-weight:normal;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+ The CSS below belongs in a separate file as it is related to the jQuery-UI autocomplete widget which is a separate
+ widget. When PCC-48364 is complete, remove this comment.
+
+ */
+
+/**
+Jquery UI autocomplete
+**/
+
+.ui-autocomplete{
+  max-height:400px;
+  overflow-y:auto;
+  overflow-x:hidden;/* prevent horizontal scrollbar */
+}
+
+ul.ui-autocomplete{
+	color:#000;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:9pt;
+	background:none;
+	background-image:none;
+	background-color:white;
+}
+ul.ui-autocomplete li a div{
+	float:left;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+input.ui-combobox-input{
+	color:#000;
+}
+
+ul.ui-autocomplete span.highlightSearchTerm{
+	font-weight:bold;
+	color:#6B189c;
+}
+
+#ui-active-menuitem{
+	color:#fff;
+	background:none;
+	background-image:none;
+	background-color:#3399ff;
+}
+
+.ui-combobox{
+	position:relative;
+	display:inline-block;
+}
+.ui-combobox-toggle{
+	position:absolute;
+	top:0;
+	bottom:0;
+	margin-left:-1px;
+	padding:0;
+
+}
+.ui-combobox-input{
+	margin:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:normal;
+	color:black;
+}
+.ui-combobox-toggle .ui-button-icon-primary{
+	background-image:url('admin/images/ui-icons_222222_256x240.png');
+}
+li.ui-autocomplete-category{
+	font-weight:bold;
+}
+
+ul.ui-autocomplete li a{
+	position:relative;
+	overflow:auto;
+}
+
+.ui-autocomplete-loading{
+	background:url('../images/loading-circle.gif') no-repeat right center;
+	background-color: white;
+}
+
+.searchValueColumn
+{
+	width: 50px;
+	text-align:left;
+}
+
+.searchLabelColumn
+{
+	width: 280px;
+	text-align:left;
+}
+
+label.searchAutoResult
+{
+	width:100%;
+	white-space:nowrap;
+	font-size:9pt;
+}
+a.linkEnabled
+{
+	color:#05576f;/* Note: This tries to override jQuery UI widget link default styling (black) */
+}
+li.evenSearchResult,li.searchHeaderItem
+{
+	background-color: #EFEFEF;
+}
+li.oddSearchResult
+{
+	background-color: #FFFFFF;
+}
+ul.autocompleteResults
+{
+	border: 1px solid #a1a1a1;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	box-shadow: #d3d3d3 5px 5px 5px;
+}

@@ -1,0 +1,372 @@
+
+<!-- saved from url=(0174)https://www19.pointclickcare.com/care/dashboards/res_pn.jsp?ESOLviewId=73&ESOLtitle=Progress%20Notes%20in%20Last%2030%20Days&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script><meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+<script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+
+  <title></title><style>  body{margin:0;padding:0;}  table.dboard                   {table-layout:fixed;border-collapse:collapse;empty-cells:show;width:100%;}  table.dboard tr th             {padding:2px;height:24px;font:bold 12px arial;color:#fff;vertical-align:middle;text-align:expression(previousSibling ? nextSibling ? 'center' : 'right' : 'left');}  table.dboard tr th a           {text-decoration:none;color:#fff;font-weight:bold;}  table.dboard tr th table       {border-collapse:collapse;empty-cells:show;}  table.dboard tr th table tr td {padding:0px;margin:2px;height:100%;vertical-align:middle;}  .impact{    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    font-weight:bold;    text-align:center;  }</style><link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head><body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;"><form name="frmData" method="post" action="https://www19.pointclickcare.com/care/dashboards/res_pn.jsp"><input type="hidden" name="ESOLviewId" value="null"><input type="hidden" name="ESOLtitle" value="Progress Notes in Last 30 Days"><input type="hidden" name="floor_id" value=""><input type="hidden" name="unit_id" value=""><input type="hidden" name="contact_id" value=""><table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="100%"><table width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr height="20" class="pccModuleBackgroundColor slBackgroundColor"><td style="color:white;font-weight:bold;"> &nbsp;&nbsp;Progress Notes in Last 30 Days</td><td style="color:white;font-weight:bold;" align="right"><img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="alert(this.title);" title="The information on this page is as of
+Saturday, August 24, 2024 15:49:31 PDT">&nbsp;<script>completeMsg = "The information on this page is as of\nSaturday, August 24, 2024 15:49:31 PDT";document.getElementById('genTimestampImg').title= completeMsg;+"."</script></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" height="100%">
+
+<script>
+function includeEMARPN()
+{
+	frmData.action = '/care/dashboards/res_pn.jsp?ESOLviewId=73&ESOLtitle=Progress%20Notes%20in%20Last%2030%20Days&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1';
+	frmData.ESOLshowEMARPN.value = document.getElementById("chkboxShowEMARPN").checked ? "Y" : "N";
+    frmData.submit();
+}
+</script>
+
+  <div id="tableContainer" class="tableContainer">
+  <table border="0" cellpadding="3" cellspacing="0" width="100%" class="scrollTable">
+  <thead class="fixedHeader" id="fixedHeader">
+    <tr class="alternateRow">
+    <td colspan="99" style="background: #EFEFEF; padding: 2px 3px 3px 4px; font-weight: bold;">
+        <input type="checkbox" id="chkboxShowEMARPN" onclick="this.blur();" onchange="includeEMARPN();" checked="">Display eMAR Progress Notes
+        <input type="hidden" name="ESOLshowEMARPN" value="Y">
+    </td>
+    </tr>
+    <tr class="normalRow">
+    
+      <td class="detailColHeader">&nbsp;</td>
+    
+      <td class="detailColHeader">Type</td>
+      <td class="detailColHeader">Date</td>
+      <td class="detailColHeader">Author</td>
+      <td class="detailColHeader">Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27781767&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Q Shift 72 Hour Admission Note</td><td>8/24/2024</td><td>Enrique Felipe</td><td title="Res is alert with episode of confusion.  ...">Res is alert with episode of confusion.  ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27780292&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/24/2024</td><td>Rochelle Cagley</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27780293&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/24/2024</td><td>Rochelle Cagley</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27775593&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/24/2024</td><td>Rochelle Cagley</td><td title=" Revefenacin Inhalation Solution 175 MCG ..."> Revefenacin Inhalation Solution 175 MCG ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27773408&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/24/2024</td><td>Kaye Torres</td><td title=" traZODone HCl Oral Tablet 50 MG
+	Give 0 ..."> traZODone HCl Oral Tablet 50 MG
+	Give 0 ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27771894&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/24/2024</td><td>Kaye Torres</td><td title="
+Was a behavior observed? YES
+ ">
+Was a behavior observed? YES
+ </td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27772192&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Health Status Note</td><td>8/24/2024</td><td>Kaye Torres</td><td title="Resident was admitted on 8/22 from Vibra ...">Resident was admitted on 8/22 from Vibra ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27772285&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Kaye Torres</td><td title=" traZODone HCl Oral Tablet 50 MG
+	Give 0 ..."> traZODone HCl Oral Tablet 50 MG
+	Give 0 ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27764445&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Olga Bondar</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27764859&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Olga Bondar</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27761536&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Deborah Detmer</td><td title=" Formoterol Fumarate Inhalation Nebuliza ..."> Formoterol Fumarate Inhalation Nebuliza ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27761537&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Deborah Detmer</td><td title=" Budesonide Inhalation Suspension 0.5 MG ..."> Budesonide Inhalation Suspension 0.5 MG ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27760645&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Enrique Felipe</td><td title=" Hyoscyamine Sulfate Oral Tablet 0.125 M ..."> Hyoscyamine Sulfate Oral Tablet 0.125 M ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27760644&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Enrique Felipe</td><td title=" Atropine Sulfate Ophthalmic Solution 1  ..."> Atropine Sulfate Ophthalmic Solution 1  ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27757019&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>IDT Note</td><td>8/23/2024</td><td>Maria Teresa Bidol</td><td title="IDT review new admission from Vibra Hosp ...">IDT review new admission from Vibra Hosp ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27754812&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27754811&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27754512&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Order Note</td><td>8/23/2024</td><td>Enrique Felipe</td><td title="The order you have entered
+
+Hyoscyamin ...">The order you have entered
+
+Hyoscyamin ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27754116&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Order Note</td><td>8/23/2024</td><td>Enrique Felipe</td><td title="This order is outside of the recommended ...">This order is outside of the recommended ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27754170&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Order Note</td><td>8/23/2024</td><td>Enrique Felipe</td><td title="The order you have entered
+
+Glycopyrro ...">The order you have entered
+
+Glycopyrro ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27753959&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - BIMS Evaluation</td><td>8/23/2024</td><td>Josette Suarez</td><td title="Brief Interview for Mental Status should ...">Brief Interview for Mental Status should ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27753902&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - PHQ - 2 to 9 Evaluation</td><td>8/23/2024</td><td>Josette Suarez</td><td title="Little interest or pleasure in doing thi ...">Little interest or pleasure in doing thi ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27753541&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Alert Note</td><td>8/23/2024</td><td>Enrique Felipe</td><td title="Received new diet order from ST: Mechani ...">Received new diet order from ST: Mechani ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27750525&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Social Determinants of Health</td><td>8/23/2024</td><td>Josette Suarez</td><td title="Resident is not of Hispanic, Latino/a, o ...">Resident is not of Hispanic, Latino/a, o ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27749251&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Formoterol Fumarate Inhalation Nebuliza ..."> Formoterol Fumarate Inhalation Nebuliza ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27749252&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Budesonide Inhalation Suspension 0.5 MG ..."> Budesonide Inhalation Suspension 0.5 MG ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27749253&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27749254&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Revefenacin Inhalation Solution 175 MCG ..."> Revefenacin Inhalation Solution 175 MCG ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27749255&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Rochelle Cagley</td><td title=" Before neb treatment-document Pulse Rat ..."> Before neb treatment-document Pulse Rat ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27771186&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Alert Note</td><td>8/23/2024</td><td>Maria Dizon</td><td title="Resident was admitted 8/22/24 for skille ...">Resident was admitted 8/22/24 for skille ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27746368&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/23/2024</td><td>Maria Dizon</td><td title=" traZODone HCl Oral Tablet 50 MG
+	Give 0 ..."> traZODone HCl Oral Tablet 50 MG
+	Give 0 ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27743190&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/22/2024</td><td>Maria Dizon</td><td title=" traZODone HCl Oral Tablet 50 MG
+	Give 0 ..."> traZODone HCl Oral Tablet 50 MG
+	Give 0 ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27737145&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - Elopement Evaluation</td><td>8/22/2024</td><td>Suda Saetern</td><td title="History of elopement while at home: No.  ...">History of elopement while at home: No.  ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27737124&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>RN Review Note (SPN)</td><td>8/22/2024</td><td>Suda Saetern</td><td title="I have reviewed and agree with the Admis ...">I have reviewed and agree with the Admis ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27737145&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - Elopement Evaluation</td><td>8/22/2024</td><td>Suda Saetern</td><td title="
+
+
+
+
+
+
+
+
+
+
+
+ ">
+
+
+
+
+
+
+
+
+
+
+
+ </td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27737132&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N ADV Clinical Admission</td><td>8/22/2024</td><td>Suda Saetern</td><td title="Arrived by: ambulance. 
+          Admis ...">Arrived by: ambulance. 
+          Admis ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27736951&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - Fall Risk Evaluation</td><td>8/22/2024</td><td>Suda Saetern</td><td title="History of falls (past 3 months): No fal ...">History of falls (past 3 months): No fal ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27736516&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Q Shift 72 Hour Admission Note</td><td>8/22/2024</td><td>Suda Saetern</td><td title="Received resident from Vibra hospital at ...">Received resident from Vibra hospital at ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27735942&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - Lift/Transfer Evaluation</td><td>8/22/2024</td><td>Suda Saetern</td><td title="Resident is non-weight bearing. 
+       ...">Resident is non-weight bearing. 
+       ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27736603&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Health Status Note</td><td>8/22/2024</td><td>Suda Saetern</td><td title="Received resident from Vibra hospital at ...">Received resident from Vibra hospital at ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27733570&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/22/2024</td><td>Deborah Detmer</td><td title=" Formoterol Fumarate Inhalation Nebuliza ..."> Formoterol Fumarate Inhalation Nebuliza ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27733571&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Orders - Administration Note</td><td>8/22/2024</td><td>Deborah Detmer</td><td title=" Budesonide Inhalation Suspension 0.5 MG ..."> Budesonide Inhalation Suspension 0.5 MG ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27731569&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Order Note</td><td>8/22/2024</td><td>Michael Porras</td><td title="The order you have entered
+
+Phenytoin  ...">The order you have entered
+
+Phenytoin  ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27732074&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Order Note</td><td>8/22/2024</td><td>Michael Porras</td><td title="The order you have entered
+
+Multivitam ...">The order you have entered
+
+Multivitam ...</td></tr><tr style="vertical-align:top;background-color:#efefef;" class="alternateRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27731710&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>Order Note</td><td>8/22/2024</td><td>Michael Porras</td><td title="The order you have entered
+
+traZODone  ...">The order you have entered
+
+traZODone  ...</td></tr><tr style="vertical-align:top;background-color:#fff;" class="normalRow"><td><a href="javascript:openSizedLookup2(&#39;/care/chart/ipn/newipn.jsp?ESOLpnid=27732014&amp;ESOLclientid=42344920&#39;, &#39;&#39;, 705, 505, &#39;scrollbars&#39;);">view</a></td><td>N Adv - Braden Scale for Predicting Pressure Ulcer Risk Evaluation</td><td>8/22/2024</td><td>Dayleshawda Heckard</td><td title="Sensory Perception: Very limited. Moistu ...">Sensory Perception: Very limited. Moistu ...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</td></tr></tbody></table></form></body></html>

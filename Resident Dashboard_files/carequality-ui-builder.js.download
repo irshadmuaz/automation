@@ -1,0 +1,883 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="robots" content="noindex,nofollow"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+    <title>PointClickCare Login</title>
+    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons"/>
+    <base href="https://login.pointclickcare.com:443/"/>
+    <link type="text/css" rel="stylesheet" href="css/evergreen-login.css?v=2"/>
+    <script src="js/jquery-1.9.0.min.js"></script>
+    <script src="js/jquery-migrate-1.4.1.min.js"></script>
+    
+
+
+
+
+
+
+
+<script>
+  var systemUpgradeMessageWhiteListedMap = {
+    "2001179" : 1,"2001195" : 1,"2003106" : 1,"2003489" : 1,"-1019046809" : 1,"64659" : 1,"2007757" : 1,"911085371" : 1,"2037077" : 1,"2037542" : 1,"65738" : 1,"63293181" : 1,"2041851" : 1,"66043" : 1,"-364265800" : 1,"-1796317996" : 1,"1049492685" : 1,"-1825465084" : 1,"2062995" : 1,"-1141503329" : 1,"-1743809722" : 1,"1780163381" : 1,"66571" : 1,"-1014184771" : 1,"2065416" : 1,"66633" : 1,"66684" : 1,"66810" : 1,"2071186" : 1,"66841" : 1,"1543485918" : 1,"2074649" : 1,"64314184" : 1,"416840047" : 1,"2074968" : 1,"67027" : 1,"-884553960" : 1,"-855924809" : 1,"-844193803" : 1,"64425817" : 1,"-2123217" : 1,"2110593" : 1,"-1329107449" : 1,"2031050160" : 1,"-483866144" : 1,"68562" : 1,"318391553" : 1,"151880022" : 1,"2126925" : 1,"-1061203421" : 1,"2127417" : 1,"-708608177" : 1,"2048986840" : 1,"1291823032" : 1,"69728" : 1,"-826268280" : 1,"70004" : 1,"70005" : 1,"-1485928045" : 1,"1180870911" : 1,"70417" : 1,"70448" : 1,"70530" : 1,"-1515481721" : 1,"-1429594268" : 1,"2186502" : 1,"2186997" : 1,"-85808109" : 1,"2190383" : 1,"-1935604923" : 1,"245272631" : 1,"245272632" : 1,"245272633" : 1,"245272634" : 1,"245272635" : 1,"245272636" : 1,"68082004" : 1,"68091507" : 1,"-1935471787" : 1,"70887" : 1,"-2004820639" : 1,"-2019897615" : 1,"2199272" : 1,"-850297856" : 1,"-464585812" : 1,"-464585811" : 1,"68558011" : 1,"71351" : 1,"1418713111" : 1,"2215499" : 1,"71652" : 1,"2246089" : 1,"-155792824" : 1,"70659672" : 1,"2306964" : 1,"-1506286892" : 1,"549746653" : 1,"549746658" : 1,"-1506275166" : 1,"76086" : 1,"2362831" : 1,"1671704929" : 1,"76232" : 1,"694136096" : 1,"76456" : 1,"76460" : 1,"1436456464" : 1,"76778" : 1,"2393112" : 1,"2395032" : 1,"-1340019376" : 1,"2425104" : 1,"79028" : 1,"79030" : 1,"-805878030" : 1,"76097581" : 1,"-58726949" : 1,"2464397" : 1,"246148987" : 1,"79495" : 1,"2464423" : 1,"990506913" : 1,"76403199" : 1,"79526" : 1,"509278978" : 1,"2468426" : 1,"2511320" : 1,"77971083" : 1,"81336" : 1,"2537849" : 1,"-1292747147" : 1,"-1419426801" : 1,"-1854800152" : 1,"-1596981848" : 1,"2543989" : 1,"82160" : 1,"-1390948616" : 1,"2550243" : 1,"-743180563" : 1,"-743180547" : 1,"-743180528" : 1,"2555477" : 1,"79227945" : 1,"2555913" : 1,"82494" : 1,"79379938" : 1,"2560649" : 1,"79380169" : 1,"79380170" : 1,"-1509812993" : 1,"2577624" : 1,"85160" : 1,"2659589" : 1,"82598219" : 1,"2669826" : 1,"86216" : 1,"-121747891" : 1,"-1235229152" : 1
+  };
+</script>
+<script>
+String.prototype.hashCode = function(){
+	var hash = 0;
+	if(this.length == 0){
+		return hash;
+	}
+	for(var i=0;i<this.length;i++){
+		char = this.charCodeAt(i);
+		hash = ((hash<<5)-hash)+char;
+		hash = hash & hash;//Convert to 32bit integer
+	}
+	return hash;
+};
+function replaceAll(str, search, replacement){
+	return str.split(search).join(replacement);
+};
+
+function replaceKeywords(str, replacements){
+	for(var key in replacements){
+		str = replaceAll(str, key, replacements[key]);
+	}
+	return str;
+};
+function isWhitelisted(val){
+	return (typeof(systemUpgradeMessageWhiteListedMap[val]) != 'undefined');
+}
+
+window._loginSHA2 = null;
+var env = ".com";
+if(location.host.indexOf('.ca') != -1){
+	env = ".ca";
+}
+var sha2only_testImage;
+var sha2only_imageErrorHandler = function(){
+	logSHA2Error('load error');
+};
+function checkSHASupport(){
+	sha2only_testImage = new Image();
+	sha2only_testImage.onerror = sha2only_imageErrorHandler;
+	sha2only_testImage.onload = logSHA2Success;
+	try{
+		var uniqueQuery = '?_=' + new Date().getTime();
+		sha2only_testImage.src = 'https://sha2only.pointclickcare' + env + '/sha2/sha2only.png' + uniqueQuery;
+	} catch(ex){
+		logSHA2Error('exception');
+	}
+}
+function logSHA2Success(){
+	window._loginSHA2 = 'PASS';
+}
+function logSHA2Error(reason){
+	window._loginSHA2 = 'FAIL';
+}
+
+checkSHASupport();
+
+var supportDocumentLink = "https://pointclickcare.com/wp-content/uploads/2019/07/technical-specifications-guide.pdf";
+var supportMessages = {};
+supportMessages['MSG01_SUPPORTED_OS_BROWSER_UPGRADE'] = {"level":"alert-error","page":6,"section":"1.3.2","msg":"Your (<b>$browser $version on $os</b>) browser is out of date. Please update your browser version. For more information, see Supported Operating Systems and Browser Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+supportMessages['MSG02_UNSUPPORTED_OS_BROWSER_UPGRADE'] = {"level":"alert-error","page":6,"section":"1.3.4","msg":"You are using an unsupported operating system and web browser version. Please use a supported combination. For more information, see Supported Operating Systems and Browser Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+supportMessages['MSG03_UNSUPPORTED_OS_OUTDATED_BROWSER'] = {"level":"alert-error","page":6,"section":"1.3.4","msg":"You are using an unsupported operating system and out of date browser. Please use a supported combination. For more information, see Supported Operating Systems and Browser Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+supportMessages['MSG04_SUPPORTED_OS_UNSUPPORTED_BROWSER'] = {"level":"alert-error","page":6,"section":"1.3.2","msg":"You are using an unsupported browser. Please update your browser. For more information, see Supported Operating Systems and Browser Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+supportMessages['MSG05_TLS_1_2_NOT_ENABLED'] = {"level":"alert-error","page":9,"section":"1.6.1.4","msg":"TLS is not set up for your browser. You are required to set up TLS. For more information, see Browser Specific Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+supportMessages['MSG06_COOKIES_NOT_ENABLED'] = {"level":"alert-error","page":9,"section":"1.7","msg":"Cookies are blocked in your browser. You are required to allow Cookies in (<b>$browser $version on $os</b>) browser settings. For more information, see Browser Specific Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'] = {"level":"alert-info","page":6,"msg":"Congratulations! Your web browser (<b>$browser $version on $os</b>) is up to date for use with PointClickCare"};
+supportMessages['MSG09_BROWSER_SUPPORT_ENDING'] = {"level":"alert-warning","page":6,"msg":"You are accessing PointClickCare with Internet Explorer (IE). As of <b>June 15, 2022</b>, Microsoft has discontinued support for IE. You must change to another browser as soon as possible. For more information, see Supported Operating System and Browser Combinations in <a href=\"" + supportDocumentLink + "$hashLink\" target=\"_blank\">Technical Specifications</a>."};
+
+var messageIcons = {
+	'alert-error':'<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" style="height:24px;width:24px;"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg>',
+	'alert-info':'<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit" focusable="false" aria-hidden="true" viewBox="0 0 24 24" style="height:24px;width:24px;"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"></path></svg>',
+	'alert-warning':'<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" style="height:24px;width:24px;"><path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path></svg>'
+};
+var inspected = false;
+function inspect(){
+	if(inspected){
+		return;
+	} else {
+		inspected = true;
+		var val = $('#username').val().substr(0, $('#username').val().indexOf('.'));
+		if(val.length > 0){
+			val = val.toUpperCase();
+			if(!isWhitelisted(val.hashCode())){
+				var browserInfo = getBrowserInfo();
+				//determine system status
+				var os = browserInfo['os'];
+				var isMacOS = false;
+				if(os.indexOf('OS X') != -1){
+					isMacOS = true;
+				}
+				var browser = browserInfo['browser'];
+				var browserVersion = browserInfo['browserVersion'];
+				var supportInfo;
+				//Test for Outdated OS AND Outdated Browsers
+				if(os == 'Windows 10' || os == 'Windows 8.1' || os == 'Windows 7' || isMacOS || os == 'Chrome OS' || os == 'iPad/iOS' || os == 'iPhone/iOS' || os == 'iPod/iOS' || os == 'Android'){
+					//Supported OS (MSG01/MSG04/MSG07/MSG08/MSG09)
+					if(browser == 'Internet Explorer'){
+						if(browserVersion == 11){
+							supportInfo = supportMessages['MSG09_BROWSER_SUPPORT_ENDING'];
+						} else if(browserVersion == 10 || browserVersion == 9){
+							supportInfo = supportMessages['MSG09_BROWSER_SUPPORT_ENDING'];
+						} else {
+							//IE8/7/?
+							supportInfo = supportMessages['MSG09_BROWSER_SUPPORT_ENDING'];
+						}
+					} else if(browser == 'Microsoft Edge'){
+						if(browserVersion <= 13){
+							supportInfo = supportMessages['MSG01_SUPPORTED_OS_BROWSER_UPGRADE'];
+						} else {
+							supportInfo = supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'];
+						}
+					} else if(browser == 'Google Chrome'){
+						if((!isMacOS && browserVersion <= 57) || (isMacOS && browserVersion <= 56)){
+							supportInfo = supportMessages['MSG01_SUPPORTED_OS_BROWSER_UPGRADE'];
+						} else {
+							supportInfo = supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'];
+						}
+					} else if(browser == 'Mozilla Firefox'){
+						if(browserVersion <= 51){
+							if(os == 'Windows 8.1' && browserVersion >= 50){
+								supportInfo = supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'];
+							} else if((os == 'Chrome OS'|| os == 'iPad/iOS' || os == 'iPhone/iOS' || os == 'iPod/iOS') && browserVersion >= 9){
+								supportInfo = supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'];
+							} else {
+								supportInfo = supportMessages['MSG01_SUPPORTED_OS_BROWSER_UPGRADE'];
+							}
+						} else {
+							supportInfo = supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'];
+						}
+					} else if((isMacOS || os == 'iPad/iOS' || os == 'iPhone/iOS' || os == 'iPod/iOS') && browser == 'Apple Safari'){
+						if(browserVersion <= 8){
+							supportInfo = supportMessages['MSG01_SUPPORTED_OS_BROWSER_UPGRADE'];
+						} else {
+							supportInfo = supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER'];
+						}
+					} else {
+						//supported OS, but unknown browser
+						supportInfo = supportMessages['MSG04_SUPPORTED_OS_UNSUPPORTED_BROWSER'];
+					}
+				} else {
+					//Unsupported OS (MSG02/MSG03)
+					if(os == 'Windows 2000' || os == 'Windows XP' || os == 'Windows 2003 or XP64' || os == 'Windows Vista' || os == 'Windows 8.0'){
+						supportInfo = supportMessages['MSG03_UNSUPPORTED_OS_OUTDATED_BROWSER'];
+					} else if(os == 'Android'){
+						if(browser == 'Google Chrome'){
+							if(browserVersion <= 59){
+								supportInfo = supportMessages['MSG03_UNSUPPORTED_OS_OUTDATED_BROWSER'];
+							} else {
+								supportInfo = supportMessages['MSG02_UNSUPPORTED_OS_BROWSER_UPGRADE'];
+							}
+						} else if(browser == 'Mozilla Firefox'){
+							if(browserVersion <= 53){
+								supportInfo = supportMessages['MSG03_UNSUPPORTED_OS_OUTDATED_BROWSER'];
+							} else {
+								supportInfo = supportMessages['MSG02_UNSUPPORTED_OS_BROWSER_UPGRADE'];
+							}
+						} else {
+							//Android "other browser"
+							supportInfo = supportMessages['MSG03_UNSUPPORTED_OS_OUTDATED_BROWSER'];
+						}
+					} else {
+						//default catch all for anything we don't recognize
+						supportInfo = supportMessages['MSG03_UNSUPPORTED_OS_OUTDATED_BROWSER'];
+					}
+				}
+
+				var osAndBrowserVersionSupportLevel = supportInfo['level'];
+				var osAndBrowserVersionSupportMessage = supportInfo['msg'];
+				var osAndBrowserVersionPageSuffix = "#page=" + supportInfo['page'];
+				var osAndBrowserVersionIcon = messageIcons[osAndBrowserVersionSupportLevel];
+				osAndBrowserVersionSupportMessage = replaceKeywords(osAndBrowserVersionSupportMessage, {"$os":browserInfo['os'],"$browser":browserInfo['browser'],"$version":browserInfo['browserVersion'],"$section":supportInfo['section'],"$page":supportInfo['page'],"$hashLink":osAndBrowserVersionPageSuffix});
+				var osAndBrowserVersionSupportMessageHTML = '<div class="alert-box ' + osAndBrowserVersionSupportLevel + '"><div class="alert-box-icon">' + osAndBrowserVersionIcon + '</div><div class="alert-box-msg">' + osAndBrowserVersionSupportMessage + '</div></div>'
+
+				var cookieMessageHTML = '';
+				if(!browserInfo['cookiesEnabled']){
+					var cookieSupportInfo = supportMessages['MSG06_COOKIES_NOT_ENABLED'];
+					var cookieSupportLevel = cookieSupportInfo['level'];
+					var cookieSupportMessage = cookieSupportInfo['msg'];
+					var cookiePageSuffix = "#page=" + cookieSupportInfo['page'];
+					var cookieIcon = messageIcons[cookieSupportLevel];
+					cookieSupportMessage = replaceKeywords(cookieSupportMessage, {"$os":browserInfo['os'],"$browser":browserInfo['browser'],"$version":browserInfo['browserVersion'],"$section":cookieSupportInfo['section'],"$page":cookieSupportInfo['page'],"$hashLink":cookiePageSuffix});
+					cookieMessageHTML = '<div class="alert-box ' + cookieSupportLevel + '"><div class="alert-box-icon">' + cookieIcon + '</div><div class="alert-box-msg">' + cookieSupportMessage + '</div></div>';
+				}
+
+				var sha2SupportMessageHTML = '';
+				if(window._loginSHA2 != null && window._loginSHA2 == 'FAIL'){
+					var sha2SupportInfo = supportMessages['MSG05_TLS_1_2_NOT_ENABLED'];
+					var sha2SupportLevel = sha2SupportInfo['level'];
+					var sha2SupportMessage = sha2SupportInfo['msg'];
+					var sha2PageSuffix = "#page=" + sha2SupportInfo['page'];
+					var sha2Icon = messageIcons[sha2SupportLevel];
+					sha2SupportMessage = replaceKeywords(sha2SupportMessage, {"$os":browserInfo['os'],"$browser":browserInfo['browser'],"$version":browserInfo['browserVersion'],"$section":sha2SupportInfo['section'],"$page":sha2SupportInfo['page'],"$hashLink":sha2PageSuffix});
+					sha2SupportMessageHTML = '<div class="alert-box ' + sha2SupportLevel + '"><div class="alert-box-icon">' + sha2Icon + '</div><div class="alert-box-msg">' + sha2SupportMessage + '</div></div>';
+				}
+
+				if(supportInfo == supportMessages['MSG08_SUPPORTED_OS_AND_BROWSER']){
+					osAndBrowserVersionSupportMessageHTML = '';//clear out message
+				}
+				var omitMessage = false;
+				if(browser == 'Internet Explorer'){
+					omitMessage = true; // Handling EOL elsewhere
+				}
+				if(omitMessage){
+					$('#system-information').html('');
+				} else {
+					//output OS and Browser support message if in warning/error state
+					if(cookieMessageHTML != '' || sha2SupportMessageHTML != '' || osAndBrowserVersionSupportMessageHTML != ''){
+						$('#system-information').html(sha2SupportMessageHTML + cookieMessageHTML + osAndBrowserVersionSupportMessageHTML);
+					}
+				}
+			} else {
+				//wipe out any other messages
+				$('#system-information').html('');
+			}
+		}
+		inspected = false;
+	}
+}
+
+
+function getBrowserInfo(){
+	var ua = navigator.userAgent;
+	var browserInfo = {};
+	browserInfo.ua = ua;
+	var os = 'Unknown';
+	var browserBitness = '';
+	var osBitness = '';
+	//Check for versions of Windows first
+	if(ua.indexOf('Windows NT') != -1){
+		//2000, XP/XP64, 2003, Vista, 7, 8, 8.1, 10
+		if(ua.indexOf('Windows NT 10.0') != -1){
+			os = 'Windows 10';
+		} else if(ua.indexOf('Windows NT 6.3') != -1){
+			os = 'Windows 8.1';
+		} else if(ua.indexOf('Windows NT 6.2') != -1){
+			os = 'Windows 8.0';
+		} else if(ua.indexOf('Windows NT 6.1') != -1){
+			os = 'Windows 7';
+		} else if(ua.indexOf('Windows NT 6.0') != -1){
+			os = 'Windows Vista';
+		} else if(ua.indexOf('Windows NT 5.2') != -1){
+			os = 'Windows 2003 or XP64';
+		} else if(ua.indexOf('Windows NT 5.1') != -1){
+			os = 'Windows XP';
+		} else if(ua.indexOf('Windows NT 5.0.1') != -1){
+			os = 'Windows 2000';
+		}
+		browserBitness = '32bit';//default
+		osBitness = '32bit';//default
+		if(ua.indexOf('Win64') != -1){
+			browserBitness = '64bit';
+			osBitness = '64bit';
+		} else if(ua.indexOf('WOW64') != -1){
+			browserBitness = '32bit';
+			osBitness = '64bit';
+		}
+	} else if(ua.indexOf('Windows 9') != -1){
+		//95,98,ME
+		if(ua.indexOf('Windows 98; Win 9x 4.90') != -1){
+			os = 'Windows ME';
+		} else if(ua.indexOf('Windows 98') != -1){
+			os = 'Windows 98';
+		} else if(ua.indexOf('Windows 95') != -1){
+			os = 'Windows 95';
+		}
+	} else if(ua.indexOf('Windows Phone') != -1){
+		os = 'Windows Phone';
+	} else if(ua.indexOf('Macintosh') != -1){
+		os = 'Mac OS';
+		if(ua.indexOf('OS X') != -1){
+			os = ua.substr(ua.indexOf('OS X')).split(')')[0];
+		}
+	} else if(ua.indexOf('CrOS') != -1){
+		os = 'Chrome OS';
+	} else if(ua.indexOf('Android') != -1){
+		os = 'Android';
+	} else if(ua.indexOf('iPad') != -1){
+		os = 'iPad/iOS';
+	} else if(ua.indexOf('iPhone') != -1){
+		os = 'iPhone/iOS';
+	} else if(ua.indexOf('iPod') != -1){
+		os = 'iPod/iOS';
+	} else if(ua.indexOf('PlayBook') != -1){
+		os = 'BlackBerry PlayBook';
+	} else if(ua.indexOf('BB10') != -1){
+		os = 'BlackBerry 10';
+	} else if(ua.indexOf('BlackBerry') != -1){
+		os = 'BlackBerry';//9900, Bold, etc.
+	} else if(ua.indexOf('Nintendo WiiU') != -1){
+		os = 'Nintendo WiiU';
+	} else if(ua.indexOf('Nintendo 3DS') != -1){
+		os = 'Nintendo 3DS';
+	} else if(ua.indexOf('wOSBrowser') != -1){
+		os = 'HP/Web OS';
+	} else if(ua.indexOf('PlayStation') != -1){
+		os = 'PlayStation';
+		if(ua.indexOf('PlayStation Vita') != -1){
+			os = 'PlayStation Vita';
+		}
+	} else if(ua.indexOf('AQUOSBrowser') != -1){
+		os = 'Sharp/Espial DTV';
+	} else if(ua.indexOf('SMART-TV') != -1){
+		os = 'SMART TV';
+	} else if(ua.indexOf('Linux') != -1){
+		os = 'Linux';
+	}
+
+	browserInfo.os = os;
+	browserInfo.browserBitness = browserBitness;
+	browserInfo.osBitness = osBitness;
+	//browser
+	var browser = 'Unknown';
+	var browserVersion = 'Unknown';
+	if(ua.indexOf('Trident') != -1 || ua.indexOf('MSIE') != -1){
+		browser = 'Internet Explorer (Version Unknown)';
+		if(ua.indexOf('Trident/8.0') != -1){//IE11 on Windows 10 (might have docmode switched to fake 10,9,8,7,5)
+			browser = 'Internet Explorer';
+			browserVersion = 11;
+		} else if(ua.indexOf('Trident/7.0') != -1){
+			browser = 'Internet Explorer';
+			browserVersion = 11;
+		} else if(ua.indexOf('Trident/6.0') != -1){
+			browser = 'Internet Explorer';
+			browserVersion = 10;
+		} else if(ua.indexOf('Trident/5.0') != -1){
+			browser = 'Internet Explorer';
+			browserVersion = 9;
+		} else if(ua.indexOf('Trident/4.0') != -1){
+			browser = 'Internet Explorer';
+			browserVersion = 8;
+		} else if(ua.indexOf('MSIE 7.0') != -1){
+			browser = 'Internet Explorer';
+			browserVersion = 7;
+		}
+	} else if(ua.indexOf('Edge') != -1){
+		browser = 'Microsoft Edge';
+		browserVersion = ua.substr(ua.indexOf('Edge/')+5);
+		browserVersion = Number(browserVersion.substr(0, browserVersion.indexOf('.')));
+	} else if(ua.indexOf('Edg') != -1){
+		browser = 'Microsoft Edge';
+		browserVersion = ua.substr(ua.indexOf('Edg/')+4);
+		browserVersion = Number(browserVersion.substr(0, browserVersion.indexOf('.')));
+	} else if(ua.indexOf('Vivaldi/') != -1){
+		browser = 'Vivaldi Browser';
+		browserVersion = ua.substr(ua.indexOf('Vivaldi/')+8);
+		browserVersion = parseFloat(browserVersion);
+	} else if(ua.indexOf('OPR/') != -1){
+		browser = 'Opera Browser';
+		browserVersion = ua.substr(ua.indexOf('OPR/')+4);
+		browserVersion = Number(browserVersion.substr(0, browserVersion.indexOf('.')));
+	} else if(ua.indexOf('Opera/') != -1){
+		browser = 'Opera Browser';//Opera on Android/iOS
+		browserVersion = parseFloat(browserVersion);
+	} else if(ua.indexOf('Chrome/') != -1){
+		browser = 'Google Chrome';
+		browserVersion = ua.substr(ua.indexOf('Chrome/')+7);
+		browserVersion = parseFloat(browserVersion);
+	} else if(ua.indexOf('CriOS/') != -1){
+		browser = 'Google Chrome';//Chrome on iOS
+		browserVersion = ua.substr(ua.indexOf('CriOS/')+6);
+		browserVersion = parseFloat(browserVersion);
+	} else if(ua.indexOf('Firefox/') != -1){
+		browser = 'Mozilla Firefox';
+		browserVersion = Number(ua.substr(ua.indexOf('Firefox/')+8));
+	} else if(ua.indexOf('FxiOS/') != -1){
+		browser = 'Mozilla Firefox';
+		browserVersion = parseFloat(ua.substr(ua.indexOf('FxiOS/')+6));
+	} else if(ua.indexOf('BB10') != -1){
+		browser = 'BlackBerry 10 Browser';
+		browserVersion = 10;
+	} else if(ua.indexOf('PlayBook') != -1){
+		browser = 'BlackBerry PlayBook Browser';
+		browserVersion = 10;
+	} else if(ua.indexOf('Silk/') != -1 && ua.indexOf('PlayStation') == -1){
+		browser = 'Amazon Silk Browser';
+	} else if(os == 'Android' && ua.indexOf('AppleWebKit/') != -1){
+		browser = 'Android WebKit Browser';//default Android browser
+	} else if(os == 'Nintendo WiiU'){
+		browser = 'Nintendo Browser';
+	} else if(ua.indexOf('Safari/') != -1 && (os != 'Unknown')){
+		browser = 'Apple Safari';
+		browserVersion = ua.substr(ua.indexOf('Safari/')+7);
+		browserVersion = parseFloat(browserVersion);//gives 500-600+
+		if(browserVersion >= 602){
+			//Apple updated their UA to include a "Version/XX.X" string for some version 10+ agents
+			browserVersion = 10;//default
+			if(ua.indexOf('Version/') != -1){
+				browserVersion = ua.substr(ua.indexOf('Version/')+8);
+				browserVersion = parseFloat(browserVersion);//gives 10.x,11.x,12.x+
+			}
+		} else if(browserVersion >= 601){
+			browserVersion = 9;
+		} else if(browserVersion >= 538){
+			browserVersion = 8;
+		} else if(browserVersion >= 537){
+			browserVersion = 7;
+		} else if(browserVersion >= 536){
+			browserVersion = 6;
+		} else if(browserVersion >= 533){
+			browserVersion = 5;
+		} else {
+			browserVersion = 4;
+		}
+	} else if(ua.indexOf('Focus/') != -1){
+		browser = 'Firefox Focus';
+		browserVersion = ua.substr(ua.indexOf('Focus/')+6);
+		browserVersion = parseFloat(browserVersion);
+	} else if(ua.indexOf('AppleWebKit/') != -1){
+		browser = 'WebKit Browser';
+		browserVersion = 0;
+	}
+	browserInfo.browser = browser;
+	browserInfo.browserVersion = browserVersion;
+	browserInfo.screenSize = screen.width + 'x' + screen.height;
+	browserInfo.browserSize = $(window).width() + 'x' + $(window).height();
+	browserInfo.cookiesEnabled = navigator.cookieEnabled;
+	return browserInfo;
+}
+
+//wire up listener(s)
+$(document).ready(function(){
+  if($('#username').val().indexOf('.') > 0){
+    inspect();
+  }
+  $('#username').bind('change',function(){
+    inspect();
+  });
+});
+</script>
+    <script>
+        window.postFlip = false;
+        window.allowDirectLogin = false;
+        window.prefixOnFlip = '';
+        
+        var isMSIE = (navigator.userAgent.indexOf('Trident') != -1);
+        function createRipple(e){
+            var button = e.currentTarget;
+            var circle = document.createElement('span');
+            var dia = Math.max(button.clientWidth, button.clientHeight);
+            var rad = dia / 2;
+            circle.style.width = circle.style.height = dia + 'px';
+            circle.style.left = (e.clientX - (button.offsetLeft + rad)) + 'px';
+            circle.style.top = (e.clientY - (button.offsetTop + rad)) + 'px';
+            circle.classList.add('ripple');
+            var ripple = button.getElementsByClassName('ripple')[0];
+            if(ripple){
+                if(!isMSIE){
+                    ripple.remove();
+                } else {
+                    //fallback support for IE
+                    ripple.parentNode && ripple.parentNode.removeChild(ripple);
+                }
+            }
+            button.appendChild(circle);
+        }
+        function forceFocus(elem){
+            if(elem){
+                elem.focus();
+                elem.setSelectionRange(elem.value.length, elem.value.length);
+                setFocusClass(elem);
+            }
+        }
+        function setFocusClass(elem){
+            $(elem).parent().addClass('focused');
+            //IE doesn't support CSS translate, let's help it out
+            if(isMSIE){
+                triggerActiveOrPopulatedFieldLabel(elem);
+            }
+        }
+        function triggerActiveOrPopulatedFieldLabel(elem){
+            $(elem).parent().find('label.placeholder .placeholder-text').css({'position':'relative'});
+            $(elem).parent().find('label.placeholder .placeholder-text').animate({'top':-26, 'font-size':'12px'}, 150, 'swing', function(){
+                $(this).css({'background-color':'#fff','color':'#05576f','padding':'0 4px'});
+            });
+        }
+        function removeFocusClass(elem){
+            $(elem).parent().removeClass('focused');
+            //IE doesn't support CSS translate, let's help it out
+            if(isMSIE){
+                if(elem.value == ''){
+                    $(elem).parent().find('label.placeholder .placeholder-text').animate({'top':0, 'font-size':16}, 150, 'swing', function(){
+                        $(this).css({'background-color':'transparent','color':'rgba(0,0,0,.6)','padding':'0'});
+                    });
+                }
+            }
+        }
+        function getPassLength(){
+            var len = 0;
+            if($('#password').length == 1){
+                len = $('#password').val().trim().length;
+            }
+            return len;
+        }
+        $(document).ready(function(){
+            var loginForm = document.forms['loginForm'];
+            loginForm.onsubmit = prepareSubmit;
+            $('#username').keypress(function(e){
+                if(e.keyCode == 13){
+                    e.stopPropagation();
+                }
+            });
+            $('#loginForm').submit(function(e){
+                e.stopPropagation();
+            });
+            $('#password').keypress(function(e){
+                if(e.keyCode == 13){
+                    $('#loginForm').submit();
+                }
+            });
+            $('#password').keypress(function(e){
+                var w = e.which ? e.which : (e.keyCode ? e.keyCode : -1);
+                var s = e.shiftKey ? e.shiftKey : (e.modifiers ? !!(e.modifiers & 4) : false);
+                if(w >=65 && w <= 122){//only alter when ASCII characters are typed
+                    var c = ((w >= 65 && w <= 90) && !s) || ((w >= 97 && w <= 122) && s);
+                    if(c){
+                        $('#capslockwarning').css('visibility', 'visible');
+                    } else {
+                        $('#capslockwarning').css('visibility', 'hidden');
+                    }
+                }
+            });
+            $('button, input[type=button], input[type=submit]').click(function(e){
+                createRipple(e);
+            });
+            $('input[type=text], input[type=password]').on('keyup paste drop', function(e){
+                this.setAttribute('value', this.value);
+            });
+            $('input[type=text], input[type=password]').on('focus', function(e){
+                setFocusClass(this);
+            });
+            $('input[type=text], input[type=password]').on('blur', function(e){
+                removeFocusClass(this);
+            });
+            $('#username').on('keyup paste drop', function(e){
+                if(window.prefixOnFlip != ''){
+                    var val = $(this).val();
+                    var idx = val.indexOf('.');
+                    if(idx > 0){
+                        var prefix = val.substr(0, idx);
+                        if(prefix.toLowerCase() != window.prefixOnFlip){
+                            flipToStageOne();
+                            return;
+                        }
+                    }
+                }
+            });
+            
+        });
+        function flipToStageOne(){
+            $('#id-submit').hide();
+            $('#id-next').show();
+            $('#password-block').hide();
+            window.prefixOnFlip = '';
+        }
+        function setPrefix(){
+            var prefix = '';
+            var val = $('#username').val();
+            var idx = val.indexOf('.');
+            if(idx > 0){
+                prefix = val.substr(0, idx).toLowerCase();
+            }
+            window.prefixOnFlip = prefix;
+        }
+        function flipToStageTwo(){
+            setPrefix();
+            window.postFlip = true;
+            $('#id-next').hide();
+            $('#id-submit').show();
+            $('#password-block').show();
+            //focus the password field
+            forceFocus(document.getElementById('password'));
+        }
+
+        function prepareSubmit(){
+            var loginButton = document.getElementById('id-submit');
+            
+            
+                if(loginButton.style.display == 'none'){
+                    
+                        
+                            checkIAMEnabledAndRedirect($("#username").val(), true);
+                            return false;
+                        
+                        
+                    
+                } else {
+                    if(window.postFlip && !window.allowDirectLogin){
+                        e.stopPropagation();
+                        return false;
+                    }
+                }
+            
+            //check if password is set
+            if(getPassLength() == 0){
+                return false;
+            }
+        }
+        function submitLogin(){
+            var loginForm = document.forms['loginForm'];
+            loginForm.submit();
+        }
+
+        
+            function checkIAMEnabledAndRedirect(value, redirect){
+                $('#login-error').hide();
+                var ndx = value.indexOf('.');
+                if(ndx > 0){
+                    getIAMEnabledFlag(value.substring(0, ndx), redirect);
+                }
+            }
+            function getNonceJWT(){
+                var jqxhr = $.ajax({
+                    type: 'GET',
+                    url: 'home/generateNonce.xhtml',
+                    dataType: 'html',
+                    cache: false,
+                    async: false
+                });
+                var response = {valid: jqxhr.status, data: jqxhr.responseText};
+                return response;
+            }
+            function getStateJWT(orgCode){
+                var data = orgCode;
+
+                if($('#ESOLrememberorgcode').attr('checked'))
+                    data = data+'&rememberOrg=Y'
+
+                var jqxhr = $.ajax({
+                    type: 'GET',
+                    url: 'home/generateState.xhtml?orgCode=' + data,
+                    dataType: 'html',
+                    cache: false,
+                    async: false
+                });
+                var response = {valid: jqxhr.status, data: jqxhr.responseText};
+                return response;
+            }
+            function getIAMEnabledFlag(orgCode, redirect){
+                $.ajax({
+                    url: 'home/iamAuthenticationEnabled.xhtml?orgCode=' + orgCode,
+                    type: 'GET',
+                    dataType:'json',
+                    success: function(data){
+                        $('#adblockerwarning').css('display', 'none');
+                        if(data){
+                            $('#password-block').hide();
+                            $('#id-next').show();
+                            $('#id-submit').hide();
+                            if(redirect){
+                                // generate nonce and state.
+                                var nonceJWT = getNonceJWT();
+                                var stateJWT = getStateJWT(orgCode);
+                                var userName = $('#username').val();
+
+                                //redirect to IAM
+                                if(nonceJWT.valid == '200' && stateJWT.valid == '200'){
+                                    var iamURI = 'https://accounts.pointclickcare.com/api/oauth2/authorize?client_id=VqoeUcAOZyXZXK7AXaBUUybpc5UplxNA&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Flogin.pointclickcare.com%2FiamLogin.xhtml'
+                                        + "&username=" + encodeURIComponent(userName)
+                                        + "&nonce=" + nonceJWT.data
+                                        + "&state=" + stateJWT.data;
+                                    location.href = iamURI;
+                                    //do not show stage two
+                                    return;
+                                }
+                            }
+                            window.allowDirectLogin = true;
+                            if(window.postFlip && getPassLength() > 0){
+                                submitLogin();
+                            } else {
+                                flipToStageTwo();
+                            }
+                        } else {
+                            window.allowDirectLogin = true;
+                            if(window.postFlip && getPassLength() > 0){
+                                submitLogin();
+                            } else {
+                                flipToStageTwo();
+                            }
+                        }
+                    },
+                    error: function(){
+                        $('#adblockerwarning').css('display', 'block');
+                    }
+                });
+            }
+        
+    </script>
+    <script src="https://cdn.bizible.com/scripts/bizible.js" async></script>
+</head>
+<body>
+<div class="horizontal-container">
+    <div class="vertical-container">
+        <div class="login-card-wrapper">
+            <div class="login-card">
+                <div class="login-card-title" style="margin:0 auto;padding:24px;" role="banner">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzkwIDMzNyI+PGcgZmlsbD0iIzM3M0EzNiI+PHBhdGggZD0iTTI3NTguNTQgNTQuNmEzMC4xMSAzMC4xMSAwIDExLS4xNyA2MC4yMWMtMTcuMjkgMC0zMS4xOC0xMy4zNi0zMS4xOC0zMC4yOCAwLTE2LjU3IDEzLjg5LTI5LjkzIDMxLjE4LTI5LjkzaC4xN3ptLS41MyA3Yy0xMi42NCAwLTIyLjI4IDEwLjE1LTIyLjI4IDIzLjE1IDAgMTIuODQgOS42NCAyMy4xNyAyMi40NSAyMy4xNyAxMi44My4xOCAyMi4yOC0xMC4zMyAyMi4yOC0yMy4xNyAwLTEzLTkuNDUtMjMuMTUtMjIuMjgtMjMuMTVoLS4xN3ptLTMuOTMgMzcuOTVoLThWNzAuODRhNTYuMTkgNTYuMTkgMCAwMTExLjkyLTEuMWM2IDAgOC43NS44OSAxMC42OSAyLjMyYTYuNzkgNi43OSAwIDAxMyA2LjA2YzAgMy4yLTIuNjggNS42OS02LjI0IDYuNzd2LjM1YzMgMS4wNyA0LjYzIDMuMzggNS41MiA3LjMxYTM0LjE2IDM0LjE2IDAgMDAyIDYuOTVoLTguNTVjLS44OS0xLjA4LTEuNDItMy41Ny0yLjEyLTYuNi0uNy0zLjAzLTIuMTYtNC4yOC01LjM2LTQuMjhoLTIuODZ2MTAuOTN6bS4xOC0xNi4zOWgyLjg2YzMuMzggMCA1Ljg4LTEuMjUgNS44OC0zLjkzIDAtMi40OS0xLjc4LTMuOTItNS41Mi0zLjkyLTEuNDIgMC0yLjQ5LjE4LTMuMjIuMTh2Ny42N3pNLjYyIDIxLjA0YzIxLjkyLTMuNzMgNTIuNzEtNi41MiA5Ni4wOC02LjUyIDQzLjg0IDAgNzUuMDkgOC4zOSA5Ni4wOCAyNS4xOCAyMC4wNiAxNS44NSAzMy41OSA0MiAzMy41OSA3Mi43NiAwIDMwLjc2LTEwLjI3IDU2LjkxLTI4LjkyIDc0LjYzLTI0LjI2IDIyLjg1LTYwLjE3IDMzLjEyLTEwMi4xNSAzMy4xMmExNzkuMzggMTc5LjM4IDAgMDEtMjQuMjUtMS40djExMi40SC42MlYyMS4wNHptNzAuNDMgMTQyLjczYzYuMDYgMS40IDEzLjUzIDEuODYgMjMuNzkgMS44NiAzNy43NyAwIDYxLjEtMTkuMTIgNjEuMS01MS4zIDAtMjguOTItMjAuMDYtNDYuMTgtNTUuNS00Ni4xOC0xNC40NyAwLTI0LjI2IDEuNC0yOS4zOSAyLjh2OTIuODJ6Ii8+PHBhdGggZD0iTTQ0OC4zNiAyMTQuNjFjMCA4My40OC01OS4yMyAxMjEuNzMtMTIwLjMzIDEyMS43My02Ni43IDAtMTE4LTQzLjg0LTExOC0xMTcuNTNTMjU4LjU0IDk4IDMzMS43NyA5OGM2OS45NiAwIDExNi41OSA0OC4wNSAxMTYuNTkgMTE2LjYxem0tMTY1LjExIDIuMzNjMCAzOS4xOCAxNi4zMiA2OC41NiA0Ni42NSA2OC41NiAyNy41MiAwIDQ1LjI0LTI3LjUyIDQ1LjI0LTY4LjU2IDAtMzQtMTMuMDYtNjguNTctNDUuMjQtNjguNTctMzQuMDUgMC00Ni42NSAzNC45OC00Ni42NSA2OC41N3pNNTQ2Ljc1IDM5LjdjMCAxOS41OS0xNC45MiAzNS40NS0zOC4yNCAzNS40NS0yMi4zOSAwLTM3LjMxLTE1Ljg2LTM2Ljg1LTM1LjQ1QzQ3MS4yIDE5LjE4IDQ4Ni4xMiAzLjg0IDUwOSAzLjg0YzIyLjg4IDAgMzcuMyAxNS4zNCAzNy43NSAzNS44NnptLTczLjIyIDI5MS41MVYxMDMuMTNoNzAuOXYyMjguMDhoLTcwLjl6bTEwOS4xMy0xNTUuMzJjMC0yOC40NC0uOTMtNTIuNy0xLjg2LTcyLjc2aDYxLjU2bDMuMjYgMzEuMjVINjQ3QzY1Ni4zMyAxMTkuOTIgNjc5LjY1IDk4IDcxNy40MyA5OGM0Ni42NSAwIDgxLjYyIDMwLjc4IDgxLjYyIDk4djEzNS4yMWgtNzAuODdWMjA0Ljg0YzAtMjkuMzgtMTAuMjUtNDkuNDQtMzUuOTEtNDkuNDQtMTkuNiAwLTMxLjI2IDEzLjUzLTM1LjkyIDI2LjU5LTEuODcgNC42Ni0yLjggMTEuMTktMi44IDE3LjczdjEzMS40OWgtNzAuODlWMTc1Ljg5ek05MTMuOCA0MS4xdjYyaDUwLjg0djUyLjI0SDkxMy44djgyLjU1YzAgMjcuNTMgNi41MyA0MC4xMSAyOCA0MC4xMSA5Ljc5IDAgMTQtLjQ1IDIxLTEuODZsLjQ3IDUzLjY0Yy05LjM0IDMuNzMtMjYuMTIgNi41My00Ni4xOCA2LjUzLTIyLjg2IDAtNDItOC40LTUzLjE3LTIwLjA1LTEzLjA5LTEzLjUtMTkuNjItMzUuNDItMTkuNjItNjcuNnYtOTMuMjlIODE0di01Mi4yNGgzMC4zVjYwLjIybDY5LjUtMTkuMTJ6bTMwNi40MSAyODEuMjVjLTEzLjA2IDYuNTMtNDIuNDQgMTQtODAuNjkgMTQtMTA4LjY3IDAtMTY0LjY1LTY4LjEtMTY0LjY1LTE1Ny42NCAwLTEwNy4yOCA3Ni41LTE2NyAxNzEuNjUtMTY3IDM2Ljg1IDAgNjQuODIgNy40NyA3Ny40MyAxNGwtMTQuNDYgNTYuNDNhMTUzLjY1IDE1My42NSAwIDAwLTU5LjctMTEuNjZjLTU2LjQ0IDAtMTAwLjI4IDM0LjA1LTEwMC4yOCAxMDQgMCA2MyAzNy4zMSAxMDIuNjEgMTAwLjc0IDEwMi42MSAyMS40NSAwIDQ1LjI1LTQuNjUgNTkuMjQtMTAuMjZsMTAuNzIgNTUuNTJ6TTEyNDQuNDQuMDZoNzAuOXYzMzEuMTVoLTcwLjl6bTE4Mi44MiAzOS42NGMwIDE5LjU5LTE0LjkyIDM1LjQ1LTM4LjI0IDM1LjQ1LTIyLjM4IDAtMzcuMzEtMTUuODYtMzYuODQtMzUuNDUtLjQ3LTIwLjUyIDE0LjQ2LTM1LjkxIDM3LjMxLTM1LjkxczM3LjMgMTUuMzkgMzcuNzcgMzUuOTF6TTEzNTQgMzMxLjIxVjEwMy4xM2g3MC44OXYyMjguMDhIMTM1NHptMjgwLjM0LTUuNmMtMTIuNiA1LjYtMzYuMzcgMTAuNzMtNjMuNDQgMTAuNzMtNzMuNjggMC0xMjAuOC00NS4yNC0xMjAuOC0xMTcuMDcgMC02Ni43IDQ1LjcxLTEyMS4yNyAxMzAuNi0xMjEuMjcgMTguNjUgMCAzOS4xOCAzLjI3IDU0LjEgOC44N2wtMTEuMTggNTIuN2MtOC40MS0zLjczLTIxLTctMzkuNjYtNy0zNy4zMSAwLTYxLjU2IDI2LjU5LTYxLjA5IDYzLjkgMCA0MiAyOCA2My45IDYyLjQ5IDYzLjkgMTYuOCAwIDI5Ljg1LTIuNzkgNDAuNTctNy40Nmw4LjQxIDUyLjd6bTkxLjM5LTEyNi40aC45NGM1LjE0LTkuMzMgMTAuNzItMTguNjUgMTYuMzEtMjcuNTJsNDYuMi02OC41Nmg4NS4zM2wtODEuNjEgOTIuMzUgOTMuMjkgMTM1LjczSDE3OTlsLTU1LTkzLjc1LTE4LjI3IDIyLjM4djcxLjM1aC03MC44OVYuMDZoNzAuODl2MTk5LjE1eiIvPjxwYXRoIGQ9Ik0yMTIyLjE3IDMyMi4zNWMtMTMuMDYgNi41My00Mi40MyAxNC04MC42OSAxNC0xMDguNjggMC0xNjQuNjUtNjguMS0xNjQuNjUtMTU3LjY0IDAtMTA3LjI4IDc2LjUtMTY3IDE3MS42NC0xNjcgMzYuODYgMCA2NC44MyA3LjQ3IDc3LjQ0IDE0bC0xNC40NyA1Ni40M2ExNTMuNjEgMTUzLjYxIDAgMDAtNTkuNy0xMS42NmMtNTYuNDMgMC0xMDAuMjcgMzQuMDUtMTAwLjI3IDEwNCAwIDYzIDM3LjMxIDEwMi42MSAxMDAuNzMgMTAyLjYxIDIxLjQ2IDAgNDUuMjYtNC42NSA1OS4yNC0xMC4yNmwxMC43MyA1NS41MnptMjExLjI3LTQ2LjY0YzAgMjEuOTEuOTMgNDIuOTIgMy4yNiA1NS41aC02My45MmwtNC4xOC0yMi44NWgtMS40MWMtMTQuOTIgMTguMTgtMzguMjQgMjgtNjUuMyAyOC00Ni4xNyAwLTczLjY5LTMzLjU4LTczLjY5LTcwIDAtNTkuMjQgNTMuMTctODcuNjggMTMzLjg2LTg3LjIydi0zLjI3YzAtMTIuMTItNi41Mi0yOS4zOC00MS41LTI5LjM4LTIzLjMyIDAtNDggNy45My02MyAxNy4yNmwtMTMuMDctNDUuNzFjMTUuODYtOC44NiA0Ny4xMi0yMC4wNiA4OC42Mi0yMC4wNiA3NiAwIDEwMC4zIDQ0Ljc4IDEwMC4zIDk4LjQybC4wMyA3OS4zMXptLTY5LTUyLjI0Yy0zNy4zMS0uNDctNjYuMjMgOC40LTY2LjIzIDM1LjkxIDAgMTguMiAxMi4xMyAyNy4wNyAyOCAyNy4wNyAxNy43MyAwIDMyLjE2LTExLjY4IDM2Ljg0LTI2LjEzYTUxLjUzIDUxLjUzIDAgMDAxLjQtMTIuMTNsLS4wMS0yNC43MnptMTA2LjI2LTQ1LjI0YzAtMzMuNTgtLjkyLTU1LjUxLTEuODUtNzUuMUgyNDMwbDIuMzQgNDJoMS44NmMxMS42NS0zMy4xMiAzOS42NC00Ny4xMSA2MS41Ni00Ny4xMSA2LjUzIDAgOS43OSAwIDE0Ljk0Ljk0djY3LjE2YTcxLjMzIDcxLjMzIDAgMDAtMTkuMTMtMi4zM2MtMjYuMTIgMC00My44NCAxNC00OC41MSAzNS45MmE4My42NCA4My42NCAwIDAwLTEuNCAxNS44NnYxMTUuNjRoLTcwLjk2VjE3OC4yM3ptMjA5LjQyIDYxLjYxYzIuMzMgMjkuMzggMzEuMjUgNDMuMzkgNjQuMzcgNDMuMzkgMjQuMjUgMCA0My44My0zLjI3IDYzLTkuMzRsOS4zMSA0OC4wNWMtMjMuMyA5LjMyLTUxLjc2IDE0LjQ1LTgyLjU0IDE0LjQ1LTc3LjQ0IDAtMTIxLjc0LTQ1LjI0LTEyMS43NC0xMTYuNiAwLTU3LjgzIDM1LjkyLTEyMS43NCAxMTUuMjEtMTIxLjc0IDczLjY4IDAgMTAxLjY3IDU3LjM3IDEwMS42NyAxMTMuOCAwIDkuMzgyLS43ODEgMTguNzQ3LTIuMzMgMjhsLTE0Ni45NS0uMDF6bTgzLjUtNDguNTFjMC0xNy4yNS03LjQ4LTQ2LjE3LTQwLjEyLTQ2LjE3LTI5Ljg1IDAtNDIgMjctNDMuODUgNDYuMTdoODMuOTd6Ii8+PC9nPjwvc3ZnPg==" alt="PointClickCare Logo"/>
+                </div>
+                
+                <div class="login-card-text">
+                    <form name="loginForm" id="loginForm" action="userLogin.xhtml" method="post" onsubmit="prepareSubmit();">
+                        <input type="hidden" name="lru" value=""/>
+                        <div id="ie-eol" class="alert-box alert-error" style="display:none;" role="alert">
+                            <div class="alert-box-icon">
+                                <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" style="height:24px;width:24px;"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"></path></svg>
+                            </div><div class="alert-box-msg">Microsoft discontinued the use of Internet Explorer. Starting April 8, PointClickCare will no longer support Internet Explorer.<br/><br/>
+                                <b>Before April 9, you must change your browser to a supported operating system and browser combination to continue access to PointClickCare.</b><br/><br/>
+                                For more information, see the <a href="https://pointclickcare.com/wp-content/uploads/2019/07/technical-specifications-guide.pdf" target="_blank">Technical Specifications Guide</a>.<br/>
+                            </div>
+                        </div>
+                        
+                        <div class="login-card-text">
+                            <div id="system-information"></div>
+                            
+                        </div>
+                        <div class="login-card-text">
+                            
+                            
+                        </div>
+                        <div class="login-card-text">
+                            <div id="adBlockerWarning" class="alert-box alert-warning" style="display:none;" role="alert">
+                                <div class="alert-warning-icon">
+                                    <svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" style="height:24px;width:24px;"><path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path></svg>
+                                </div>
+                                <div class="alert-box-msg">Warning! Ad blocker has been detected. Please turn Ad blocker off to continue.</div>
+                            </div>
+                        </div>
+                        <div class="login-card-text">
+                            <div class="input-field-border" style="margin-bottom:24px;">
+                                <input type="text" name="un" id="username" value="" size="35" maxlength="128" aria-labelledby="username-label" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+                                <label id="username-label" for="username" class="placeholder" aria-hidden="true">
+                                    <div class="placeholder-text">Username</div>
+                                </label>
+                            </div>
+                            <p class="helper-text" style="visibility:hidden;"> </p>
+                        </div>
+                        
+                            <script>forceFocus(document.getElementById('username'));</script>
+                        
+                        
+                            <div class="login-card-text" id="password-block" style="display:none;">
+                                <div class="input-field-border">
+                                    <input type="password" name="pw" id="password" value="" size="35" autocomplete="off" maxlength="128" aria-labelledby="password-label"/>
+                                    <label id="password-label" for="password" class="placeholder" aria-hidden="true">
+                                        <div class="placeholder-text">Password</div>
+                                    </label>
+                                </div>
+                                <p id="capslockwarning" class="helper-text" style="visibility:hidden;">Caps Lock is on</p>
+                                
+                            </div>
+                        
+                        <div class="login-card-text">
+                            <div style="float:right;">
+                                <button id="id-next" type="submit" style="display:;"><span>Next</span></button>
+                                <button id="id-submit" type="submit" style="display:none;"><span>Sign In</span></button>
+                            </div>
+                        </div>
+                        <div class="login-card-text">
+                            <label class="checkbox"><input type="checkbox" name="ESOLrememberorgcode" id="ESOLrememberorgcode" value="Y" /> Remember my organization</label>
+                        </div>
+                        
+                        <script>
+                            (function(){
+                                var ua = navigator.userAgent;
+                                var uaLC = ua.toLowerCase();
+                                var re = /(android|ipad|iphone|ipod)/i;
+                                if(uaLC.match(re)){
+                                    document.write('<div class="login-card-text"><div class="alert-box alert-info"><div class="alert-box-icon"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit" focusable="false" aria-hidden="true" viewBox="0 0 24 24" style="height:24px;width:24px;"><path d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"></path></svg></div><div class="alert-box-msg">This site was designed for desktop and may not provide the best mobile experience.</div></div></div>');
+                                }
+                            })();
+                        </script>
+                    </form>
+                </div>
+            </div>
+            <div id="ancillary-links">
+                <span class="version-label">CLV: <span class="version">4.4.34</span></span>
+                
+                    
+                        <a class="subtle" href="https://support.pointclickcare.com/" title="Login Assistance" target="_blank">Login Assistance</a>
+                    
+                    
+                
+                <a class="subtle" href="https://pointclickcare.com/us/privacy-policy/" target="_blank" title="Privacy Policy">Privacy Policy</a>
+            </div>
+        </div>
+        <div id="login-tips-container">
+            <div id="login-tips">
+                <h5>Login Assistance</h5>
+                <h6>Wrong organization code, username, or password</h6>
+                Passwords are case sensitive.
+                <h6>Cannot log in from your current location of xxx.xxx.xxx.xxx</h6>
+                You must have remote user access. Contact your Security Administrator.
+                <h6>Your login is suspended</h6>
+                Your account is inactive. Contact your Security Administrator.<br/>
+                Maximum number of login attempts for this IP Address is exceeded. Try again later or contact your Security Administrator.
+                <br/>
+                <br/>
+                Note: PointClickCare does not reset passwords or activate users.<br/>
+                For other login assistance, please contact Customer Support at <a href="mailto:support@pointclickcare.com?subject=Login%20Trouble">support@pointclickcare.com</a> or by phone at 1-877-722-2431.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="server-notes">
+	&copy; 2024 PointClickCare. All rights reserved. PointClickCare is a registered trademark.<br/>
+	
+</div>
+<script>
+    function toggleTips(){
+        $('#login-tips').toggle();
+    }
+    function onLoad(){
+        var loginForm = document.forms['loginForm'];
+        //if IE, check if we need to force some styles on the username field after a failed login attempt
+        if(isMSIE){
+            var elem = document.activeElement;
+            var unField = loginForm.elements['un'];
+            if(elem && elem != unField){
+                //after a failed login attempt (and the password/other has focus), reset username label in IE
+                if(unField.value != '' && unField != elem){
+                    triggerActiveOrPopulatedFieldLabel(unField);
+                }
+            }
+        }
+        
+        if(isMSIE){
+            var ieEOLDiv = document.getElementById('ie-eol');
+            ieEOLDiv.style.display = '-ms-flexbox';
+        }
+    }
+    onLoad();
+</script>
+</body>
+</html>

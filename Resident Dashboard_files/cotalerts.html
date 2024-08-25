@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<!-- saved from url=(0171)https://www19.pointclickcare.com/clinical/dashboard/cotalerts.xhtml?ESOLdashboard=R&ESOLviewId=124&ESOLtitle=COT%20Alerts&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=2 -->
+<html class="_d-dashboard"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script>
+	<title></title>
+	
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+	
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+	<meta http-equiv="expires" content="1">
+	<meta http-equiv="expires" content="Sat, 01 Jan 2000 00:00:00 GMT">
+	<meta name="format-detection" content="telephone=no">
+	
+
+	
+	
+		<link type="text/css" rel="stylesheet" href="./core.css">
+		<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+		
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+	
+	<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+
+	<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+	
+
+	
+	
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+	
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+	
+	<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+	<script src="./jquery.dateField-2.0.0.js.download"></script>
+	
+
+
+
+
+
+
+	<script src="./ESOLvalidate.js.download"></script>
+	
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+	<script src="./core.js.download"></script>
+	<script src="./system-info.js.download"></script>
+	<script src="./pcc-overlay-dialogs.js.download"></script>
+	<script src="./wedate.js.download"></script>
+	
+	<script src="./coremenufunctions.js.download"></script>
+	
+	
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+	
+	
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+	
+	
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+	
+	
+
+
+	<script>var CONTEXT_PATH = '';</script>
+
+	
+
+	
+
+	
+
+	
+	
+	
+	<script src="./autocomplete.js.download"></script>
+	<script>
+		var currentIdx = -1;
+		var physOrderFormPopup = null;
+		var highRiskAlertIds = '';
+
+		function viewCOTAlertDescriptionPopup(clientId, alertId){
+			physOrderFormPopup = openPopupWin("/clinical/pho/view_alertdescription.xhtml?ESOLclientid="+clientId+"&ESOLalertid="+alertId, 'physorderformpopup', 725, 500, 'toolbar=no,status=no,directories=no,menubar=no,resizable=yes,location=1,scrollbars=yes');
+		}
+
+		function checkAll()
+		{
+			$('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+				$(e).prop('checked', true);
+			});
+		}
+		function clearAll()
+		{
+			$('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+				$(e).prop('checked', false);
+			});
+		}
+		function clearAlerts()
+		{
+			var aIds = '';
+			$('input[id^="alertChkBx"]:checkbox').each(function(i,e){
+				if ($(e).prop('checked') == true)
+				{
+					aIds += ($(e).val() + ',');
+				}
+			});
+			if (aIds.length > 0)
+			{
+				if (confirm('Has the appropriate care path been followed prior to clearing the selected alerts?'))
+				{
+					aIds = aIds.substring(0, aIds.length - 1);
+					var aIdsArr = aIds.split(',');
+					var hrIdsArr = highRiskAlertIds.split(',');
+					$.each(aIdsArr, function(i,e){
+						$.each(hrIdsArr, function(j,v){
+							if (e == v)
+							{
+								aIdsArr[i] += '_hr';	
+							}
+						});
+					});
+					aIds = aIdsArr.join();
+					$.ajax({
+						url: "/clinical/dashboard/clearalerts.xhtml",
+						type:"POST",
+						data: {alertIds: aIds},
+						success: function(response) {
+							submitRefresh();
+						},
+						error: function(e) {
+							alert('There was an error clearing errors: ' + aIds + '. Error is: ' + e.message);
+						}
+					});
+				}
+			}
+			else
+			{
+				alert("Please check the alert before you clear it.");
+			}
+		}
+
+		function openDescription(alertId)
+		{
+			openSizedLookup2('/clinical/cp_popup/alertDescriptionDisplay.xhtml?ESOLalertid='+alertId,'',350,200,'');
+		}
+		function openDetails(alertId, clientId)
+		{
+			openSizedLookup2('/clinical/cp_popup/alerttriggerdetails.xhtml?ESOLalertid='+alertId+'&ESOLclientId='+clientId+'',700,500,'');
+		}
+		function changeHistoryHours()
+		{
+			frmData.submit();
+		}
+		function changeSortBy()
+		{
+			frmData.submit();
+		}
+		function submitRefresh()
+		{
+			frmData.submit();
+		}
+
+
+		function clickAlertCheckbox(index)
+		{
+			if($("#alertChkBx"+index).is(":checked")){
+				$("#clientChkBx"+index).attr('checked', true);
+			} else {
+				$("#clientChkBx"+index).attr('checked', false);
+			}
+		}
+	</script>
+
+<link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head>
+
+<body class="clinical" onload="" marginwidth="0" marginheight="0" style="zoom: 1;">
+  
+	<form name="frmData" method="post" action="https://www19.pointclickcare.com/clinical/dashboard/cotalerts.xhtml">
+		<input type="hidden" name="ESOLdashboard" value="R">
+		
+			<input type="hidden" name="ESOLclientid" value="42344920">
+		
+		<table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td width="100%">
+						<table width="100%" cellspacing="0" cellpadding="0">
+							<tbody>
+								<tr class="header">
+									<td class="pccModuleBackgroundColor" height="20">
+										&nbsp;COT Alerts&nbsp;
+									</td>
+									<td class="pccModuleBackgroundColor" align="right" height="20">
+										
+											
+												
+													
+													
+														
+															
+															
+																
+															
+														
+														<a target="_blank" href="https://www19.pointclickcare.com/clinical/report/alertlistingreport.xhtml?client_id=42344920&amp;ESOLshowClearedAlerts=N&amp;ESOLunitid=-1&amp;ESOLfloorid=-1&amp;ESOLstartdate=2024-08-22%2018:49:31&amp;ESOLenddate=2024-08-24%2018:49:31&amp;ESOLsortby=0&amp;ESOLstatusid=-1&amp;ESOLreportOnSimple=Y&amp;ESOLreportOnComplex=Y&amp;ESOLcomplexAlertId=-1&amp;ESOLfromEAlerts=Y;&amp;ESOLalertType=COT_ALERTS" style="color:#ffffff;text-decoration:none;padding-right:5px;" title="COT Alerts Listing Report"><img src="./reports.gif" border="0" align="absmiddle" height="25">COT Alerts Listing Report</a>
+													
+												
+											
+											
+										
+									</td>
+								</tr>
+								<tr>
+									<td class="even" style="color:#000;font-weight:bold;">
+										Show Alerts in Last&nbsp;
+										<select id="ESOLhistoryHours" name="ESOLhistoryHours" onchange="changeHistoryHours();">
+											<option value="24">24 Hours</option>
+											<option value="48" selected="selected">48 Hours</option>
+											<option value="72">72 Hours</option>
+											<option value="720">30 Days</option>
+											<option value="1440">60 Days</option>
+											<option value="2160">90 Days</option>
+										</select>&nbsp;&nbsp;
+										
+											
+											
+												&nbsp;&nbsp;<label><input type="checkbox" id="ESOLshowClearedAlerts" name="ESOLshowClearedAlerts" value="Y" onchange="submitRefresh();">Show Cleared Alerts</label>
+											
+										
+									</td>
+									<td class="even" style="color:#000;font-weight:bold;"></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<table width="100%" cellspacing="0" border="0">
+											<tbody>
+												<tr></tr>
+											</tbody>
+										</table>
+									</td><td>
+								</td></tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" valign="top" height="100%">
+						<div id="listContainer" style="background:#efefef;border:2px solid #d5d5d5;height:160px;overflow-y:auto;padding-bottom:10px;top:-3px;">
+							<input type="hidden" name="ESOLclearId" value="">
+							<input type="hidden" name="ESOLclearCheckedAlerts" value="N">
+							<input type="hidden" name="ESOLalertmoduletype" value="1">
+							<table border="0" cellspacing="0" cellpadding="3" width="100%">
+								<tbody>
+									
+										
+										
+											<tr>
+												<td class="detailColHeader" style="width:25px;">&nbsp;</td>
+												<td class="detailColHeader" style="width:37px;">&nbsp;</td>
+												<td class="detailColHeader" style="width:150px;" nowrap="nowrap">Effective Date</td>
+												<td class="detailColHeader" style="width:300px;" nowrap="nowrap">Alert</td>
+												<td class="detailColHeader" style="width:150px;" nowrap="nowrap">Cleared By</td>
+												<td class="detailColHeader" style="width:150px;" nowrap="nowrap">Cleared Date</td>
+											</tr>
+										
+									
+									
+										
+										
+											
+												
+													<tr class="even">
+														<td valign="top" colspan="3">
+															<b>No records found.</b>
+														</td>
+													</tr>
+												
+												
+											
+										
+									
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<table width="100%" cellpadding="2" cellspacing="0" border="0">
+							<tbody>
+								<tr>
+									<td style="font-size:8pt;font-weight:bold;text-align:center;" nowrap="nowrap">
+										&nbsp;&nbsp;
+										
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+
+</body></html>

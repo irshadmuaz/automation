@@ -1,0 +1,503 @@
+var Drag = {
+	obj : null,
+
+	init : function(o, oRoot, minX, maxX, minY, maxY, bSwapHorzRef, bSwapVertRef, fXMapper, fYMapper)
+	{
+		o.onmousedown	= Drag.start;
+
+		o.hmode			= bSwapHorzRef ? false : true ;
+		o.vmode			= bSwapVertRef ? false : true ;
+
+		o.root = oRoot && oRoot != null ? oRoot : o ;
+
+		if (o.hmode  && isNaN(parseInt(o.root.style.left  ))) o.root.style.left   = "0px";
+		if (o.vmode  && isNaN(parseInt(o.root.style.top   ))) o.root.style.top    = "0px";
+		if (!o.hmode && isNaN(parseInt(o.root.style.right ))) o.root.style.right  = "0px";
+		if (!o.vmode && isNaN(parseInt(o.root.style.bottom))) o.root.style.bottom = "0px";
+
+		o.minX	= typeof minX != 'undefined' ? minX : null;
+		o.minY	= typeof minY != 'undefined' ? minY : null;
+		o.maxX	= typeof maxX != 'undefined' ? maxX : null;
+		o.maxY	= typeof maxY != 'undefined' ? maxY : null;
+
+		o.xMapper = fXMapper ? fXMapper : null;
+		o.yMapper = fYMapper ? fYMapper : null;
+
+		o.root.onDragStart	= new Function();
+		o.root.onDragEnd	= new Function();
+		o.root.onDrag		= new Function();
+	},
+
+	start : function(e)
+	{
+		var o = Drag.obj = this;
+		e = Drag.fixE(e);
+		var y = parseInt(o.vmode ? o.root.style.top  : o.root.style.bottom);
+		var x = parseInt(o.hmode ? o.root.style.left : o.root.style.right );
+		o.root.onDragStart(x, y);
+
+		o.lastMouseX	= e.clientX;
+		o.lastMouseY	= e.clientY;
+
+		o.initMouseX	= e.clientX;
+		o.initMouseY	= e.clientY;
+
+		if (o.hmode) {
+			if (o.minX != null)	o.minMouseX	= e.clientX - x + o.minX;
+			if (o.maxX != null)	o.maxMouseX	= o.minMouseX + o.maxX - o.minX;
+		} else {
+			if (o.minX != null) o.maxMouseX = -o.minX + e.clientX + x;
+			if (o.maxX != null) o.minMouseX = -o.maxX + e.clientX + x;
+		}
+
+		if (o.vmode) {
+			if (o.minY != null)	o.minMouseY	= e.clientY - y + o.minY;
+			if (o.maxY != null)	o.maxMouseY	= o.minMouseY + o.maxY - o.minY;
+		} else {
+			if (o.minY != null) o.maxMouseY = -o.minY + e.clientY + y;
+			if (o.maxY != null) o.minMouseY = -o.maxY + e.clientY + y;
+		}
+
+		document.onmousemove	= Drag.drag;
+		document.onmouseup		= Drag.end;
+
+		return false;
+	},
+
+	drag : function(e)
+	{
+		e = Drag.fixE(e);
+		var o = Drag.obj;
+
+		var ey	= e.clientY;
+		var ex	= e.clientX;
+
+		if (Drag.obj.initMouseY)
+		  Drag.obj.goingUp = (Drag.obj.initMouseY>ey);
+		if (Drag.obj.initMouseX)
+		  Drag.obj.goingLeft = (Drag.obj.initMouseX>ex);
+
+		var y = parseInt(o.vmode ? o.root.style.top  : o.root.style.bottom);
+		var x = parseInt(o.hmode ? o.root.style.left : o.root.style.right );
+		var nx, ny;
+
+		if (o.minX != null) ex = o.hmode ? Math.max(ex, o.minMouseX) : Math.min(ex, o.maxMouseX);
+		if (o.maxX != null) ex = o.hmode ? Math.min(ex, o.maxMouseX) : Math.max(ex, o.minMouseX);
+		if (o.minY != null) ey = o.vmode ? Math.max(ey, o.minMouseY) : Math.min(ey, o.maxMouseY);
+		if (o.maxY != null) ey = o.vmode ? Math.min(ey, o.maxMouseY) : Math.max(ey, o.minMouseY);
+
+		nx = x + ((ex - o.lastMouseX) * (o.hmode ? 1 : -1));
+		ny = y + ((ey - o.lastMouseY) * (o.vmode ? 1 : -1));
+
+		if (o.xMapper)		nx = o.xMapper(y);
+		else if (o.yMapper)	ny = o.yMapper(x);
+
+		Drag.obj.root.style[o.hmode ? "left" : "right"] = nx + "px";
+		Drag.obj.root.style[o.vmode ? "top" : "bottom"] = ny + "px";
+		Drag.obj.lastMouseX	= ex;
+		Drag.obj.lastMouseY	= ey;
+
+		Drag.obj.root.onDrag(nx, ny);
+		//Andrew (looking for the TD)
+		var dragTable = document.getElementById("dragArea");
+		if (dragTable)
+		{
+			
+			var rows = dragTable.rows;
+			var lcells = []; //retrieves all td elements from dragTable, stores them in lcells
+		    for (var i = 0; i<rows.length; i++)
+		    {
+		    	for(var j = 0; j<rows[i].cells.length;j++)
+		    		lcells.push(rows[i].cells[j]);
+		    }
+			
+			var ele = e.srcElement || e.target;
+			if (lcells)
+			{
+				var eoX;
+				var eoY;
+				if(e.offsetX==undefined) // this works for Firefox
+				  {
+				    eoX = e.layerX + foffsetLeft(ele);
+				    eoY = e.layerY + foffsetTop(ele);
+				  }             
+				  else                     // works in Google Chrome
+				  {
+					eoX     = e.offsetX + foffsetLeft(ele);
+					eoY     = e.offsetY + foffsetTop(ele);
+				  }
+				var cellX   = 0;
+				var cellXe  = 0;
+				var cellY   = 0;
+				var cellYe  = 0;
+				var tableY  = foffsetTop(dragTable);
+				var tableYe = tableY + dragTable.offsetHeight;
+				var origX   = foffsetLeft(Drag.obj.parentDrag);
+				var origXe  = origX + Drag.obj.parentDrag.offsetWidth;
+				var origY   = foffsetTop(Drag.obj.parentDrag);
+				var origYe  = origY + Drag.obj.parentDrag.offsetHeight;
+
+				Drag.obj.targetObj    = null;
+				Drag.obj.targetTop    = false;
+				Drag.obj.targetBottom = false;
+				if (eoY<=tableY)
+					Drag.obj.targetTop = true;
+				else if (eoY>=tableYe)
+					Drag.obj.targetBottom = true;
+				else if ((eoX>=origX) && (eoX<=origXe)&&(eoY>=origY) && (eoY<=origYe))
+					Drag.obj.targetObj = null;
+				else
+				{
+					for (var index=0;index<lcells.length;index++)
+					{
+	  				  	cellX = foffsetLeft(lcells[index]);
+	  					cellXe = cellX + lcells[index].offsetWidth;
+	  					cellY = foffsetTop(lcells[index]);
+	  					cellYe = cellY + lcells[index].offsetHeight;
+	  					if  ((eoX>=cellX) && (eoX<=cellXe)&&(eoY>=cellY) && (eoY<=cellYe))
+	  					{
+	  						 Drag.obj.targetObj = lcells[index];
+	  						 index    = lcells.length;
+							 indexRow = dragTable.rows;
+	  					}
+					}
+				}
+			}
+		}
+		
+		return false;
+	},
+
+	end : function()
+	{
+		document.onmousemove = null;
+		document.onmouseup   = null;
+		Drag.obj.root.onDragEnd(	parseInt(Drag.obj.root.style[Drag.obj.hmode ? "left" : "right"]),
+									parseInt(Drag.obj.root.style[Drag.obj.vmode ? "top" : "bottom"]));
+
+		var strHTML  = "";
+    	Drag.obj.parentDrag.style.opacity=1;
+    	Drag.obj.parentDrag.style.filter = '';
+
+    var dragTable = document.getElementById("dragArea");
+    if ((Drag.obj.targetTop)||(Drag.obj.targetBottom))
+    {
+      var newRow = dragTable.insertRow((Drag.obj.targetTop?0:-1));
+      $(newRow).height( $(Drag.obj.parentDrag.parentElement).height() );
+      var newCell = null;
+      newCell = newRow.insertCell(-1);
+      Drag.obj.targetObj = newCell;
+    }
+	else if (Drag.obj.targetObj)
+	{
+		if (dragTable.dragColumns)
+		{
+			 //checking the space in the table
+			var lcells = Drag.obj.targetObj.parentElement.cells;
+			var lcolsUsed = 0;
+			for (var indexC=0;indexC<lcells.length;indexC++)
+			{
+				if ((foffsetLeft(lcells[indexC])!=foffsetLeft(Drag.obj.parentDrag))||(foffsetTop(lcells[indexC])!=foffsetTop(Drag.obj.parentDrag)))
+				{
+					if (lcells[indexC].colSpan)
+					{
+						if(lcells[indexC].title=='2')
+							lcolsUsed+=2;
+						else
+							lcolsUsed+=1;
+					}
+					else
+						lcolsUsed++;
+				}
+			}
+
+			if (!Drag.obj.parentDrag.colSpan)
+				Drag.obj.parentDrag.colSpan = 1;
+			if (dragTable.dragColumns-lcolsUsed>= Drag.obj.parentDrag.title)
+			{
+				Drag.obj.targetObj = Drag.obj.targetObj.parentElement.insertCell((Drag.obj.goingLeft?0:-1));
+			}
+			else
+			{
+				var newRow = dragTable.insertRow(Drag.obj.targetObj.parentElement.rowIndex + (Drag.obj.goingUp?0:1));
+				$(newRow).height( $(Drag.obj.parentDrag.parentElement).height() );
+				Drag.obj.targetObj = newRow.insertCell(-1);
+			}
+		}
+	}
+	if (Drag.obj.targetObj)
+   	{
+		var strId = Drag.obj.parentDrag.id;
+		strHTML = Drag.obj.parentDrag.innerHTML;
+		Drag.obj.targetObj.title = Drag.obj.parentDrag.title;
+		Drag.obj.targetObj.colSpan = Drag.obj.parentDrag.colSpan;
+		Drag.obj.parentDrag.parentElement.deleteCell(Drag.obj.parentDrag.cellIndex);
+		$(Drag.obj.parentDrag).children().remove();
+		Drag.obj.targetObj.innerHTML = strHTML;
+		Drag.obj.targetObj.id = strId;
+   	}
+
+    Drag.obj.style.cursor='auto';
+	Drag.obj.style.display = "none";
+    Drag.obj.targetObj  = null;
+    Drag.obj.parentDrag = null;
+    Drag.obj.targetTop  = false;
+
+    //dragTable Cleaning
+	cleanTable(dragTable);
+	Drag.obj = null;
+	cleanRows();
+	},
+
+	fixE : function(e)
+	{
+		if (typeof e == 'undefined') e = window.event;
+		if (typeof e.layerX == 'undefined') e.layerX = e.offsetX;
+		if (typeof e.layerY == 'undefined') e.layerY = e.offsetY;
+		return e;
+	}
+};
+
+//prevents text from being selected while dragging
+function disableSelect(elem){			
+    if(elem.addEventListener){
+        elem.addEventListener("mousedown",disabler,"false");
+    } else {
+        elem.attachEvent("onselectstart",disabler);
+    }
+}
+
+function disabler(e){
+    if(e.preventDefault){ e.preventDefault(); }
+    return false;
+}
+
+/*****************************************************************************
+* This function is used to move through the cells and make them span the next
+* cell if there is nothing in it.
+/*****************************************************************************/
+function cleanRows()
+{
+	var dragTable = document.getElementById("dragArea");
+	var maxcells=1;
+	for(var i=0;i<dragTable.rows.length;i++)
+	{
+		if(dragTable.rows[i].cells.length>maxcells)
+			maxcells = dragTable.rows[i].cells.length;
+	}
+   	if(maxcells==1)
+   		return;
+
+   	for(var i=0;i<dragTable.rows.length;i++)
+	{
+		var c = dragTable.rows[i].cells[1];
+		if(c==null)
+		{
+			dragTable.rows[i].cells[0].colSpan=maxcells;
+		}
+		else
+		{
+			dragTable.rows[i].cells[0].colSpan="1";
+			dragTable.rows[i].cells[1].colSpan="1";
+		}
+	}
+}
+
+/***************************************************************************
+* This function copy the characteristics of the original object to the "dragObject"
+****************************************************************************/
+function cloneObject(objectT, event)
+{
+	var cloneDiv = document.getElementById("dragObject");
+	cloneDiv.className = objectT.className;
+
+	
+	cloneDiv.style.margin=0;
+	cloneDiv.style.position="absolute";
+	cloneDiv.style.top   = foffsetTop(objectT) - 70 + "px"; //Bug Draging - AXJ
+	cloneDiv.style.left  = foffsetLeft(objectT) + "px";
+	cloneDiv.style.width = objectT.offsetWidth + "px";
+	cloneDiv.style.height= objectT.offsetHeight + "px";
+	cloneDiv.style.opacity= 0.85;
+	cloneDiv.style.display = "";
+	cloneDiv.style.cursor='move';
+
+	objectT.style.opacity=0.40;
+
+	cloneDiv.parentDrag = objectT;
+	cloneDiv.onmousedown(event);
+}
+
+/*****************************************************************************
+* This function determines the horizontal position of an HTML object
+*****************************************************************************/
+function foffsetLeft(This)
+{
+  var a=0;
+	var obj = This;
+  while (obj.offsetParent)
+	{
+	  a+=obj.offsetLeft;
+		obj = obj.offsetParent;
+	}
+	return a;
+}
+
+/*****************************************************************************
+* This function determines the vertical position of an HTML object
+*****************************************************************************/
+function foffsetTop(This)
+{
+  var a=0;
+	var obj = This;
+  while (obj.offsetParent)
+	{
+	  a+=obj.offsetTop;
+		obj = obj.offsetParent;
+	}
+	return a;
+}
+
+/*****************************************************************************
+* This function deletes panels from the "dragArea"
+*****************************************************************************/
+function closeFrame(ID)
+{
+  var obj = document.getElementById(ID);
+	obj.parentElement.deleteCell(obj.cellIndex);
+	cleanTable(document.getElementById("dragArea"));
+	if (typeof(checkPanels)=='function')
+		checkPanels();
+
+	cleanRows();
+}
+
+/*****************************************************************************
+* This function checks the Drag area looking for empty cells (TDs) and remove them
+*****************************************************************************/
+function cleanTable(dragTable)
+{
+ var dragRows = dragTable.rows;
+ var rDelete  = false;
+
+ for (var i=0;i<dragRows.length;i++)
+ {
+   rDelete  = true;
+   var currRow = dragRows[i];
+   var dragTDs = dragRows[i].cells;
+
+   for (var ii=0;ii<dragTDs.length;ii++)
+   {
+     var currTD = dragTDs[ii];
+     if (currTD.getElementsByTagName("TABLE").length!=0)
+     {
+       rDelete = false;
+       ii = dragTDs.length;
+     }
+   }
+   if (rDelete)
+   {
+     dragTable.deleteRow(i);
+   }
+ }
+}
+
+/*****************************************************************************
+* This function updates the field ESOLlayout and submit the form
+*****************************************************************************/
+function submitLayout()
+{
+	submitLayoutMain(true);
+	var value = document.frmData.ESOLsaveflag.value;
+	if(value!="SC")
+		document.frmData.ESOLsaveflag.value = "S";
+	document.frmData.submit();
+}
+function submitLayoutMain(check)
+{
+	if (document.frmData)
+	{
+		if (document.frmData.ESOLlayout)
+		{
+			var dragTable = document.getElementById("dragArea");
+			var strPanels = "";
+			var strPos = "";
+			if (dragTable)
+			{
+				for (var index=0;index<dragTable.rows.length;index++)
+				{
+					strPos += (index==0?"":"|") + dragTable.rows[index].cells.length;
+					
+					for (var cellIndex=0;cellIndex<dragTable.rows[index].cells.length;cellIndex++)
+					{
+						strPanels += (index==0&&cellIndex==0?"":"|") + dragTable.rows[index].cells[cellIndex].id;
+					}
+				}
+				document.frmData.ESOLlayout.value = strPanels;
+				document.frmData.ESOLrowLength.value = strPos;
+			}
+		}
+	}
+}
+
+/*****************************************************************************
+* This function updates the field ESOLviewId and submits the form
+*****************************************************************************/
+function changeViews(viewId, saveOnClick)
+{
+	var pos=0;
+	for(var i=0;i<document.forms.length;i++)
+	{
+		if(document.forms[i].ESOLviewId!=null)
+		{
+			pos=i;
+			break;
+		}
+	}
+	document.forms[pos].ESOLviewId.value=viewId;
+	document.forms[pos].ESOLstayOnPage.value="Y";
+	document.forms[pos].submit();
+}
+
+/*****************************************************************************
+* This function is used to create a new view
+*****************************************************************************/
+function changeViewWithOutSave(viewId, saveonClick)
+{
+	document.frmData.ESOLviewId.value=viewId;
+	document.frmData.ESOLstayOnPage.value="Y";
+	document.frmData.submit();
+}
+
+/*****************************************************************************
+* This function is used to create a new view
+*****************************************************************************/
+function newView()
+{
+	if(validateViewName()){
+		var box = frmData.ESOLdashId;
+
+		var dashId = "";
+		if (box.options != null)
+			dashId = box.options[box.selectedIndex].value;
+		else
+			dashId = box.value;
+
+		box = frmData.ESOLpositionId;
+		var posId = "";
+		if (box.options != null)
+			posId = box.options[box.selectedIndex].value;
+		else
+			posId = frmData.ESOLpositionId.value;
+
+		var seq = frmData.ESOLseq.value;
+		var tab = frmData.ESOLtabtype.value;
+
+		openSizedLookup2('/dashboard/newview.jsp?ESOLtabtype=' + tab + '&ESOLdashId=' + dashId + '&ESOLpositionId=' + posId + '&ESOLseq=' + seq, 'new_db_view', 300, 150, 'scrollbars=0');
+		document.frmData.ESOLstayOnPage.value = "Y";
+		document.frmData.ESOLsaveflag.value = "S";
+		document.frmData.ESOLedit.value = "Y";
+		submitLayoutMain(false);
+		document.frmData.submit();
+	}
+}

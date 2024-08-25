@@ -1,0 +1,300 @@
+
+<!-- saved from url=(0153)https://www19.pointclickcare.com/care/dashboards/res_udascores.jsp?ESOLviewId=20&ESOLtitle=UDA%20Scores&ESOLtabtype=C&ESOLclientid=42344920&ESOLcolspan=1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script><meta http-equiv="X-UA-Compatible" content="IE=edge;IE=10;IE=9;IE=8,chrome=1">
+
+
+<meta name="format-detection" content="telephone=no">
+
+<link type="text/css" rel="stylesheet" href="./core.css">
+<link type="text/css" rel="stylesheet" href="./legacy-styles.css">
+
+
+<link type="text/css" rel="stylesheet" href="./roboto-fonts.css">
+<link type="text/css" rel="stylesheet" href="./icon">
+<link type="text/css" rel="stylesheet" href="./evergreen.css">
+<link type="text/css" rel="stylesheet" href="./pcc-overlay-dialogs.css">
+<link type="text/css" rel="stylesheet" href="./jquery-ui-1.9.2.custom.min.css">
+
+
+
+
+<script async="" src="./pendo.js.download"></script><script src="./l10n.djs"></script>
+
+
+    <script src="./jquery-1.9.0.min.js.download"></script>
+    <script src="./jquery-migrate-1.4.1.min.js.download"></script>
+  
+
+<script src="./jquery-ui-1.9.2.custom.min.js.download"></script>
+<script src="./jquery.dateField-2.0.0.js.download"></script>
+
+
+
+
+
+
+
+<script src="./ESOLvalidate.js.download"></script>
+
+
+
+
+
+<script>
+  
+  
+    function phoneformat(formObj, phoneStr, phoneNumberField){
+      return validateAndFormatPhoneNumberIfApplicable(phoneStr, phoneNumberField);
+    }
+  
+</script>
+<script src="./core.js.download"></script>
+<script src="./system-info.js.download"></script>
+<script src="./pcc-overlay-dialogs.js.download"></script>
+<script src="./wedate.js.download"></script>
+
+<script src="./coremenufunctions.js.download"></script>
+
+
+<script src="./pccUsageAnalytics.js.download"></script>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+			
+			var initProperties = null;
+			
+			var facilityProperties = {"properties":{"health_care_type":"SNF","facility_region":"US","facility_city":"Roseville","facility_id":"59","facility_state_prov":"CA","help_type":"SNF","facility_name":"Roseville Point Health & Wellness Center","facility_lob":"Skilled Nursing Facility"}};
+			facilityProperties = facilityProperties.properties;
+		</script>
+		
+		
+		<script src="./usage-analytics-script.js.download"></script>
+		
+		<script>
+			'use strict';
+			(function(){
+				if(PccUsageAnalytics){
+					PccUsageAnalytics.config['pendo-primary-subscription-id'] = "718e0290-e77c-42c9-7936-d923782213d9";
+					
+					PccUsageAnalytics.config['user-id'] = "roc.akhan2";
+					PccUsageAnalytics.config['account-id'] = "roc";
+					PccUsageAnalytics.config['blacklisted-params-list'] = "password,pin,pwd".split(',');
+					PccUsageAnalytics.config['common-custom-event-attributes'] = facilityProperties;
+					
+					
+					if(typeof(window.Cypress) != 'undefined'){
+						PccUsageAnalytics.config['disable-guides'] = true;
+					}
+					PccUsageAnalytics.init();
+				}
+			}());
+		</script>
+
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            if(self == top){
+                var firstInterval = 300000;
+            }
+        </script>
+        <link type="text/css" rel="stylesheet" href="./sessionTimeout.css">
+        <script src="./sessionTimeout.js.download"></script>
+
+
+
+<script>
+	window.facilityHealthType = "SNF";
+	window.facilityRegion = "US";
+</script>
+<script src="./help.js.download"></script>
+
+
+
+
+<script>
+String.prototype.trim = function(){
+	return this.replace(/^\s+|\s+$/, "");
+};
+
+function removeClassName(elem, className){
+	elem.className = elem.className.replace(className, "").trim();
+}
+
+function addCSSClass(elem, className){
+	removeClassName(elem, className);
+	elem.className = (elem.className + " " + className).trim();
+}
+
+function stripedTable(){
+	if(document.getElementById && document.getElementsByTagName){
+		var allTables = document.getElementsByTagName('table');
+		if(!allTables){
+ 			return;
+ 		}
+		for(var i=0;i<allTables.length;i++){
+			if(allTables[i].className.match(/[\w\s ]*scrollTable[\w\s ]*/)){
+				var trs = allTables[i].getElementsByTagName("tr");
+				for(var j=0;j<trs.length;j++){
+					removeClassName(trs[j], 'alternateRow');
+					addCSSClass(trs[j], 'normalRow');
+				}
+				for(var k=0;k<trs.length;k+=2){
+					removeClassName(trs[k], 'normalRow');
+					addCSSClass(trs[k], 'alternateRow');
+				}
+			}
+		}
+	}
+}
+function addIEonScroll(){
+	var thisContainer = document.getElementById('tableContainer');
+	if(!thisContainer){
+ 		return;
+ 	}
+	var onClickAction = 'toggleSelectBoxes();';
+	thisContainer.onscroll = new Function(onClickAction);
+}
+function toggleSelectBoxes(){
+	var thisContainer = document.getElementById('tableContainer');
+	var thisHeader = document.getElementById('fixedHeader');
+	if(!thisContainer || !thisHeader){
+ 		return;
+ 	}
+
+	var selectBoxes = thisContainer.getElementsByTagName('select');
+	if(!selectBoxes){
+ 		return;
+ 	}
+
+	for(var i=0;i<selectBoxes.length;i++){
+		if(thisContainer.scrollTop >= eval(selectBoxes[i].parentNode.offsetTop - thisHeader.offsetHeight)){
+			selectBoxes[i].style.visibility = 'hidden';
+		} else {
+			selectBoxes[i].style.visibility = 'visible';
+		}
+	}
+}
+window.onload = function(){stripedTable();addIEonScroll();};
+</script>
+<style>
+/* define height and width of scrollable area. Add 16px to width for scrollbar */
+div.tableContainer{
+	clear:both;
+	height:220px;
+	overflow:auto;
+	width:100%;
+	background:"#eeeeee";
+}
+
+/* define width of table. IE browsers only */
+div.tableContainer table{
+	float:left;
+	width:100%;
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr{
+	position:relative;
+	top:expression(document.getElementById("tableContainer").scrollTop);
+}
+/* make the TH elements pretty */
+thead.fixedHeader td{
+	background:"#cfcfcf";
+	font-weight:bold;
+	padding:4px 3px;
+}
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td{
+	background:#fff;
+	padding:2px 3px 3px 4px;
+}
+
+tbody.scrollContent tr.alternateRow td{
+	background:#eee;
+	padding:2px 3px 3px 4px;
+}
+</style>
+
+  <title></title><style>  body{margin:0;padding:0;}  table.dboard                   {table-layout:fixed;border-collapse:collapse;empty-cells:show;width:100%;}  table.dboard tr th             {padding:2px;height:24px;font:bold 12px arial;color:#fff;vertical-align:middle;text-align:expression(previousSibling ? nextSibling ? 'center' : 'right' : 'left');}  table.dboard tr th a           {text-decoration:none;color:#fff;font-weight:bold;}  table.dboard tr th table       {border-collapse:collapse;empty-cells:show;}  table.dboard tr th table tr td {padding:0px;margin:2px;height:100%;vertical-align:middle;}  .impact{    font-family:Arial, Helvetica, sans-serif;    font-size:12px;    font-weight:bold;    text-align:center;  }</style><link type="text/css" rel="stylesheet" href="./guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head><body class="clinical" marginwidth="0" marginheight="0" style="zoom: 1;"><form name="frmData" method="post" action="https://www19.pointclickcare.com/care/dashboards/res_udascores.jsp"><input type="hidden" name="ESOLviewId" value="null"><input type="hidden" name="ESOLtitle" value="UDA Scores in the Last 6 Months"><input type="hidden" name="floor_id" value=""><input type="hidden" name="unit_id" value=""><input type="hidden" name="contact_id" value=""><table class="dboard pccModuleBorder" width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td width="100%"><table width="100%" cellspacing="0" cellpadding="0">
+<tbody><tr height="20" class="pccModuleBackgroundColor slBackgroundColor"><td style="color:white;font-weight:bold;"> &nbsp;&nbsp;UDA Scores in the Last 6 Months</td><td style="color:white;font-weight:bold;" align="right"><img src="./pagecacheclock.gif" align="middle" border="0" id="genTimestampImg" onclick="alert(this.title);" title="The information on this page is as of
+Saturday, August 24, 2024 15:49:31 PDT">&nbsp;<script>completeMsg = "The information on this page is as of\nSaturday, August 24, 2024 15:49:31 PDT";document.getElementById('genTimestampImg').title= completeMsg;+"."</script></td></tr></tbody></table></td></tr><tr><td width="100%" valign="top" height="100%">
+<script>
+function launchScores(assessid)
+{
+	openSizedLookup2("/care/chart/assess/scores.jsp"+assessid+"&ESOLtabType=C","","400","400","scrollbars");
+}</script>
+
+
+<div id="tableContainer" class="tableContainer">
+<table border="0" cellpadding="3" cellspacing="0" width="100%" class="scrollTable">
+	<thead class="fixedHeader" id="fixedHeader">
+		<tr class="alternateRow">
+			<td class="detailColHeader">ARD</td>
+			<td class="detailColHeader">Type</td>
+			<td class="detailColHeader">Category</td>
+			<td class="detailColHeader">Score</td>
+		</tr>
+	</thead>
+	<tbody>
+	<tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/24/2024</td><td>Admission Q Shift Progress Note</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12904909&#39;, &#39;12904909&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12904909&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/24/2024</td><td>Skilled/Covid Evaluation (12 HOUR SHIFTS) - V 4</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12902298&#39;, &#39;12902298&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12902298&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/23/2024</td><td>RT Flowsheet Progress Note - V 7</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12899253&#39;, &#39;12899253&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12899253&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/23/2024</td><td>*Trauma Informed Care Assessment - PTSD 5</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889198&#39;, &#39;12889198&#39;)">Not sensitive to probable PTSD</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889198&#39;, &#39;0.0&#39;)">0.0</a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/23/2024</td><td>N Adv - Brief Interview For Mental Status (BIMS) Evaluation</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889115&#39;, &#39;12889115&#39;)">Moderate impairment</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889115&#39;, &#39;10.0&#39;)">10.0</a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/23/2024</td><td>N Adv - PHQ-2 to 9 Evaluation</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889059&#39;, &#39;12889059&#39;)">None-minimal</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889059&#39;, &#39;4.0&#39;)">4.0</a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/23/2024</td><td>Social Services Assessment  - V 5</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889175&#39;, &#39;12889175&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889175&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/23/2024</td><td>Activity Evaluation (Initial) - V 4</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12891387&#39;, &#39;12891387&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12891387&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/23/2024</td><td>Social Determinants of Health - V 4</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12887251&#39;, &#39;12887251&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12887251&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/23/2024</td><td>RT Flowsheet Progress Note - V 7</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889283&#39;, &#39;12889283&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12889283&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>Skilled/Covid Evaluation (12 HOUR SHIFTS) - V 4</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12885857&#39;, &#39;12885857&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12885857&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>Modified Jackson Scale Covid 19 Screening Tool - V 3</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12886153&#39;, &#39;12886153&#39;)">No Risk</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12886153&#39;, &#39;0.0&#39;)">0.0</a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>RT Flowsheet Progress Note - V 7</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12881990&#39;, &#39;12881990&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12881990&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>RN Assessment Review Note </td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12880098&#39;, &#39;12880098&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12880098&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>N Adv - Elopement Evaluation</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879923&#39;, &#39;12879923&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879923&#39;, &#39;0.0&#39;)">0.0</a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>N Adv - Clinical Admission</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879947&#39;, &#39;12879947&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879947&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>Functional Abilities and Goals - Admission - V 3</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879778&#39;, &#39;12879778&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879778&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>Modified Jackson Scale Covid 19 Screening Tool - V 3</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879595&#39;, &#39;12879595&#39;)">No Risk</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879595&#39;, &#39;0.0&#39;)">0.0</a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>Skilled/Covid Evaluation (8 Hour Shifts) - V 4</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879514&#39;, &#39;12879514&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879514&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>Admission Q Shift Progress Note</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879040&#39;, &#39;12879040&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12879040&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>N Adv - Lift/Transfer Evaluation</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878972&#39;, &#39;12878972&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878972&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>Bed Rail Assessment</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878910&#39;, &#39;12878910&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878910&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>Tuberculosis TB Symptom Screen Questionnaire</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878836&#39;, &#39;12878836&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878836&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>Infection Screening Evaluation</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878989&#39;, &#39;12878989&#39;)">Manual IPC Case Triggered</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878989&#39;, &#39;50.0&#39;)">50.0</a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>RT Flowsheet Progress Note - V 7</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878641&#39;, &#39;12878641&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12878641&#39;, &#39;&#39;)"></a></td></tr><tr style="vertical-align:top;background-color:#fff;" class="alternateRow"><td>8/22/2024</td><td>N Adv - Braden Scale - for Predicting Pressure Ulcer Risk Evaluation</td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12876826&#39;, &#39;12876826&#39;)">Very High Risk</a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12876826&#39;, &#39;8.0&#39;)">8.0</a></td></tr><tr style="vertical-align:top;background-color:#efefef;" class="normalRow"><td>8/22/2024</td><td>Weekly Skin Check </td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12876699&#39;, &#39;12876699&#39;)"></a></td><td><a href="javascript:launchScores(&#39;?ESOLassessid=12876699&#39;, &#39;&#39;)"></a></td></tr>
+	</tbody>
+</table>
+</div>
+
+</td></tr></tbody></table></form></body></html>

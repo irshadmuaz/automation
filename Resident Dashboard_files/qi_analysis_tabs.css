@@ -1,0 +1,160 @@
+div#tabs *{
+	font-family:Arial, Helvetica, sans-serif !important;
+}
+
+.ui-tabs{
+	padding:0 !important;
+}
+
+.ui-tabs .ui-tabs-panel{
+	padding:0 !important;
+}
+
+.ui-tabs .ui-tabs-nav{
+	margin-left:5px;
+	padding-left:0;
+}
+
+.ui-widget-header{
+	background:#5275b5 !important;
+	border:none !important;
+}
+
+ul.ui-widget-header{
+	background:transparent !important;
+	border-color:transparent !important;
+}
+
+.ui-widget-header li{
+	margin-bottom:0 !important;
+}
+
+.ui-widget-header li a{
+	color:#000 !important;
+	font-weight:normal;
+}
+
+.ui-widget-header li.ui-tabs-selected{
+	background:#00a0af;/*97b469*/
+	padding:0;
+}
+
+.ui-widget-header li.ui-tabs-selected a{
+	font-weight:bold;
+}
+
+li.ui-state-active a{
+	color:#fff !important;
+}
+
+li.ui-state-active a:hover{
+	color:#000 !important;
+	cursor:pointer !important;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+	border:1px solid #00a0af;
+}
+
+.tabHover{
+	background:#99ccff !important;
+	border:1px solid #fbd850 !important;
+}
+
+.tabHeader{
+	background-color:#00a0af;/*97b469*/
+	color:#fff;
+	padding-left:10px;
+	padding-right:5px;
+}
+
+li.defaultTab{
+	border:none !important;
+	padding:12px 5px 5px 10px;
+}
+
+
+.ui-widget-header li a#defaultTabLink{
+	color:#05576f !important;
+	cursor:pointer !important;
+	text-decoration:none !important;
+}
+
+.hospitalTransferListBar{
+	background-color:rgb(82, 117, 181);
+	color:#fff;
+	font-weight:bold;
+	height:25px;
+	padding:5px 10px 5px 10px;
+	vertical-align:middle;
+}
+
+div.sectiontitle{
+	background-color:rgb(82, 117, 181);
+	border-radius:2px;
+	-webkit-border-radius:2px;
+	-webkit-background-clip:padding-box;
+	color:#fff;
+	cursor:pointer;
+	font-size:12px;
+	font-weight:bold;
+	height:30px;
+	line-height:25px;
+	padding:2px;
+	position:relative;
+	text-align:left;
+	vertical-align:middle;
+}
+
+.loading{
+	background-color:#fff;
+	border:1px solid #5c9ccc;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	color:#000;
+	display:none;
+	height:50px;
+	opacity:0.90;
+	padding:2px;
+	position:absolute;
+	text-align:center;
+	width:100px;
+	z-index:100000;
+}
+
+.ui-autocomplete{
+	width:inherit !important;
+}
+
+.displayFilterTitle{
+	background-color:#777;
+	cursor:pointer;
+	padding:5px;
+}
+
+.reportPanel{
+	background-color:#fff;
+	font-size:12px;
+}
+
+.tabHeader{
+	height:30px;
+}
+
+#tabTitle{
+	float:left;
+	font-weight:bold;
+	line-height:30px;
+	width:70%;
+}
+
+#exportSetup{
+	float:right;
+	text-align:right;
+	width:30%;
+}
+
+#displayFilter{
+	font-size:12px;
+ 	width:100%;
+}
