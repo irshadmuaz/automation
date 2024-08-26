@@ -1,0 +1,8 @@
+.icon-sogi {
+    background: url('/mobiledoc/jsp/images/icon-sogi.png') no-repeat;
+    width: 34px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}

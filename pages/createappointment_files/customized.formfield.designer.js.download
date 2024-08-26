@@ -1,0 +1,203 @@
+
+class CustomizedFormFieldDesignerWebViewer {
+
+    constructor (viewerInstance,isReadOnly) {
+        if(!viewerInstance){
+            throw 'Viewer instance is not initialized ';
+        }
+        this.isReadOnly = isReadOnly;
+        this.documentLoadComplete = false;
+        this.setCheckboxImage();
+        this.setSignImage();
+        this.viewerInstance = viewerInstance;
+        this.bindEventsBeforeLoad();
+        this.proxyRectangleAnnotation();
+        this.changeDefaultStyle();
+
+    }
+
+    setSignImage(){
+        this.signImage = new Image();
+        var svg64 = btoa('<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25.588 25.588" style="enable-background:new 0 0 25.588 25.588; width: 100%; height: 100%;" xml:space="preserve"><g><path style="fill:#030104;" d="M18.724,9.903l3.855,1.416l-3.206,8.729c-0.3,0.821-1.927,3.39-3.06,3.914l-0.275,0.75c-0.07,0.19-0.25,0.309-0.441,0.309c-0.054,0-0.108-0.01-0.162-0.029c-0.243-0.09-0.369-0.359-0.279-0.604l0.26-0.709c-0.575-1.117-0.146-4.361,0.106-5.047L18.724,9.903z M24.303,0.667c-1.06-0.388-2.301,0.414-2.656,1.383l-2.322,6.326l3.854,1.414l2.319-6.325C25.79,2.673,25.365,1.056,24.303,0.667z M17.328,9.576c0.108,0.04,0.219,0.059,0.327,0.059c0.382,0,0.741-0.234,0.882-0.614l2.45-6.608c0.181-0.487-0.068-1.028-0.555-1.208c-0.491-0.178-1.028,0.068-1.209,0.555l-2.45,6.608C16.592,8.855,16.841,9.396,17.328,9.576z M13.384,21.967c-0.253-0.239-0.568-0.537-1.078-0.764c-0.42-0.187-0.829-0.196-1.128-0.203c-0.031,0-0.067-0.001-0.103-0.002c-0.187-0.512-0.566-0.834-1.135-0.96c-0.753-0.159-1.354,0.196-1.771,0.47c0.037-0.21,0.098-0.46,0.143-0.64c0.144-0.58,0.292-1.18,0.182-1.742c-0.087-0.444-0.462-0.774-0.914-0.806c-1.165-0.065-2.117,0.562-2.956,1.129c-0.881,0.595-1.446,0.95-2.008,0.749c-0.686-0.244-0.755-2.101-0.425-3.755c0.295-1.49,0.844-4.264,2.251-5.524c0.474-0.424,1.16-0.883,1.724-0.66c0.663,0.26,1.211,1.352,1.333,2.653c0.051,0.549,0.53,0.952,1.089,0.902c0.55-0.051,0.954-0.539,0.902-1.089c-0.198-2.12-1.192-3.778-2.593-4.329C6.058,7.07,4.724,6.982,3.107,8.429c-1.759,1.575-2.409,4.246-2.88,6.625c-0.236,1.188-0.811,5.13,1.717,6.029c1.54,0.549,2.791-0.298,3.796-0.976c0.184-0.124,0.365-0.246,0.541-0.355c-0.167,0.725-0.271,1.501,0.167,2.155c0.653,0.982,1.576,1.089,2.742,0.321c0.045-0.029,0.097-0.063,0.146-0.097c0.108,0.226,0.299,0.475,0.646,0.645c0.42,0.206,0.84,0.216,1.146,0.224c0.131,0.003,0.31,0.007,0.364,0.031c0.188,0.083,0.299,0.185,0.515,0.389c0.162,0.153,0.333,0.312,0.55,0.476c0.18,0.135,0.39,0.199,0.598,0.199c0.304,0,0.605-0.139,0.801-0.4c0.331-0.442,0.241-1.069-0.201-1.4C13.61,22.183,13.495,22.072,13.384,21.967z"/></g></svg>');
+        var b64Start = 'data:image/svg+xml;base64,';
+        this.signImage.src = b64Start + svg64;
+    }
+
+    setCheckboxImage(){
+        this.checkboxImage = new Image();
+        /**
+         * This is base64 string of checkbox image, which is used to show as place holder of checkbox
+         */
+        this.checkboxImage.src= "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAACACAMAAAAF68p0AAAAbFBMVEUaGBj////u7u7t7e0AAAD+/v7v7+/z8/Ps7Oz39/f7+/sTEBAYFhZFRUU6OjotLCzJycmfnp6Tk5MNCgpRUVHPz882NTWoqKjm5uaIh4evrq7a2tq7u7seHR2BgYFKSkpoZ2ddXFx2dXUlJCSUaeyUAAAKX0lEQVR4nM1c2YKrKhCURRBwshkTMyaTzOT///GyKIKAWc25PNUxqDXY3QVNczKgG4IQMtAeN9trmc3Yyuvv4bvlDHL9WipfSw0EuWo86/lQetyeMK5mpSMJVRiftkdiXksRZO1la9t53fPJ6+3sXBxO55XhQ/m+wlXXMN6wjg894OozZEyr8A9T36j+wnYQ8KkGyPBhW/yhsen5VGtpNmxTYnsJf7UMQs2Hn/HEve9vJV7U8rXteRiFEm8LViCUFQUiDp1SzNxK9bHWgFHy45hIiQ/GcDII84OlI7DYfc3aFgLjc60sxxkcSWfNez607n8osVi3kJlowGSjEUwV5gHmU5jlPaa0XR/Uk9au/wh8ZMjyOXe/SBtjjEBq7oWqRTAaMFMYMQcbDgwOmI6xvrX1/KcSKw57PuzYfS2xXEk2HgcUwWjAST4OpmjER0Xm48n1n+pUyzt6PnxbdR9rBSAhanx04CYamyAOAwwGzDRmBisIDOYa0wHnGhPAfrBw6eBWPQgawcjazIyctChorAIVsvWj4eBiCnej5GCqMR9wN0q1NzgZXrRmZHT3IjuaLylOlBhRyV1rIXHL4c6X4sFXY3HL0Rqa7ytPCKpd01m7fjzMNrgbHjnK8/NhF18IqlNDkcfHmE9Z1fQDfOqrLwTVsqHQ53Myn2spLcrhc8Oz7uIz8jJ566b0Rbu6tsqzDJ/C8DHDJxbSoToPUk5wF9belLMA8wBT1YP+jUS7qlr9IN0l191JHyEXamSkniHrWQns9GEaMwf33hTD7WIk2uKkdEMODtR9dHfg8XEt5JX4PI6BCh/HEyyBa56DjeShjRR9ls9mPMEq8bfUrD0mn+eDGPkdT7BKvM8R3+Nqko9qg80MXubgAto+TGLLR7pHbzNM3dvbj8Ss/Qrme3KqjNixEkLxQTH74ZxT3bhuGjINWYBp4noU89UppHMBNF/J2Zkgufday0f+Ub1+Od4E454VYtfLev3qPOvbk09D51deX8nrpShI0cUf/XUGPnCm+BxYsgw850b6fyUyzcePz/Pyofk4CKqX4Vauha/K/z/MhxaRlUuJawbBTv8wxQeRwX4cz3I9zmL9sZnFsLcf5NiP7NyEjiWNZy//hHwpRnxG9sN9zwrxnd7kYN5eY3R+1FMtH+i/yvIZj8wb9GtVRtbgeGue0/ORHwVG48+74zNYnSJ0qgUM+HxCL1B+DMOOen8N/gkfKU2RDEUpF378AT4Jbwo8y7EfFNqP9DIeCcralnMY4ROzn3ykWexRb3Kx1IhY/gaf5XNNH+tfhCf0C1r9gvH5czGBC+erSRz9WJm4qjfoeXUs/swWn8ExSkfGZdXHrDVCPnPpBcpX8WQb3oB/wAfx+OioKc9DfNDD+hWZ/0h3q6OelYldY96rZoz36BfTmSOdelKeMsCHMG/LKB1pPLn7+EG/+vfG9MvxmhR2PIsVzpfSXsZBu4znjfG6W6VG44+613zNgM9r8Rmm6FzyznLII/F5xAE9yIeSXTxxLJYQvM6HcvYQn+hs0BjPCjzFx/Mm1l6aSc8a6Rehwaqv/1oHx7Pu1S82amBVYXwgYHw93S4pOlsa9HX8y2uWj7/+QlQvm0qM1wVLxJ+C+fgvQaesGj2vRtwZpZvxx4/PhK9NlC3x1zcPLCcWnw+pLRm8d/KHz+kFBcOySej8/i0++TpJZwte5cOarZewxr/tNB/E1qkdInFtnuMz6FeQjyjx9QcBOPaywX54fP7Vfa3OZlL2E1+/c2viXDrW+Kklzr4pZ4mW12k6v/G7bvqX41ltbKEi8OIYiz/Ks+q4hqq7REuHdZkzSjfjD3Dic/z5Fb7URk9H8blJiFZmdiH83N1TerGKbzVj/NcAMuLD6TVN5zfYe3pOvxJzPMno0HDi7jdRtE1uvpa4eY3PYBvxFYJ6xW5N2GA/hKdEK9Mz5tCz7rSfkRuAdECRhs1tbzBBp9oFohj6F0rrlz9/3iRfJOPjilEdf5y94HAosxWNeNZT+qWsKKWPmTbslhEK0qOoOh04Cva/Xljv8NT8QT1HT0WSVqYfeUUk3I97Zf1FJwhJRqfvtEroOSGL7A8+wMfaD+xnzuxrqshE4KmiD3xRkdDaj+P1963f84jO8CIxP7/dxLJJyp2vX343ywfE8j+sWTxZhoO/QcKzntAvMKwp2vjq91arflmiPuGV9ZfWVvEEoRK3ZCY+IJE9mWx4w4s38QnX7CltTTfx5XuWiyP2A2Prd95n/4KdL5CcqieHpwXsRqbRzW9E8/MT+Z9JVYjR+bHe9E79AkN+bEI1wyaWNGo5L+uFk6+b0NZweL7jlvxOPvx+QlIo3sJnvH4f7Edr68S8y2sqMTfYyfP2Y/Pz8f1lRu+UMjlHZc5jQs8y1wd/T+wvB/EHOfkxtf0e3esLWvXFuyx9XNnflj9EvL3eoRwqExat3wDv0osBN7e1VYeeT/EBq9MNQgKzt/IZz3/G+JaU6WRG6FkujupXbP11z/5yPk0I/4LBm2hCv6ivXyixvxybP2vPchUfxbchu1aKWrmQ3X/3vawfGYPftf/F0stEveCCN+oP37/flNRWIfjtesgZ9r8SUlbi4x31me/SLyczlli3qv02r/7nNf0CeS8kpsIwwMxiFsv4lGXDuj6dTgWYOtjx9+56V99r+Uzsf0HvOqJFRMrwmg3772n9is2fX97/ouGumzjlxK/f+IBe2HFjjfAJlXhFp+sh5+Sj1q2+2OM/Bmfgc0u/HC9bVQ6h8qrSzNH61Wf1i92s6YUe9rbZ8TofanrhUNPrYeJiR7+6+l7o1/f68fCO+mc2SFm14LfrnyF08Qz1CTbjqYrL762fn7Neol+34kNe/B/4MFN7KZYNuft8wRv0a6J+NVfaivdssn61x8jBd+iXomjOnhhWA+7PpJiRGTBDhF6wKeBj6no/Sqq/HRntZQOOxR/VHq1PiJ/foexsqoweOr8z5vOG+Ny/lxabgMO/0Av73u7k5v+Gz73nC57hM+v5C9/LbusXKoy/A/0rmWTyUL16lNXg7/1M7FP16hZ/ID7PwOf0b/iAjk/GRnyWpozl2pAYn4RnvcyHcGHeW/IRn4s5jybnv7H8c2xmaPGo/gc8sP6itZkaVEuA/PqNfs7wB7ojhR2rydOLvb+PTzL2HjSBO1bdIlfXkELdR18GWVeKUOLmk/GwEd2pTlUT4sXDxhiWrhD8HJ9ueMSuGfPJ+/SA/GLkU3z6HInZ6fD40LY0Q1fiH6IVe+Dw7vPC3aye9qVmXUW0x4cwmz/B56M6g21+MDkEDfMENnkGPom73aUBc3C06QgzPP58THaz1T4V3h2Oq1nb8XC1BwmFDHqDZ3XnhYG3Iynw7M0ua9XhB/2lvHiooL/fVs7ZnPfgdWftAR+wf25X+5UmVChM8QH72NGfOVtV7a33eflevZYHvF58cogEvrZgyC24+YSiF4/9F67EB/5XkFJU+GudKzHrfNzTL2iDET1udx/wr2q3PbI+ywGCeAidf+RFvd9s1rptdJvEm0mcuPW7JlY7Inz+A5cwFRXn0VLSAAAAAElFTkSuQmCC"; //NOSONAR
+    }
+
+    bindEventsBeforeLoad(){
+        var currentObjectReference = this;
+        this.viewerInstance.docViewer.on('documentLoaded',() => {
+            this.onDocumentLoaded(currentObjectReference);
+        });
+        this.viewerInstance.UI.disableElements(['themeChangeButton','languageButton' ]);
+    }
+    bindEventsAfterLoaded(){
+        var classScope = this;
+        if(this.isReadOnly){
+            this.viewerInstance.annotManager.setReadOnly(true);
+            this.viewerInstance.docViewer.getViewerElement().onmousemove = function(e){
+                classScope.viewerInstance.docViewer.getViewerElement().style.cursor = 'default';
+                e.stopPropagation();
+            }
+            this.viewerInstance.docViewer.getViewerElement().onclick = function(e){
+                classScope.viewerInstance.docViewer.getViewerElement().style.cursor = 'default';
+                e.stopPropagation();
+            }
+        }
+        this.viewerInstance.docViewer.on('annotationsLoaded', () => {
+            classScope.documentLoadComplete = true;
+        });
+        this.viewerInstance.annotManager.addEventListener('annotationChanged', (annotations, action, info) => {classScope.onAnnotationChange(classScope,annotations, action, info)});
+        this.viewerInstance.UI.setActiveHeaderGroup('toolbarGroup-Forms');
+        this.setToolMode("TextFormFieldCreateTool");
+    }
+    setToolMode(tool){
+        this.viewerInstance.setToolMode(tool);
+    }
+
+    onAnnotationChange(currentObjectReference,annotations, action, info){
+        const { Annotations } = currentObjectReference.viewerInstance;
+        const widgets = annotations.filter(annotation => annotation instanceof Annotations.WidgetAnnotation);
+        const formFieldPlaceholders = annotations.filter(annotation => annotation.isFormFieldPlaceholder());
+        if(!currentObjectReference.documentLoadComplete){
+            formFieldPlaceholders.forEach(a => a.isImportedFormField = true);
+        }
+        if(action === 'add' && !info.imported && formFieldPlaceholders.length > 0 && this.viewerInstance.customFormFieldName){
+            this.modifiedFieldName(this,annotations,true);
+        }
+        if(action === 'add' && !info.imported && formFieldPlaceholders.length > 0) {
+            formFieldPlaceholders.forEach(placeHolder => {
+                if('TextFormField'===placeHolder.getFormFieldPlaceHolderType()){
+                    placeHolder.FillColor = new Annotations.Color(0,0,0, 0);
+                    placeHolder.StrokeColor = new Annotations.Color(0, 0, 0, 0);
+                    placeHolder.StrokeWidth = 0;
+                }
+            })
+        }
+    }
+    modifiedFieldName(currentObjectReference,annotations,isDeselect){
+        annotations.forEach(function (annot) {
+            if(currentObjectReference.viewerInstance.customFormFieldName && annot.getFormFieldPlaceHolderType() && (annot.getFormFieldPlaceHolderType() === "TextFormField" || annot.getFormFieldPlaceHolderType() === "SignatureFormField")){
+                if(currentObjectReference.viewerInstance.customFormFieldName){
+                    if(currentObjectReference.viewerInstance.UI.isElementOpen("formFieldEditPopup")){
+                        currentObjectReference.viewerInstance.UI.toggleElementVisibility("formFieldEditPopup");
+                    }
+                    currentObjectReference.viewerInstance.annotManager.getFormFieldCreationManager().setFieldName(annot,currentObjectReference.viewerInstance.customFormFieldName);
+                    if(currentObjectReference.viewerInstance.customFormFieldName!==currentObjectReference.viewerInstance.annotManager.getFormFieldCreationManager().getFieldName(annot)){
+                        annot.xi["trn-form-field-name"] = currentObjectReference.viewerInstance.customFormFieldName;
+                    }
+                    currentObjectReference.viewerInstance.annotManager.updateAnnotation(annot)
+                    if(isDeselect){
+                        currentObjectReference.viewerInstance.annotManager.deselectAnnotations([annot]);
+                    }
+                }
+                currentObjectReference.viewerInstance.customFormFieldName = null;
+            }
+        });
+    }
+    onDocumentLoaded(currentObjectReference){
+        currentObjectReference.setUserName();
+        currentObjectReference.bindEventsAfterLoaded();
+    }
+
+    setUserName(){
+        this.viewerInstance.annotManager.setCurrentUser(window.top.global.TrUserName);
+    }
+
+    proxyRectangleAnnotation(){
+        var classScope = this;
+        const { Annotations} = this.viewerInstance;
+        Annotations.RectangleAnnotation.prototype.originalDraw = Annotations.RectangleAnnotation.prototype.draw;
+        Annotations.RectangleAnnotation.prototype.draw = function(ctx,pageMatrix){
+            if(this.isFormFieldPlaceholder()){
+                var placeHolder = this.getFormFieldPlaceHolderType();
+                if(classScope.modifyFormFieldAppearance.hasOwnProperty(placeHolder)){
+                    this.setStyles(ctx, pageMatrix);
+                    this.originalDraw(ctx,pageMatrix)
+                    classScope.modifyFormFieldAppearance[placeHolder](this,classScope,ctx,pageMatrix);
+                }else{
+                    this.originalDraw(ctx,pageMatrix);
+                }
+            }else{
+                this.originalDraw(ctx,pageMatrix);
+            }
+        }
+    }
+
+    changeDefaultStyle(){
+        const { documentViewer, Annotations } = this.viewerInstance.Core;
+        documentViewer.getTool('TextFormFieldCreateTool').setStyles(currentStyle => ({
+            StrokeThickness: 0,
+            StrokeColor: new Annotations.Color(0, 0, 0,0),
+            FillColor: new Annotations.Color(0, 0, 0,0),
+            TextColor: new Annotations.Color(0, 0, 0),
+            FontSize: '8pt'
+        }));
+    }
+
+    async getPDFBlob(){
+        const doc = this.viewerInstance.docViewer.getDocument();
+        const xfdfString = await this.viewerInstance.annotManager.exportAnnotations();
+        const data = await doc.getFileData({xfdfString});
+        const arr = new Uint8Array(data);
+        const blob = new Blob([arr], { type: 'application/pdf' });
+        return blob;
+    }
+    async getPDFFile(){
+        var blob = await this.getPDFBlob();
+        var file = new File([blob], "file.pdf");
+        return file;
+    }
+
+    modifyFormFieldAppearance = {
+        "TextFormField":function (context,classScope,ctx,pageMatrix){
+            if(context.FillColor.R===0 && context.FillColor.G===0 && context.FillColor.B===0){
+                ctx.fillStyle = "#a5c7ff";
+                ctx.fill();
+            }
+            var fontSize = 16;
+            if(context.getHeight()<=16){
+                fontSize = Math.floor(context.getHeight())-1;
+            }
+            ctx.font = (fontSize)+"px Arial";
+            var textColor = "black";
+            if(context.TextColor.R!==0 || context.TextColor.G!==0 || context.TextColor.B!==0){
+                textColor = "rgba("+context.TextColor.R+" ,"+context.TextColor.G+" ,"+context.TextColor.B+" ,"+context.TextColor.A+")";
+            }
+            ctx.fillStyle = textColor;
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = "center";
+            var textString = classScope.viewerInstance.annotManager.getFormFieldCreationManager().getFieldName(context);
+            if(!textString.startsWith("TextFormField ")){
+                var yLocation = ((context.getRect().y1+context.getRect().y2)/2);
+                ctx.fillText(textString , ((context.getRect().x1+context.getRect().x2)/2), yLocation);
+                ctx.stroke();
+            }
+        },
+        "CheckBoxFormField" : function(context,classScope,ctx,pageMatrix){
+            var image = classScope.checkboxImage;
+            ctx.translate(context.X, context.Y);
+            var width = image.width<context.getWidth()?image.width:context.getWidth();
+            var height = image.height<context.getHeight()?image.height:context.getHeight();
+            ctx.drawImage(image, 0, 0,width,height);
+        },
+        "SignatureFormField" : function (context,classScope,ctx,pageMatrix){
+            ctx.fillStyle = "#a5c7ff";
+            ctx.fill();
+            var image = classScope.signImage;
+            ctx.translate(context.X, context.Y);
+            var width = image.width<context.getWidth()?image.width:context.getWidth();
+            var height = image.height<context.getHeight()?image.height:context.getHeight();
+            var finalImgRation = width<height?width:height;
+            ctx.drawImage(image, 0, 0,finalImgRation,finalImgRation);
+        }
+    }
+
+}

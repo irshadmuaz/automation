@@ -1,0 +1,33 @@
+angular.module("p2pCommanObjsModule", []).factory('p2pCommonService', function ($http) {
+	var p2pCommanObjs = {};
+	p2pCommanObjs.uploadAttachmentObj = {
+		 refReqId : '0',
+         patientId : '0',
+         assignedToId : '0',
+         assignedTo : '',                
+         date : '',
+         prioritiy : '0',
+         trType : '',
+         trId : '',
+         scannedBy : ''
+	};
+	
+	return {        
+		prepareP2pParams: function (params) {
+			p2pCommanObjs.uploadAttachmentObj = params;
+		},
+        uploadP2PAttachmentToFTP: function () {
+            try {
+                 params = $.param(p2pCommanObjs.uploadAttachmentObj);
+                 return $http({
+                     method: "POST",
+                     url: makeURL("/mobiledoc/jsp/ereferralemr/getHtmlForAttachments.jsp"),
+                     data: params,
+                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                 });
+            } catch (err) {
+            	console.log(err);
+            }
+        },
+    };
+});

@@ -1,0 +1,137 @@
+floating-button.in-drag {
+    position: fixed;
+    display: block;
+    left: 0;
+    height: 100%;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.floating-button-in-drag {
+    position: relative;
+}
+
+floating-button .floating-button-container {
+    position: absolute;
+    top: calc(100% - 50px);
+    left: calc(100% - 50px);
+    z-index: 100000;
+}
+
+/* Floating button ------------------------------------------------------------- */
+floating-button .floating-button {
+    cursor: move;
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+/* ----------------------------------------------------------------------------- */
+
+/* Floating panel -------------------------------------------------------------- */
+floating-button .floating-panel-container{
+    bottom: 100%;
+}
+floating-button .floating-panel-container:not(.align-top) {
+    position: relative;
+    transform: translateX(-15px);
+}
+floating-button .floating-panel-container:not(.align-top) .floating-panel-item:last-of-type {
+    margin-top: 0;
+}
+floating-button .floating-panel-container.align-top{
+    position: absolute;
+    transform: translateX(-15px);
+}
+floating-button .floating-panel-container.align-top .floating-panel-item:last-of-type {
+    margin-bottom: 0;
+}
+
+floating-button .floating-panel {
+    /*padding: 10px;*/
+    box-shadow: none;
+    /*background: rgba(0, 0, 0, 0.7);*/
+    /*backdrop-filter: blur(5px);*/
+    border-radius: 7px;
+    /*border: 1px solid #555;*/
+    display: none;
+    width: auto;
+    height: auto;
+    flex-flow: column;
+}
+
+floating-button .floating-button-container:hover .floating-panel {
+    display: flex;
+}
+
+floating-button .floating-button-container:hover .floating-panel:not(.align-top-item) {
+    flex-flow: column-reverse;
+}
+
+floating-button .floating-button-container:hover .floating-panel.align-top-item {
+    flex-flow: column;
+}
+
+floating-button .floating-panel-item {
+    padding: 8px 5px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    width: 70px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 2px solid #398739;
+    backdrop-filter: none;
+}
+
+floating-button .floating-panel-item .playlist-icon-container {
+    border-color: #398739;
+    box-shadow: none;
+}
+floating-button .floating-panel-item .playlist-icon-container .playlist-icon {
+    background: #398739 linear-gradient(#398739, #398739);
+    border-top-right-radius: 30%;
+    box-shadow: none;
+    display: block;
+    height: 8px;
+    left: 4px;
+    margin-right: 11px;
+    margin-top: -3px;
+    position: relative;
+    text-align: left;
+    transform: rotate(-90deg) skewX(-30deg) scale(1, .866);
+    width: 8px;
+}
+floating-button .floating-panel-item .playlist-icon-container .playlist-icon:before, floating-button .floating-panel-item .playlist-icon-container .playlist-icon:after {
+    background: #398739;
+    box-shadow: none;
+}
+/* More qualified to maintain consistent hover color */
+floating-button .floating-panel .floating-panel-item:hover {
+    background: rgba(0, 0, 0, 0.65);
+}
+
+floating-button .floating-panel-item:last-of-type {
+    margin-right: 0;
+}
+/* ----------------------------------------------------------------------------- */
+
+/* Floating Panel Notification ------------------------------------------------- */
+floating-button .floating-notification-container {
+    background-color: #509d50;
+    border-radius: 8px;
+    box-shadow: 0 0 2px #000;
+    color: #fff;
+    left: -5px;
+    padding: 2px 5px;
+    position: absolute;
+    top: -5px;
+}
+/* ----------------------------------------------------------------------------- */

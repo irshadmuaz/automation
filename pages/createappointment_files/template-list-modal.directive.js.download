@@ -1,0 +1,581 @@
+(function (a) {
+  function loadDependentLibrary(){
+    return {
+            files: ['/mobiledoc/jsp/healowsign/js/daterangepicker.js',
+                '/mobiledoc/jsp/ascWeb/js/vendor/daterangepicker/custom-timepicker.js',
+                "/mobiledoc/jsp/ascWeb/js/vendor/daterangepicker/bootstrapui-timepicker.js",
+                '/mobiledoc/jsp/ascWeb/js/vendor/daterangepicker/angular-daterangepicker.js',
+                '/mobiledoc/jsp/healowsign/responses/template-list-modal.css'
+            ]
+        }
+  }
+  var module = a.module("ecw.directive.healowletters.publishedDocument",['toasterNotification',loadDependentLibrary()])
+  module.service('publishDocumentListService',['$http',"$ocLazyLoad",publishDocumentListService])
+  module.controller('publishDocumentListController',['$modalInstance','$http','selectedPatient',"$ocLazyLoad","toasterSvc",'$timeout','dateRangeOption','publishDocumentListService',publishDocumentListController]);
+  module.directive('publishDocumentList',["$modal","$ocLazyLoad","$timeout",publishDocumentList]);
+
+  function publishDocumentListService($http,$ocLazyLoad){
+    return {
+      sendDocument : function (healowSignDocumentList,isResend){
+        return $.Deferred(function(dfd){
+          var selectedIdList = healowSignDocumentList.map(obj => obj.LetterPublishId);
+          if(!selectedIdList || !selectedIdList.length){
+            dfd.reject('Please select documents')
+            return;
+          }
+          var obj = {MessageTemplate:"Dr office needs you to sign the following documents for your upcoming appointment on {{MONTH_NAME}} {{MONTH_DAY}} at {{HOUR}}:{{MINUTE}} {{AM/PM}}. Please follow the link to sign",PublishTemplateId:selectedIdList,ExpiredInDays:30,TrUserId:parseInt(global.TrUserId)}
+          if(isResend){
+            obj.MessageTemplate = "";
+            obj.Resend = true;
+          }
+          var promise =  $http({
+            method	: 'POST',
+            url		: "/mobiledoc/healowsign/publishDocument/publishBucketList",
+            data	: obj,
+            headers: {'Content-Type': 'application/json'}
+          })
+          promise.success(function(data){
+            if(data && data.statusCode==1){
+              dfd.resolve(data.result);
+            }else{
+              dfd.reject(data.message)
+            }
+          }).error(function (error) {
+            dfd.reject('Error while sending document.');
+          })
+        });
+      },openPatientDocument : function (row,patientId,encounterId){
+        return $.Deferred(function (dfd) {
+          if (!row.DocumentId) {
+            dfd.reject("Document is not valid");
+            return
+          }
+          var urlData = "navigate=yes&leftPanel=1&toprightPanel=0";
+          $ocLazyLoad.load({
+            name: 'documentViewModule',
+            files: ['/mobiledoc/jsp/webemr/jellybean/reviewdocs/documentView.js']
+          }).then(function () {
+            var url = makeURL("/mobiledoc/jsp/webemr/jellybean/reviewdocs/documentView.jsp?" + encodeURI(urlData) + "&docId=" + row.DocumentId + "&docIdList=&patientId=" + patientId + "&encounterId=" + encounterId + "&callingForm=healowSignViewApptRightPanel" + "&nd=" + new Date().getTime());
+            dfd.resolve(url);
+          }, function (e) {
+            dfd.reject("Error occurred while loading document detailed view.", "eClinicalWorks");
+            ecwAlert("Error occurred while loading document detailed view.", "eClinicalWorks", null, "", "bluetheme");
+          });
+        });
+      }, loadDocument : function(patientId,encounterId){
+        var statusList = this.getStatus();
+        return $.Deferred(function (dfd) {
+          var obj={};
+          if(patientId){
+            obj["PatientId"] = patientId;
+          }
+          if(encounterId){
+            obj["EncounterId"] = encounterId;
+          }
+
+          var promise =  $http({
+            method	: 'POST',
+            url		: "/mobiledoc/healowsign/analytics/responses/getByPatient",
+            data	: obj,
+            headers: {'Content-Type': 'application/json'}
+          })
+          promise.success(function(data){
+            if(data && data.statusCode==1){
+              data.result.forEach( obj => obj.isSelected=false);
+              var smsPublishData = data.result.filter(obj => obj.SmsMsgId && obj.SmsMsgId>0);
+              smsPublishData.forEach(obj => {
+                data.result.forEach( record => {
+                  record.StatusName = statusList[record.ResponseCode];
+                  if(record.transactionId===obj.transactionId){
+                    record.SmsMsgId=obj.SmsMsgId;
+                    record.SmsMessageStatus = obj.SmsMessageStatus;
+                  }
+                })
+              });
+              dfd.resolve(data.result);
+            }else{
+              dfd.reject(data.message);
+            }
+          }).error(function(){
+            dfd.reject("Error while loading bucket list");
+          });
+        })
+      },getStatus:function (){
+        return {"-2":"In Progress","-1":"Failed","0":"In Progress","-5":"Logged","1":"Sent","2":"Visited","3":"Received"};
+      },getAppointmentDate : function (encounterId) {
+        return $.Deferred(function (dfd) {
+          if(!encounterId){
+            dfd.resolve({});
+            return;
+          }
+          var promise =  $http({
+            method	: 'GET',
+            url		: "/mobiledoc/healowsign/publishDocument/encounter/"+encounterId,
+          })
+          promise.success(function(data){
+            if(data && data.statusCode==1){
+              dfd.resolve(data.result);
+            }else{
+              dfd.reject(data.message)
+            }
+          }).error(function(){
+            dfd.reject("Error while loading appointment date.");
+          });
+        });
+      },loadAllPublishedDocuments : function (filter){
+        var data={Published:1,Active:1}
+        if(filter){
+          Object.assign(data, filter);
+        }
+        var strURL = "/mobiledoc/healowsign/letterManagement/letter/getAll";
+        return $http({
+          method	: 'POST',
+          url		: strURL,
+          data	: data,
+          headers: {'Content-Type': 'application/json'}
+        });
+      }
+    }
+  }
+
+
+  function publishDocumentListController($modalInstance,$http,selectedPatient,$ocLazyLoad,toasterSvc,$timeout,dateRangeOption,publishDocumentListService){
+    var pdl = this;
+    pdl.PatientId = selectedPatient.PatientId;
+    pdl.EncounterId = selectedPatient.EncounterId;
+    pdl.selectAllNotSendTemplate = selectedPatient.SelectAllNotSendTemplate;
+    pdl.showOnlyAllDocuments = selectedPatient.showOnlyAllDocuments;
+    pdl.status = {"-2":"NOT SEND","-1":"FAILED","0":"LOGGED","1":"SENT","2":"VISITED","3":"RECEIVED","4":"DECLINE","5":"CANCEL PENDING","6":"CANCELED"};
+    pdl.statusColor = {"-1":"red","3":"green"}
+    pdl.templateResponseData = [];
+    pdl.dateOptions = dateRangeOption;
+    pdl.tabData = {unAssignedDocTab:{count:0,DocumentSignedType:1,list:[],filterBy:obj => obj.ResponseCode<3,filterObject:null},"signedDocTab":{count:0,DocumentSignedType:2,list:[],filterBy:obj => obj.ResponseCode>=3,filterObject:null},"allDocTab":{count:0,DocumentSignedType:0,list:[],filterBy:obj => null!=obj,filterObject:null}};
+    pdl.reportTabActive='unAssignedDocTab';
+    pdl.appoinmentDate = "";
+    const SENT_STATUS = 1;
+    const VISITED_STATUS = 2;
+    const CANCEL_PENDING_STATUS = 5;
+    const LOGGED_STATUS = 5;
+    const CANCEL_STATUS_LIST=[SENT_STATUS,VISITED_STATUS,CANCEL_PENDING_STATUS,LOGGED_STATUS];
+    pdl.signedDocumentCount = 0;
+    pdl.unsignedDocumentCount = 0;
+    pdl.totalDocumentCount = 0;
+    pdl.openDatepickerRange = {"openDatepickerRange":false};
+    pdl.readOnlyDatepickerRange = {inputField:true,calenderIcon:true};
+    if(pdl.EncounterId){
+        publishDocumentListService.getAppointmentDate(pdl.EncounterId).then(function (data) {
+          pdl.appoinmentDate = "Appointment on "+new Date(data.ApptDate).format("dddd, mmmm dd, yyyy")
+        })
+      }else if(selectedPatient.parentModalName){
+        pdl.appoinmentDate = selectedPatient.parentModalName;
+      }
+    pdl.init = function (loadAllAndThenFilter){
+      if(!pdl.showOnlyAllDocuments){
+        pdl.loadDocuments(loadAllAndThenFilter).then(function(){
+          if(pdl.selectAllNotSendTemplate){
+            pdl.templateResponseData.forEach(obj => {
+              if(obj.ResponseCode===-2){
+                obj.isSelected = true;
+              }
+            });
+          }
+        },function (){
+
+        });
+      }else{
+        pdl.reportTabActive='allDocTab'
+      }
+      $.Deferred(function(dfd){
+        pdl.loadAllPublishedDocuments(dfd);
+      })
+
+    }
+    pdl.copyTextToClipboard = function (data) {
+      copyTextToClipboard(data);
+    }
+    pdl.selectAll = function (data){
+      data.list.forEach(obj => {
+        obj.isSelected = data.selectAllRecords;
+      })
+    }
+    function fallbackCopyTextToClipboard(text) {
+      var textArea = document.createElement("textarea");
+      textArea.value = text;
+
+      // Avoid scrolling to bottom
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Fallback: Copying text command was ' + msg);
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+
+      document.body.removeChild(textArea);
+    }
+    function copyTextToClipboard(text) {
+      if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(text);
+        return;
+      }
+      navigator.clipboard.writeText(text).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+    }
+    pdl.onDateSelected = function (date,type) {
+      console.log(date)
+      var reqObj={};
+      reqObj[type+"DateStart"] = date.startDate.format("YYYY-MM-DD HH:mm:ss");
+      reqObj[type+"DateEnd"] = date.endDate.format("YYYY-MM-DD")+" 23:59:59";
+      if(!pdl.tabData[pdl.reportTabActive].filterObject){
+        pdl.tabData[pdl.reportTabActive].filterObject={};
+      }
+      Object.assign(pdl.tabData[pdl.reportTabActive].filterObject, reqObj);
+      pdl.loadDocuments(false,pdl.tabData[pdl.reportTabActive].filterObject);
+    }
+    pdl.resendMessage = function () {
+      var selectedList = pdl.templateResponseData.filter(obj => obj.isSelected).map(obj => obj.SmsMsgId);
+      var selectedIds = Array.from(new Set(selectedList));
+      if(!selectedIds || !selectedIds.length){
+        ecwAlert("Please select template.")
+        return;
+      }
+      var promise =  $http({
+        method	: 'POST',
+        url		: "/mobiledoc/AjaxControllerServlet",
+        params: {'action': 'ResendSMS',
+          'ids': selectedIds.join(),
+          'TrUserId': parseInt(global.TrUserId)
+        }
+      })
+      promise.success(function(data){
+        toasterSvc.showSuccessToaster('Successfully resend sms', 4000);
+      }).error(function(){
+        toasterSvc.showErrorToaster("Error while sending message resend sms",8000)
+      });
+    }
+    pdl.resendTemplate = function (){
+      pdl.ok(true);
+    }
+    var timer = "";
+    pdl.documentFilterByName = function () {
+      if (timer && timer !== '') {
+        $timeout.cancel(timer);
+      }
+      var documentName = pdl.tabData[pdl.reportTabActive].searchDocument
+      if(!pdl.tabData[pdl.reportTabActive].filterObject){
+        pdl.tabData[pdl.reportTabActive].filterObject = {};
+      }
+      pdl.tabData[pdl.reportTabActive].filterObject['DocumentName'] = documentName;
+      timer = $timeout(function () {
+        pdl.loadDocuments(null,pdl.tabData[pdl.reportTabActive].filterObject).then(function(){
+
+        })
+      },500);
+    }
+    pdl.loadAllPublishedDocuments = function (dfd,otherFilters){
+      var promise = publishDocumentListService.loadAllPublishedDocuments(otherFilters);
+      promise.success(function (data) {
+        if(data && data.statusCode==1){
+          pdl.tabData.allDocTab.list =data.result;
+          //pdl.templateResponseData=pdl.tabData.allDocTab.list;
+          var countObject=JSON.parse(data.message);
+          pdl.tabData.allDocTab.count=countObject.TotalCount;
+          dfd.resolve()
+        }else{
+          ecwAlert(data.message);
+            dfd.reject(data.message);
+        }
+      }).error(function (error) {
+          dfd.reject(error);
+      });
+    }
+    pdl.loadDocuments = function(loadAllAndThenFilter,otherFilters){
+      return $.Deferred(function (dfd) {
+        var hasFilter = false;
+        if('allDocTab'===pdl.reportTabActive){
+          pdl.loadAllPublishedDocuments(dfd,otherFilters);
+          return;
+        }
+        var obj={};
+        if(pdl.PatientId){
+          obj["PatientId"] = pdl.PatientId;
+        }
+        if(pdl.EncounterId){
+          obj["EncounterId"] = pdl.EncounterId;
+        }
+        obj['DocumentSignedType'] = 0;
+        if(!loadAllAndThenFilter) {
+          switch (pdl.reportTabActive) {
+            case 'unAssignedDocTab':
+              obj['DocumentSignedType'] = 1;
+              break;
+            case 'signedDocTab':
+              obj['DocumentSignedType'] = 2;
+              break;
+          }
+        }
+        if(otherFilters){
+          hasFilter = true;
+          Object.assign(obj, otherFilters);
+        }
+        var promise =  $http({
+          method	: 'POST',
+          url		: "/mobiledoc/healowsign/analytics/responses/getByPatient",
+          data	: obj,
+          headers: {'Content-Type': 'application/json'}
+        })
+        promise.success(function(data){
+          if(data && data.statusCode==1){
+            data.result.forEach( obj => obj.isSelected=false);
+            var smsPublishData = data.result.filter(obj => obj.MessageURL);
+            smsPublishData.forEach(obj => {
+              data.result.forEach( record => {
+                if(record.transactionId===obj.transactionId){
+                  record.MessageURL=obj.MessageURL;
+                }
+              })
+            });
+            pdl.templateResponseData=data.result;
+            if(obj['DocumentSignedType']===0) {
+              for (var key in pdl.tabData) {
+                if(key==='allDocTab'){
+                  continue;
+                }
+                var tabRecords = pdl.tabData[key];
+                tabRecords.list = pdl.templateResponseData.filter(tabRecords.filterBy);
+                if(!hasFilter){
+                  tabRecords.count = tabRecords.list.length;
+                }
+              }
+              pdl.tabData.allDocTab.count = 0;
+            }else {
+              var currentTabData = pdl.tabData[pdl.reportTabActive];
+              currentTabData.list = pdl.templateResponseData.filter(currentTabData.filterBy);
+              if(!hasFilter){
+                currentTabData.count = currentTabData.list.length;
+              }
+            }
+            dfd.resolve();
+          }else{
+            ecwAlert(data.message);
+            dfd.reject();
+          }
+        }).error(function(){
+          ecwAlert("Error while loading bucket list");
+          dfd.reject();
+        });
+      })
+    }
+    pdl.refresh = function(){
+      var selectedList = pdl.templateResponseData.filter(obj => obj.ResponseCode===1 || obj.ResponseCode===2);
+      if(selectedList && selectedList.length>0){
+        var promise =  $http({
+          method	: 'GET',
+          url		: "/mobiledoc/healowsign/letterManagement/runJobNow/STATUS"
+        })
+        promise.success(function(data){
+          if(data && data.statusCode==1){
+            pdl.init(true);
+          }else{
+            ecwAlert(data.message);
+          }
+        }).error(function (error) {
+          ecwAlert('Error while sending document.');
+        })
+      }else{
+        pdl.loadDocuments();
+      }
+    }
+    pdl.close = function() {
+      $modalInstance.dismiss('cancel');
+    };
+    pdl.openDocumentView = function (row){
+      if(row.DocumentId){
+        var urlData = "navigate=yes&leftPanel=1&toprightPanel=0";
+        $ocLazyLoad.load({
+          name: 'documentViewModule',
+          files: ['/mobiledoc/jsp/webemr/jellybean/reviewdocs/documentView.js']
+        }).then(function() {
+          var url = makeURL("/mobiledoc/jsp/webemr/jellybean/reviewdocs/documentView.jsp?"+ encodeURI(urlData) + "&docId=" + row.DocumentId + "&docIdList=&patientId=" + pdl.PatientId + "&encounterId=" + pdl.EncounterId + "&callingForm=healowSignView" + "&nd=" + new Date().getTime());
+          pdl.reviewDocs_documentView = url;
+        }, function(e) {
+          ecwAlert("Error occurred while loading document detailed view.", "eClinicalWorks", null, "", "bluetheme");
+        });
+      }
+    }
+    pdl.cancelTemplate = function (){
+      var selectedIdList = pdl.templateResponseData.filter( obj => obj.isSelected);
+      if(!selectedIdList || !selectedIdList.length){
+        ecwAlert('Please select documents');
+        return;
+      }
+      var receivedDocumentList = selectedIdList.filter(obj => CANCEL_STATUS_LIST.indexOf(obj.ResponseCode)>=0)
+      if(!receivedDocumentList || !receivedDocumentList.length){
+        ecwAlert('Cannot Cancel Received document');
+        return;
+      }
+      selectedIdList = selectedIdList.map(obj => obj.LetterPublishId)
+      var obj = {PublishTemplateId:selectedIdList,TrUserId:parseInt(global.TrUserId)}
+      var promise =  $http({
+        method	: 'POST',
+        url		: "/mobiledoc/healowsign/publishDocument/cancelPublishDocument",
+        data	: obj,
+        headers: {'Content-Type': 'application/json'}
+      })
+
+      promise.success(function(data){
+        if(data && data.statusCode==1){
+          pdl.loadDocuments();
+          toasterSvc.showSuccessToaster("Successfully changed status to cancel pending",4000);
+        }else{
+          ecwAlert(data.message);
+        }
+
+      }).error(function (error) {
+        ecwAlert("Error while canceling document.");
+      })
+    }
+    pdl.clearFilters = function () {
+      pdl.tabData[pdl.reportTabActive].filterObject = null;
+      pdl.tabData.unAssignedDocTab.sendDateRange = "";
+      pdl.tabData.signedDocTab.receivedDateRange = "";
+      pdl.tabData.allDocTab.receivedDateRange = "";
+      pdl.tabData.allDocTab.sentDateRange = "";
+      pdl.tabData.unAssignedDocTab.searchDocument = ""
+      pdl.tabData.signedDocTab.searchDocument = ""
+      pdl.tabData.allDocTab.searchDocument = ""
+      pdl.loadDocuments(false);
+    }
+    pdl.sendDocumentNotInBucketList = function () {
+      var selectedIdList = pdl.tabData.allDocTab.list.filter( obj => obj.isSelected).map(obj => obj.TemplateId);
+      if(!selectedIdList || !selectedIdList.length){
+        ecwAlert('Please select documents');
+        return;
+      }
+      var obj = {MessageTemplate:"Dr {{DOCTORNAME}} office needs you to sign the following documents. Please follow the link to sign",LetterTemplateIds:selectedIdList,ExpiredInDays:30,TrUserId:parseInt(global.TrUserId),LetterPublishPatients:[{patientId:pdl.PatientId,encounterId:pdl.EncounterId}]}
+      var promise =  $http({
+        method	: 'POST',
+        url		: "/mobiledoc/healowsign/publishDocument/publishLetterForSignBySendMessage",
+        data	: obj,
+        headers: {'Content-Type': 'application/json'}
+      })
+      promise.success(function(data){
+        if(data && data.statusCode===1){
+          toasterSvc.showSuccessToaster('Successfully initiated document sent request.',4000);
+        }else{
+          ecwAlert(data.message?data.message:"Error while publishing document to healow sign");
+        }
+      }).error(function (error) {
+        ecwAlert('Error while sending document.');
+      })
+    }
+    pdl.ok = function (isResend) {
+      if(pdl.reportTabActive==='allDocTab'){
+        pdl.sendDocumentNotInBucketList();
+        return;
+      }
+      var selectedIdList = pdl.templateResponseData.filter( obj => obj.isSelected).map(obj => obj.LetterPublishId);
+      if(!selectedIdList || !selectedIdList.length){
+        ecwAlert('Please select documents');
+        return;
+      }
+      var obj = {MessageTemplate:"Dr {{DOCTORNAME}} office needs you to sign the following documents for your upcoming appointment on {{MONTH_NAME}} {{MONTH_DAY}} at {{HOUR}}:{{MINUTE}} {{AM/PM}}. Please follow the link to sign",PublishTemplateId:selectedIdList,ExpiredInDays:30,TrUserId:parseInt(global.TrUserId)}
+      if(isResend){
+        obj.MessageTemplate = "";
+        obj.Resend = true;
+      }else{
+        lst = pdl.templateResponseData.filter( obj => obj.isSelected && (obj.ResponseCode>0))
+        if(lst && lst.length>0){
+          ecwAlert('Please select documents which status is "Not Sent/Failed/Logged".');
+          return;
+        }
+      }
+      var promise =  $http({
+        method	: 'POST',
+        url		: "/mobiledoc/healowsign/publishDocument/publishBucketList",
+        data	: obj,
+        headers: {'Content-Type': 'application/json'}
+      })
+      promise.success(function(data){
+        if(data && data.statusCode===1){
+          pdl.loadDocuments();
+          toasterSvc.showSuccessToaster('Successfully initiated document sent request.',4000);
+        }else{
+          ecwAlert(data.message);
+        }
+      }).error(function (error) {
+        ecwAlert('Error while sending document.');
+      })
+    };
+
+  }
+  function publishDocumentList($modal,$ocLazyLoad,$timeout) {
+    return {
+      restrict: 'A',
+      scope: {
+        patientId: '=',
+        encounterId: '=',
+        selectedNotSendByDefault:"@",
+        topclass: '@',
+        showOnlyAllDocuments:"@?",
+        parentModalName:"@?"
+      },
+      link: function(scope, element, attributes) {
+        scope.openModalClick = function () {
+            var modalInstance = $modal.open({
+              templateUrl:'/mobiledoc/jsp/healowsign/responses/directive/template-list-modal.directive.html',
+              resolve:{
+                selectedPatient : function () {
+                  return {
+                    PatientId:scope.patientId,
+                    EncounterId:scope.encounterId,
+                    SelectAllNotSendTemplate:(scope.selectedNotSendByDefault && scope.selectedNotSendByDefault.toLowerCase()==='true'?true:false),
+                    showOnlyAllDocuments:(scope.showOnlyAllDocuments && scope.showOnlyAllDocuments.toLowerCase()==='true'?true:false),
+                    parentModalName:scope.parentModalName
+                  }
+                }
+              },
+              controller : publishDocumentListController,
+              controllerAs : "pdl",
+              windowClass	: 'app-modal-window bluetheme document-list-width',
+              backdrop: "static",
+            });
+            modalInstance.result.then(function(){
+
+            },function(response){
+              if(response && response.status===1 && response.action==="Refresh"){
+
+              }
+            },function(response){
+              ecwAlert(response,"ERROR");
+            });
+        }
+        scope.isHealowSignEnabled = getItemKeyValue("EnableHealowSign");
+        scope.isTemporaryEnableHealowSignButton = getItemKeyValue("TemporaryEnableHealowSignButton");
+        scope.isHealowSignEnabled = scope.isTemporaryEnableHealowSignButton && scope.isTemporaryEnableHealowSignButton.toLowerCase()==='yes' && scope.isHealowSignEnabled && 'yes'===scope.isHealowSignEnabled.toLowerCase() ;
+        if(scope.isHealowSignEnabled){
+          element.on("click",scope.openModalClick);
+          scope.$on('$destroy', function() {
+            element.off('click', scope.openModalClick);
+          });
+        }else{
+          angular.element(element).css("display","none")
+        }
+
+      },
+    }
+  }
+
+
+})(angular);

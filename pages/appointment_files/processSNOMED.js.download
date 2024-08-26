@@ -1,0 +1,129 @@
+//var eN,p,u should be defined in the page that includes this js
+
+//Added below method to reset global variables when checkSNOMED is called, FOR WEBEMR
+function initGlobalSNOMED(){
+	try{
+		eN = document.getElementById("snomedEncounterId") != null && document.getElementById("snomedEncounterId") != undefined ? document.getElementById("snomedEncounterId").value : eN;
+		p = document.getElementById("snomedPatientId") != null && document.getElementById("snomedPatientId") != undefined ? document.getElementById("snomedPatientId").value : p;
+		u =  document.getElementById("snomedUserId") != null && document.getElementById("snomedUserId") != undefined ? document.getElementById("snomedUserId").value : u;
+	} catch (e) {
+
+	}
+}
+
+function checkSNOMED(elemSelector, callbackFn)
+{
+	try{
+		initGlobalSNOMED();
+		if (!elemSelector) {
+			elemSelector = "SNOMEDTab"+p;
+		}
+		var obj = window.document.all[elemSelector];
+
+		if(!obj || obj == undefined) return;
+
+		if(obj.length && obj.length > 0){
+			obj = obj[0];
+		}
+
+		var colr = "blue";
+		if(obj.getAttribute("c") != undefined && obj.getAttribute("c") != "" ) colr = "white";
+
+		var misscolr = "red";
+		if(obj.getAttribute("c") != undefined && obj.getAttribute("c") != "" )
+		{
+			colr = "white";
+			misscolr = "yellow";
+		}
+
+		//var m = "<table><u><font color='"+misscolr+"' size=1><b><td><img src='/mobiledoc/jsp/catalog/xml/SNOMED/images/red-exlametry.png'></td><td> Problem List SNOMED </td></b></font></u></table>";
+		var snomedText = isVb() ? "Problem List SNOMED" : "SNOMED";
+		var fontSize = isVb() ? "size=1" : "";
+		var m = "<u><table><tr><td><img src='/mobiledoc/jsp/catalog/xml/SNOMED/images/red-exlametry.png' height='15' width='15'></td><td style='vertical-align:top;'><font color='"+misscolr+"' " + fontSize + "><b> "+snomedText+"</b></font></td></tr></table></u>";
+		var t = "Missing SNOMED in Problem List";
+		var url = "/mobiledoc/jsp/catalog/xml/SNOMED/checkSNOMED.jsp?nEncounterId="+eN+"&nPatientId="+p+"&TrUserId=" + u+"&timetamp="+new Date().getTime();
+		$.ajax({
+			type: 'POST',
+			url: url,
+			async:true,
+			success: function(resultData){
+
+				if(resultData == 1)
+				{
+					obj.innerHTML = m;
+					obj.style.display = "";
+				}
+				else if(resultData == 2)
+				{
+					obj.innerHTML = m;
+					obj.style.display = "";
+				}
+				else if(resultData == 3)
+				{
+					obj.innerHTML = m;
+					obj.style.display = "";
+				}
+				else if(resultData == 0)
+				{
+
+					obj.innerHTML = "<u><font color='"+colr+"' " + fontSize + "> "+snomedText+"</font></u>";
+					t = "Assign SNOMED in Problem List";
+					obj.style.display = "";
+				}
+				else
+					obj.style.display = "none";
+
+				obj.title = t;
+
+				if (typeof callbackFn === 'function') {
+					callbackFn(resultData);
+				}
+			},
+			error:function(){}
+		});
+	} catch (e) {
+
+	}
+
+}
+function showSNOMEDWin()
+{
+	initGlobalSNOMED();
+	try
+	{
+		var url = "/mobiledoc/jsp/catalog/xml/SNOMED/listSNOMED.jsp?nEncounterId="+eN+"&nPatientId="+p+"&TrUserId="+u;
+
+		var h = (screen.height * .80) + "px";
+		var w = (screen.width * .95) + "px";
+		var win = window.showModalDialog( url, "Associate SNOMED", "resizeable:yes;scrollbar:yes;dialogWidth:" + w+ ";dialogHeight:"+h+";dialogTop:100;dialogLeft:25");
+		try{
+			if(win != "undefined" && win == 1)
+				reloadTabs();
+		}
+		catch(e){}
+		win = null;
+	}
+	catch(e){}
+}
+function reloadTabs()
+{
+	try
+	{
+		if(window.document.all["SNOMEDTab"])
+			checkSNOMED();
+		else
+			window.location.href = window.location.href;
+	}
+	catch(e){}
+}
+$("#SNOMEDTab").unbind("keypress").bind("keypress", function(event, ui) {
+	var key = (event.keyCode ? event.keyCode : event.which);
+	if (key === 13) {
+		showSNOMEDWin();
+	}
+});
+
+$(document).ready(function(){
+
+	checkSNOMED();
+});

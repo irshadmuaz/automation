@@ -1,0 +1,2082 @@
+.healow-insights-pdx-wrapper .info-popup, .infoexam-popup, .bocontrol-popup, .adultbmi-popup, .myhealthplan-popup-cipc, .myhealthplan-popup-history, .plan-info-popup {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #e9f8ff;
+    border: 1px solid #ddd;
+    width: 350px;
+    border-radius: 3px;
+    padding: 10px 0;
+    z-index: 999;
+    display: none;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .plan-arrow {
+    position: relative;
+    background: #fff;
+}
+
+.healow-insights-pdx-wrapper .plan-arrow:after, .plan-arrow:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    margin-top: 18px !important;
+}
+
+.healow-insights-pdx-wrapper .plan-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.healow-insights-pdx-wrapper .plan-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-right-color: #ddd;
+    border-width: 9px;
+    margin-top: -9px;
+}
+
+.healow-insights-pdx-wrapper .info-popup-arrow:after, .info-popup-arrow:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .info-popup-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #e9f8ff;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.healow-insights-pdx-wrapper .info-popup-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: #ddd;
+    border-width: 7px;
+    margin-top: -7px;
+}
+
+.healow-insights-pdx-wrapper .health-arrow:after, .health-arrow:before {
+    left: 100%;
+    top: 26%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .health-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #fff;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.healow-insights-pdx-wrapper .health-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: #ddd;
+    border-width: 7px;
+    margin-top: -7px;
+}
+
+.healow-insights-pdx-wrapper .facts-collapsible-sec .inner-listhead {
+    color: #247e9b;
+    background: #fff;
+    padding: 0 30px;
+}
+
+.healow-insights-pdx-wrapper .hi-comments-info-popup,
+.healow-insights-pdx-wrapper .eattestation-popup {
+    position: absolute;
+    z-index: 999;
+    font-size: 12px;
+    background: #e9f8ff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 5px 10px #ddd;
+    padding: 10px 0 10px;
+    display: none;
+    width: 80%;
+}
+.healow-insights-pdx-wrapper .eattestation-popup {
+    height: fit-content;
+    bottom: 40px;
+    width: 85%;
+}
+
+.healow-insights-pdx-wrapper .hi-comments-info-popup .hi-comments-info-popup-arrow:after,
+.healow-insights-pdx-wrapper .hi-comments-info-popup .hi-comments-info-popup-arrow:before,
+.healow-insights-pdx-wrapper .hospice-popup-view .hospice-top-view-arrow:before,
+.healow-insights-pdx-wrapper .hospice-popup-view .hospice-top-view-arrow:after {
+    border: solid transparent;
+    bottom:100%;
+    content: " ";
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+}
+
+.healow-insights-pdx-wrapper .hi-comments-info-popup .hi-comments-info-popup-arrow:after,
+.healow-insights-pdx-wrapper .hi-comments-info-popup .hi-comments-info-popup-arrow:before {
+    right: 20%;
+}
+
+.healow-insights-pdx-wrapper .hi-comments-info-popup .hi-comments-info-popup-arrow:after,
+.healow-insights-pdx-wrapper .hospice-popup-view .hospice-top-view-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 9px;
+    margin-left: -9px;
+}
+
+.healow-insights-pdx-wrapper .hi-comments-info-popup .hi-comments-info-popup-arrow:before,
+.healow-insights-pdx-wrapper .hospice-popup-view .hospice-top-view-arrow:before {
+    border-bottom-color: #ddd;
+    border-color: rgba(221, 221, 221, 0);
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.healow-insights-pdx-wrapper .hospice-popup-view {
+    position: absolute;
+    padding: 10px 15px 0 15px;
+    background: #fff;
+    width: 255px;
+    border: 1px solid #ddd;
+    z-index: 99;
+    box-shadow: 0 5px 10px #ddd;
+    display: none;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.healow-insights-pdx-wrapper .hospicedata .eattestation-click u {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:after,
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:before {
+    bottom: 100%;
+    left: 10%;
+    top:0;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:after,
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:before {
+    left: 85%;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 9px;
+    margin-left: -9px;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-bottom-color: #ddd;
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup .eattestation-table .title-break {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.healow-insights-pdx-wrapper .hospicedata .btn.btn-xs.btn-lgrey,
+.healow-insights-pdx-wrapper .hospicedata .btn.btn-xs.btn-blue {
+    padding: 2px 10px !important;
+    line-height: 18px !important;
+    font-size: 12px;
+    border-radius: 3px !important;
+    vertical-align: middle;
+}
+
+.healow-insights-pdx-wrapper .hospicewarning-popup-hubs {
+    width: 250px !important;
+}
+
+.healow-insights-pdx-wrapper .visit-type-popup-width {
+    width: 300px;
+}
+
+.healow-insights-pdx-wrapper .hospicewarning-popup {
+    position: absolute;
+    background: #ffd94d;
+    border: 1px solid #ffd94d;
+    display: none;
+    padding: 10px 15px;
+    z-index: 999;
+    border-radius: 2px;
+    top: 26px;
+    left: 2px;
+    width: 408px;
+}
+
+.healow-insights-pdx-wrapper .hospicewarning-popup:after,
+.healow-insights-pdx-wrapper .hospicewarning-popup:before {
+    bottom: 100%;
+    left: 4%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .hospicewarning-popup:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #ffd94d;
+    border-width: 8px;
+    margin-left: -8px;
+}
+
+.healow-insights-pdx-wrapper .hospicewarning-popup:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-bottom-color: #ffd94d;
+    border-width: 9px;
+    margin-left: -9px;
+}
+
+.healow-insights-pdx-wrapper .hospicedata .hospice-popup {
+    position: absolute;
+    padding: 10px 15px 0 15px;
+    background: #fff;
+    width: 180px;
+    border: 1px solid #ddd;
+    z-index: 99;
+    box-shadow: 0 5px 10px #ddd;
+    display: none;
+    font-size: 12px;
+    border-radius: 3px;
+    top: 25px;
+    left: 60px;
+}
+
+.healow-insights-pdx-wrapper .hospicedata .hospice-popup:after,
+.healow-insights-pdx-wrapper .hospicedata .hospice-popup:before {
+    bottom: 100%;
+    left: 20%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .hospicedata .hospice-popup:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 7px;
+    margin-left: -7px;
+}
+
+.healow-insights-pdx-wrapper .hospicedata .hospice-popup:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-bottom-color: #ddd;
+    border-width: 7px;
+    margin-left: -7px;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:after,
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:before {
+    bottom: 100%;
+    left: 73%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:after {
+    border-color: rgba(233, 248, 255, 0);
+    border-bottom-color: #e9f8ff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.healow-insights-pdx-wrapper .eattestation-popup-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-bottom-color: #ddd;
+    border-width: 11px;
+    margin-left: -11px;
+}
+
+.healow-insights-pdx-wrapper .hospicewarning-popup .btn.btn-xs.hospicewarning-btn {
+    padding: 2px 10px !important;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.healow-insights-pdx-wrapper .innerlist .facts-collapsible-sec .normallist li {
+    padding: 3px 45px;
+}
+
+.healow-insights-pdx-wrapper .normallist li .facts-collapsible-sec .inner-listhead a {
+    color: #247e9b;
+}
+
+.healow-insights-pdx-wrapper .normallist.hcc-list li {
+    padding: 3px 30px;
+}
+
+.healow-insights-pdx-wrapper .external-sublist {
+    padding-left: 27px;
+}
+
+.healow-insights-pdx-wrapper .small-txt {
+    text-transform: lowercase;
+}
+
+.healow-insights-pdx-wrapper .potential-btn {
+    padding: 1px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-history-table {
+    height: 490px;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-alerts-popup {
+    position: absolute;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #fff;
+    width: 155px;
+    border: 1px solid #ddd;
+    z-index: 99;
+    box-shadow: 0 5px 10px #ddd;
+    display: none;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-alerts-popup .doc-att .radio-inline {
+    padding-right: 0;
+    margin-left: 0;
+    margin-top: 3px;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-right-arrow:after,
+.healow-insights-pdx-wrapper .diagnosis-right-arrow:before {
+    left: 100%;
+    top: 18%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-right-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #fff;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-right-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: #ddd;
+    border-width: 9px;
+    margin-top: -9px;
+}
+
+.healow-insights-pdx-wrapper .resolved-popup, .disagree-popup {
+    position: absolute;
+    padding: 10px 15px 0 15px;
+    background: #fff;
+    width: 250px;
+    border: 1px solid #ddd;
+    z-index: 99 !important;
+    box-shadow: 0 5px 10px #ddd;
+    display: none;
+}
+
+.healow-insights-pdx-wrapper .popup-footer {
+    border-top: 2px solid #ddd;
+    padding: 10px 15px;
+}
+
+.healow-insights-pdx-wrapper .problem-list-content .normallist li {
+    padding-left: 20px;
+}
+
+.healow-insights-pdx-wrapper .red-bulletpt {
+    display: inline-block;
+    background: #d9534f;
+    border-radius: 25px;
+    width: 8px;
+    padding: 4px;
+    margin-right: 5px;
+    margin-left: 3px;
+}
+
+.healow-insights-pdx-wrapper .orange-bulletpt {
+    display: inline-block;
+    background: #f0ad4e;
+    border-radius: 25px;
+    width: 8px;
+    padding: 4px;
+    margin-right: 5px;
+    margin-left: 3px;
+}
+
+.healow-insights-pdx-wrapper .black-bulletpt {
+    display: inline-block;
+    background: #000000;
+    border-radius: 25px;
+    width: 8px;
+    padding: 4px;
+    margin-right: 5px;
+    margin-left: 3px;
+}
+
+.healow-insights-pdx-wrapper .pdx-header {
+    color: #000 !important;
+}
+
+.healow-insights-pdx-wrapper .problemalert-status-tooltip {
+    position: absolute;
+    background: #ffd94d;
+    border: 1px solid #ffd94d;
+    padding: 10px 15px;
+    z-index: 999;
+    border-radius: 2px;
+    display: none;
+    width: 371px;
+    text-align: justify;
+}
+
+.healow-insights-pdx-wrapper .supress-alert-popup {
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 3px #ddd;
+    z-index: 9999;
+    border-radius: 3px;
+    width: 350px;
+    display: block;
+    right: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    padding-top: 10px;
+    background: #fff;
+}
+
+.healow-insights-pdx-wrapper .problemalert-status-arrow:after,
+.healow-insights-pdx-wrapper .problemalert-status-arrow:before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .problemalert-status-arrow:after {
+    border-color: rgba(255, 217, 77, 0);
+    border-left-color: #ffd94d;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.healow-insights-pdx-wrapper .problemalert-status-arrow:before {
+    border-color: rgba(255, 217, 77, 0);
+    border-left-color: #ffd94d;
+    border-width: 9px;
+    margin-top: -9px;
+}
+
+.healow-insights-pdx-wrapper .action-right-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: #ddd;
+    border-width: 9px;
+    margin-top: -9px;
+}
+
+.healow-insights-pdx-wrapper .action-right-arrow:after, .action-right-arrow:before {
+    left: 100%;
+    top: 80%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .action-right-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #fff;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.healow-insights-pdx-wrapper .supress-btns-sec .btn {
+    width: 48px;
+}
+
+.healow-insights-pdx-wrapper .problem-list-content.problemcontent .normallist li {
+    padding-left: 5px;
+}
+
+.healow-insights-pdx-wrapper .problem-list-content.problemcontent .normallist.suggested-list li {
+    padding-left: 20px;
+}
+
+.healow-insights-pdx-wrapper .overflow-hidden {
+    overflow: hidden;
+}
+
+.healow-insights-pdx-wrapper .hcc-list-header {
+    background: #fafafa !important;
+}
+
+.healow-insights-pdx-wrapper .btn-rounded {
+    width: 16px;
+    height: 16px;
+    padding: 6px 0 !important;
+    border-radius: 16px !important;
+}
+
+.healow-insights-pdx-wrapper .btn-rounded.btn-primary {
+    background: #428bca !important;
+}
+
+.healow-insights-pdx-wrapper .btn-rounded.btn-danger {
+    background: #d9534f !important;
+}
+
+.healow-insights-pdx-wrapper .btn-rounded.btn-orange {
+    background: #f0ad4e;
+}
+
+.healow-insights-pdx-wrapper .btn-rounded.btn-orange {
+    background: #f58f51;
+}
+
+.healow-insights-pdx-wrapper .btn-orange {
+    color: #fff;
+    background-color: #f58f51;
+    border-color: #fb7c2f;
+}
+
+.healow-insights-pdx-wrapper .clinical-heading {
+    padding: 5px 10px;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .hcc-tooltip, .assessment-tooltip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #e9f8ff;
+    border: 1px solid #ddd;
+    width: 280px;
+    border-radius: 3px;
+    padding: 10px 0;
+    z-index: 999;
+    display: none;
+    font-size: 12px;
+    padding-left: 15px;
+}
+
+.healow-insights-pdx-wrapper .hcc-tooltip-arrow:after,
+.healow-insights-pdx-wrapper .hcc-tooltip-arrow:before {
+    left: 100%;
+    top: 15%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .hcc-tooltip-arrow:after {
+    border-color: rgba(233, 248, 255, 0);
+    border-left-color: #e9f8ff;
+    border-width: 5px;
+    margin-top: -5px;
+}
+
+.healow-insights-pdx-wrapper .hcc-tooltip-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: white;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.healow-insights-pdx-wrapper .hibtbrd {
+    border-bottom: 1px solid #D8D8D8 !important;
+}
+
+.healow-insights-pdx-wrapper .hitopbrd {
+    border-top: 1px solid #D8D8D8 !important;
+}
+
+.healow-insights-pdx-wrapper .nobtbrd {
+    border-bottom: 0 !important;
+}
+
+.healow-insights-pdx-wrapper .resolved-data, .healow-insights-pdx-wrapper .pending-alert {
+    background: #fff;
+    width: 320px;
+    position: absolute;
+    top: 0;
+    height: 115px;
+    border: 1px solid #ddd;
+    z-index: 99 !important;
+    display: none;
+}
+
+.healow-insights-pdx-wrapper .resolved-data-hub, .healow-insights-pdx-wrapper .pending-alert-hub {
+    width: 250px !important;
+    height: 140px !important;
+}
+
+.healow-insights-pdx-wrapper .resolved-arrow {
+    position: relative;
+    background: #fff;
+}
+
+.healow-insights-pdx-wrapper .resolved-arrow:after,
+.healow-insights-pdx-wrapper .resolved-arrow:before {
+    left: 100%;
+    top: 22%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.healow-insights-pdx-wrapper .resolved-arrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #fff;
+    border-width: 8px;
+    margin-top: -8px;
+}
+
+.healow-insights-pdx-wrapper .resolved-arrow:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: #ddd;
+    border-width: 9px;
+    margin-top: -9px;
+}
+
+.healow-insights-pdx-wrapper .bgylow {
+    background: #f4db30;
+    height: 115px;
+    width: 65px;
+    display: flex;
+    align-items: center;
+}
+
+.healow-insights-pdx-wrapper .bgylow-hub {
+    height: 137px !important;
+    width: 60px !important;
+}
+
+.healow-insights-pdx-wrapper .bgylow-sm {
+    height: 115px;
+}
+
+.healow-insights-pdx-wrapper .alert-icon-yellow {
+    background: url(/mobiledoc/jsp/healowInsights/worklists/image/alert-icon-yellow.png) no-repeat;
+    width: 31px;
+    height: 26px;
+}
+
+.healow-insights-pdx-wrapper .reassessment-popup {
+    position: absolute;
+    padding-top: 10px;
+    background: #fff;
+    width: 320px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    z-index: 99 !important;
+    box-shadow: 0 5px 10px #ddd;
+    display: none;
+}
+
+.healow-insights-pdx-wrapper .greenbgcheck {
+    background: url(/mobiledoc/jsp/healowInsights/img/right-tick-small.png) no-repeat;
+    width: 17px;
+    height: 17px;
+}
+
+.healow-insights-pdx-wrapper .packageimg7 {
+    background: url(/mobiledoc/jsp/healowInsights/img/hieyeicon.png) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.healow-insights-pdx-wrapper .btn-rounded {
+    width: 14px !important;
+    height: 14px !important;
+    padding: 6px 0 !important;
+    border-radius: 14px !important;
+}
+
+.healow-insights-pdx-wrapper .inline-block {
+    display: inline-block !important;
+}
+
+.healow-insights-pdx-wrapper .hi-word-wrap {
+    white-space: pre-wrap !important;
+}
+
+.healow-insights-pdx-wrapper .hi-sorting-icon {
+    background: rgba(0, 0, 0, 0) url(/mobiledoc/jsp/healowInsights/img/hi_sort_icn.png) no-repeat scroll 0 0;
+    display: inline-block;
+    height: 9px;
+    vertical-align: middle;
+    width: 6px;
+    float: right;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+.healow-insights-pdx-wrapper .hi-get-txt-trim {
+    display: inline-block;
+    padding-top: -8px;
+    line-height: 10px;
+    margin-bottom: -1px;
+}
+
+.healow-insights-pdx-wrapper .hipadlr15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.healow-insights-pdx-wrapper .loadingImg-settings {
+    background: url(/mobiledoc/jsp/healowInsights/image/loading.gif) no-repeat center;
+    height: 80px;
+    width: 100px;
+    position: fixed;
+    z-index: 1060;
+    left: 50%;
+    top: 50%;
+    margin: -25px 0 0 -25px;
+    display: none;
+}
+
+.healow-insights-pdx-wrapper .hirexstar {
+    position: absolute;
+    right: -8px;
+    top: -5px;
+}
+
+.healow-insights-pdx-wrapper .hitxtred {
+    color: #ff2323;
+}
+
+.healow-insights-pdx-wrapper .btn-blue {
+    color: #034763;
+    background-color: #7bd9ff;
+    border-color: #3ca2cb;
+    text-align: center;
+    border-radius: 3px !important;
+}
+
+.healow-insights-pdx-wrapper .btn-xs {
+    padding: 2px 10px !important;
+}
+
+.member-insights-popup .modal-content {
+    margin: 10px;
+    border-radius:0 !important;
+}
+
+.member-insights-popup .modal-dialog {
+    width: 100% !important;
+}
+
+.healow-insights-rcp-wrapper .member-insight-btn {
+    padding: 2px 6px 2px 8px;
+    border-radius: 7px;
+    font-size: 11px;
+    color: #3d4f66;
+    background: #e3f7fe;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.healow-insights-rcp-wrapper .icon {
+    display: inline-block;
+    vertical-align: middle !important;
+    margin: 0;
+    position: relative;
+}
+
+.healow-insights-rcp-wrapper [class^="icon-"], .healow-insights-rcp-wrapper [class*=" icon-"] {
+    font-family: 'icomoon-10i';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.healow-insights-rcp-wrapper .icon-member-insight-red {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-member-insight-red.png) no-repeat;
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.healow-insights-rcp-wrapper .icon-member-insight-blue {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-member-insight-blue.png) no-repeat;
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.healow-insights-rcp-wrapper .pad5 {
+    padding: 5px 10px !important;
+}
+
+.healow-insights-rcp-wrapper-header-bg {
+    background: #2586A6 !important;
+}
+
+.healow-insights-pdx-wrapper .hi-cipc-mainlist {
+    width: 100% !important;
+}
+
+.healow-insights-pdx-wrapper .hi-cipc-mainlist-message {
+    display: inline-block !important;
+}
+
+.healow-insights-pdx-wrapper .hi-cipc-mainlist-icon {
+    width: 30% !important;
+    display: inline-block !important;
+}
+
+.healow-insights-pdx-wrapper .hi-cipc-sublist-message {
+    display: inline-block !important;
+}
+
+.healow-insights-pdx-wrapper .hi-cipc-sublist-icon {
+    width: 25% !important;
+    display: inline-block !important;
+}
+
+.healow-insights-pdx-wrapper .hi-loader {
+    text-align: center !important;
+}
+
+.hi-rcp-progreesnote-modal {
+    overflow: auto !important;
+}
+
+.hi-rcp-progreesnote-modal #hipreviewContent {
+    margin-left: 10px !important;
+    height: 550px !important;
+    background: #FFFFFF !important;
+    overflow: hidden;
+}
+
+.healow-insights-pdx-wrapper .hi-hcc-mainlist-icon {
+    display: inline-block !important;
+}
+
+.healow-insights-pdx-wrapper .hi-hcc-sublist-message {
+    width: 55% !important;
+}
+
+.healow-insights-pdx-wrapper .hi-table-layout-fixed {
+    table-layout: fixed !important;
+}
+
+.healow-insights-pdx-wrapper .w10p {
+    width: 10% !important;
+}
+
+.healow-insights-pdx-wrapper .w3p {
+    width: 3% !important;
+}
+
+.healow-insights-pdx-wrapper .w67p {
+    width: 67% !important;
+}
+
+.healow-insights-pdx-wrapper .hi-align-center {
+    text-align: center !important;
+}
+
+.healow-insights-pdx-wrapper .hi-scrollbar-x-rail {
+    left: 0;
+    bottom: 3px;
+    border-right: 1px solid rgb(220, 220, 220);
+    display: none;
+}
+
+.healow-insights-pdx-wrapper .hi-scrollbar-x {
+    left: 0;
+    width: 0;
+}
+
+.healow-insights-pdx-wrapper .hi-scrollbar-y-rail {
+    top: 0;
+    right: 3px;
+}
+
+.healow-insights-pdx-wrapper .hi-scrollbar-y {
+    top: 0;
+    height: 0;
+}
+
+.healow-insights-pdx-wrapper .text-transform-inherit {
+    text-transform: inherit;
+}
+
+.healow-insights-pdx-wrapper .hi-word-break {
+    word-break: break-all;
+}
+
+.healow-insights-pdx-wrapper .hi-word-break-word {
+    word-break: break-word;
+}
+
+.healow-insights-pdx-wrapper .hi-pad5 {
+    padding-left: 5px;
+}
+
+.healow-insights-pdx-wrapper .hi-fnt12 {
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .hi-pad-main-list {
+    padding: 5px 10px 5px 10px;
+}
+
+.healow-insights-pdx-wrapper .hi-main-cipc-list {
+    padding: 5px 10px 5px 20px;
+}
+
+.healow-insights-pdx-wrapper .hi-width-inherit {
+    width: inherit;
+}
+
+.healow-insights-pdx-wrapper .w30p {
+    width: 30% !important;
+}
+
+.healow-insights-pdx-wrapper .z1040 {
+    z-index: 1040;
+}
+
+ .healow-insights-pdx-wrapper .hi-rcp-keywords-custom .btn.btn-xs,
+ .healow-insights-pdx-wrapper .hircphistorymodal .btn.btn-xs {
+    padding: 1px 10px !important;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+.hircphistorymodal .modal-dialog {
+    width: 1250px !important;
+}
+
+.hircphistorymodal .hi-pagination-footer {
+    background: #fff;
+    padding: 5px;
+    padding-right: 100px;
+}
+
+.hircphistorymodal .hi-border-top {
+    border-top: 1px solid #d8d8d8;
+}
+
+.hircphistorymodal .pagination {
+    margin: 2px !important;
+}
+
+.hircphistorymodal .hilogpotential .tablehead thead tr th .form-control {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    padding: 6px 25px;
+    font-size: 11px;
+    height: 25px;
+}
+
+.hircphistorymodal .hiyellow-bg {
+    background: #ffdf4c;
+    color: #050400;
+}
+
+.hircphistorymodal .hilogpotential .tablehead thead tr.hiyellow-bg th {
+    background: #fffff7;
+    border: 1px solid #ddd !important;
+    padding: 0 8px;
+}
+
+.hircphistorymodal .hilogpotential .tablehead thead tr th .input-group-addon:last-child {
+    border: 0;
+    background: transparent;
+    height: 25px;
+}
+
+.hircphistorymodal .hilogpotential .select-box {
+    position: relative;
+    background: #fffff7;
+    border-radius: 0 !important;
+}
+
+.hircphistorymodal .hilogpotential .select-box .caret {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: #555;
+    cursor: pointer;
+}
+
+.hircphistorymodal .hilogpotential .selection-field {
+    display: block;
+    height: 22px;
+    padding: 3px 6px;
+    font-size: 11px;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: left;
+    list-style-position: inside;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #555;
+}
+
+.hircphistorymodal .hilogpotential ul.sel-optn {
+    padding-left: 0;
+}
+
+.hircphistorymodal .hilogpotential .sel-optn {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    display: none;
+    z-index: 9999;
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    display: none;
+}
+
+.hircphistorymodal .hilogpotential .sel-optn li {
+    padding: 4px 8px;
+    color: #555;
+    list-style: none;
+    font-size: 11px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 400;
+    list-style-position: inside;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hircphistorymodal .hilogpotential .sel-optn.open {
+    display: block;
+}
+
+.hircphistorymodal .hilogpotential .clearable.x {
+    background-image: url(data:image/gif;base64,R0lGODlhBwAHAIAAAP///5KSkiH5BAAAAAAALAAAAAAHAAcAAAIMTICmsGrIXnLxuDMLADs=) !important;
+    background-repeat: no-repeat !important;
+    background-position: right 5px center !important;
+}
+
+.healow-insights-pdx-wrapper .hi-pdx-icd-tooltip, .healow-insights-pdx-wrapper .info-section {
+    position: absolute;
+    display: none;
+    top: 5%;
+    right: 100px;
+    background: #ffffff;
+    border: 1px solid #d0d6d9;
+    z-index: 999;
+    width: 300px;
+    box-shadow: 0 0 11px #a0b5c1;
+}
+
+.healow-insights-pdx-wrapper .hi-radio-scroll {
+    max-height: 250px;
+    min-height: 200px;
+    position: relative;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .myhealthplan-popup-cipc {
+    width: 260px;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .disagree-popup,
+#telencrightpanel .healow-insights-pdx-wrapper .reassessment-popup,
+#telencrightpanel .healow-insights-pdx-wrapper .resolved-popup {
+    width: 230px;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .resolved-data {
+    width: 230px;
+    min-height: fit-content;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .resolved-data .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .resolved-data .bgylow {
+    width: 25%;
+    height: 155px;
+    display: inline-grid;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .resolved-data .bgylow .alert-icon-yellow {
+    margin-left: -2px;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .supress-btns-sec .btn {
+    width: 58px;
+    margin-bottom: 2px;
+    margin-left: 1px;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .reassessment-popup .hiReassessDateDiv {
+    width: 60% !important;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .hi-cipc-mainlist td {
+    padding-left: 2px !important;
+}
+
+.healow-insights-pdx-wrapper .w90p {
+    width: 90%;
+}
+
+.healow-insights-pdx-wrapper .listhead a {
+    color: #225172;
+    font-size: 13px;
+    text-transform: none;
+    font-weight: 600;
+}
+
+.healow-insights-pdx-wrapper .listhead {
+    border-top: 1px solid #8cb3cf;
+    border-bottom: 1px solid #8cb3cf;
+}
+
+.healow-insights-pdx-wrapper .hcc-list-header.clinical-heading.bg-white a, .healow-insights-pdx-wrapper .clinical-heading.hcc-list-header a,
+.healow-insights-pdx-wrapper .listhead.bg-light a {
+    color: #3b5f7e !important;
+}
+
+.healow-insights-pdx-wrapper .inner-listhead {
+    background: #edf3f7;
+    padding: 0 10px 5px;
+}
+
+.healow-insights-pdx-wrapper .inner-listhead a {
+    font-weight: 600;
+    line-height: 21px;
+    color: #000;
+}
+
+.healow-insights-pdx-wrapper .hi-hcc-pending {
+    width: 90% !important;
+}
+
+.healow-insights-pdx-wrapper .w60p {
+    width: 60% !important;
+}
+
+.healow-insights-pdx-wrapper .icon-blue-box {
+    background: url(/mobiledoc/jsp/healowInsights/img/historical-blue-box.png) no-repeat;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-reason-popup {
+    position: absolute;
+    padding-top: 10px;
+    background: #fff;
+    width: 300px;
+    border: 1px solid #ddd;
+    z-index: 99;
+    box-shadow: 0 5px 10px #ddd;
+    display: none;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-reason-popup .mfooter {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-reason-popup .det-view .doc-att .btn.btn-default.btn-xs.btn-lgrey {
+    padding: 2px 5px !important;
+}
+
+.healow-insights-pdx-wrapper .more-info-popup {
+    width: 275px !important;
+}
+
+.healow-insights-pdx-wrapper .more-info-popup {
+    position: absolute;
+    display: none;
+    top: 5%;
+    right: 100px;
+    background: #ffffff;
+    border: 1px solid #d0d6d9;
+    z-index: 9;
+    width: 300px;
+    box-shadow: 0 0 11px #a0b5c1;
+}
+
+.healow-insights-pdx-wrapper h4.blue-header {
+    color: #2b91d9;
+    font-size: 14px;
+    font-family: open_sansregular;
+    margin: 0;
+}
+
+.healow-insights-pdx-wrapper .height-30 {
+    height: 30px;
+}
+
+.healow-insights-pdx-wrapper .height-35 {
+    height: 35px;
+}
+
+.healow-insights-pdx-wrapper .greyhandico {
+    background: url(/mobiledoc/jsp/healowInsights/img/grey-hand.png) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.healow-insights-pdx-wrapper .visibility-hidden {
+    visibility: hidden;
+}
+
+.healow-insights-pdx-wrapper .normallist li {
+    padding: 0;
+}
+
+.healow-insights-pdx-wrapper .inner-listhead {
+    padding: 0 0 5px !important;
+}
+
+.healow-insights-pdx-wrapper .width-14 {
+    width: 14% !important;
+}
+
+.healow-insights-pdx-wrapper .w16p {
+    width: 16% !important;
+}
+
+.healow-insights-pdx-wrapper .w55p {
+    width: 55% !important;
+}
+
+.healow-insights-pdx-wrapper .width-28 {
+    width: 28% !important;
+}
+.healow-insights-pdx-wrapper .width-42 {
+    width: 42% !important;
+}
+
+.healow-insights-pdx-wrapper .float-right {
+    float: right !important;
+}
+
+.healow-insights-pdx-wrapper .icon-width {
+    width: 14% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-1-width {
+    width: 5% !important;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .rcp-col-1-width {
+    width: 7% !important;
+}
+
+/*#treatment-right-panel-dom .healow-insights-pdx-wrapper .rcp-col-1-width {*/
+/*    width: 7% !important;*/
+/*}*/
+
+#hubrightpanel .healow-insights-pdx-wrapper .rcp-col-1-width {
+    width: 7% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-2-width {
+    width: 52% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-2-width-hub {
+    width: 53% !important;
+}
+
+/*#telencrightpanel .healow-insights-pdx-wrapper .rcp-col-2-width-hub {
+    width: 43% !important;
+}*/
+
+/*#treatment-right-panel-dom .healow-insights-pdx-wrapper .rcp-col-2-width-hub {*/
+/*    width: 43% !important;*/
+/*}*/
+
+#lab-result-right-panel .healow-insights-pdx-wrapper .rcp-col-2-width-hub {
+    margin-left: 5px;
+}
+#lab-result-right-panel .healow-insights-pdx-wrapper .rcp-col-2-width {
+    margin-left: 5px;
+}
+
+
+.healow-insights-pdx-wrapper .rcp-col-3-4-width {
+    width: 28% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-3-width {
+    width: 14% !important;
+}
+
+#telencrightpanel .healow-insights-pdx-wrapper .rcp-col-3-width {
+    width: 20% !important;
+}
+
+#hubrightpanel .healow-insights-pdx-wrapper .rcp-col-3-width {
+    width: 17% !important;
+}
+
+/*#treatment-right-panel-dom .healow-insights-pdx-wrapper .rcp-col-3-width {*/
+/*    width: 20% !important;*/
+/*}*/
+
+#lab-result-right-panel .healow-insights-pdx-wrapper .rcp-col-3-width {
+    width: 20% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-4-width {
+    width: 14% !important;
+}
+.healow-insights-pdx-wrapper .rcp-col-4-width-hist {
+    width: 10% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-5-6-width {
+    width: 11% !important;
+}
+
+
+.healow-insights-pdx-wrapper .rcp-col-5-width {
+    width: 6% !important;
+}
+.healow-insights-pdx-wrapper .rcp-col-5-width-hist {
+    width: 10% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-6-width {
+    width: 5% !important;
+}
+
+.healow-insights-pdx-wrapper .rcp-col-8-width {
+    width: 8% !important;
+}
+
+.healow-insights-pdx-wrapper .mr11 {
+    margin-right: 8px !important;
+}
+
+.healow-insights-pdx-wrapper .mr3 {
+    margin-right: 3px !important;
+}
+
+.healow-insights-pdx-wrapper .pl5 {
+    padding-left: 5px !important;
+}
+
+.healow-insights-pdx-wrapper .pl10 {
+    padding-left: 10px !important;
+}
+
+.healow-insights-pdx-wrapper .pl18 {
+    padding-left: 18px !important;
+}
+
+.healow-insights-pdx-wrapper .list-item-pad-top {
+    padding-top: 2px !important;
+}
+
+.healow-insights-pdx-wrapper .list-item-pad-bottom {
+    padding-bottom: 2px !important;
+}
+
+.healow-insights-pdx-wrapper .pr10 {
+    padding-right: 10px !important;
+}
+
+.healow-insights-pdx-wrapper .pr5 {
+    padding-right: 5px !important;
+}
+
+.healow-insights-pdx-wrapper .pt5 {
+    padding-top: 5px !important;
+}
+
+.healow-insights-pdx-wrapper .pr18 {
+    padding-right: 18px !important;
+}
+
+.healow-insights-pdx-wrapper .pl8 {
+    padding-left: 8px !important;
+}
+
+.healow-insights-pdx-wrapper .mb10 {
+    margin-bottom: 10px !important;
+}
+
+.healow-insights-pdx-wrapper .mb2 {
+    margin-bottom: 2px !important;
+}
+.healow-insights-pdx-wrapper .mt2 {
+    margin-top: 2px !important;
+}
+
+.healow-insights-pdx-wrapper .fnt-style-inherit {
+    font-style: inherit !important;
+}
+
+.healow-insights-pdx-wrapper .hi-capital-first-char div::first-letter {
+    text-transform:capitalize;
+}
+
+.healow-insights-pdx-wrapper .ml15 {
+    margin-left: 15px !important;
+}
+
+.healow-insights-pdx-wrapper .width-80 {
+    width: 80% !important;
+}
+
+.healow-insights-pdx-wrapper .hi-red-hand-div .tooltip {
+    padding: 2px 5px 2px 5px !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+}
+
+.healow-insights-pdx-wrapper .hi-red-hand-div .tooltip .tooltip-inner {
+    background-color: #ffd94d !important;
+    color:#000 !important;
+    max-width: 250px !important;
+}
+
+.healow-insights-pdx-wrapper .hircphistorymodal .btn-assessment-deleted {
+    padding: 0 2px !important;
+    line-height: 14px;
+    font-size: 10px;
+    vertical-align: middle;
+}
+
+.healow-insights-pdx-wrapper-pdfDialog {
+    background: #a0cce4;
+    z-index: 999999999;
+}
+
+.healow-insights-pdx-wrapper-pdfDialog .ui-dialog-titlebar {
+    background: #a0cce4;
+    border: none;
+}
+
+.healow-insights-pdx-wrapper-pdfDialog .ui-dialog-title {
+    color: #0e1e28;
+    font-family: 'Open Sans', 'Segoe UI Symbol', 'sans serif';
+}
+
+.healow-insights-hccDetails {
+    z-index: 9922222;
+    padding: 185px;
+}
+
+.healow-insights-hccDetails .statusDisplay {
+    color: #0e1e28;
+    margin-top: 15px;
+}
+
+.healow-insights-hccDetail .progress .progress-bar-blue {
+    background: #a0cce4;
+    border-color: #60a6d2;
+}
+
+.healow-insights-hccDetail .progress .progress-bar-blue .ui-progressbar-value {
+    margin: 0;
+    background: #ffffff;
+}
+
+.healow-insights-pdx-wrapper .hgt35 {
+    height: 35px !important;
+}
+
+.healow-insights-pdx-wrapper .overflow-auto {
+    overflow: auto !important;
+}
+
+/* Added to handle UI in ePrescription - PatientHub */
+.healow-insights-pdx-wrapper .width100p {
+    width: 100% !important;
+}
+
+.healow-insights-pdx-wrapper .bi-envelope-paper {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-envelop-open.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+}
+
+.healow-insights-pdx-wrapper .bi-envelope-paper-white {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-envelop-open-white.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+}
+
+.healow-insights-pdx-wrapper .hi-repeat {
+    background: url(/mobiledoc/jsp/healowInsights/img/repeat.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.healow-insights-pdx-wrapper .hi-eye {
+    background: url(/mobiledoc/jsp/healowInsights/img/eye.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.healow-insights-pdx-wrapper .hi-sort {
+    background: url(/mobiledoc/jsp/healowInsights/img/filter-square.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+}
+
+.healow-insights-pdx-wrapper .hi-sort-filled {
+    background: url(/mobiledoc/jsp/healowInsights/img/filter-square-filled-blue.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+}
+
+.healow-insights-pdx-wrapper .hi-info-questionmark {
+    background: url(/mobiledoc/jsp/healowInsights/img/question-circle-fill.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+
+.healow-insights-pdx-wrapper .hi-disagree {
+    background: url(/mobiledoc/jsp/healowInsights/img/x-circle_med.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.healow-insights-pdx-wrapper .hi-disagree-filled {
+    background: url(/mobiledoc/jsp/healowInsights/img/x-circle-fill.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.healow-insights-pdx-wrapper .hi-button-arrow {
+    background: url(/mobiledoc/jsp/healowInsights/img/arrow-left-square-med.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.healow-insights-pdx-wrapper .hi-down-up-arrow {
+    background: url(/mobiledoc/jsp/healowInsights/img/arrow-down-up.svg) no-repeat;
+    width: 11px;
+    height: 11px;
+}
+
+.healow-insights-pdx-wrapper .hi-flag-icon {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-flag-icon.svg) no-repeat;
+    width: 15px;
+    height: 14px;
+    transform: scale(0.8);
+}
+
+.healow-insights-pdx-wrapper .hi-gray-box {
+    border-radius: 25px;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    width: 65px;
+    height: 20px;
+    padding: 1px 6px 1px !important;
+    font-size: 11px !important;
+    font-weight: 600;
+}
+
+.healow-insights-pdx-wrapper .hi-gray-filled {
+    border-radius: 25px;
+    border: 1px solid #6c757d;
+    background: #6c757d;
+    color: white;
+    width: 70px;
+    height: 20px;
+    padding: 1px 6px 1px !important;
+    font-size: 11px !important;
+    font-weight: 600;
+}
+
+.healow-insights-pdx-wrapper .hi-green-box-filled {
+    border-radius: 25px;
+    border: 1px solid #198754;
+    background: #198754;
+    color: white;
+    width: 50px;
+    height: 20px;
+    padding: 1px 6px 1px !important;
+    font-size: 11px !important;
+    font-weight: 600;
+}
+
+.healow-insights-pdx-wrapper .hi-green-box {
+    border-radius: 25px;
+    border: 1px solid #198754;
+    color: #198754;
+    width: 50px;
+    height: 20px;
+    padding: 1px 6px 1px !important;
+    font-size: 11px !important;
+    font-weight: 600;
+}
+
+.healow-insights-pdx-wrapper .font-prop {
+    margin-top:2px;
+    color: #6c757d;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .bg-grey {
+    background: #fafafa !important;
+}
+
+.healow-insights-pdx-wrapper .list-item:hover {
+    background-color: #f5f4f4;
+}
+
+.healow-insights-pdx-wrapper .btn-count-grey {
+    font-size: 9px;
+    background-color: #6c757d;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-grey {
+    padding: 3px;
+    background-color: white;
+    color: #6c757d;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-color:#6c757d;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-grey-pill {
+    font-size: 9px;
+    background-color: #6c757d;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-grey-pill.active {
+    background-color: white;
+    color: #6c757d;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-grey.active {
+    background-color: #6c757d;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-green {
+    padding: 3px;
+    background-color: white;
+    color: #198754;
+    border-color: #198754;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-green-pill {
+    font-size: 9px;
+    background-color: #198754;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-green-pill.active {
+    background-color: white;
+    color: #198754;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-green.active {
+    background-color: #198754;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-blue {
+    padding: 3px;
+    background-color: white;
+    color: #007bff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-color: #007bff;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-blue-pill {
+    font-size: 9px;
+    background-color: #007bff;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-blue-pill.active {
+    background-color: white;
+    color: #007bff;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-blue.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-gray {
+    padding: 3px;
+    background-color: white;
+    color: #6c757d;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-color: #6c757d;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-gray-pill {
+    font-size: 9px;
+    background-color: #6c757d;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-gray-pill.active {
+    background-color: white;
+    color: #6c757d;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-gray.active {
+    background-color: #6c757d;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-red {
+    padding: 3px;
+    background-color: white;
+    color: #dc3545;
+    border-radius: 5px;
+    border-color: #dc3545;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-red-pill {
+    font-size: 9px;
+    background-color: #dc3545;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-red-pill.active {
+    background-color: white;
+    color: #dc3545;
+}
+
+.healow-insights-pdx-wrapper .hi-btn-red.active {
+    background-color: #dc3545;
+    color: white;
+}
+
+.healow-insights-pdx-wrapper .text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.healow-insights-pdx-wrapper .hi-historical-btn {
+    background: #ffffff;
+    color: #5a6268;
+    border-color: #5a6268;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .hi-historical-btn.active {
+    color: white;
+    background: #5a6268;
+}
+
+.healow-insights-pdx-wrapper .hi-historical-left-radius {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.healow-insights-pdx-wrapper .hi-historical-right-radius {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.healow-insights-pdx-wrapper .hi-noRightBorder {
+    border-right: 0 !important;
+}
+
+.healow-insights-pdx-wrapper .dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+
+.healow-insights-pdx-wrapper .noborder {
+    border: 0;
+}
+
+.healow-insights-pdx-wrapper .hi-pending-payer-section {
+    padding: 0 5px 0 5px;
+}
+
+.healow-insights-pdx-wrapper .hi-pending-comment-section {
+    padding: 0 10px 0 0;
+}
+
+.healow-insights-pdx-wrapper .hi-pending-button-group-dflex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+
+.healow-insights-pdx-wrapper .hi-historical-filter-group-dflex {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+
+.healow-insights-pdx-wrapper .fw600 {
+    font-weight: 600 !important;
+}
+
+.healow-insights-pdx-wrapper .hi-PL-box {
+    border-radius: 3px;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    width: 18px;
+    height: 17px;
+    padding: 2px;
+    font-size: 11px !important;
+    font-weight: 600;
+    line-height: 1;
+    cursor: default;
+}
+
+.healow-insights-pdx-wrapper .sort-column {
+    background: #3e8ec6 !important;
+    color: #FFFFFF !important;
+}
+
+.healow-insights-pdx-wrapper .diagnosis-right-arrow-transform:after,
+.healow-insights-pdx-wrapper .diagnosis-right-arrow-transform:before {
+    transform: rotate(-90deg);
+}
+.healow-insights-pdx-wrapper .diagnosis-right-arrow-transform:before {
+    border-width: 8px !important;
+}
+
+.healow-insights-pdx-wrapper .sort-label {
+    background: #fafafa !important;
+    font-weight: 800;
+    color: #3b5f7e;
+    border-bottom: 1px solid #eeeeee !important;
+    padding-left: 7px !important;
+}
+
+.healow-insights-pdx-wrapper .sort-popup {
+    width: 95px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.healow-insights-pdx-wrapper .sort-column-padding {
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+}
+
+.healow-insights-pdx-wrapper .hi-PL-box-sm {
+    border-radius: 3px;
+    border: 1px solid #6c757d;
+    color: #0f1010;
+    width: 17px;
+    height: 13px;
+    padding: 2px !important;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 0.8;
+    margin-left: 3px;
+}
+
+@media (min-width: 768px) {
+    .healow-insights-pdx-wrapper .w80p {
+        width: 80% !important;
+    }
+    .healow-insights-pdx-wrapper .w77p {
+        width: 77% !important;
+    }
+    .healow-insights-pdx-wrapper .w60p {
+        width: 60% !important;
+    }
+    .healow-insights-pdx-wrapper .w50p {
+        width: 50% !important;
+    }
+    .healow-insights-pdx-wrapper .w23p {
+        width: 23% !important;
+    }
+    .healow-insights-pdx-wrapper .w20p {
+        width: 20% !important;
+    }
+}
+
+.healow-insights-pdx-wrapper .hi-hcc-header-text {
+    padding: 5px 10px 0 0px !important;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .hi-hcc-row-text {
+    padding: 5px 10px 5px 10px !important;
+}
+
+.healow-insights-pdx-wrapper .hi-icd-row-text {
+    padding: 5px !important;
+    border-bottom: 1px solid #e6e6df;
+    background-color: #FFFFFF;
+}
+
+.healow-insights-pdx-wrapper .pdr2 {
+    padding-right: 2px !important;
+}
+
+.healow-insights-pdx-wrapper .mtn1 {
+    margin-top: -1px !important;
+}
+
+.healow-insights-pdx-wrapper .mtn2 {
+    margin-top: -2px !important;
+}
+
+.healow-insights-pdx-wrapper .mb1 {
+    margin-bottom: 1px !important;
+}
+
+.healow-insights-pdx-wrapper .bs-info-sign-orange {
+    color: #ee6002;
+    font-size: 12px;
+}
+
+.healow-insights-pdx-wrapper .clear-both {
+    clear: both;
+}
+
+.healow-insights-pdx-wrapper .w70p {
+    width: 70% !important;
+}
+.healow-insights-pdx-wrapper .w64p {
+    width: 64% !important;
+}
+
+.healow-insights-pdx-wrapper .subaction-block {
+    margin-right: 6px;
+}
+
+.healow-insights-pdx-wrapper .rcp-tertiary-lvl {
+    margin-right: -5px !important;
+    margin-bottom: 0px !important;
+    margin-left: 12px !important;
+}
+
+.healow-insights-pdx-wrapper .pr4 {
+    padding-right: 4px !important;
+}
+
+.healow-insights-pdx-wrapper .notopborder {
+    border-top: 0 !important;
+}
+
+.healow-insights-pdx-wrapper .headerbold {
+    font-weight: 600;
+    line-height: 21px;
+    color: #000;
+}
+
+.healow-insights-pdx-wrapper .brd-right-radius-5 {
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+.healow-insights-pdx-wrapper .brd-left-radius-5 {
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+}

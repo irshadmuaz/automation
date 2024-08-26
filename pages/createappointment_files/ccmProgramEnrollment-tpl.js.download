@@ -1,0 +1,65 @@
+angular.module('ccmProgramEnrollmentDirective', []).directive('ccmProgramEnrollment',
+        function($http, $modal, $ocLazyLoad) {
+            return {
+                restrict : 'AE',
+                replace : 'true',
+                scope : {
+                    patientId : '=',
+                    chronicOption : '=?',   // allowed values are 'one' and 'all'
+                    icdCode : '=?',        // icd value if pre selection is available
+                    itemId : '=?',
+                    callbackFunction: '&'
+                },
+                link : function(scope, element) {
+                    try{
+                    element.click(function(){
+                        $('.action-hub-modal').remove();
+                        $ocLazyLoad.load({
+                            name: 'ccmProgramEnrollment',
+                            files: [
+                                    '/mobiledoc/jsp/webemr/templates/keywords-tpl.js',
+                                    '/mobiledoc/jsp/webemr/templates/spellCheck-tpl.js','/mobiledoc/jsp/webemr/ecwspeech/js/evaspeech.js',
+                                    '/mobiledoc/jsp/webemr/behavioralhealth/directives/notesDirective/css/notesDirective.css',
+                                    '/mobiledoc/jsp/webemr/behavioralhealth/directives/notesDirective/js/notesDirective.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/enrollmentqueue/enrollmentqueuefilter/js/common-directive.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/css/global-style.css',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/css/patient-enrollment.css',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/js/ccmEnrollmentBridgeService.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/programenrollment/js/ccmProgramEnrollmentService.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/programenrollment/js/ccmProgramEnrollmentController.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/js/perfect-scrollbar.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/js/angular-perfect-scrollbar.js',
+                                    '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/css/perfect-scrollbar.css'
+                            ]
+                        }).then(function() {
+                            scope.ccmProgramEnrollmentData = {
+                                patientId : scope.patientId,
+                                chronicOption : scope.chronicOption,
+                                icdCode : scope.icdCode,
+                                itemId : scope.itemId ? parseInt(scope.itemId, 10) : scope.itemId,
+                                callbackFunction: scope.callbackFunction
+                            };
+                            try{
+                                $modal.open({
+                                templateUrl: makeURL('/mobiledoc/jsp/webemr/ccm/userfacing/programenrollment/ccmProgramEnrollmentModal.html'),
+                                controller: 'programEnrollmentController',
+                                controllerAs: 'progEnrollCtrl',
+                                backdrop: 'static',
+                                keyboard: false,
+                                windowClass: 'patient-enrollment custom-modal w1240',
+                                animation: true,
+                                resolve: {
+                                    ccmProgramEnrollmentData: function () {
+                                        return scope.ccmProgramEnrollmentData;
+                                    }
+                                }
+                            });
+                            }catch(err){}
+                        }, function(e) {
+                        });
+                    });
+                }
+                catch(err){}
+                }
+            };
+        });

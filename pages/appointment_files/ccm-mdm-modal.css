@@ -1,0 +1,73 @@
+.ccm-mdm-wrapper .ccm-mdm-popup {
+    box-shadow: 1px 1px 7px 1px #ccc;
+    z-index: 3;
+    position: absolute;
+    border-radius: 3px;
+    background: #fff;
+    left: 0;
+    top: 0;
+    display: none;
+    padding: 10px;
+    border: 1px solid powderblue;
+}
+.ccm-mdm-wrapper .ccm-mdm-popup .popup-lbl-font {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+}
+.ccm-mdm-wrapper .mdm-btn{
+    width: 60px;
+    border-color: lightgrey !important;
+    border-radius: 3px !important;
+    line-height: 1.5 !important;
+}
+.ccm-mdm-wrapper .mdm-0{
+    background-color: lightgrey !important;
+}
+.ccm-mdm-wrapper .mdm-1{
+    background-color: yellowgreen !important;
+}
+.ccm-mdm-wrapper .mdm-2{
+    background-color: yellow !important;
+}
+.ccm-mdm-wrapper .mdm-3{
+    background-color: red !important;
+    color: white !important;
+}
+.ccm-mdm-wrapper .mdm-0:after{
+    content: "NA"
+}
+.ccm-mdm-wrapper .mdm-1:after{
+    content: "Low"
+}
+.ccm-mdm-wrapper .mdm-2:after{
+    content: "Moderate"
+}
+.ccm-mdm-wrapper .mdm-3:after{
+    content: "High"
+}
+
+.ccm-mdm-wrapper .mdm-full-btn{
+    width: 80px;
+    margin-bottom: 2px;
+    border-color: lightgrey !important;
+    border-radius: 3px !important;
+    line-height: 1.5 !important;
+}
+.ccm-mdm-wrapper .mdmfull-0{
+    background-color: lightgrey !important;
+}
+.ccm-mdm-wrapper .mdmfull-1{
+    background-color: yellowgreen !important;
+}
+.ccm-mdm-wrapper .mdmfull-2{
+    background-color: yellow !important;
+}
+.ccm-mdm-wrapper .mdmfull-3{
+    background-color: red !important;
+    color: white !important;
+}
+.rpCCMWrapper .icons-expired-enrollment-ccm {
+    background: url(/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/img/expired.png) no-repeat;
+    width: 24px;
+    height: 20px;
+}

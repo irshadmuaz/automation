@@ -1,0 +1,249 @@
+:root {
+    --jellybean-white-background: #FFFFFF;
+    --jellybean-black-color: #000000;
+    --jellybean-font-size: 12px;
+    --jellybean-footer-hover-background: #F9F9F9;
+    --jellybean-footer-hover-border: #A3A3A3;
+    --jellybean-footer-hover-color: #000000;
+    --jellybean-darkerblue-background: #005172;
+}
+
+/* Top nav bar */
+.jellybean .darkblue-top-nav {
+    background: #0378A7;
+}
+
+.jellybean .darkerblue-tab-nav > ul > li.active > a {
+    background: var(--jellybean-darkerblue-background);
+}
+
+/* Filter Panel */
+.jellybean .jellybean-filter-pane {
+    background: #FBFBFB;
+}
+
+.jellybean .filter-panel-font label {
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .filter-panel-font .control-label, .jellybean .filter-panel-font .checkbox-inline {
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .filter-panel-font span {
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .jellybean-filter-wrap {
+    background: none;
+}
+
+.jellybean .filter-panel-font .btn-lblue {
+    background: #0378a7;
+    border-color: #54879c;
+}
+
+.jellybean .filter-panel-font .btn-lblue:hover {
+    background: var(--jellybean-darkerblue-background);
+}
+
+/* Dark pad Panel */
+.jellybean .jellybean-btn-bar button {
+    color: var(--jellybean-black-color);
+}
+
+.jellybean .jellybean-btn-bar button:hover {
+    background: var(--jellybean-white-background);
+}
+
+.jellybean .jellybean-chkbx-bar .checkbox-inline {
+    font-size: var(--jellybean-font-size);
+    font-weight: 600;
+}
+
+.jellybean .aqua-dropdown-bg-color {
+    background: var(--jellybean-white-background);
+}
+
+.jellybean .aqua-dropdown-bg-color > li > a {
+    color: var(--jellybean-black-color);
+}
+
+/* Data Table */
+.jellybean .custom-jellybean-table th a, .jellybean .custom-jellybean-table th span,#trackingBoard .custom-jellybean-table th, .jellybean .custom-jellybean-table.table thead tr th {
+    color: var(--jellybean-black-color);
+}
+
+.jellybean .custom-jellybean-table.table thead tr th {
+    text-transform: capitalize;
+}
+
+.jellybean .custom-jellybean-table td span, .jellybean .custom-jellybean-table td p,#trackingBoard .custom-jellybean-table td,#trackingBoard .custom-jellybean-table td div, .jellybean .custom-jellybean-table.table tbody td, .jellybean .custom-jellybean-table td a {
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .custom-jellybean-table .aqua-table-td-font span,#trackingBoard .custom-jellybean-table .aqua-table-td-font, .jellybean .custom-jellybean-table tbody tr td a {
+    color: var(--jellybean-black-color);
+}
+
+.jellybean .custom-jellybean-table .aqua-table-td-font p {
+    text-decoration: underline;
+    color: var(--jellybean-black-color);
+}
+
+.jellybean .custom-jellybean-table.table thead tr .jellybean-selected-sort {
+    color: var(--jellybean-white-background);
+    background:  var(--jellybean-darkerblue-background);
+}
+
+.jellybean .custom-jellybean-table.table thead tr .jellybean-selected-sort a, .jellybean .custom-jellybean-table.table thead tr .jellybean-selected-sort span,#trackingBoard .custom-jellybean-table .jellybean-selected-sort  {
+    color: var(--jellybean-white-background);
+}
+
+/* Footer */
+.jellybean .jellybean-foot-panel span {
+    color: var(--jellybean-black-color);
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .jellybean-foot-panel button {
+    background: var(--jellybean-white-background);
+    font-size: var(--jellybean-font-size);
+    color: var(--jellybean-black-color);
+}
+
+.jellybean .jellybean-foot-panel button:hover {
+    background: var(--jellybean-footer-hover-background);
+    border-color: var(--jellybean-footer-hover-border);
+    color: var(--jellybean-footer-hover-color);
+}
+
+.jellybean .jellybean-foot-panel input {
+    color: var(--jellybean-black-color);
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .jellybean-foot-panel input:hover {
+    border-color: var(--jellybean-footer-hover-border);
+    color: var(--jellybean-footer-hover-color);
+}
+
+.jellybean .jellybean-foot-panel select {
+    background: var(--jellybean-white-background);
+    font-size: var(--jellybean-font-size);
+}
+
+.jellybean .jellybean-foot-panel select:focus {
+    border-color: var(--jellybean-footer-hover-border);
+    color: var(--jellybean-footer-hover-color);
+}
+
+.jellybean .jellybean-foot-panel select:hover {
+    border-color: var(--jellybean-footer-hover-border);
+    color: var(--jellybean-footer-hover-color);
+}
+
+.jellybean .jellybean-foot-panel select option {
+    background: var(--jellybean-white-background);
+}
+
+.jellybean .jellybean-icon-white-filter
+{
+    background:url(../../img/new-filter.png) 0 0 no-repeat;
+    width: 13px;
+    height: 16px;
+}
+
+.jellybean .jellybean-icon-ascending
+{
+    background:url(../../img/reorder-ascending.png) 0 0 no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 11px;
+}
+
+.jellybean .jellybean-icon-descending
+{
+    background:url(../../img/reorder-descending.png) 0 0 no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 11px;
+}
+
+.jellybean .jellybean-mr4
+{
+    margin-right: 4px;
+}
+
+.jellybean .verticalLine-start {
+    padding: 2px 0 5px 0 !important;
+    border-right: 2px solid #FFFF;
+    display: inline;
+}
+
+.jellybean .verticalLine-end {
+    padding: 2px 9px 5px 9px !important;
+    border-right: 2px solid #FFFF;
+    display: inline-flex;
+    align-items: center;
+}
+
+.jellybean .jellybean-grid #this-table .fa-unsorted:before, .fa-sort:before
+{
+    color: #333;
+}
+
+.jellybean .custom-jellybean-table.table thead tr th  a,#trackingBoard .custom-jellybean-table th, .jellybean .custom-jellybean-table.table thead tr th
+{
+    font-size: 12px !important;
+}
+.jellybean .jellybean-icon-white-filter
+{
+    background:url(../../img/new-filter.png) 0 0 no-repeat;
+    width: 13px;
+    height: 16px;
+}
+
+.jellybean .jellybean-icon-ascending
+{
+    background:url(../../img/reorder-ascending.png) 0 0 no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 11px;
+}
+
+.jellybean .jellybean-icon-descending
+{
+    background:url(../../img/reorder-descending.png) 0 0 no-repeat;
+    display: inline-block;
+    width: 10px;
+    height: 11px;
+}
+
+.jellybean .jellybean-mr4
+{
+    margin-right: 4px;
+}
+
+.jellybean .verticalLine-start {
+    padding: 2px 0 5px 0 !important;
+    border-right: 2px solid #FFFF;
+    display: inline;
+}
+
+.jellybean .verticalLine-end {
+    padding: 2px 9px 5px 9px !important;
+    border-right: 2px solid #FFFF;
+    display: inline-flex;
+    align-items: center;
+}
+
+.jellybean .jellybean-grid #this-table .fa-unsorted:before, .fa-sort:before
+{
+    color: #333;
+}
+
+.jellybean .custom-jellybean-table.table thead tr th  a
+{
+    font-size: 12px !important;
+}

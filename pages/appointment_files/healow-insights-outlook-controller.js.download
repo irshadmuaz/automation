@@ -1,0 +1,80 @@
+!function () {
+    let app = angular.module("healowInsightsOutlookApp", []);
+    app.controller("healowInsightsOutlookController", healowInsightsOutlookController);
+
+    function healowInsightsOutlookController($scope, $http) {
+        let ctrl = this;
+        ctrl.isLoading = true;
+        ctrl.isLoadingFail = false;
+        ctrl.isHealowInsightsOutlookEnabled = false;
+        ctrl.toggleDisplay = false;
+        ctrl.providerName = "Not Fetch Yet";
+        ctrl.isCommToInteropHubEnabled = false;
+        ctrl.totalPatientForOfficeVisit = 0;
+        ctrl.totalSuccessfullyRetrieveDocuments = 0;
+        ctrl.totalUniqueFacilitiesFromReceivedRecord = [];
+        ctrl.totalNumberOfPatientEligibleToReceiveData = 0;
+        ctrl.isPrismaEnabled = false;
+
+        ctrl.initHealowInsightsOutlook = function () {
+            ctrl.getIsHealowInsightsOutlookEnabled();
+        }
+
+        ctrl.getIsHealowInsightsOutlookEnabled = function () {
+            return doPost("is-healow-insights-outlook-enable", function (response) {
+                ctrl.isHealowInsightsOutlookEnabled = angular.fromJson(response.data).data;
+                if (ctrl.isHealowInsightsOutlookEnabled) {
+                    ctrl.getHealowInsightsOutlookKpiData();
+                }
+            }, ctrl.failureCallback);
+        }
+
+        ctrl.getHealowInsightsOutlookKpiData = function () {
+            return doPost("get-healow-insights-outlook-data", ctrl.healowInsightsOutlookKpiSuccessCallback, ctrl.failureCallback);
+        }
+
+        ctrl.healowInsightsOutlookKpiSuccessCallback = function(response) {
+            let healowInsightsOutlookKpiDetails = angular.fromJson(response.data).data;
+            ctrl.isPrismaEnabled = healowInsightsOutlookKpiDetails.prismaEnabled;
+            if(!ctrl.isPrismaEnabled) {
+                ctrl.isLoading = false;
+                return;
+            }
+            ctrl.providerName = ctrl.providerNameFormatting(healowInsightsOutlookKpiDetails.provider);
+            ctrl.isCommToInteropHubEnabled = healowInsightsOutlookKpiDetails.commToInteropHubEnabled;
+            ctrl.totalPatientForOfficeVisit = healowInsightsOutlookKpiDetails.totalPatientForOfficeVisit;
+            ctrl.totalNumberOfPatientEligibleToReceiveData = healowInsightsOutlookKpiDetails.totalNumberOfPatientEligibleToReceiveData;
+            ctrl.totalUniqueFacilitiesFromReceivedRecord = healowInsightsOutlookKpiDetails.totalUniqueFacilitiesFromReceivedRecord;
+            ctrl.totalSuccessfullyRetrieveDocuments = healowInsightsOutlookKpiDetails.totalSuccessfullyRetrieveDocuments;
+
+            ctrl.isLoading = false;
+        }
+
+        ctrl.providerNameFormatting = function (provider) {
+            return ((provider.prefix)?provider.prefix + " ":"")
+                + ((provider.firstName)?provider.firstName + " ":"")
+                + ((provider.middleName)?provider.middleName + " ":"")
+                + ((provider.lastName)?provider.lastName:"");
+        }
+
+        ctrl.failureCallback = function(response) {
+            ctrl.isLoading = false;
+            ctrl.isLoadingFail = true;
+            ecwAlert(response.data.errorMessage, "eClinicalWorks", null, "", "orangetheme");
+        }
+
+        ctrl.onPopupClick = function (event){
+            event.stopPropagation();
+        }
+
+        function doPost(action, successCallback, failureCallback) {
+            let request = $http({
+                method: 'POST',
+                url: '/mobiledoc/webemr/analytics/ihub-analytics/healow-insights-outlook/' + action,
+                data: {},
+                headers: {'Content-Type': 'application/json'}
+            });
+            return (request.then(successCallback, failureCallback));
+        }
+    }
+}();

@@ -1,0 +1,176 @@
+@font-face {
+  font-family: 'rcp-widget';
+  src: url('../../rightpanel/fonts/rcp-widget.ttf?uqehju') format('truetype'),url('../../rightpanel/fonts/rcp-widget.svg?uqehju#rcp-widget') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+[class^="asbicon-"],
+[class*=" asbicon-"] {
+  font-family: 'rcp-widget' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#ResAiSearchBar  .asbicon-sub:before {
+  content: "\e903";
+  font-size: 9px;
+  color: #fff;
+}
+
+#ResAiSearchBar  .asbicon-add:before {
+  font-size: 9px;
+  color: #fff;
+  content: "\e902";
+}
+#ResAiSearchBar  .action-block {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--ai-primary-color) !important;
+  padding: 2.5px;
+  margin-right: 6px;
+  display: inline-grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.bluetheme.modal.w530 .modal-dialog{width:530px;}
+.bluetheme.modal.w586 .modal-dialog{width:586px;}
+.orangetheme.modal.w530 .modal-dialog{width:530px;}
+#aiPromptTextModal .textareaAI{
+  width: 504px;
+  border: 1px solid var(--ai-primary-color) !important;
+  border-radius: 3px;
+}
+/* do not group these rules */
+#aiPromptTextModal .dispFlex{
+  display: flex;
+}
+#aiPromptTextModal .ai-header{
+  background: var(--ai-primary-color) !important;
+  border: var(--ai-dark-color) !important;
+  color: #FFFFFF !important;
+}
+#aiPromptTextModal .errorHighlight {
+  border: 1px solid red !important;
+  border-radius: 3px;
+  box-shadow: 0 0 5px red;
+}
+#aiPromptTextModal .ai-colour-btn{
+  background: var(--ai-primary-color) !important;
+  border: 1px solid var(--ai-dark-color) !important;;
+  color: #FFFFFF !important;;
+}
+#aiPromptTextModal .ai-colour-btn:hover{
+  background: var(--ai-dark-variant-color) !important;
+  border: 1px solid var(--ai-dark-color) !important;
+  color: #FFFFFF !important;
+}
+.w530 .max-width-fixed {
+  max-width: 162px;
+  min-width: 162px;
+}
+.w586 .max-width-fixed {
+  max-width: 181px;
+  min-width: 181px;
+}
+#aiPromptTextModal .text-wrap-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+}
+
+#aiPromptTextModal .dispInlineBlock{display: inline-block;}
+#aiPromptTextModal .dispInline{display: inline;}
+.ai-prompt-keywords-modal .modal-dialog { width: 750px !important;}
+.ai-prompt-keywords-modal span#keywords-tplBtn15 { right: 25px; }
+.ai-prompt-keywords-modal table#keywords-tplTbl7 tbody td:last-child > div:first-child > div:first-child { padding-right: 45px !important; }
+.pointer-events-auto { pointer-events: auto !important; }
+.pointer-events-none { pointer-events: none !important; }
+#ai-text-prompt-eva-mic { margin-top: -1px; }
+.ai-text-color { color: var(--ai-dark-color); }
+#ResAiSearchBar .preiconposition{height: 54%; position: absolute!important;padding-left: 13px!important;}
+#ResAiSearchBar .aiSearchBar{border-radius: 20px!important;border: 1px solid var(--ai-primary-color) !important;background:var(--ai-light-color)!important; width:98.5%!important;padding-left: 32px!important;padding-right: 32px!important;}
+#ResAiSearchBar .aiIconUndo{display:inline; position:relative; padding-left: 13px!important; height: 15px!important; right: 22px!important;}
+#ResAiSearchBar .aiIconClr{font-weight: bold; font-style: normal; position:relative!important;  right: 29px;margin-top: 7px;}
+#ResAiSearchBar .aiIconClose{
+  background: url(/mobiledoc/jsp/webemr/img/sprite.png) -34px -81px no-repeat;
+  width: 33px;
+  height: 27px;
+  display: block;
+  text-indent: -9999px;
+  opacity: 1;
+  position: absolute;
+  right: -13px;
+  top: 4px;
+  margin-top: -2px;
+  background-position-y: -54px;
+}
+#ResAiSearchBar .icon-ai-undo{
+  background: url(/mobiledoc/jsp/webemr/frontofficeai/undo.png) 0 0 no-repeat; width: 13px; height:13px;
+}
+#btnAiSearchRes .icon-ai-apt-search{
+  background: url(/mobiledoc/jsp/webemr/frontofficeai/ai-res-search.svg) 0 0 no-repeat; width: 20px; height:21px;
+}
+#aiPromptTextModal .btn-lblue { color: #fff; }
+.aiMutipleOptionTooltip .tooltip-inner {
+  text-align: left !important;
+  background-color: white !important;
+  color: black !important;
+  border : 0.1em black solid !important;
+  font-size: 12px !important;
+  word-wrap: break-word !important;
+}
+#ResAiSearchBar table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+}
+#ResAiSearchBar td {
+  text-align: left;
+  padding: 7px;
+  border-bottom: 1px solid #ddd;
+}
+#ResAiSearchBar table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#ResAiSearchBar .table > tbody> tr > td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 12px;}
+#ResAiSearchBar .no-result-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 13px;
+  color: #000;
+  opacity: 70%;
+}
+#ResAiSearchBar .left7 {
+  left: 7px;
+}
+#ResAiSearchBar .custzid {
+  z-index: 11;
+}
+#ResAiSearchBar .aicommandlistDiv {
+  overflow-y: auto!important; height: 233px;
+}
+#ResAiSearchBar .aiCommandIcon {
+  font-size: 19px;color: #1a5984
+}
+#aiPromptTextModal .modal-footer {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px
+}
+#aiPromptTextModal #ai-text-prompt.text-ai {
+  font-style: italic;
+}

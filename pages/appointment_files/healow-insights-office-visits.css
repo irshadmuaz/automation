@@ -1,0 +1,250 @@
+.healow-insights-healowplus-tileview-wrapper .hi-btn-green-pill,
+.healow-insights-office-visit-wrapper .hi-btn-green-pill {
+    font-size: 9px;
+    background-color: #198754;
+    color: white;
+}
+
+.healow-insights-healowplus-tileview-wrapper .hi-btn-blue-pill,
+.healow-insights-office-visit-wrapper .hi-btn-blue-pill {
+    font-size: 9px;
+    background-color: #007bff;
+    color: white;
+}
+
+.healow-insights-healowplus-tileview-wrapper .hi-btn-red-pill,
+.healow-insights-office-visit-wrapper .hi-btn-red-pill {
+    font-size: 9px;
+    background-color: #dc3545;
+    color: white;
+}
+
+.healow-insights-healowplus-tileview-wrapper .hi-btn-yellow-pill,
+.healow-insights-office-visit-wrapper .hi-btn-yellow-pill {
+    font-size: 9px;
+    background-color: #FFA000;
+    color: white;
+}
+
+.healow-insights-healowplus-tileview-wrapper .hi-btn-grey-pill,
+.healow-insights-office-visit-wrapper .hi-btn-grey-pill {
+    font-size: 10px;
+    background-color: #6c757d;
+    color: white;
+}
+
+.healow-insights-healowplus-tileview-wrapper {
+    color: #6c757d;
+    font: 600 12px 'Open Sans', sans-serif;
+}
+
+.healow-insights-office-visit-wrapper .option-prompt {
+    position: absolute;
+    top: 39px;
+    left: 84px;
+    width: 280px;
+    font-size: 11px;
+    color: #6c757d;
+    z-index: 1111;
+    display: none;
+    font: 600 12px 'Open Sans', sans-serif;
+    border-radius: 7px;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    box-shadow: 0px 0px 5px -1px rgba(29, 29, 29, 0.26);
+}
+
+.healow-insights-office-visit-wrapper .summary-view {
+    padding: 10px 10px;
+}
+
+.healow-insights-office-visit-wrapper .option-prompt .prompt-arrow-1 {
+    position: relative;
+}
+
+.healow-insights-office-visit-wrapper .option-prompt .prompt-arrow-1:after,  .option-prompt .prompt-arrow-1:before {
+    left: -2% !important;
+    top: 17%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    transform:scaleX(-1);
+    margin-left: -5px;
+}
+
+.healow-insights-office-visit-wrapper .option-prompt .prompt-arrow-1:after {
+    border-color: rgba(233, 248, 255, 0);
+    border-left-color: #e9f8ff;
+    border-width: 5px;
+    margin-top: -5px;
+    margin-left: -4px;
+}
+
+.healow-insights-office-visit-wrapper .option-prompt .prompt-arrow-1:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-left-color: white;
+    border-width: 6px;
+    margin-top: -6px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .overdue-icon,
+.healow-insights-office-visit-wrapper .overdue-icon {
+    background: url(/mobiledoc/jsp/healowInsights/img/overdue-red-sm.svg) no-repeat;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-top:3px;
+    margin-right: 5px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .icon-warning,
+.healow-insights-office-visit-wrapper .icon-warning {
+    background: url(/mobiledoc/jsp/healowInsights/img/warning-orange-sm.svg) no-repeat;
+    width: 16px;
+    height: 14px;
+    display: inline-block;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .hi-unreviewed-icon,
+.healow-insights-office-visit-wrapper .hi-unreviewed-icon {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-Pending-action-icon.svg) no-repeat;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-top: 2px;
+    margin-right: 6px;
+    margin-left: -1px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .hi-reviewed-icon,
+.healow-insights-office-visit-wrapper .hi-reviewed-icon {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-completed-Icon-sm.svg) no-repeat;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .potential-btn,
+.healow-insights-office-visit-wrapper .potential-btn {
+    padding: 0px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 3px;
+}
+
+.healow-insights-office-visit-wrapper .icon-member-insight-red {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-member-insight-red.png) no-repeat;
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.healow-insights-office-visit-wrapper .icon-member-insight-blue {
+    background: url(/mobiledoc/jsp/healowInsights/img/hi-member-insight-blue.png) no-repeat;
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+}
+
+.healow-insights-healowplus-tileview-wrapper .total-record,
+.healow-insights-office-visit-wrapper .option-prompt .summary-view .total-record {
+    padding-bottom: 3px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .pdt2,
+.healow-insights-office-visit-wrapper .pdt2 {
+    padding-top:2px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .pdb2,
+.healow-insights-office-visit-wrapper .pdb2 {
+    padding-bottom:2px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .pdr5,
+.healow-insights-office-visit-wrapper .pdr5 {
+    padding-right:5px !important;
+}
+
+.healow-insights-healowplus-tileview-wrapper .mb1,
+.healow-insights-office-visit-wrapper .mb1 {
+    margin-bottom: 1px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .mb2,
+.healow-insights-office-visit-wrapper .mb2 {
+    margin-bottom: 2px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .mr2,
+.healow-insights-office-visit-wrapper .mr2 {
+    margin-right: 2px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .mt2,
+.healow-insights-office-visit-wrapper .mt2 {
+    margin-top: 2px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .mt3,
+.healow-insights-office-visit-wrapper .mt3 {
+    margin-top: 3px;
+}
+
+.healow-insights-office-visit-wrapper .bridge-icon {
+    text-align: center;
+}
+
+.healow-insights-healowplus-tileview-wrapper .section,
+.healow-insights-office-visit-wrapper .option-prompt .summary-view .section {
+    margin-top: 4px;
+    margin-right: 2px;
+}
+.healow-insights-healowplus-tileview-wrapper .section-child,
+.healow-insights-office-visit-wrapper .option-prompt .summary-view .section-child {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .section-header,
+.healow-insights-office-visit-wrapper .option-prompt .summary-view .section-header {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.healow-insights-healowplus-tileview-wrapper .section-content,
+.healow-insights-office-visit-wrapper .option-prompt .summary-view .section-content {
+    font-size: 12px;
+    margin-top: 3px;
+    color: #212121;
+    word-break:break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.healow-insights-healowplus-tileview-wrapper .dashboard-tile-scroll {
+    color: #6c757d;
+    overflow-y:auto !important;
+    height: 185px;
+}
+
+.healow-insights-office-visit-wrapper .brdbtmrd7  {
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+}

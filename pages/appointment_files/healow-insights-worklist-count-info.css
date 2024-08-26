@@ -1,0 +1,71 @@
+.healow-insights-worklist-submenu-wrapper .hi-btn-grey-pill {
+	background-color: #6c757d;
+	color: white;
+}
+
+.healow-insights-worklist-submenu-wrapper .overdue-icon {
+	background: url(/mobiledoc/jsp/healowInsights/img/overdue-red-sm.svg) no-repeat;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-top:3px;
+	margin-right: 5px;
+}
+.healow-insights-worklist-submenu-wrapper .icon-warning {
+	background: url(/mobiledoc/jsp/healowInsights/img/warning-orange-sm.svg) no-repeat;
+	width: 16px;
+	height: 14px;
+	display: inline-block;
+	margin-top: 3px;
+	margin-right: 5px;
+}
+.healow-insights-worklist-submenu-wrapper .hi-unreviewed-icon {
+	background: url(/mobiledoc/jsp/healowInsights/img/hi-Pending-action-icon.svg) no-repeat;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-top: 2px;
+	margin-right: 6px;
+	margin-left: -1px;
+}
+.healow-insights-worklist-submenu-wrapper .hi-insufficient-icon {
+	background: url(/mobiledoc/jsp/healowInsights/img/hi-envelop-open.svg) no-repeat;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-top: 2px;
+	margin-right: 6px;
+	margin-left: -1px;
+}
+.healow-insights-worklist-submenu-wrapper .hi-reviewed-icon {
+	background: url(/mobiledoc/jsp/healowInsights/img/hi-completed-Icon-sm.svg) no-repeat;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-top: 3px;
+	margin-right: 5px;
+}
+.healow-insights-worklist-submenu-wrapper .hi-pending-icon {
+	background: url(/mobiledoc/jsp/healowInsights/img/pending-yellow.svg) no-repeat;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-top: 1px;
+	margin-right: 5px;
+}
+.hi-worklist-menu-item .dropdown-menu {
+	left: 100% !important;
+	width: 72% !important;
+}
+.hi-worklist-menu-item .onotify {
+	margin-top:2px !important;
+}
+.healow-insights-worklist-submenu-wrapper .left-main-item-padding {
+	padding: 4px 0px 4px 4px;
+}
+.healow-insights-worklist-submenu-wrapper .left-sub-item-padding {
+	padding: 4px 7px;
+}
+.healow-insights-worklist-submenu-wrapper .left-sub-category-item-padding {
+	padding: 2px 0px 4px 4px;
+}

@@ -1,0 +1,143 @@
+#healowChatUserStatus .selectboxopen .selection-field {
+    padding: 0;
+}
+
+#healowChatUserStatus .selectboxopen .selection-field,
+#healowChatUserStatus .selectboxopen .sel-optn li {
+    display: flex;
+    align-items: center;
+}
+
+#healowChatUserStatus .select-box.selectboxopen {
+    border: none;
+    width: 90px;
+    background: inherit !important;
+}
+
+#healowChatUserStatus .select-box .caret {
+    margin-top: 7px !important;
+    margin-right: 10px !important;
+}
+
+#healowChatUserStatus .selectboxopen .selection-click {
+    display: flex;
+    align-items: center;
+}
+
+#healowChatUserStatus .downcaretarrow {
+    background: url(../img/down-caret-arrow.png) no-repeat;
+    width: 11px !important;
+    height: 8px !important;
+    cursor: pointer !important;
+    border: none !important;
+}
+
+#healowChatUserStatus .blockstatus.onlinestatus {
+    background: #71C801;
+}
+
+#healowChatUserStatus .blockstatus.offlinestatus {
+    background: #c6c8ca;
+}
+
+#healowChatUserStatus .blockstatus {
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#healowChatUserStatus .selectboxopen .sel-optn {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    z-index: 9999;
+    width: 113px;
+    cursor: pointer;
+    text-align: left;
+    display: none;
+    padding: 7px 9px;
+    border-radius: 5px;
+    box-shadow: 1px 0px 4px -1px rgb(0 0 0 / 20%);
+    top: 24px !important;
+    left: 57px !important;
+}
+
+#healowChatUserStatus .selectboxopen .sel-optn:after,
+#healowChatUserStatus .selectboxopen .sel-optn:before {
+    bottom: 100%;
+    left: 15%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+#healowChatUserStatus .selectboxopen .sel-optn:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 7px;
+    margin-left: -7px;
+}
+
+#healowChatUserStatus .selectboxopen .sel-optn:before {
+    border-color: rgba(221, 221, 221, 0);
+    border-bottom-color: #ddd;
+    border-width: 8px;
+    margin-left: -8px;
+}
+
+#healowChatUserStatus .selectboxopen .sel-optn li {
+    border-bottom: none;
+    font: 400 12px 'Open Sans', sans-serif;
+}
+
+#healowChatUserStatus .selectboxopen .sel-optn li:hover {
+    background: none;
+    color: #000;
+}
+
+#healowChatUserStatus .showDrpDown {
+    display: block !important;
+}
+
+#healowChatUserStatus .selection-click{
+    cursor: pointer;
+}
+
+.user-status {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 50%;
+    margin: -9px 3px;
+    background: #71c801;
+    border: 0.5px solid #3c8ca3;
+}
+
+.user-online-status-icon {
+    margin-top: 22px;
+    margin-left: -8px;
+    z-index: 1;
+}
+ .display-flex{
+     display: flex !important;
+ }
+
+.user-status.offline{
+    background: #c6c8ca !important;
+}
+
+.nobackground {
+    background: none !important;
+}
+
+.inlineDisplay {
+    display: inline !important;
+}
+#healowChatUserStatus .userTypeToggleFont {
+    font: 600 12px open_sanssemibold;
+}

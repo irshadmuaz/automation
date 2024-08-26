@@ -1,0 +1,51 @@
+angular.module('ecw.phm.timerLogsApp', ['ecw.datatruncUtilityModule']).directive('phmTimerLogs',
+    function($http, $modal, $ocLazyLoad) {
+        return {
+            restrict : 'AE',
+            replace : 'true',
+            scope : {
+                patientId : '=',
+                ptacoId : '=',
+                userId : '=',
+                billingDate : '=',
+                module : '=',
+                callbackFunction: '&'
+            },
+            link : function(scope, element, attrs, ngModelCtrl) {
+                element.click(function(){
+                    $('.action-hub-modal').remove();
+                    $ocLazyLoad.load({
+                        name: 'rpmAddTime',
+                        files: ['/mobiledoc/jsp/webemr/ccmr/ccm/js/ccmViewLogsController.js',
+                                '/mobiledoc/jsp/webemr/css/perfect-scrollbar.min.css',
+                                '/mobiledoc/jsp/webemr/js/ecw.dir.patientidentifier.js'
+                            ]
+                    }).then(function() {
+                        scope.phmTimerLogsData = {
+                            patientId : scope.patientId,
+                            ptacoId : scope.ptacoId,
+                            userId: scope.userId,
+                            billingDate: scope.billingDate,
+                            module: scope.module,
+                            callbackFunction: scope.callbackFunction
+                        };
+                        var params = {patientId: scope.patientId, EnrollId: scope.ptacoId, userId: scope.userId, billingDate: scope.billingDate, module: scope.module};
+                        $modal.open({
+                            templateUrl: makeURL('/mobiledoc/jsp/webemr/ccmr/ccm/viewCcmLogs.jsp?' + $.param(params)),
+                            controller: 'CcmViewLogsController',
+                            keyboard:false,
+                            backdrop:'static',
+                            windowClass: 'bluetheme ccm-timer-logs-modal',
+                            animation: true,
+                            resolve : {
+                                phmTimerLogsData: function() {
+                                    return scope.phmTimerLogsData;
+                                }
+                            }
+                        });
+                    }, function(e) {
+                    });
+                });
+            }
+        };
+    });

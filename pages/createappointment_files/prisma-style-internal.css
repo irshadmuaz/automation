@@ -1,0 +1,3746 @@
+@font-face {
+    font-family: 'open_sanssemibold';
+    src: url('../fonts/opensans-semibold-webfont.eot');
+    src: url('../fonts/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/opensans-semibold-webfont.woff2') format('woff2'),
+    url('../fonts/opensans-semibold-webfont.woff') format('woff'),
+    url('../fonts/opensans-semibold-webfont.ttf') format('truetype'),
+    url('../fonts/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../fonts/opensans-bold-webfont.woff2') format('woff2'), url('../fonts/opensans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: '10eWidget';
+    src: url('../fonts/10eWidget.eot?u5c3vz');
+    src: url('../fonts/10eWidget.eot?u5c3vz#iefix') format('embedded-opentype'),
+    url('../fonts/10eWidget.ttf?u5c3vz') format('truetype'),
+    url('../fonts/10eWidget.woff?u5c3vz') format('woff'),
+    url('../fonts/10eWidget.svg?u5c3vz#10eWidget') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('../fonts/opensans-regular-webfont.eot');
+    src: url('../fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/opensans-regular-webfont.woff2') format('woff2'), url('../fonts/opensans-regular-webfont.woff') format('woff'), url('../fonts/opensans-regular-webfont.ttf') format('truetype'), url('../fonts/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sanssemibold';
+    src: url('../fonts/opensans-semibold-webfont.eot');
+    src: url('../fonts/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/opensans-semibold-webfont.woff2') format('woff2'), url('../fonts/opensans-semibold-webfont.woff') format('woff'), url('../fonts/opensans-semibold-webfont.ttf') format('truetype'), url('../fonts/opensans-semibold-webfont.svg#open_sanssemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sanssemibold_italic';
+    src: url('../fonts/opensans-semibolditalic-webfont.eot');
+    src: url('../fonts/opensans-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/opensans-semibolditalic-webfont.woff2') format('woff2'), url('../fonts/opensans-semibolditalic-webfont.woff') format('woff'), url('../fonts/opensans-semibolditalic-webfont.ttf') format('truetype'), url('../fonts/opensans-semibolditalic-webfont.svg#open_sanssemibold_italic') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Prisma Terms - Starts*/
+.prismaTerms {
+    overflow: hidden;
+}
+.prismaTerms .modal-header {
+    background: #2b91d9;
+    padding: 0 15px;
+    border-top: 1px solid #60a6d2;
+    border-bottom: 1px solid #60a6d2;
+    height: 32px;
+}
+.prismaTerms .modal-header .close{
+    background: url(../imgs/closewhite.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    margin-top: 4px;
+}
+.prismaTerms .modal-header .close:hover {
+    background: url(../imgs/icon-close-hover.png) no-repeat;
+}
+.prismaTerms .modal-header h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #fff;
+    line-height: 29px;
+    float: none;
+}
+.prismaTerms .terms-scroll{
+    position: relative;
+    height: 590px;
+    padding-right: 15px;
+}
+.prismaTerms .terms-container{
+    position: relative;
+    height: 620px;
+    padding: 15px 0px 15px 15px;
+}
+/* Prisma Terms - Ends*/
+
+#prismaDisclaimerText .prisma-disclaimer-links{
+    bottom: 0;
+    position: relative;
+}
+#prismaDisclaimerText{
+    font-size:12px;
+}
+
+#prismaDisclaimerText .prisma-disclaimer-links-absolute{
+    bottom: 0;
+    position: absolute !important;
+}
+#prismaDisclaimerText .prisma-disclaimer-links a, .prismaview .disclaimer-content a{
+    cursor: pointer;
+    color: #428bca !important;
+}
+.prismaview .popover.disclaimer-content {
+    max-height: 325px !important;
+}
+/*Clinical Insights popup*/
+.prismaview .problem-wrapper .tablebody .option-prompt {
+    position: absolute;
+    top: 39px;
+    left: 84px;
+    min-width: 155px;
+    font-size: 11px;
+    color: #000;
+    z-index: 1111;
+    display: none;
+}
+
+.prismaview .option-prompt .prompt-arrow {
+    border-radius: 3px;
+    position: relative;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    padding: 7px 10px;
+    box-shadow: 0px 0px 5px -1px rgba(29, 29, 29, 0.26);
+}
+
+.prismaview .option-prompt .prompt-arrow:after,
+.prismaview .option-prompt .prompt-arrow:before {
+    bottom: 100%;
+    left: 12%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.prismaview .option-prompt .prompt-arrow:after {
+    border-color: rgba(245, 252, 255, 0);
+    border-bottom-color: #f5fcff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.prismaview .option-prompt .prompt-arrow:before {
+    border-color: rgba(197, 197, 197, 0);
+    border-bottom-color: #c5c5c5;
+    border-width: 11px;
+    margin-left: -11px;
+}
+/*Clinical Insights popup Ends*/
+.prismaview .suggestionDropDown {
+    width: 100%;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid #ececec;
+    border-right: 1px solid #ececec;
+    width: 100%;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #dddddd54;
+    z-index: 9999;
+    cursor: pointer;
+    text-align: left;
+    display: block!important;
+}
+.prismaview .w30-px{
+    width: 30px;
+}
+.prismaview .searchTypeFilter{
+    width: 105px;
+    padding-right: 5px;
+    padding-top: 5px;
+    margin-top: 5px;
+}
+.prismaview .searchTypeFilter ul{
+    width:85px !important;
+}
+.prismaview .searchlist-wrapper {
+    margin-left: 10px;
+}
+.prismaview .searchlist-wrapper h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.prismaview .nomargintop{
+    margin-top: 0 !important;
+}
+.prismaview #prisma-records-tabs .nav-tabs{
+    display: block;
+}
+.prismaview .publishToPortalBtn .border-right, .prismaview .filterTemplateBtn .border-right{
+    border-right: 1px solid #ddd;
+}
+.prismaview .publishToPortalBtn .icon-downarrow, .prismaview .filterTemplateBtn .icon-downarrow{
+    height: 14px;
+    width: 10px;
+    top: 5px !important;
+    background-position-y: center;
+}
+.prismaview .icon-recent-red {
+    background: url('../imgs/icon-recent-red.png') no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-left: -1px;
+}
+.prismaview .icon-recent-yellow {
+    background: url('../imgs/icon-recent-yellow.png') no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-left: -1px;
+}
+.prismaview .padbt5 {
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+}
+.prismaview .mr-14 {
+    margin-right: -14px !important;
+}
+
+.prismaview .det-view.gloablsearch .prisma-manual-refresh .form-group .input-group {
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.prismaview .det-view.gloablsearch .prisma-manual-refresh .form-group .input-group-sm>.input-group-addon {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.prismaview .det-view.gloablsearch .prisma-manual-refresh .form-group .input-group-addon {
+    padding: 1px 4px;
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+
+.prismaview .det-view.gloablsearch .prisma-manual-refresh .form-group .input-group .form-control,
+.prismaview .det-view.gloablsearch .prisma-manual-refresh .form-group .input-group.opaq-input input[type="text"]:focus {
+    border: 1px solid #ccc;
+}
+
+.prismaview .det-view.gloablsearch .prisma-manual-refresh .form-group input[type="text"] {
+    height:24px;
+    padding:1px 8px;
+    line-height:20px;
+    font-size:12px;
+    font-weight: inherit;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.prismaview .i-icon-interopprisma, .prismaview .ehx-rcp-doc-query-info-blankicon {
+    background: url(../imgs/icon-info-grey-i.png) no-repeat;
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    left: 0px;
+}
+.prismaview .i-icon-interopprisma{
+    float: left;
+}
+.prismaview .i-icon-interopprisma{
+    float: left;
+}
+.prismaview .tooltip-interopnameprisma {
+    position: relative;
+    display: inline-block;
+}
+.prismaview .tooltip-interopnameprisma .tooltipinteroptextprisma {
+    visibility: hidden;
+    width: 500px;
+    text-align: left;
+    color: black;
+    background-color: white;
+    border: ridge;
+    padding: 5px 5px;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: -600%;
+    margin-left: -125px;
+    transition: opacity 0.3s;
+    font-style: normal;
+}
+.prismaview .tooltip-interopnameprisma:hover .tooltipinteroptextprisma {
+    visibility: visible;
+    opacity: 1;
+}
+.prismaview .noteTextPrisma{
+    margin-left: 25px;
+}
+
+.prismaview .btn-secondary {
+    font-size: 12px;
+    line-height: 17px;
+    color: rgb(61, 61, 61);
+    border-radius: 3px;
+    background: rgb(225, 225, 225) !important;
+    border-color: rgb(163, 163, 163) !important;
+    padding: 3px 10px !important;
+}
+.prismaview .btn-secondary:hover,.prismaview .btn-secondary.hover{
+    color: rgb(61, 61, 61) !important;
+    background: rgb(209, 209, 209) !important;
+    border-color: rgb(121, 121, 121) !important;
+}
+.prismaview .btn-primary {
+    font-size: 12px;
+    line-height: 17px;
+    color: rgb(3, 71, 99);
+    border-radius: 3px;
+    background: rgb(123, 217, 255) !important;
+    border-color: rgb(60, 162, 203) !important;
+    padding: 3px 10px !important;
+}
+.prismaview .btn-primary:hover,.prismaview .btn-primary.hover {
+    color: rgb(3, 71, 99) !important;
+    background-color: rgb(97, 207, 251) !important;
+    border-color: rgb(36, 134, 174) !important;
+}
+.prismaview .btn:hover,.prismaview .btn:focus {
+    color: #333;
+    text-decoration: none;
+}
+.prismaview .summary-details-wrapper.hgtAvail {
+    height: calc(100vh - 100px);
+}
+
+.prismaview .summary-wrapper.hgtAvail {
+    height: calc(100vh - 175px);
+}
+
+.prismaview .prisma_tab_footer {
+    margin-top: 4px;
+    border: 1px solid lightgray;
+}
+
+.prismaview .summary-wrapper .summary-detail-scroll.additional-filter {
+    height: calc(100% - 44px);
+}
+.prisma-vtwo .listleftpanel {
+    margin: 0;
+    padding: 0;
+}
+
+/*.prisma-vtwo .listleftpanel li {
+    list-style: none;
+    float: left;
+    width: 100%;
+    clear: both;
+    font: 400 12px ;
+    color: #000;
+    padding: 10px 0 10px 0;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}*/
+
+.prisma-vtwo .minus-ml10 {
+    margin-left: -10px;
+}
+
+.prismaview .locationimg{
+    background: url(../imgs/location-img.png) no-repeat;
+    width: 12px;
+    height: 13px;
+    margin-right: 5px;
+}
+.prismaview .folderimg{
+    background: url(../imgs/folder-img.png) no-repeat;
+    width: 13px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+.prismaview  .btn.selection-tabs .label {
+    border-radius: 100%;
+    font-size: 10px;
+    background: #ddd;
+    color: #000;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    top: -2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prismaview  .btn.selection-tabs {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.prismaview .d-flex .btn.selection-tabs.active,
+.prismaview .d-flex .btn.selection-tabs:focus,
+.prismaview .d-flex .btn.selection-tabs:hover {
+    background: #fff9ed;
+    border-color: #A79674;
+    box-shadow: none;
+}
+
+.prismaview .d-flex .btn.selection-tabs.active .label,
+.prismaview .d-flex .btn.selection-tabs:focus .label,
+.prismaview .d-flex .btn.selection-tabs:hover .label {
+    background: #e0d7ca;
+}
+
+.prisma-vtwo .top-filter-section {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.prismaview .flex-column{
+    flex-direction: column;
+}
+
+.prisma-vtwo .listleftpanel li:first-child.listheading {
+    padding-top: 0 !important;
+}
+
+.prisma-vtwo .listleftpanel li:hover.listheading {
+    background: #fff;
+}
+
+/*.prisma-vtwo .listleftpanel li:hover {
+    !*hover here*!
+    !*background: #F2F2F2;*!
+    border-left-color: #2B91D9;
+    background: #2B91D9;
+    cursor: pointer;
+    color: white;
+}*/
+
+.prisma-vtwo .listheading {
+    font: 700 12px  !important;
+    color: #343434 !important;
+    margin: 0 !important;
+}
+
+.prisma-vtwo .btn-xs.btn-collapse {
+    padding: 0px 4px !important;
+    line-height: 12px;
+    background: #fff;
+    box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 28%);
+    margin-left: 10px;
+    margin-top: 3px;
+    border-radius: 4px;
+}
+
+.prisma-vtwo .icon-uparrow {
+    background: url(../imgs/up-arrow.png) no-repeat;
+    width: 8px;
+    height: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -4px;
+}
+.prismaview .icon-downarrow {
+    background: url(../imgs/down-arrow.png) no-repeat !important;
+    width: 8px;
+    height: 4px;
+    display: inline-block;
+}
+
+.prisma-vtwo .collapseheader {
+    font-size: 13px;
+    font-weight: 700;
+    color: #343434;
+    float: left;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 28px);
+    line-height: 20px;
+}
+
+.prisma-vtwo .recordssec {
+    background: #E0EDC4;
+    width: 60px;
+    height: 18px;
+    font: 400 12px ;
+    color: #5D6E39;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.prisma-vtwo .frntgreytxt {
+    color: #4c4c4c;
+}
+
+.prisma-vtwo .blackcolortxt {
+    color: #000;
+}
+
+.prisma-vtwo .circlesec {
+    width: 16px;
+    height: 16px;
+    background: #DEDEDE;
+    font: 600 10px ;
+    color: #000;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.prisma-vtwo .d-flex {
+    display: flex;
+}
+
+.prismaview .summary-details-wrapper .document-details{
+    height: calc(100vh - 230px);
+}
+.prismaview .prisma-exe .summary-details-wrapper .document-details{
+    overflow-x: scroll !important;
+}
+.prisma-vtwo .align-center{
+    align-items: center;
+}
+
+.prisma-vtwo .summary-wrapper .summary-section.collapsed {
+    padding-bottom: 0px;
+    padding-left: 5px;
+    margin-bottom: 0;
+    word-break: break-word;
+}
+.prismaview .summary-wrapper .timeline-detail-scroll {
+    height: calc(100vh - 263px) !important;
+}
+
+.prisma-vtwo .summary-wrapper .summary-section.active {
+    background: #f6fbff;
+    border: 1px solid #167ce0;
+    cursor: pointer;
+
+}
+
+.prisma-vtwo .detail-section {
+    float: left;
+    padding-left: 0px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.prisma-vtwo .scrollPrismaSearchDoc_filter{
+    height: calc(100vh - 271px) !important;
+    position: relative;
+}
+
+.prisma-vtwo .doc-list.shown-summary{
+    flex: auto;
+}
+.prisma-vtwo .split70{
+    width: 70%;
+}
+
+.prisma-vtwo .tableheading {
+    font: 600 15px ;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.prisma-vtwo .border1pxgrey{
+    border:  1px solid #ccc
+}
+
+.prisma-vtwo .bluearrow {
+    background: url(../imgs/bluearrow.png) no-repeat;
+    width: 21px;
+    height: 21px;
+}
+
+.prisma-vtwo .simpleTable .table>thead>tr>th {
+    border-bottom: 1px solid #FBFBFF !important;
+    background: #FBFBFF;
+    border-color: #e5e5e5 !important;
+    border-left: none;
+    border-right: none;
+    font: 700 12px ;
+    color: #000 !important;
+    vertical-align: top;
+    padding: 5px 15px !important;
+}
+
+.prisma-vtwo .simpleTable .table>thead>tr.secondtrtag>th {
+    font: 600 12px ;
+    color: #7D7D7F !important;
+    border-top: none;
+    padding: 0 15px !important;
+}
+
+.prisma-vtwo .simpleTable .table>thead>tr>th:first-child {
+    border-right: 1px solid #e5e5e5 !important;
+}
+
+.prisma-vtwo .simpleTable .table>tbody>tr>td:first-child {
+    border-right: 1px solid #e5e5e5 !important;
+}
+
+.prisma-vtwo .simpleTable .table>tbody>tr:last-child>td {
+    border-bottom: none !important;
+}
+
+.prisma-vtwo .simpleTable .tablehead {
+    table-layout: fixed;
+    border-top: 1px solid #e5e5e5;
+}
+
+.prisma-vtwo .simpleTable .table>tbody>tr>td,
+.prisma-vtwo table.blue-fade-table.table-bordered>tbody>tr>td {
+    border-left: none !important;
+    border-right: none !important;
+    padding: 4px 15px !important;
+    cursor: pointer;
+}
+
+.prisma-vtwo .profileuser {
+    background: url(../imgs/profileuser.png) no-repeat;
+    width: 27px;
+    height: 27px;
+}
+
+.prisma-vtwo .rightcontent {
+    height: calc(100vh - 193px);
+    position: relative;
+}
+
+.prisma-vtwo table.blue-fade-table.table-bordered>tbody>tr>td.nopadleft {
+    padding-left: 0 !important;
+}
+
+.prisma-vtwo .simpleTable tr>td,
+.prisma-vtwo .simpleTable tr>th {
+    overflow: initial;
+    white-space: normal;
+}
+
+.prisma-vtwo .bloacksec {
+    background: #fff;
+    padding: 10px;
+    clear: both;
+    float: left;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.prisma-vtwo .linecolor {
+    border-left: 1px solid #e1e1e1;
+    margin: 0 10px;
+}
+
+.prisma-vtwo .fnt13boldtext {
+    font: 700 13px;
+    color: #000;
+}
+
+.prisma-vtwo .greybgsec {
+    background: #FBFAFB;
+}
+
+.prisma-vtwo .simpleTable.borderedtable {
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.prisma-vtwo .simpleTable.borderedtable .table>thead>tr>th {
+    border-bottom: 1px solid #ddd !important;
+    padding: 4px 10px !important;
+    height: 25px;
+}
+
+.prisma-vtwo .show {
+    top: 0;
+    position: unset;
+}
+
+.prisma-vtwo .commulative-section .problem-wrapper {
+    padding: 5px 15px;
+    background: #FAFAFA;
+    border-top: 1px solid #DFDFDF;
+    float: left;
+    width: 100%;
+}
+
+.prisma-vtwo .commulative-section .problem-wrapper .problem-list {
+    border-top: 1px solid #EBEBEB;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.prisma-vtwo .commulative-section .problem-wrapper .problem-list:last-child {
+    padding-bottom: 0;
+}
+
+.prisma-vtwo .commulative-section .problem-wrapper .problem-list:first-child {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.prisma-vtwo .header-text {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    color: #167ce0;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    cursor: pointer;
+
+}
+
+.prisma-vtwo .commulative-section {
+    border: 1px solid #E9E9E9;
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.prisma-vtwo .flex-fill{
+    flex: 1 1 auto;
+}
+
+.prisma-vtwo .commulative-section .header-section {
+    padding: 3px 15px;
+    background: #EEF3FA;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+.prisma-vtwo .headerFix .header-section{
+    position: sticky;
+    top: 0;
+}
+
+.prisma-vtwo .simpleTable .table>tbody>tr>td.redtextcolor {
+    color: #FF4B4B;
+}
+
+.prisma-vtwo .simpleTable .table>tbody>tr>td.greentxtcolor {
+    color: #009318;
+}
+
+.prisma-vtwo .redcross-circle {
+    background: url(../imgs/redcross.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    bottom: 4px;
+    left: -12px;
+}
+
+.prisma-vtwo .greencross-circle {
+    background: url(../imgs/greencircle.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    left: -12px;
+
+}
+
+.prisma-vtwo .simpleTable,
+.prisma-vtwo .posrealtive {
+    position: relative;
+}
+
+.prisma-vtwo .locatemap {
+    background: url(../imgs/location-map.png) no-repeat;
+    width: 8px;
+    height: 11px;
+}
+
+.prisma-vtwo .mobileimg {
+    background: url(../imgs/mobileimg.png) no-repeat;
+    width: 9px;
+    height: 12px;
+}
+
+.prisma-vtwo .greenlistno {
+    background: #569643;
+    font: 600 10px ;
+    width: 17px;
+    height: 17px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.prisma-vtwo .buildingicon {
+    background: url(../imgs/buildingicon.png) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.prisma-vtwo .collapseheading-block {
+    border-top: 1px solid #d5d4d5;
+    border-bottom: 1px solid #d5d4d5;
+    background: #F6F5F6;
+}
+
+.prisma-vtwo .collapseheading-block button {
+    background: none;
+    box-shadow: none;
+    font: 600 13px ;
+    color: #000;
+    padding-left: 0;
+}
+
+.prisma-vtwo .tablecollpase {
+    background: url(../imgs/expand-icon.png) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.prisma-vtwo .squarearrow {
+    background: url(../imgs/external.svg) no-repeat;
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+
+.prisma-vtwo .importcirclesec {
+    width: 8px;
+    height: 8px;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.prisma-vtwo .importcirclesec.circlegreen {
+    background-color: #009318;
+}
+
+.prisma-vtwo .importcirclesec.circleorange {
+    background-color: #F4A100;
+}
+
+.prisma-vtwo .importcirclesec.circelpink {
+    background-color: #FF8585;
+}
+
+.prisma-vtwo .greyinfoicon {
+    background: url(../imgs/greyinfo.png) no-repeat;
+    width: 14px;
+    height: 14px;
+}
+
+.prisma-vtwo .simpleTable.boxtable .table>tbody>tr>td:first-child,
+.prisma-vtwo .simpleTable.boxtable .table>thead>tr>th:first-child {
+    border-right: none !important;
+}
+
+.prisma-vtwo .importdata .commulative-section .problem-wrapper {
+    border-top: 0;
+}
+
+.prisma-vtwo .listleftpanel ul {
+    clear: both;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.prisma-vtwo .listleftpanel ul li {
+    padding-left: 10px;
+    margin-left: 0;
+}
+
+.prisma-vtwo .blueheading {
+    font: 400 14px;
+    color: #167CE0;
+}
+
+.prisma-vtwo .w60p {
+    width: 60%;
+}
+
+.prisma-vtwo .sliderimg1 {
+    background:  url(../imgs/slider-img1.png) no-repeat;
+    width: 100%;
+    height: 170px;
+    background-size: contain;
+}
+
+.prisma-vtwo .sliderimg2 {
+    background:  url(../imgs/slider-img2.png) no-repeat;
+    width: 100%;
+    height: 170px;
+    background-size: contain;
+}
+
+.prisma-vtwo .sliderimg3 {
+    background:  url(../imgs/slider-img3.png) no-repeat;
+    width: 100%;
+    height: 170px;
+    background-size: contain;
+}
+
+.prisma-vtwo .item .card {
+    overflow: hidden;
+    width: 200px;
+    float: left;
+    display: block;
+    background: #fff;
+    border: 1px solid #EFEFEF;
+    border-radius: 10px;
+    height: 268px;
+    margin-right: 20px;
+}
+
+.prisma-vtwo .carousel-control.left,
+.prisma-vtwo .carousel-control.right {
+    background: none !important;
+}
+
+.prisma-vtwo .carousel-control {
+    opacity: 1;
+}
+
+.prisma-vtwo .carousel-control .icon-next,
+.prisma-vtwo .carousel-control .glyphicon-chevron-right {
+    right: 0%;
+    background: #f00;
+    background: #fff;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 1px 6px 1px rgb(0 0 0 / 50%);
+    border-radius: 50%;
+}
+
+.prisma-vtwo .carousalsec {
+    width: 660px;
+}
+.prisma-vtwo .carousel-inner{
+    display: flex;
+}
+
+.prismaview .carousel-inner>.item{
+    width: 33.33%;
+    display: inline-block;
+}
+.prismaview .carousel-inner>.item>.innerContent{
+    flex: 1 1 auto!important;
+    margin-right: 25px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding-bottom: 15px;
+    min-height: 257px;
+}
+.prisma-vtwo .carousel::before {
+    border: none;
+    background: none;
+}
+
+.prisma-vtwo .glyphicon-chevron-right:before {
+    background: url(../imgs/carousal-rgtarrow.png) no-repeat;
+    content: "";
+    width: 8px;
+    height: 12px;
+}
+
+.prisma-vtwo .glyphicon-chevron-left:before {
+    content: "";
+}
+
+.prisma-vtwo .carousel-indicators {
+    display: none;
+}
+
+.prisma-vtwo .commulative-section .header-section.dflex-justify {
+    display: block;
+}
+
+.prisma-vtwo .btnTabs .nav-tabs>li {
+    cursor: pointer;
+}
+
+.prisma-vtwo .w30p {
+    width: 30%;
+}
+.prisma-vtwo .simpleTable .table>thead>tr.secondtrtag.nobrdrbtm>th,
+.prisma-vtwo .simpleTable .table>thead>tr.nobrdrbtm>th {
+    border-bottom: none !important;
+}
+.prisma-vtwo .commulative-section .commulative-section.nomarbotm{
+    margin-bottom: 0 !important;
+}
+.prisma-vtwo .clinicalinsights .listleftpanel li.active{
+    /*active here*/
+    background: #2B91D9;
+    border-radius: 4px;
+}
+.prisma-vtwo .flex-column{
+    flex-direction: column;
+}
+.prisma-vtwo .align-item-start{
+    align-items: flex-start !important;
+}
+.prisma-vtwo .nav-tabs>li{
+    margin-bottom: -1px;
+}
+
+.prisma-vtwo .facilities-popup{
+    width: 345px;
+    height: 355px;
+    border:1px solid #E3E2E3;
+    position: absolute;
+    z-index: 99;
+    background: #fff;
+    box-shadow: 0px 1px 4px -1px rgba(0,0,0,0.5);
+}
+.prisma-vtwo .facilityheadul{
+    padding: 0;
+    margin: 0;
+}
+.prisma-vtwo .facilitysubul{
+    padding: 0;
+    margin: 0;
+}
+.prisma-vtwo .facilityheadul li{
+    padding: 10px 10px;
+    list-style: none;
+    font:400 12px 'Open Sans',sans-serif;
+    color:#000;
+    border-bottom:1px solid #E3E2E3;
+}
+prisma-vtwo .sel-optn li:hover .facilitysubul li{
+    color:white !important;
+}
+.prisma-vtwo .facilitysubul li{
+    font:400 11px 'Open Sans',sans-serif;
+    color:#555;
+    list-style: none;
+    padding: 0 10px;
+    border-bottom: none;
+}
+.prisma-vtwo .scrollhgt{
+    height: 353px;
+    position: relative;
+}
+.prisma-vtwo .dflex-center{
+    display: flex;
+    align-items: center;
+}
+.prisma-vtwo .sel-optn li:hover{
+    color: white;
+}
+.prisma-vtwo .lineHgt12{
+    line-height: 1.2;
+}
+
+.prisma-vtwo .flex-center{
+    align-items: baseline;
+}
+
+.prisma-vtwo table.blue-fade-table.table-bordered>tbody>tr.hideBorder>td{
+    border: none !important;
+}
+.prisma-vtwo table.blue-fade-table.table-bordered>tbody>tr.hideBorder>td:first-child{
+    border-right: 1px solid #e5e5e5 !important;
+}
+
+.prisma-vtwo .table.blue-fade-table.table-bordered > tbody > tr:hover > td,.prismaview .table.blue-fade-table.table-bordered > tbody > tr:active > td {
+    border-color: #E8CEBF !important;
+}
+
+.prisma-vtwo .icon-info-grey {
+    background: url(../imgs/icon-info-grey.png) no-repeat;
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 0px;
+    left: 3px;
+}
+.prismaview .label-wrap .icon-info-grey {
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 0px;
+    left: 2px;
+}
+.prismaview .h34px{
+    height: 34px !important;
+}
+.prisma-vtwo .icon-info-grey-i {
+    background: url(../imgs/icon-info-grey-i.png) no-repeat;
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    left: 4px;
+}
+.prisma-vtwo .headerfont {
+    margin: -3px 10px 0px -15px;
+}
+.prismaview .lastRefreshed {
+    padding-bottom: 5px;
+    margin: 7px 4px -4px 7px;
+    right: 32px;
+}
+
+.prismaview .summary-wrapper .sel-optn .dropdown-scroll  li {
+    white-space: unset !important;
+    overflow: auto !important;
+}
+.prismaview section.resizable {
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    margin-right: 1px!important;
+}
+.prismaview .section.resizable-prismatab {
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    margin-right: 0px;
+}
+.prismaview .footer {
+    padding: 9px 15px !important;
+    margin-top: 0;
+    border: 1px solid #e6e6df !important;
+    background: #fbfbfb;
+}
+.prismaview .exe-footer {
+    padding: 9px 15px 10px 20px !important;
+    margin-top: 0;
+    border: 1px solid #e6e6df !important;
+    background: #fbfbfb;
+}
+.prismaview .record-footer {
+    padding: 6px 15px;
+    margin-top: 0;
+    border: 1px solid #e6e6df;
+    background: #fbfbfb;
+    height: 49px;
+}
+.prismaview .summary-details-wrapper .summary-details .header {
+    font-size: 12px;
+    font-weight: 610 !important;
+    color: #000000;
+    text-transform: capitalize;
+    margin-top: 1px;
+}
+.prismaview .pl5 {
+    padding-left:5px!important;
+}
+.prismaview .btn-xs.btn-jumpto {
+    padding: 2px 10px !important;
+    font-size: 11px;
+    font-weight: 600;
+    color: #2d3d4d;
+    left: 20px;
+    top: 0px !important;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.19);
+    border-radius: 4px;
+    background: #ffffff;
+    font-size: 11px;
+    line-height: 13px;
+}
+
+.prismaview .summary-wrapper {
+    min-width: 658px !important;
+}
+.prismaview .modal-header {
+    background:#2b91d9;
+    padding:0 10px;
+    border-top: 1px solid #60a6d2;
+    border-bottom: 1px solid #60a6d2;
+    height: 32px;
+}
+.prismaview.modal.fade .modal-dialog {
+    width: 100% !important;
+    margin: 0 !important;
+}
+.prismaview .summary-details-wrapper.full-width {
+    min-width: 100% !important;
+    max-width: 100%;
+}
+.prismaview .sel-optn li:hover {
+    background: #E9F8FF;
+    color: #555;
+}
+.prismaview .btn-default.filter-btn.active {
+    border: 1px solid #167ce0 !important;
+    background: #ffffff;
+}
+.prismaview .sel-optn-search.searchdropdown li:hover {
+    background:#E9F8FF;
+}
+.prismaview .sel-optn-search li:hover .removelink {
+    color: white;
+}
+.prismaview  .userHistorySuggestion{
+    color: #000000;
+}
+.prismaview.modal.fade .modal-header .close,.prismaaccesslog.log-modal .modal-header .close{
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px 0 no-repeat;
+}
+.prismaview.modal.fade .modal-header .close:hover{
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px -20px no-repeat;
+}
+.prismaaccesslog.log-modal .modal-header .close:hover{
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px -20px no-repeat;
+    margin: 4px 3px 1px 3px;
+}
+
+.prismaview .summary-wrapper .timeline-detail-scroll.show-filter {
+    height: calc(100vh - 232px) !important;
+}
+.prismaview .summary-wrapper .timeline-detail-scroll.progressNoteView {
+    height: calc(100vh - 444px) !important;
+}
+/*font-overridding*/
+.prismaview .PtHeading,.prismaview .summary-details .collapse-wrapper .simpleTable .table-bordered>thead>tr>th,
+.prismaview .summary-detail-modal .simpleTable .table-bordered>thead>tr>th,
+.prismaview .popover.documents .document-list li,.prismaview .popover.documents .document-list li span,
+.prismaview .no-resultfound .resultheader,
+.prismaview .suggested-keywords, .prismaview .searched-keyword,
+.prismaaccesslog .modal-header h4,.prismaview .subgreyfont,
+.prismaview .ob-flowsheet-prisma-html div.stickytop,.prismaview .ob-flowsheet-prisma-html div.stickynotes
+{
+    font-family:  'open_sansregular';
+}
+.prismaaccesslog.modal.fade .simpleTable .table-bordered>thead>tr>th {
+    font-size: 11px;
+    color: #235475;
+    border-color: #a6bfcc !important;
+    background: #c9e5f3;
+    line-height: 16px;
+    padding: 15px 10px !important;
+    border: 1px solid #c9e5f3;
+    height: 27px;
+    border-bottom: 1px solid #c9e5f3;
+    border-top-color: #c9e5f3 !important;
+    font-weight: 600;
+}
+.prismaaccesslog .simpleTable .table>tbody>tr>td {
+    border: 1px solid #f1f1f1 !important;
+}
+
+.prisma-clinical-insight .related-medication-table thead tr th {
+    padding: 8px 15px;
+    border: 0;
+    background: #f8fcfe!important;
+}
+.prisma-clinical-insight .related-medication-table tbody tr td {
+    border-bottom: 1px solid #EBEBEB;
+    border-top: 1px solid #EBEBEB;
+}
+.prisma-clinical-insight .padl15 {
+    padding-left: 15px;
+}
+.prismaview .suggestionDropDown {
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: 1px solid #ececec !important;
+    border-right: 1px solid #ececec !important;
+    width: 100% !important;
+    position: absolute !important;
+    background: #fff !important;
+    border: 1px solid #dddddd54 !important;
+    z-index: 9999 !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    display: block!important;
+}
+.prisma-disclaimer-header .close:hover {
+    background: url(../imgs/icon-close-hover.png) no-repeat;
+}
+.prismaDisclaimermodal.modal.fade .prisma-disclaimer-header, .prismaTerms .modal-header {
+    background: #2b91d9;
+    padding: 0 10px;
+    border-top: 1px solid #60a6d2;
+    border-bottom: 1px solid #60a6d2;
+    height: 32px;
+}
+
+.prismaDisclaimermodal.modal.fade .prisma-disclaimer-header .close {
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px 0 no-repeat;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    margin-top: 4px;
+    margin-top: 10px;
+}
+.prismaDisclaimermodal.modal.fade .prisma-disclaimer-header .close:hover {
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px -20px no-repeat;
+}
+.prismaview .searchlist-wrapper h4 {
+    font-size: 11px;
+    font-weight: 600;
+    color: #000000;
+    margin-top: 5px !important;
+}
+.prismaview .filter-btn {
+    padding: 0;
+    border-radius: 3px;
+    border: 1px solid #d4e0e8 !important;
+    height: 23px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FEFFFF;
+}
+.prismaview .prisma-modal .nav-tabs>li>a {
+    top: 0 !important;
+    margin-bottom: 4px;
+    line-height: 1.42857143;
+    border: 0;
+    border-radius: 0;
+    color: #000;
+    font-weight: 600;
+    padding: 8px 15px;
+}
+.prismaview .sel-optn-search li:hover .removelink {
+    color: #1e90ff !important;
+}
+.prismaview .prisma-disclaimer-links{
+    cursor: pointer;
+}
+.prismaPopupModel.fade.modal .modal-header {
+    background: #2b91d9;;
+    padding: 0 15px;
+    border-top: 1px solid #60a6d2;
+    border-bottom: 1px solid #60a6d2;
+    height: 32px;
+}
+.prismaPopupModel.fade.modal .modal-header .close{
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px 0 no-repeat;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    margin-top: 6px;
+}
+.prismaPopupModel.fade.modal .modal-header .close:hover{
+    background: url('/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png') -120px -20px no-repeat;
+    width: 20px;
+    height: 20px;
+    margin-top: 6px;
+}
+.prismaPopupModel.fade.modal .modal-body {
+    min-height: 35px;
+    padding: 10px !important;
+}
+
+.prismaview .ihub_refresh_icon{
+    height: 15px !important;
+}
+.prismaview .popover.documents, .prismaview .popover.detailtooltip, .prismaview .popover.recent-doc, .prismaview .popover.disclaimer-content {
+    min-width: 500px !important;
+    max-width: 900px !important;
+    border-radius: 5px;
+    background: #fff;
+    padding: 8px 12px;
+    border: 0;
+    box-shadow: 0 0 3px 1px rgb(0 0 0 / 35%);
+    margin-left: 5px;
+    max-height: max-content !important;
+}
+.prismaview .searchdropdown li.active {
+    background: #E9F8FF !important;
+    color: #fff;
+}
+.prismaview .sel-optn-search.searchdropdown li.active .removelink {
+    color: #1e90ff !important;
+}
+.prismaaccesslog .simpleTable .table-bordered>tbody>tr:hover>td {
+    background: #E9F8FF !important;
+    color: #394556;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+.prismaview .sel-optn-search.searchdropdown li.active .removelink {
+    color: #1e90ff !important;
+}
+.prismaview .mr-5{
+    margin-right: -5px!important;
+}
+.prismaview .prisma-exe-search-scroll-align{
+    padding: 15px 15px 0;
+    height: calc(100vh - 285px) !important;
+    position: relative;
+}
+.prismaview .prisma-exe-search-scroll-no-filter-align{
+    padding: 15px 15px 0;
+    height: calc(100vh - 216px) !important;
+    position: relative;
+}
+
+.prismaview .mr0{
+    margin: 0 !important;
+}
+.prismaview .pl15{
+    padding-left: 15px !important;
+}
+.prismaview .pl25{
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+.prismaview .exe-summary-wrapper {
+    min-width: 670px !important;
+    margin-left: 0 !important;
+}
+.prismaview section.resizable-exe {
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    margin-right: 5px!important;
+}
+.prismaaccesslog .modal-header {
+    background: #2b91d9 !important;
+    padding: 0 15px;
+    border-top: 1px solid #60a6d2 !important;
+    border-bottom: 1px solid #60a6d2 !important;
+    height: 32px;
+}
+.prismapublishportal .height-step-1-exe {
+    height: calc(100vh - 137px) !important;
+    position: relative;
+}
+.prismapublishportal .pad-right-exe {
+    padding-right: 8px !important;
+}
+.prismapublishportal .height-exe {
+    height: calc(100vh - 109px) !important;
+}
+.prismapublishportal .iframe-exe-doc-height{
+    height: calc(100vh - 159px) !important;
+    position: relative;
+}
+.prismapublishportal .exe-pad-rt-20{
+    padding-right: 20px !important;
+}
+.prismaaccesslog.prismapublishportal {
+    overflow: hidden;
+}
+.prismapublishportal .modal-body .hgt {
+    height: calc(100vh - 78px);
+}
+
+.prismaview .summary-wrapper .summary-detail-scroll-prisma-tab {
+    padding: 15px 0px 0 !important;
+    height: calc(100vh - 184px) !important;
+    position: relative;
+}
+.prismapublishportal .prismaview .summary-wrapper .summary-title .header.green {
+    color:green !important;
+    background-color:white !important;
+}
+.prismaview.w99 {
+    width: 99%!important;
+}
+.prismapublishportal .section-exe {
+    width: calc(100% - 405px) !important;
+}
+.prismaview .modal-content {
+    height: calc(100vh - 0px) !important;
+}
+.prismaDisclaimermodal .icon-prism-helow, .prismaTerms .icon-prism-helow{
+    background: url('../imgs/healow-insights-logo.png') no-repeat;
+    float: left;
+    width: 120px;
+    height: 23px;
+    margin-right: 10px;
+    margin-top: 4px;
+    margin-left: -4px;
+}
+.prismaview #prismaDisclaimerText a, .prismaview .disclaimer-content a{
+    cursor: pointer;
+}
+.prismaview .unauthorizedicon {
+    display: inline-block;
+    background: url('/mobiledoc/jsp/webemr/toppanel/prisma/imgs/unauthorized.png') no-repeat;
+    width: 19px;
+    height: 13px;
+    margin-right: 3px;
+}
+.prismaview .popover.psac-message {
+    width: 440px !important;
+    max-width: 600px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 8px 12px;
+    border: 0;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, .35);
+    margin-left: 5px;
+}
+.prismaview .psac-list{
+    clear: both;
+    padding-left: 17px;
+}
+.prismaview .psac-list .psac-note{
+    padding-left: 20px;
+}
+
+
+.prisma-clinical-insight {
+    font-size: 12px;
+    font-weight: normal;
+    color: #000;
+    width: 98%;
+}
+
+.prisma-clinical-insight .simpleTable .table>thead>tr>th {
+    border-bottom: 1px solid #FBFBFF !important;
+    background: #FBFBFF;
+    border-color: #e5e5e5 !important;
+    border-left: none;
+    border-right: none;
+    font: 700 11px 'Open Sans', sans-serif;
+    color: #403d3d !important;
+    vertical-align: top;
+    padding: 5px 15px !important;
+}
+
+.prisma-clinical-insight .simpleTable .table>thead>tr.secondtrtag>th {
+    font: 600 12px 'Open Sans', sans-serif;
+    color: #7D7D7F !important;
+    border-top: none;
+    padding: 0 15px !important;
+}
+
+.prisma-clinical-insight .simpleTable .table>thead>tr>th:first-child {
+    border-right: 1px solid #e5e5e5 !important;
+}
+
+.prisma-clinical-insight .simpleTable .table>tbody>tr>td:first-child {
+    border-right: 1px solid #e5e5e5 !important;
+}
+
+.prisma-clinical-insight .simpleTable .table>tbody>tr:last-child>td {
+    border-bottom: none !important;
+}
+
+.prisma-clinical-insight .simpleTable .tablehead {
+    table-layout: fixed;
+    border-top: 1px solid #e5e5e5;
+}
+
+.prisma-clinical-insight .tableheading {
+    font-size: 12px;
+    font-weight: 700;
+    color: #343434;
+}
+.prisma-clinical-insight .table.blue-fade-table.table-bordered>tbody>tr:hover>td,
+.prisma-clinical-insight .table.blue-fade-table.table-bordered>tbody>tr:active>td {
+    background: #fff3e9 !important;
+    color: #333 !important;
+    border-color: #E8CEBF !important;
+}
+.prismaview .savetemplatearrow .h117{
+    height: 117px;
+}
+.prismaDisclaimermodal .icon-prism-helow, .prismaTerms .icon-prism-helow{
+    background: url('../imgs/healow-insights-logo.png') no-repeat;
+    float: left;
+    width: 120px;
+    height: 23px;
+    margin-right: 10px;
+    margin-top: 4px;
+    margin-left: -4px;
+}
+.prismaview .modal-content {
+    height: calc(100vh - 0px) !important;
+}
+.prismapublishportal .height-step-1 {
+    margin-top: 0px;
+    position: relative;
+}
+.prismapublishportal #pdfViewer{
+    height: 651px !important;
+}
+
+.prismaaccesslog.prismapublishportal.modal.fade .modal-header .close:hover {
+    background: url(/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png) -120px 2px no-repeat;
+    margin: 4px 0 0 0 !important;
+}
+.prismaaccesslog.prismapublishportal.modal.fade .modal-header .close.red:hover {
+    background: url(/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png) 0px -18px no-repeat;
+    margin: 4px 0 0 0 !important;
+}
+.prismapublishportal.modal.fade .modal-header .close {
+    background: url(/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png) -120px -20px no-repeat;
+    margin: 6px 0 0 0 !important;
+}
+.prismapublishportal.modal.fade .modal-header .close.red {
+    background: url(/mobiledoc/jsp/webemr/img/modal-header-icons-sprite.png) 0px 4px no-repeat;
+    margin: 2px 0px 0 0 !important;
+}
+.prismaview  .prisma-facility-dropdown.w113{
+    width: 113px;
+}
+.prisma-clinical-insight .nav-tabs>li>a {
+    margin-bottom: 0 !important;
+}
+
+.prisma-clinical-insight .labtile-sticky-header{
+    position: sticky;
+    top: 36px !important;
+    z-index: 2;
+}
+
+.prisma-clinical-insight .medication-table-sticky-header{
+    position: sticky;
+    top: 35px !important;
+    z-index: 2;
+}
+
+.prisma-clinical-insight .commulative-section .prisma-related-medication-wrapper {
+    background: #fff!important;
+    padding: 0px 15px;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian .listhead {
+    color: black;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: #f4f4f4;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    line-height: 35px;
+    padding: 0 10px;
+    position: sticky;
+    top: 38px;
+    z-index: 2;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian .listhead a {
+    color: #403d3d !important;
+    text-transform: none;
+    font: 700 11px 'Open Sans', sans-serif;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian {
+    width: 100%;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian span {
+    font-size: 12px;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian .prisma-medications-list-header {
+    padding: 7px 0;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian .normallist li {
+    padding: 5px 10px;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian li.data-header-row {
+    background: #f8fcfe!important;
+}
+.prisma-clinical-insight #prisma-related-medication-accordian .collapse.in li.data-header-row {
+    position: sticky;
+    top: 68px!important;
+    z-index: 1;
+}
+.prisma-ci-dir-list-tooltip {
+    display: none;
+    z-index: 8;
+    position: absolute;
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    padding: 7px 10px;
+    box-shadow: 0 0 5px -1px rgba(29, 29, 29, 0.26);
+    min-width: 150px;
+    max-width: 400px;
+    font-size: 11px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+#vitals-tile-grid .option-prompt,
+.labs-tile-grid .option-prompt {
+    width: 450px;
+    font-size: 11px;
+    display: none;
+    position: absolute;
+    z-index: 8;
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    padding: 7px 10px;
+    box-shadow: 0 0 5px -1px rgba(29, 29, 29, 0.26);
+}
+#vitals-tile-grid .option-prompt .table>thead>tr>th,
+.labs-tile-grid .option-prompt .table>thead>tr>th,
+.prisma-ci-dir-list-tooltip .table>thead>tr>th{
+    border: 1px solid #e5e5e5!important;
+    border-bottom-width: 0!important;
+}
+
+#vitals-tile-grid .option-prompt .table>tbody>tr>td{
+    border: 1px solid #e5e5e5!important;
+}
+
+.prisma-vtwo #vitals-tile-grid .simpleTable .option-prompt .table>tbody>tr>td {
+    padding: 5px 10px !important;
+}
+.prisma-clinical-insight #vitals-tile-grid .simpleTable .option-prompt .table>thead>tr>th {
+    font: 700 12px 'Open Sans', sans-serif;
+    font-size: 11px;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    padding: 5px 10px !important;
+}
+
+.prisma-clinical-insight .careteamtile-sticky-header{
+    position: sticky;
+    top: 28px !important;
+    z-index: 2;
+}
+/* import data css */
+
+.cumulative-summary .simpleTable .table>thead>tr>th {
+    opacity:.6;
+}
+
+.cumulative-summary .w3p{
+    width : 3% !important;
+}
+
+.cumulative-summary .w4p{
+    width : 4% !important;
+}
+
+
+
+.iIconDetail-list-popover.popover.bottom>.arrow {
+    left: 50%;
+}
+
+.iIconDetail-list-popover.popover {
+    left: -159px !important;
+    width: 334px !important;
+    max-width: 500px !important;
+    top: 15px;
+}
+
+
+.iIconDetail-list-popover .left-text {
+    font-size: 12px !important;
+    font-weight: 400;
+    color: #000;
+    opacity: 70%;
+    font-style: normal;
+}
+
+.iIconDetail-list-popover .right-text {
+    font-size: 12px !important;
+    font-weight: 400;
+    color: #000;
+    font-style: normal;
+}
+
+.prisma-vtwo .tab-right-brdr {
+    border-right: 1px solid #e4e4e4;
+    height: 18px;
+    right: 2px;
+    position: absolute;
+    top: 9px;
+}
+
+
+.prisma-popover-content {
+    padding: 2px;
+    background: #f5fcff;
+    border-radius: 0 !important;
+}
+
+.iIconDetail-list-popover .header-txt {
+    font-size: 12px !important;
+    font-weight: 400;
+    color: #167ce0;
+    font-style: normal;
+}
+.prismaview.prisma-vtwo.full-width, .prismaaccesslog.prismapublishportal {
+    overflow: hidden !important;
+}
+.prismapublishportal .ps-container > .ps-scrollbar-x-rail,
+.prismapublishportal .ps-container > .ps-scrollbar-y-rail {
+    opacity: 0.9;
+}
+/* import data css */
+
+.prismaview .popover.documents .document-list li {
+    list-style-image: none;
+    list-style-type: none;
+}
+.prismaview .summary-wrapper.min-wid {
+    min-width: 39% !important;
+}
+.prismaview .progressnote-hgt {
+    height:540px!important;
+}
+.prismaview.progressnote-tab {
+    width: 100%;
+    position: relative;
+    overflow-y: hidden !important;
+    z-index: 1050;
+    display: block;
+    opacity: 1;
+}
+#prisma-pn-tab .prismaview {
+    width: 100%;
+    position: initial;
+    overflow: hidden !important;
+    margin-top: 0;
+    margin-left: 0px;
+}
+.prismaview.prisma-standalone{
+    opacity: 1;
+    overflow: hidden;
+}
+.prismaview .progressnote-hgt .summary-details-wrapper .document-details{
+    height: calc(100vh - 465px);
+}
+.prismaview .summary-details-wrapper .header-wrapper {
+    padding: 10px 20px;
+}
+#prisma-pn-tab .modal-content{
+    border: none !important;
+}
+.hinsights-patient-identity{
+    background: #c5e9f5;
+    padding: 2px;
+    color: #3d4f66;
+    margin: 10px 5px 5px;
+    border: 1px solid #c1c1c1;
+}
+.hinsights-patient-identity span{
+    font-weight: 600;
+}
+.prismaview .summary-wrapper .summary-section{
+    margin-bottom: 5px !important;
+}
+
+.prismaview .pad-r6{
+    padding-right: 6px;
+}
+
+.prisma-disclaimer-popup-height {
+    max-height: 350px !important;
+}
+.prismaview .summary-details-wrapper .exe-document-details {
+    margin-bottom: 10px;
+    width: 100%;
+    float: left;
+    height: calc(100vh - 290px);
+    position: relative;
+}
+.prismaview .progressnote-hgt .prisma-clinical-insight .rightcontent {
+    height: calc(100vh - 410px);
+    position: relative;
+}
+.prismaview .prisma-speciality {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 38px;
+    position: relative;
+}
+.prismaview .prisma-provider-dropdown {
+    position: absolute !important;
+    top: 75%;
+    height: 77px;
+    padding-top: 5px;
+    margin: 0;
+}
+.prismaview .provider {
+    width: 135px;
+    height: 15px !important;
+}
+
+.prismaview .provider .provider-ellipse {
+    max-width: 130px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prismaview .timeline-section .mb5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.prismaview .search-clip {
+    width : 96%;
+    text-overflow : clip;
+}
+.prismaview .suggestionDropDown >li > div {
+    width : 90%;
+    text-overflow : ellipsis;
+    overflow: hidden;
+}
+.prismaview .prisma-modal .det-view.gloablsearch .form-group input[type="text"].search-clip{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.prismaview .clear-search{
+    right: 5px;
+}
+.prismaview .icon.fhir-info-blankicon {
+    background: url(../imgs/icon-info-grey-i.png) no-repeat;
+    width: 19px;
+    height: 17px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    left: 0px;
+}
+.prismaview .fhir-message-red{
+    color: red !important;
+}
+.prismaview .fhir-message-yellow{
+    color: yellowgreen !important;
+}
+.prismaview .fhir-refresh {
+    padding: 0px 9px 0px 9px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    height: 19px;
+}
+.prismaview .fhir-tolltipinfo {
+    position: absolute;
+    top: 21px;
+    width: 230px;
+    background: #fff;
+    right: -16px;
+    border-radius: 3px;
+    padding: 5px 10px;
+    box-shadow: 1px 0px 3px 1px rgb(0 0 0 / 50%);
+    font-style: normal;
+    align-items: center;
+    justify-content: center;
+}
+.prismaview .error-resource>span {
+    word-wrap: break-word;
+    line-height: 20px;
+}
+.prismaview .icon-logs {
+    background: url('../imgs/icon-logs.png') no-repeat;
+    width: 18px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-left: -2px;
+}
+.prismaview .icon-settings {
+    background: url('../imgs/grey-setting.png') no-repeat;
+    width: 18px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+    margin-left: -2px;
+}
+.prisma-setting-modal .icon-prism-helow, .prismaaccesslog .icon-prism-helow {
+    background: url('../imgs/healow-insights-logo.png') no-repeat;
+    float: left;
+    width: 120px;
+    height: 23px;
+    margin-right: 10px;
+    margin-top: 4px;
+    margin-left: -4px;
+}
+
+.prismaview .icon-data-duplicates {
+    background: url('../imgs/icon-data-duplicates-red.png') no-repeat;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -3px;
+}
+
+.prisma-clinical-insight .simpleTable .table>tbody>tr>td.invisible {
+    line-height: 0;
+    padding: 0!important;
+    border: none!important;
+}
+
+.prisma-clinical-insight .simpleTable .lab-panel-name {
+    border-bottom: 1px solid #FBFBFF !important;
+    background: #FBFBFF;
+    border-color: #e5e5e5 !important;
+    border-left: none;
+    border-right: none;
+    font: 700 11px 'Open Sans', sans-serif;
+    color: #5A5A5A !important;
+    vertical-align: top;
+    padding: 5px 15px !important;
+}
+
+.prismaview .select-box{
+    background: none !important;
+}
+
+.prismaview .word-break-break-word{
+    word-break: break-word;
+}
+
+.prismaview .summary-section .prisma-ci-dir-list-tooltip , .prismaview .timeline-section .prisma-ci-dir-list-tooltip{
+    max-width: 500px !important;
+    z-index: 11 !important;
+}
+.prismaview .icon-browse {
+    background: url('/mobiledoc/jsp/webemr/ccmr/rpm/img/browsicon.png') no-repeat;
+    width: 13px;
+    height: 3px;
+    display: inline-block;
+    margin-top: -2px;
+}
+.prismapublishportal .publish-record-preview, .prismapublishportal #prismaPublishIframe{
+    height: calc(100vh - 135px) !important;
+    position: relative;
+}
+.prismaview .search-result{
+    border: 0;
+    margin: 2px 12px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+.prismaview .search-suggestion-section{
+    padding-left: 11px;
+}
+.prismaview .bundle-suggestion{
+    align-items: center;
+    word-break: break-all;
+    margin-bottom: 20px;
+}
+.prismaview .search-suggestion{
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    justify-content: space-between;
+    font-family: open_sanssemibold;
+    font-size: 12px;
+    min-height: 25px;
+}
+.prismaview .create-bundle{
+    text-align:right;
+    margin-bottom: 15px;
+}
+.prismaview .bundle-list{
+    overflow:auto;
+    max-height:400px ;
+    position: relative;
+}
+.prismaview .align-center {
+    align-items: center;
+}
+.prisma-vtwo .bundle-suggestion:hover{
+    cursor: pointer;
+}
+.prisma-vtwo .search-suggestion:hover .icons-cross{
+    visibility: visible;
+}
+.prisma-vtwo .icons-cross{
+    background: url(../imgs/icon-cross.svg);
+    width: 25px;
+    height: 21px;
+    transform: scale(0.6);
+    display: inline-block;
+    cursor: pointer;
+    visibility: hidden;
+}
+.prisma-vtwo .justify-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.prisma-vtwo .clr-grey{
+    color: #4c4c4c;
+}
+.prisma-vtwo  .fw-regular{
+    font-family: 'open_sansregular' !important;
+}
+.prisma-vtwo .link-effect{
+    cursor: pointer;
+    color: #167CE0;
+}
+.prisma-vtwo .hgt-380{
+    height: 380px;
+    position: relative;
+}
+.prisma-vtwo .fw-semibold {
+    font-family: 'open_sanssemibold';
+    font-size:12px;
+}
+.prisma-vtwo .search-box .tags .tag{
+    font-family: 'open_sansregular' !important;
+    font-style: italic;
+    border-radius: 9px;
+    margin-right: 4px;
+    margin: 2px;
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.prisma-vtwo .search-box{
+    position: absolute;
+    background: #fff;
+    z-index: 100;
+    border: 1px solid #ececec;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px #0000002E;
+    margin-left: 15px;
+}
+.prisma-vtwo .w848 {
+    width: 848px !important;
+}
+.prisma-vtwo .w580 {
+    width: 678px !important;
+}
+.prisma-vtwo .pl882 {
+    padding-left: 882px !important;
+}
+
+.prisma-vtwo .pl630 {
+    padding-left: 725px !important;
+}
+.brdr-radius20{
+    border-radius: 20px !important;
+}
+
+.prisma-vtwo .search-box .input-group .input-group-addon .icon-greysearch{
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.prisma-vtwo .search-suggestion:hover{
+    background-color: #D4E9FF;
+    cursor: pointer;
+}
+
+.prisma-vtwo .search-box .input-group {
+    box-shadow: none !important;
+}
+.prisma-vtwo .search-box .input-group .form-control,
+.prisma-vtwo .search-box .input-group .input-group-addon{
+    border: 0 !important;
+    font-size: 12px !important;
+}
+
+.prismaview .z11{
+    z-index: 11 !important;
+}
+#prisma-external-rec span.enc-notification-circle {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    position: relative;
+    bottom: 6px;
+    left: 3px;
+    background: #f00;
+    border-radius: 5px;
+}
+.prismaview .nav .open>a, .prismaview .nav .open>a:hover, .prismaview .nav .open>a:focus {
+    background-color: transparent;
+}
+.prismaview .prisma-tab-wrapper .fnt-semibold{
+    color: #242835;
+    font-weight: 600;
+}
+
+.prismaview .prisma-tab-wrapper{
+    font-size: 12px;
+    background-color: #F8FCFE;
+    overflow: hidden;
+    color: #303030;
+}
+
+.prismaview .prisma-tab-wrapper .icons-prisma-logo-lg{
+    background: url(/mobiledoc/jsp/webemr/toppanel/prisma/imgs/prisma-logo-lg.svg) no-repeat;
+    width: 128px;
+    height: 109px;
+    display: inline-block;
+}
+
+.prismaview .prisma-tab-wrapper .icons-right-chevron{
+    background: url(/mobiledoc/jsp/webemr/toppanel/prisma/imgs/right-chevron.svg) no-repeat;
+    width: 5px;
+    height: 10px;
+    margin-left: 0px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+.prismaview .prisma-tab-wrapper .icons-owl-left-chevron{
+    background: url(/mobiledoc/jsp/webemr/toppanel/prisma/imgs/carousel-chevron.svg) no-repeat;
+    width: 6px;
+    height: 9px;
+    display: inline-block;
+    transform: scale(4);
+    position: relative;
+}
+
+.prismaview .prisma-tab-wrapper .icons-owl-right-chevron{
+    background: url(/mobiledoc/jsp/webemr/toppanel/prisma/imgs/carousel-chevron.svg) no-repeat;
+    width: 6px;
+    height: 9px;
+    display: inline-block;
+    transform: rotate(180deg)scale(4);
+    position: relative;
+    left: 2px;
+}
+
+.prismaview .prisma-tab-wrapper .clr-secondary{
+    color: #8A8888;
+}
+
+.prismaview .prisma-tab-wrapper .align-center{
+    display: flex;
+    align-items: center;
+}
+
+.prismaview .prisma-tab-wrapper .main-container{
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 600px;
+}
+.prismaview .prisma-tab-wrapper.w100p {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prismaview .prisma-tab-wrapper .top-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: margin 0.2s linear;
+}
+
+.prismaview .prisma-tab-wrapper .search-container{
+    margin-top: 30px;
+    width: 940px;
+    position: relative;
+}
+
+.prismaview .prisma-tab-wrapper .external-data-container {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+.prismaview .prisma-tab-wrapper .external-data-container .external-data{
+    width: 940px;
+    margin: auto;
+    padding-left: 15px;
+}
+
+.prismaview .prisma-tab-wrapper .recent-external-records-container {
+    width: 85%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 24px;
+}
+
+.prismaview .prisma-tab-wrapper .external-data-container .data-tag{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 3px 8px 4px 6px;
+    background: #FFFFFF;
+    border: 1px solid #EEDFBD;
+    border-radius: 15px;
+    color: #000;
+    cursor: pointer;
+    max-width: 250px;
+}
+.prismaview .prisma-tab-wrapper .external-data-container .data-tag.active{
+    background: #fff9ed;
+    border-color: #A79674;
+    font-weight: 600;
+}
+.prismaview .prisma-tab-wrapper .external-data-container .data-tag.active .circle {
+    background: #e0d7ca;
+}
+
+.prismaview .prisma-tab-wrapper .external-data-container .data-tag .circle{
+    width: 18px;
+    height: 18px;
+    background-color: #EEDFBD;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+}
+
+.prismaview .prisma-tab-wrapper .external-records{
+    background: #F1F9FF;
+    border: 1px solid #167CE0;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 0;
+    min-height: 225px;
+    overflow: hidden;
+    -webkit-transition: height 0.5s ease;
+    -moz-transition: height 0.5s ease;
+    -o-transition: height 0.5s ease;
+    transition: height 0.5s ease;
+}
+
+.prismaview .prisma-tab-wrapper .external-records.extended .icons-right-chevron{
+    transform: rotate(90deg);
+    transition: transform 0.2s ease;
+}
+
+.prismaview .prisma-tab-wrapper .justify-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prismaview .prisma-tab-wrapper .external-records .circle{
+    width: 18px;
+    height: 18px;
+    background-color: #EEDFBD;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+}
+
+.prismaview .prisma-tab-wrapper .external-records .clr-secondary{
+    color: #303030;
+}
+
+.prismaview .prisma-tab-wrapper .owl-carousel .owl-dot{
+    display: none;
+}
+
+.prismaview .prisma-tab-wrapper .owl-carousel .owl-nav .disabled{
+    opacity: 0.5;
+}
+
+.prisma-tab-wrapper .owl-carousel .owl-nav .owl-prev{
+    top: 67%;
+    left: 9%;
+}
+.prisma-tab-wrapper .owl-carousel .owl-nav .owl-next{
+    top: 67%;
+    right: 6%;
+}
+.prisma-tab-wrapper .owl-carousel .owl-stage-outer{
+    width: 107%;
+}
+.prisma-tab-wrapper .owl-nav button{
+    border: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    position: fixed;
+    z-index: 100;
+}
+
+.prismaview .prisma-tab-wrapper .owl-carousel:after{
+    content: "";
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    right: -10%;
+    top: 0;
+    background: linear-gradient(267.45deg, #F8FCFE 36.02%, rgba(248, 252, 254, 0.75) 68.98%, rgba(248, 252, 254, 0) 96.36%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#FFFFFF',GradientType=1 );
+}
+
+.prismaview .prisma-tab-wrapper .owl-carousel:before{
+    content: "";
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    left: 0%;
+    top: 0;
+    background: linear-gradient(267.45deg, #F8FCFE 36.02%, rgba(248, 252, 254, 0.75) 68.98%, rgba(248, 252, 254, 0) 96.36%);
+    transform: rotate(-180deg);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#FFFFFF',GradientType=1 );
+}
+
+.prismaview .prisma-tab-wrapper .external-records.extended + .search-timeline {
+    display: none;
+    transition: display 0.5s ease-in;
+}
+
+.prisma-tab-wrapper .search-timeline{
+    margin-top: 35px;
+}
+
+.prisma-tab-wrapper .search-timeline .year{
+    position: absolute;
+    top: 1px;
+    padding: 6px 4px;
+    background: #CECECE;
+    color: #303030;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+.prisma-tab-wrapper .search-timeline .year:after, .prisma-tab-wrapper .search-timeline .year:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.prisma-tab-wrapper .search-timeline .year:after {
+    border-color: rgba(206, 206, 206, 0);
+    border-top-color: #cecece;
+    border-width: 3px;
+    margin-left: -3px;
+}
+.prisma-tab-wrapper .search-timeline .year:before {
+    border-color: rgba(206, 206, 206, 0);
+    border-top-color: #cecece;
+    border-width: 4px;
+    margin-left: -4px;
+}
+
+.prisma-tab-wrapper .search-timeline .horizontal-row{
+    height: 6px;
+    width: 100%;
+    border-top: 1px dashed #cecece;
+}
+.prismaview .prisma-full-screen {
+    width: 100% !important;
+}
+.prismaview .prisma-filter-div{
+    height: 30px;
+}
+.prismaview .pn-records-tab-padding{
+    padding-bottom: 2px!important;
+    padding-top: 5px !important;
+}
+.prismaview .pr3{
+    padding-right: 3px !important;
+}
+
+.prismaview.floatingToolbar .modal-content {
+    height: inherit !important;
+}
+.prismaview.floatingToolbar .prisma-modal .modal-body.modal-height {
+    height: inherit !important;
+    padding: 0;
+    overflow-x: hidden!important;
+}
+.prismaview.floatingToolbar .prisma-modal .det-view.gloablsearch.true {
+    border-bottom: 0px !important;
+}
+.prismaview.floatingToolbar .prisma-modal .det-view.gloablsearch.true.disabled {
+    background:initial;
+}
+.prismaview.floatingToolbar > .modal-dialog.ui-draggable {
+    margin-left: -5px !important;
+}
+.prismaview span.filter-applied {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    position: relative;
+    bottom: 12px;
+    left: 5px;
+    background: #f00;
+    border-radius: 5px;
+    padding-top: 5px !important;
+}
+.prismaview #prismaDocumentIframe, .prismaview #prismaPdfDocument{
+    height: 100% !important;
+}
+.prismaview .prisma-modal .nav-tabs>li.active>a {
+    background: #fff !important;
+}
+
+.prismaview .prisma-modal .btnTabs .nav-tabs>li.active a {
+    background: #fff !important;
+}
+
+.prismaview .prisma-modal .btnTabs .nav-tabs>li:not(:last-child)>a {
+    margin-right: 2px;
+}
+
+.prismaview .prisma-modal .btnTabs .nav-tabs>li:not(:last-child).active>a,
+.prismaview .prisma-modal .btnTabs .nav-tabs>li:not(:first-child).active>a {
+    margin-left: -2px;
+}
+
+.prisma-clinical-insight .leftcontent-labsmodal {
+    height: calc(100vh - 314px);
+    position: relative;
+}
+
+.prismaview.LabsModal {
+    margin-left: -2px !important;
+    margin-top: 3px !important;
+}
+
+.prismaview .prisma-modal .det-view.gloablsearch .form-group #searchTxt {
+    font-size: 14px !important;
+}
+#LabDIProcResultsController .imp-bgcolor-labhx-tabs .prismaview .prisma-modal .maintabs .nav-tabs>li.active>a,
+#LabDIProcResultsController .imp-bgcolor-labhx-tabs .prismaview .prisma-modal .maintabs .nav-tabs>li.active>a:hover{
+    background: #fff !important;
+    border-bottom: 3px solid #167ce0 !important;
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+#LabDIProcResultsController .imp-bgcolor-labhx-tabs .prismaview .prisma-modal .btnTabs.tab-inline .nav-tabs>li.active>a,
+#LabDIProcResultsController .imp-bgcolor-labhx-tabs .prismaview .prisma-modal .btnTabs.tab-inline .nav-tabs>li.active>a:hover{
+    background: #fff !important;
+    border: 1px solid #167ce0 !important;
+}
+#labDIProHistory .show-lookup-div-labhx .prismaview .prisma-modal .form-group .input-group-addon {
+    padding: 0px 10px 0 15px;
+}
+.prismaview .prisma-overview-main-div .commulative-section .header-section .header-text{
+    text-transform: none;
+    font-size: 12px;
+}
+.prismaview .fnt13greytxt.collapseheader {
+    font-size: 12px !important;
+}
+
+.prismaview #prisma-medication-accordian .listhead a {
+    color: #403d3d !important;
+    text-transform: none;
+    font: 700 11px 'Open Sans', sans-serif;
+}
+
+.prismaview .listheading {
+    font: 700 13px 'Open Sans', sans-serif !important;
+}
+.prismaview .popover.recent-doc {
+    width: min-content;
+    min-width: 600px !important;
+    left:56%;
+}
+
+.prismaview .option-prompt .enc-arrow:after,
+.prismaview .option-prompt .enc-arrow:before {
+    left: 80% !important;
+}
+
+.hi-info-questionmark {
+    background: url(/mobiledoc/jsp/healowInsights/img/question-circle-fill.svg) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
+.dpc-count {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.prismaview .icon-refresh-orange {
+    background: url('../imgs/icon-refresh-orange.png') no-repeat;
+    width: 10px;
+    height: 12px;
+    display: inline-block;
+    vertical-align: middle !important;
+    top: 0;
+}
+/*Updated UI*/
+
+
+.prismaview .italic {
+    font-style: italic;
+}
+.prismaview .fnt13bold {
+    font-weight: 600;
+    color: #000000 !important;
+    font-size: 13px;
+}
+.prismaview .summary-wrapper .collapse-view .summary-list h4 {
+    font-size: 12px;
+    color: #666666;
+}
+
+.prismaview .section-indication, .prismapublishportal  .section-indication {
+    padding: 3px 5px;
+    border-radius: 5px;
+    font-size: 11px;
+    display: inline-block;
+    font-weight: 600;
+    margin: 0 0 0 6px;
+}
+
+.prismaview .section-indication.internal-pn {
+    background: #afc6a9;
+}
+.prismaview .section-indication.patient-summary, .prismapublishportal  .section-indication.patient-summary {
+    background: #fae2cc;
+}
+.prismaview .section-indication.external-pn, .prismapublishportal  .section-indication.external-pn{
+    background: #b6e7f9;
+}
+.prismaview .section-indication.discharge-summary, .prismapublishportal .section-indication.discharge-summary{
+    background: #b1c4f9;
+}
+.prismaview .section-indication.results, .prismapublishportal .section-indication.results{
+    background: #fbd5d5;
+}
+.prismaview .section-indication.oasis, .prismapublishportal .section-indication.oasis{
+    background: #8efdf6;
+}
+.prismaview .section-indication.unstructured, .prismapublishportal .section-indication.unstructured{
+    background: #eae3b9;
+}
+.prismaview .section-indication.default, .prismapublishportal .section-indication.default{
+    background: #ebebeb;
+}
+.prismaview .summary-wrapper .summary-title {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+}
+.prismaview .summary-wrapper .summary-title .header {
+    font-size: 12px;
+    color: #000;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 28px);
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+    width: 100%;
+    font-weight: normal;
+    /* Gradient border style */
+    border-bottom-width: 1px;
+    /*border-style: solid;
+    border-image: linear-gradient(to right, #DDEAF1, #DDEAF100) 1;*/
+    background: transparent;
+    border-top: 0;
+    border-left: 0;
+}
+
+.prismaview .summary-section .icon-right-arrow-rec {
+    transform: rotate(90deg);
+    margin-left: 3px;
+    margin-top: 2px;
+}
+
+.prismaview .summary-section.collapsed .icon-down-arrow-rec {
+    transform: rotate(0deg);
+    margin-top: -2px;
+}
+
+.prismaview .summary-section.collapsed .icon-down-arrow-rec:before,
+.prismaview .summary-section .icon-right-arrow-rec:before {
+    content: "\e905";
+    font-family: '10eWidget' !important;
+    font-size: 8px;
+    color: #2A6993;
+    font-weight: bold;
+}
+
+
+.prismaview .summary-section .icon-right-arrow-rec:before {
+    font-size: 8px;
+    color: #2A6993;
+    font-weight: bold;
+}
+
+.prismaview .btn-xs.btn-collapse.btn-record-collapse {
+    padding: 0px 4px !important;
+    background: #D7E7EF;
+    box-shadow: none;
+    margin-right: 6px;
+    margin-left: 0;
+    margin-top: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prismaview .summary-wrapper .collapse-view .summary-list {
+    float: left;
+    margin: 3px 40px 3px 0;
+    height: auto;
+    width: auto;
+}
+.prismaview .summary-wrapper .collapse-view .summary-list span {
+    color: unset;
+    font-weight: normal;
+}
+.prismaview .btn-xs.btn-white-collapse {
+    font-size: 12px;
+}
+.prismaview .prisma-modal .btnTabs .nav-tabs>li>a {
+    font-size: 12px;
+}
+.prismaview .summary-wrapper .summary-section.active {
+    background: #f6fbff;
+    border-radius: 10px;
+    border: 2px solid #167ce0 !important;
+    word-break: break-word;
+}
+.prismaview .summary-wrapper .collapse-view {
+    padding: 5px;
+    background: #f8fcfe;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.prismaview .fntbold {
+    font-family: 'open_sansbold';
+}
+.prismaview .grey-text {
+    color: #666666 !important;
+}
+.prismaview .fntsemibold {
+    font-family: 'open_sanssemibold' !important;
+    color: #000;
+}
+/*font class overrides. Selectors needing bold text can be placed here.*/
+/*Progress notes font cleanup - right side */
+.prismadoc-body h3.pn-head {
+    display: inline-block;
+}
+.prismadoc-body .header-section h3 {
+    font-size: 14px;
+}
+.prismadoc-body .content-wrappers h3.head-text,
+.prismadoc-body .content-wrappers .content-details-right .listdot li,
+.prismadoc-section-body .leftPaneHeading,
+.prismadoc-body .header-section h3,
+    /*Progress notes font cleanup end */
+.prisma-vtwo .header-text,
+.prismaview .btn-xs.btn-jumpto,
+.prismaaccesslog.modal.fade .simpleTable .table-bordered>thead>tr>th,
+.prismaview .searchlist-wrapper h4,
+.prisma-clinical-insight #prisma-related-medication-accordian .listhead,
+.hinsights-patient-identity span,
+.prismaview .prisma-tab-wrapper .fnt-semibold,
+.prismaview .section-indication,
+.prismaview .prisma-highlight,
+.prismaview .fnbld,
+.prismaview .no-resultfound .suggestion-text,
+.prismaview .prisma-modal .nav-tabs>li>a,
+.prismaview  .prisma-facility-dropdown .sel-optn li{
+    font-family: 'open_sanssemibold' !important;
+}
+
+.prismapublishportal .summary-wrapper .summary-section.active {
+    border: 1px solid #167ce0 !important;
+}
+.prismaview .summary-details-wrapper {
+    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 15%);
+    max-width: calc(100% - 775px) !important;
+    min-width: 666px;
+}
+
+.prismaview .dx-icon-top{
+    top: -2px;
+}
+
+.prismaview .icon-clock {
+    background: url('../imgs/icon-clock.svg') no-repeat;
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle !important;
+    transform: scale(0.6);
+    margin-top:-1px;
+}
+
+.prismaview .icon-createbundle {
+    background: url('../imgs/icon-create-bundle.svg') no-repeat;
+    width: 17px;
+    height: 14px;
+}
+.prismaview .prisma-modal .icon-greysearch-blue {
+    background: url('../imgs/icon-search-blue.png') no-repeat;
+    width: 17px;
+    height: 11px;
+    background-size: cover;
+}
+.prismaview .marl10{
+    margin-left: 10px;
+}
+.prismapublishportal .sourcename{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 90px;
+    flex-grow: 1;
+}
+.prismapublishportal .prismaview .summary-wrapper .summary-title .header {
+    position: relative;
+    top:4px;
+    max-width: calc(100% - 0px);
+    right: 7px;
+}
+.prismaview .summary-details-wrapper .float-left {
+    float: left;
+    max-width: 525px;
+    flex-wrap: nowrap;
+    display: flex;
+}
+.prismaview .icon-data-duplicates {
+    right: 7px;
+    position: relative;
+    top: -3px
+}
+.prismaview .prima-filter-template-popover{
+    border: 1px solid #d8d8d8;
+    padding: 11px;
+    z-index: 10000 !important;
+    background: #fff;
+    border-radius: 5px;
+    width: fit-content;
+    font-size: 11px;
+    color: #394556;
+    display:block!important;
+    position: absolute;
+
+}
+.prismaview .prima-filter-template-popover .arrow{
+    position: absolute;
+}
+.prismaview .prima-filter-template-popover:after, .prima-filter-template-popover:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.prismaview .prisma-template-list .popover-content{
+    padding-right: 0px!important;
+    padding-left: 0px!important;
+}
+.prismaview .prisma-template-list .fntgrey {
+    color: #989898 !important;
+}
+.prismaview .prisma-create-template .popover-content{
+    padding: 0px !important;
+}
+.prismaview .prima-filter-template-popover:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 7px;
+    margin-left: -7px;
+}
+
+.prismaview .prima-filter-template-popover:before {
+    border-color: rgba(216, 216, 216, 0);
+    border-bottom-color: #d8d8d8;
+    border-width: 8px;
+    margin-left: -8px;
+}
+
+.prismaview .prima-filter-template-popover.show {
+    position: absolute;
+    z-index: 100;
+    opacity: 1;
+}
+
+.prismaview .prima-filter-template-popover.w-236 {
+    width: 236px;
+}
+
+.prismaview .prima-filter-template-popover.w-340 {
+    max-width: 340px;
+    width: 340px;
+}
+
+.prismaview .prima-filter-template-popover.popover-m-10 {
+    margin-top: -10px !important;
+}
+
+.prismaview .prima-filter-template-popover.popover-m-10:before,
+.prismaview .prima-filter-template-popover.popover-m-10:after {
+    content: '';
+    display: none;
+}
+
+.prismaview .prima-filter-template-popover.popover-m-10>.arrow {
+    margin-top: 5px;
+    border-width: 8px;
+    left: -16px !important;
+}
+.prismaview .prima-filter-template-popover.savedFilterPopover {
+    margin-left: -31px !important;
+    margin-top: 4px;
+    padding: 10px 10px;
+}
+
+.prismaview .prima-filter-template-popover.savedFilterPopover:before,
+.prismaview .prima-filter-template-popover.savedFilterPopover:after {
+    display: none;
+}
+
+.prismaview .prima-filter-template-popover.savedFilterPopover.no-arrows>.arrow {
+    display: none;
+}
+
+
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter {
+    list-style-type: none;
+    margin-bottom: 0px
+}
+
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li {
+    font-size: 11px;
+    color: #000;
+    padding: 7px 0px;
+    border-bottom: 1px solid #DBDBDB;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+}
+
+.prismaview .records-tab-filter{
+    width: 50px!important;
+}
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li .show-on-hover {
+    display: none;
+}
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li .hide-on-hover {
+    display: block;
+}
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li:hover {
+    /*background: #fff3e9 !important;*/
+    /*color: #000 !important;*/
+    /*cursor: pointer;*/
+
+    background-color: #D4E9FF !important;
+    color: #394556;
+    cursor: pointer;
+}
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li:hover .show-on-hover {
+    display: block;
+}
+.prismaview .prima-filter-template-popover.savedFilterPopover .list-filter li:hover .hide-on-hover {
+    display: none;
+}
+.prismaview .prima-filter-template-popover.justify-between{
+    display: flex;
+    justify-content: space-between;
+}
+.prismaview .icon-delete{
+    background: url(../imgs/icon-delete.png) no-repeat;
+    width: 11px;
+    height: 14px;
+}
+
+.prismaview .icon-delete:hover{
+    filter: invert(45%) sepia(75%) saturate(2479%) hue-rotate(172deg) brightness(94%) contrast(84%);
+}
+
+
+
+
+
+.prismaview .vertical-seprator {
+    display: block;
+    border-right: 1px solid #B2B2B2;
+    width: 1px;
+    height: 15px;
+}
+
+.prismaview button.filter-indicator:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: #C20006;
+    border-radius: 50%;
+    right: -4px;
+    top: -4px;
+    border: 1px solid #fff;
+}
+.prismaview .icons-wfilter{
+    left: 6px;
+    top: 3px;
+    right: 6px;
+    margin-right: 6px;
+}
+.prismaview .icons-wfilter:before {
+    font-family: '10eWidget' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\e917";
+    color: #000;
+    font-size: 13px;
+}
+
+.prismaview .icons-caret-down:before {
+    content: "\e920";
+    font-size: 4px;
+    color: #454545;
+
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: '10eWidget' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.prismaview .icons-caret-down{
+    cursor: pointer;
+    margin-bottom: 2px;
+    margin-right: 5px;
+}
+
+.prismview .fnt14bold {
+    font-family: 'open_sanssemibold';
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.prisma-vtwo .simpleTable.summary-table .tablehead,
+.prismaview .simpleTable.summary-table .tablehead {
+    border-top: 1px solid #a6bfcc;
+}
+
+.prisma-vtwo .simpleTable.summary-table.search-table .tablehead,
+.prismaview .simpleTable.summary-table.search-table .tablehead {
+    border-top: 0;
+}
+
+.prisma-vtwo .simpleTable.summary-table .table>thead>tr>th:first-child {
+    border-right: 1px solid #a6bfcc !important;
+}
+
+.prisma-vtwo .simpleTable.summary-table.search-table .table>tbody>tr:last-child>td {
+    border-bottom: 1px solid #e5e5e5 !important;
+}
+
+.prisma-vtwo .simpleTable.summary-table .table-bordered>thead>tr>th,
+.prismaview .simpleTable.summary-table .table-bordered>thead>tr>th {
+    font-size: 11px;
+    color: #235475 !important;
+    border-color: #a6bfcc !important;
+    background: #c9e5f3;
+    line-height: 18px;
+    padding: 2px 8px !important;
+    border: 1px solid #c9e5f3;
+    height: 25px;
+    border-bottom: 1px solid #c9e5f3;
+    border-top-color: #c9e5f3 !important;
+    font-weight: 600;
+    /*font-family: 'open_sanssemibold';*/
+    vertical-align: middle;
+    opacity: 1;
+}
+
+.prisma-vtwo .simpleTable.summary-table.search-table .table-bordered>thead>tr>th,
+.prismaview .simpleTable.summary-table.search-table .table-bordered>thead>tr>th {
+    color: #2B91D9 !important;
+    border-color: #D6D6D6 !important;
+    background: #E9F8FF;
+    border: 1px solid #E9F8FF;
+    height: 36px;
+    border-top-color: #D6D6D6 !important;
+    font-size: 14px;
+    padding: 2px 16px !important;
+}
+
+.prisma-vtwo .simpleTable .simpleTable.grey-search-table .table-bordered>thead>tr>th,
+.prismaview .simpleTable .simpleTable.grey-search-table .table-bordered>thead>tr>th {
+    font-size: 11px;
+    color: #000000 !important;
+    background: #F9F9F9 !important;
+    padding: 2px 8px !important;
+    height: 30px;
+}
+
+.prismaview .simpleTable.summary-table .table>tbody>tr>td,
+.prisma-vtwo .simpleTable.summary-table .table>tbody>tr>td {
+    border-left: 1px solid #e5e5e5 !important;
+    border-right: 1px solid #e5e5e5 !important;
+    padding: 4px 16px !important;
+    white-space: normal;
+}
+
+.prismaview .simpleTable.summary-table .table-bordered>tbody>tr:nth-child(even)>td,
+.prisma-vtwo .simpleTable.summary-table .table-bordered>tbody>tr:nth-child(even)>td {
+    background-color: #fff;
+}
+
+.prismaview .simpleTable.summary-table .table-bordered>tbody>tr:hover>td {
+    background: #fff3e9;
+    color: #333;
+    border-color: #d8d8d8;
+    /* cursor: pointer; */
+}
+
+.prismaview .simpleTable.summary-table.search-table .table-bordered>tbody>tr:hover>td {
+    background: #fff;
+    border-color: #eee;
+}
+
+.prismaview .bluetext {
+    color: #2c91d9;
+}
+
+.prismaview .icons-wfilter:before {
+    color: #000;
+    font-size: 13px;
+}
+
+.prismaview button.filter-indicator:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: #C20006;
+    border-radius: 50%;
+    right: -4px;
+    top: -4px;
+    border: 1px solid #fff;
+}
+
+.prismaview .record-type-list {
+    padding: 15px 12px;
+    border: 1px solid #D6D6D6;
+    border-radius: 10px;
+    height: 484px;
+}
+
+.prismaview .record-type-list .list-header {
+    font-size: 12px;
+    font-family: 'open_sanssemibold';
+    color: #235475;
+    margin: 0;
+    border-bottom: 1px solid #D6D6D6;
+    padding-bottom: 10px;
+}
+
+.prismaview .record-type-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.prismaview .record-type-list ul li {
+    font-size: 12px;
+    padding: 8px;
+    border-bottom: 1px solid #D6D6D6;
+    font-family: 'open_sansregular';
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.prismaview .record-type-list ul li.active,
+.prismaview .record-type-list ul li:hover {
+    background: #9BDDF2;
+}
+
+.prismaview .hgt-434 {
+    height: 434px;
+    position: relative;
+}
+
+.prismaview .hgt-457 {
+    height: 457px;
+    position: relative;
+}
+
+.prismaview .icons-draggable:before {
+    font-size: 15px;
+    color: #797979;
+}
+
+.prismaview .simpleTable.summary-table .icons-downsort:before,
+.prismaview .simpleTable.summary-table .icons-upsort:before {
+    margin-left: -3px !important;
+}
+
+.prismaview .record-table .icons-uparrow-sort,
+.prismaview .record-table .icons-downarrow-sort {
+    top: 0;
+}
+
+.prismaview .record-table .icons-uparrow-sort:before,
+.prismaview .record-table .icons-downarrow-sort:before {
+    font-size: 11px;
+    color: #797979;
+    margin-left: 6px;
+}
+
+.prismaview .simpleTable.summary-table .table-bordered>tbody>tr>td .record-option {
+    visibility: hidden;
+}
+
+.prismaview .simpleTable.summary-table.record-table .table-bordered>tbody>tr:hover>td {
+    background: #fff !important;
+    border-color: #e5e5e5 !important;
+}
+
+.prismaview .simpleTable.summary-table .table-bordered>tbody>tr:hover>td .record-option {
+    visibility: visible;
+}
+
+.prisma-vtwo .simpleTable.summary-table.record-table .table>tbody>tr>td:first-child {
+    border-right: 0 !important;
+    border-left: 0 !important;
+}
+
+.prismaview .simpleTable.summary-table.record-table .icons-browse:before {
+    font-size: 3px;
+    color: #000;
+    cursor: pointer;
+}
+
+.prismaview .viewtext {
+    color: #2B91D9;
+}
+
+.mainListViewTable.records-table .table.blue-fade-table>thead>tr>th {
+    background: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    border-color: #d8d8d8;
+    color: #2B91D9;
+    border-bottom-width: 0;
+    border-top-width: 1px !important;
+}
+
+.mainListViewTable.records-table .table>thead:first-child>tr:first-child>th {
+    border-top: 1px solid #d8d8d8;
+}
+
+.mainListViewTable.records-table .table.blue-fade-table>tbody>tr:hover>td {
+    background: #fff;
+}
+
+.mainListViewTable.records-table .table.blue-fade-table>tbody>tr.selected>td {
+    background: #F1F9FF !important;
+}
+
+.mainListViewTable.records-table .tablebody.hgt-331 {
+    max-height: 331px;
+}
+
+.mainListViewTable.records-table .tablebody.hgt-241 {
+    max-height: 241px;
+}
+
+.panel-view .mainListViewTable.records-table .tablebody,
+.panel-view .mainListViewTable.records-table .table.blue-fade-table>thead>tr>th,
+.panel-view .mainListViewTable.records-table .table.blue-fade-table>tbody>tr>td {
+    background: transparent;
+}
+
+.prismaview .panel-view {
+    padding: 12px;
+    position: relative;
+    background: #F1F9FF;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    margin-left: 15px;
+    width: 350px;
+}
+
+.prismaview .panel-view:after,
+.prismaview .panel-view:before {
+    right: 100%;
+    top: 10%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.prismaview .panel-view:after {
+    border-color: rgba(241, 249, 255, 0);
+    border-right-color: #F1F9FF;
+    border-width: 6px;
+    margin-top: -17px;
+}
+
+.prismaview .panel-view:before {
+    border-color: rgba(214, 214, 214, 0);
+    border-right-color: #D6D6D6;
+    border-width: 7px;
+    margin-top: -18px;
+}
+
+.prismaview .icon-createbundle {
+    background: url('../imgs/create-bundle.svg') no-repeat;
+    width: 17px;
+    height: 14px;
+}
+
+.prismaview .divider-line {
+    padding-left: 10px;
+    border-left: 1px solid #DBDBDB;
+    margin-left: 10px;
+}
+
+.prismaview .reorder-popup.show {
+    position: absolute;
+    z-index: 1111;
+    opacity: 1;
+    margin-top: -6px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(29 29 29 / 26%);
+    border: 0;
+    margin-left: -15px !important;
+    height: 123px;
+}
+
+.prismaview .reorder-popup.popover.left>.arrow {
+    border-left-color: #E1E1E1;
+    margin-top: 3px;
+    right: -14px;
+}
+
+.prismaview .reorder-popup.popover.left>.arrow:after {
+    bottom: -7px;
+    right: -6px;
+}
+
+.prismaview .reorder-popup.popover>.arrow {
+    border-width: 7px;
+}
+
+.prismaview .reorder-popup.popover>.arrow:after {
+    border-width: 7px;
+}
+
+.reorder-content .icons-uparrow-sort {
+    position: absolute;
+    right: 23px;
+    left: auto;
+    top: 0px;
+    cursor: pointer;
+}
+
+.reorder-content .icons-downarrow-sort {
+    position: absolute;
+    right: 17px;
+    left: auto;
+    top: 2px;
+    cursor: pointer;
+}
+
+.reorder-content .icons-uparrow-sort:before,
+.reorder-content .icons-downarrow-sort:before {
+    color: #737373;
+}
+
+.reorder-content .boldtext {
+    font-family: 'open_sansbold';
+    color: #737373;
+}
+
+.prismaview .reorder-popup .popover-body {
+    padding: 12px 12px 15px;
+}
+
+.prismaview .greyblacktext {
+    color: #444 !important;
+}
+
+.prismaview .result-section:after {
+    content: '';
+    width: 94%;
+    height: 1px;
+    border-bottom: 1px dashed #D6D6D6;
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    left: 50px;
+}
+
+.prismaview .encounter-detailview {
+    background: #F9F9F9;
+    border-radius: 0;
+    border: 1px solid #EDEDED;
+    margin-bottom: 8px;
+    height: 96px;
+}
+
+.prisma-clinical-insight .listleftpanel {
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.prisma-clinical-insight .clinicalinsights .listleftpanel li.active > .sublist-header {
+    background: #2B91D9;
+    border-radius: 3px;
+    color: #fff;
+}
+.prisma-clinical-insight .listleftpanel ul li.sublist {
+    padding: 4px 15px 4px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #000;
+    line-height: 15px;
+    border-left: 3px solid transparent;
+    margin: 0 0 6px;
+}
+.prisma-clinical-insight .listleftpanel ul li.sublist.active,
+.prisma-clinical-insight .listleftpanel ul li.sublist:hover {
+    border-left-color: #2B91D9;
+    background: #E4F4FA;
+    cursor: pointer;
+}
+/*.prisma-clinical-insight .listleftpanel ul li.sublist::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: #90C2D6;
+    position: absolute;
+    border-radius: 100%;
+    left: 11px;
+}*/
+.prisma-clinical-insight .listleftpanel ul li.sublist .circlecount {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #D9D9D9;
+    border-radius: 100%;
+    font-size: 9px;
+    font-weight: 600;
+}
+.prisma-clinical-insight .listleftpanel ul {
+    clear: both;
+    float: left;
+    margin: 5px 0 0 0;
+    padding: 0;
+    width: 100%;
+}
+
+.prisma-clinical-insight .listleftpanel ul li {
+    padding-left: 10px;
+    margin-left: 0;
+    list-style-type: none;
+}
+
+.prisma-clinical-insight .listleftpanel li {
+    float: left;
+    width: 100%;
+}
+
+.prisma-clinical-insight .listleftpanel li > .sublist-header
+{
+    list-style: none;
+    float: left;
+    width: 100%;
+    /*clear: both;*/
+    font: 400 12px 'Open Sans', sans-serif;
+    padding: 3px 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 6px;
+    line-height: 16px;
+}
+
+.prisma-clinical-insight .listleftpanel li:hover > .sublist-header,
+.prisma-clinical-insight .listleftpanel li > .sublist-header.active
+{
+    background: #2B91D9;
+    border-radius: 3px;
+    color: #fff;
+}
+.prismaview .panel-view {
+    padding: 12px;
+    position: relative;
+    background: #F1F9FF;
+    border: 1px solid #D6D6D6;
+    border-radius: 5px;
+    margin-left: 15px;
+    width: 50%;
+}
+.prismaview .viewtext {
+    color: #2B91D9;
+}
+.prismaview .w380px {
+    width: 380px;
+}
+.prismaview .w370px {
+    width: 370px;
+}
+.prismaview .w680px {
+    width: 800px !important;
+    left: 25% !important;
+}
+.prismaview .attributeSelected>td {
+    background: #F1F9FF !important;
+}
+.prismaview .prisma-lab-panels{
+}
+.prismaview .panels-and-content {
+    display: flex;
+    justify-content: flex-start;
+}
+.prismaview .h200px {
+    height: 200px;
+}
+.prismaview .h127px {
+    height: 127px;
+}
+.prismaview .dt-width{
+    min-width: 110px;
+}
+.prisma-clinical-insight .mainListViewTable.simpleTable .table {
+    border: 1px solid #D6D6D6;
+}
+.prismaview .highlight-em em{
+    background: #11A683 !important;
+    color: #fff;
+    padding: 0px 3px;
+    border-radius: 3px;
+    line-height: 20px;
+}
+.prismaview .word-wrapping {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.prismaview .see-more-section {
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    top: 5px;
+}
+.prismaview .see-more-section::before {
+    content: ' ';
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid #CCCCCC;
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+.prismaview .see-more-section .content {
+    padding: 2px 8px;
+    background: #2B91D9;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 11px;
+    display: inline-block;
+    position: relative;
+    z-index: 11;
+    font-family: 'open_sanssemibold';
+}
+.prismaview .see-more-section .content .icons-right-arrow {
+    transform: rotate(90deg);
+    margin-top: 0;
+    margin-left: 3px;
+}
+
+.prismaview .see-more-section .content .icons-right-arrow:before {
+    content: "\e905";
+    color: #fff;
+    font-size: 9px;
+}
+
+.prismaview .encounter-details {
+    font-size: 11px;
+    font-weight: 600;
+    color: #2B91D9;
+    cursor: pointer;
+}
+
+.prismaview .encounter-details .icons-right-arrow:before {
+    content: "\e905";
+    color: #2B91D9;
+    font-size: 8px;
+}
+
+.prismaview .encounter-details [class*=" icons-"], .prismaview .see-more-section [class*=" icons-"]{
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: '10eWidget' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.prismaview .min-width-150 {
+    min-width: 150px;
+}
+.prismaview .empty-metadata-block{
+    height: 18px;
+    visibility: hidden;
+    display: block;
+}
+.prismaview .simpleTable.summary-table.no-pointer .table-bordered>tbody>tr:hover>td {
+    cursor: auto !important;
+}
+.prisma-vtwo .simpleTable .table.lab-panel-popup>tbody>tr>td,
+.prisma-vtwo table.blue-fade-table.table-bordered.lab-panel-popup>tbody>tr>td {
+    border: 1px solid #e1e1e1 !important;
+    padding: 4px 5px !important;
+}
+.prismaview .headercontent .facility-wrapper{
+    max-width: 240px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    top: 2px;
+}
+
+.prismaview .headercontent .record-type,.prismaview .section-indication, .prismaview .section-indication{
+    max-width: 152px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    top: 2px;
+}
+.prismaview .headercontent .record-type, .prismaview .header-wrapper .section-indication{
+    top: -2px;
+}
+.prismaview .summary-wrapper .collapse-view .pt-doc-file-info, .prismaview .summary-wrapper .collapse-view .pt-doc-file-info h4{
+    max-width: 700px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+.prismaview .summary-wrapper .collapse-view .pt-doc-file-info img{
+    position: relative;
+    top: 2px;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.prismaview .triangle-alert-icon {
+    background: url(/mobiledoc/jsp/webemr/toppanel/prisma/imgs/alert.png) no-repeat;
+    width: 20px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    top: 7px;
+}
+.prismaview .open-folder-icon {
+    background: url(/mobiledoc/jsp/webemr/toppanel/prisma/imgs/folder.png) no-repeat;
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+    vertical-align: middle;
+    position: relative;
+    right: 0px;
+    bottom: -2px;
+    margin-right: 2px;
+}
+.prismaview .headercontent .btn-xs.btn-white.selected-section {
+   box-shadow: none;
+}.prismaview .ai-summarize-jumptobtn.dropdown-menu {
+    width: 200px!important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    left: 105px;
+    top: 25px!important;
+}

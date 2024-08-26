@@ -1,0 +1,61 @@
+/*
+AI Disclaimer Directive
+
+This directive provides a disclaimer to be used for AI functionality.
+
+The intent is to ensure that the user is aware of the risks associated with the
+use of AI, and that they will continue to be made aware unless and until they
+acknowledge these risks.
+
+Usage:
+1. Include the module in your dependencies.
+Example: angular.module('myModule', ['ecw.dir.ai-disclaimer'])
+2. Add the directive to your view.
+Example: <ai-disclaimer is-clinical="true" feature-name="My AI Feature"/>
+
+Attributes:
+is-clinical  | "true" if the AI feature is clinical in nature, else "false"
+feature-name | the name of the AI feature
+*/
+angular.module('ecw.dir.ai-disclaimer', [])
+.directive('aiDisclaimer', ['$http', function($http) {
+  const STORAGE_KEY = 'ECW_AI_ACKNOWLEDGMENTS';
+  const STORAGE_URL = '/mobiledoc/emr/ai/acknowledgement/acknowledgements';
+
+  return {
+    templateUrl: '/mobiledoc/jsp/webemr/ai/ecw.dir.ai-disclaimer.html',
+    restrict: 'E',
+    scope: {
+      isClinical: '@',
+      featureName: '@'
+    },
+    link: function(scope) {
+      if (scope.isClinical === 'true') {
+        scope.disclaimerPart1 = 'The use of artificial intelligence should not be used in place of professional medical judgment.';
+        scope.disclaimerPart2 = 'Please review the content in full prior to making any medical decisions.';
+      } else {
+        scope.disclaimerPart1 = 'The use of artificial intelligence is not meant to replace your own assessment.';
+        scope.disclaimerPart2 = 'Please review the content in full prior to making any decisions.';
+      }
+
+      scope.acknowledgementButtonLabel = 'Acknowledge for ' + scope.featureName;
+
+      scope.hasNotBeenAcknowledged = !hasBeenAcknowledged(scope.featureName);
+
+      scope.acknowledge = () => {
+        scope.hasNotBeenAcknowledged = false;
+
+        $http.post('/mobiledoc/emr/ai/acknowledgement/acknowledge', scope.featureName);
+
+        const acknowledgments = getFromCacheForJsonData(STORAGE_KEY, STORAGE_URL);
+        acknowledgments.push(scope.featureName);
+        put(STORAGE_KEY, JSON.stringify(acknowledgments));
+      };
+
+      function hasBeenAcknowledged(featureName) {
+        const acknowledgments = getFromCacheForJsonData(STORAGE_KEY, STORAGE_URL);
+        return acknowledgments.includes(featureName);
+      }
+    }
+  }
+}]);

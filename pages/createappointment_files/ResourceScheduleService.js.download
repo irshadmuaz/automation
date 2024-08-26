@@ -1,0 +1,53 @@
+angular.module('resourceScheduling', ['ecw.common.alert']).service('resourceSchedulingService',["$http", "modernAlertFactory", function ($http, modernAlertFactory) {
+
+    let ikEnterpriseDirectory = false;
+    if (getItemKeyValue("EnterpriseDirectory").toLowerCase() === "yes") {
+        ikEnterpriseDirectory = true;
+    }
+
+    function checkFacilityAccessForED(requestParams) {
+        let result = true;
+        if(ikEnterpriseDirectory) {
+            let param = { facilityId: requestParams.facilityId, providerId: requestParams.providerId, resourceId: requestParams.resourceId, action:'checkFacilityAccess'};
+            ajaxCallByPost("/mobiledoc/jsp/webemr/scheduling/Controller.jsp", param)
+                .success(function(data) {
+                    if (typeof data !== 'undefined' && data.trim().length>0) {
+                        let userAccess = JSON.parse(data);
+                        let hasProviderAccess = userAccess.facilityAccessToProvider;
+                        let hasResourceAccess = userAccess.facilityAccessToResource;
+                        if(!hasProviderAccess ||  !hasResourceAccess){
+                          // if facility name not provided then find the name
+                          let name = requestParams.resourceName;
+                          if(!hasProviderAccess){
+                            name = requestParams.providerName;
+                          }
+                          if(!requestParams.facilityName) {
+                              let facility = getFacilityObjectFromId(requestParams.facilityId);
+                              requestParams.facilityName = facility?.Name
+                          }
+                          // error message
+                          let errorHeader = "Appointment";
+                          let action = "create appointments";
+                          modernAlertFactory.error({
+                              header: "<b>" + errorHeader + " - Permission Error</b>",
+                              message: "<strong>" + name + "</strong> does not have the permissions to " + action + " for facility <strong>" + requestParams.facilityName + "</strong>.<br/>Check the provider/resource permissions or contact your administrator to request access and try again."
+                          });
+                          result = false;
+
+                        }
+                    }else{
+                      modernAlertFactory.error({
+                            header: "<b>Appointment - Permission Error</b>",
+                            message: "Something went wrong while checking provider/resource permissions for facility."
+                        });
+                      result = false;
+                    }
+                });
+        }
+        return result;
+    }
+
+    return {
+        isFacilityAccessForED: checkFacilityAccessForED
+    };
+}]);

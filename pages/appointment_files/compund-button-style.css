@@ -1,0 +1,240 @@
+@font-face {
+    font-family: 'mortar-pestle';
+    src:  url('../fonts/mortar-pestle.eot?6s027j');
+    src:  url('../fonts/mortar-pestle.eot?6s027j#iefix') format('embedded-opentype'),
+      url('../fonts/mortar-pestle.ttf?6s027j') format('truetype'),
+      url('../fonts/mortar-pestle.woff?6s027j') format('woff'),
+      url('../fonts/mortar-pestle.svg?6s027j#mortar-pestle') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  .icon-mortar-pestle {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'mortar-pestle' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-mortar-pestle:before {
+    content: "\e900";
+  }
+  .icon-mortar-pestle {
+    margin-top: -10px;
+  }
+  .icon-mortar-pestle.orangeclr {
+    color: #E4773B;
+  }
+  .icon-mortar-pestle.blueclr {
+    color: #2B91D9;
+  }
+  .mb20 {
+    margin-bottom: 30px;
+  }
+  .mt55 {
+    margin-top: 65px;
+  }
+  .showblock {
+    width: 40px;
+    padding: 8px 7px;
+    background: #2b91d9;
+    height: 40px;
+    text-align: center;
+    /*margin: 10px 0 30px;*/
+    border: 1px solid #c1c1c1;
+    /* Added by Rajan Start */
+    display: inline-block;
+    float: left;
+    /* Added by Rajan End */
+  }
+  .showblock.exe-greybg,
+  .showblock.web-greybg {
+    background: #d3d3d3;    
+  }
+  .btn-mortar {
+    padding: 2px 3px;
+    height: 16px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0px 0px 5px 1px rgb(29 29 29 / 20%);
+  } 
+  .btn-mortar.exebtn:hover,
+  .btn-mortar.webbtn:hover {
+    background: #F0F0F0;
+  }
+  .exe-nogreybg .exebtn {
+    background: #DADADA;
+  }
+  .exe-nogreybg .exebtn:hover {
+    background: #D1CFCF;
+  }
+
+  .web-nogreybg .webbtn {
+    background: #EDEDED;
+  }
+  .web-nogreybg .webbtn:hover {
+    background: #D1D1D1;
+  }
+
+  /* Tooltip */
+  .popover-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    display: none;
+    /* Added by Rajan Start */
+    z-index:1052;
+    /* Added by Rajan End */
+  } 
+  .popoverarrow {
+    position: relative;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1px 2px;
+  }
+  .popoverarrow:after, .popoverarrow:before {
+    top: 100%;
+    left: 7%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }  
+  .popoverarrow:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #fff;
+    border-width: 6px;
+    margin-left: -6px;
+  }
+  .popoverarrow:before {
+    border-color: rgba(0, 0, 0, 0);
+	  border-top-color: #ccc;
+    border-width: 7px;
+    margin-left: -7px;
+  }
+
+.currentmed_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+}
+.pncurrentmed_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+}
+.medsummary_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+  font-size: 11px;
+}
+.pnmedsummary_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+  font-size: 11px;
+}
+.pnhubcurrentmed_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+  font-size: 11px;
+}
+.medsummary_compoundrx-tooltip-AddRxCurrentMedProgressNotes{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 870px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+  font-size: 11px;
+}
+.medsummary_compoundrx-tooltiptext{
+  display:none;
+}
+.pnhubmedsummary_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+  font-size: 11px;
+}
+.treatmentMedsummary_compoundrx-tooltip{
+  display:none;
+  position: absolute;
+  right: 10px;
+  width: 650px;
+  background: white;
+  border: 1px solid black;
+  top: 20px;
+  z-index: 1000;
+  color: #333;
+  white-space : normal;
+  word-break :normal;
+  font-size: 11px;
+}

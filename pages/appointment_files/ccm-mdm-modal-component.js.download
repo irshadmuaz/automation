@@ -1,0 +1,112 @@
+var ccmMdmModalModule = angular.module("ecw.phm.ccmMdmModal",['ccmMdmModalService']);
+ccmMdmModalModule.component("ccmMdmModal", {
+    bindings: {
+        "patientId": "<",
+        "ptacoProgramId": "<",
+        "mdmValue": "<",
+        "parentScreenName": "<",
+        "isEditable": "=?",
+        "callbackFunction": '<'
+    },
+    controllerAs: "ccmMdmModalCtrl",
+    controller: ccmMdmModalController,
+    templateUrl: '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/enrolledpatients/components/ccm-mdm-modal.html',
+});
+ccmMdmModalModule.controller("ccmMdmModalController", ccmMdmModalController);
+
+function ccmMdmModalController($scope,$rootScope,ccmMdmModalService) {
+    var ccmMdmModalCtrl = this;
+    ccmMdmModalCtrl.radioMdmValue=0;
+
+    const mdmTextGetByValue = {
+        0: "Not Assigned",
+        1: "Low",
+        2: "Moderate",
+        3: "High"
+    };
+
+    ccmMdmModalCtrl.initCcmMdmModal = function () {
+        ccmMdmModalCtrl.radioMdmValue= ccmMdmModalCtrl.mdmValue !== null ? ccmMdmModalCtrl.mdmValue : 0;
+        ccmMdmModalCtrl.mdmRadioGroupName="mdmValue"+ccmMdmModalCtrl.patientId+ccmMdmModalCtrl.parentScreenName
+        ccmMdmModalCtrl.ccmMdmModalPopupId="ccmMdmModalPopup"+ccmMdmModalCtrl.patientId+ccmMdmModalCtrl.parentScreenName
+        bootbox.hideAll();
+    }
+
+    ccmMdmModalCtrl.openCcmMdmModal= function (e,patientId,mdmValue) {
+        if(ccmMdmModalCtrl.isEditable === undefined || ccmMdmModalCtrl.isEditable) {
+            $('.custom-popup').hide();
+            ccmMdmModalCtrl.radioMdmValue = mdmValue;
+            e.stopImmediatePropagation();
+            var _that = e.currentTarget;
+            $('#'+ccmMdmModalCtrl.ccmMdmModalPopupId).show().animate({}, 100, function () {
+                $(this).position({
+                    of: _that,
+                    my: 'left-50 top+23',
+                    at: 'left top',
+                }).animate({
+                    "opacity": 1
+                }, 100)
+            });
+        }
+    }
+
+    ccmMdmModalCtrl.closeCcmMdmModal = function (){
+       $('.custom-popup').hide();
+       ccmMdmModalCtrl.initCcmMdmModal();
+    }
+
+    ccmMdmModalCtrl.checkRadioButton= function (mdmValue) {
+        ccmMdmModalCtrl.radioMdmValue = mdmValue;
+        $(".ccm-mdm-wrapper input:radio[value='"+mdmValue.toString()+"']").prop('checked',true);
+    }
+
+    ccmMdmModalCtrl.openConfirmBox = function (currentMdmValue, calledFrom){
+        if(currentMdmValue !== ccmMdmModalCtrl.mdmValue) {
+            ecwConfirm("Are you sure you want to change the Complexity of Medical Decision Making from <strong>\""+
+                mdmTextGetByValue[ccmMdmModalCtrl.mdmValue] + "\"</strong> to <strong>\"" +mdmTextGetByValue[currentMdmValue] +"\"<strong>?", "Medical Decision Making - Confirmation",
+                function () {
+                ccmMdmModalCtrl.saveCcmMdmValue(currentMdmValue);
+            }, function () {ccmMdmModalCtrl.closeCcmMdmModal()}, 'bluetheme mdm-confirm-modal', false);
+            $('.mdm-confirm-modal').removeAttr("tabindex");
+        }
+    }
+
+
+    ccmMdmModalCtrl.saveCcmMdmValue = function (currentMdmValue){
+        ccmMdmModalCtrl.radioMdmValue = currentMdmValue;
+
+        var updateCcmMdmModalObject = {};
+        updateCcmMdmModalObject.userId = global.TrUserId;
+        updateCcmMdmModalObject.patientId = ccmMdmModalCtrl.patientId;
+        updateCcmMdmModalObject.ptAcoId = ccmMdmModalCtrl.ptacoProgramId;
+        updateCcmMdmModalObject.mdmValue = ccmMdmModalCtrl.radioMdmValue;
+
+        if('programEnrollment' === ccmMdmModalCtrl.parentScreenName){
+            ccmMdmModalCtrl.callbackFunction(ccmMdmModalCtrl.radioMdmValue);
+        } else {
+            if(ccmMdmModalCtrl.mdmValue!==ccmMdmModalCtrl.radioMdmValue) {
+                ccmMdmModalService.updateCcmMdmValue(updateCcmMdmModalObject).then(function (result) {
+                    if (result) {
+                        ccmMdmModalCtrl.mdmValue = ccmMdmModalCtrl.radioMdmValue;
+                        if ('enrolledQueue' === ccmMdmModalCtrl.parentScreenName) {
+                            ccmMdmModalCtrl.callbackFunction(ccmMdmModalCtrl.radioMdmValue,ccmMdmModalCtrl.ptacoProgramId);
+                        }
+                        ccmMdmModalCtrl.initCcmMdmModal();
+                    } else {
+                        ecwAlert("Error occurred while saving data, Please try again later.");
+                    }
+                })
+            }
+        }
+
+        $('.custom-popup').hide();
+    }
+
+    $(document).on('keyup.confirmModalCloser', function(event) {
+        if(event.key == "Escape") {
+            bootbox.hideAll();
+            if($('.modal-backdrop').hasClass('modal-backdrop'))
+                $('.modal-backdrop').removeClass('modal-backdrop');
+        }
+    });
+}

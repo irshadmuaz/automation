@@ -1,0 +1,97 @@
+.healowInsightsLookupParent .fnt12semibold {
+    font: 600 12px 'Open Sans', sans-serif;
+}
+
+.healowInsightsLookupParent .fnt14semibold {
+    font: 600 14px 'Open Sans', sans-serif;
+    color: #000;
+}
+
+.healowInsightsOutlookTitle {
+    margin-top: -2px;
+    padding: 1px 4px 0px 4px;
+    font-size: 11px;
+    height: 18px;
+    border-radius: 5px;
+    color: #1d9bc4 !important;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.healowInsightsOutlookTitle .prisma-button {
+    background-size: 14px;
+    margin-left: 2px;
+    margin-right: -3px;
+}
+
+.healowInsightsOutlookPopUp {
+    color: black;
+    background: #E9F8FF;
+}
+
+.healowInsightsOutlookPopUp .interoperability-analytics {
+    color: #1d9bc4;
+    padding-left: 0 !important;
+}
+
+.healowInsightsOutlookPopUp .interoperability-analytics-disable {
+    color: #1d9bc4;
+    font-weight: bold;
+}
+
+.healowInsightsOutlookPopUp .provider-name {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.healowInsightsOutlookPopUp .kpi-label {
+    margin-bottom: 2px;
+}
+
+.healowInsightsOutlookPopUp .kpi-value {
+    font-weight: bold;
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-bottom: 1px;
+    float: right !important;
+}
+
+.healowInsightsOutlookPopUp .facility-list {
+    max-height: 250px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.healowInsightsOutlookPopUp .icon {
+    font-size: 6px;
+    top: -1px;
+    left: 0px;
+}
+
+
+.healowInsightsOutlookLoading {
+    text-align: center;
+    font-size: medium;
+    font-weight: bold;
+    background: url(/mobiledoc/jsp/webemr/img/loader.gif) no-repeat center 20px;
+    height: 93px;
+}
+
+.healowInsightsOutlookPopUp .main-kpi-label {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.h-insights-outlook .w304 {
+    width: 304px!important;
+}
+
+.h-insights-outlook .w385 {
+    width: 385px!important;
+}
+
+.h-insights-outlook .dropdown-menu::after
+{
+    border-bottom: 6px solid #E9F8FF!important;
+}

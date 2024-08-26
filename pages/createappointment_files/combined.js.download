@@ -1,0 +1,4 @@
+$('#newApptModal').modal({show:true,backdrop:'static',keyboard:false
+ });$(document).ready(function(){$('#Appt_startDate').mask('99/99/9999');});$('#newApptModal').on('shown.bs.modal',function (e) {try {$("#dvClaimLoader").remove();var apptScope =angular.element(document.getElementById("newApptModal")).scope();apptScope.whenAppointmentModalShown();} catch (e) {console.log(e);}
+ });$('#newApptModal').click(function(){var apptScope =angular.element(document.getElementById("newApptModal")).scope();apptScope.$apply(function() {apptScope.hideApptWarning();});});$("#newApptModal").find(".modal-dialog").draggable({handle :".modal-header",revert :false
+ });$('.clse-btn').on('click',function(){$('.dropup').removeClass('open');});$('#newAppointmentBtn15').on('click',function (event) {$(this).parent().toggleClass('open');});

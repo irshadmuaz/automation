@@ -1,0 +1,72 @@
+(function () {
+    angular.module('hiHospiceHccCommentService', []).service('hospiceCommentService', function ($http) {
+        return {
+            getHospiceDataForPatient: function (patientid, objSuccessCallback, objErrorCallback) {
+                return $http({
+                    method: "POST",
+                    cache: false,
+                    url: makeHealowInsightsAPIURL('hospice/get'),
+                    data: $.param({
+                        patientId: patientid
+                    }),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                }).success(function (response) {
+                    objSuccessCallback(response);
+                }).error(function (response) {
+                    objErrorCallback(response);
+                });
+            },
+            updatePtHospiceInfo: function (params, objSuccessCallback, objErrorCallback) {
+                return $http({
+                    method: "POST",
+                    url: makeHealowInsightsAPIURL('hospice/update'),
+                    data: JSON.stringify(params),
+                    cache: false
+                }).success(function (response) {
+                    objSuccessCallback(response);
+                }).error(function (response) {
+                    objErrorCallback(response);
+                });
+            },
+            getPatientComments: function (patientid, objSuccessCallback, objErrorCallback) {
+                return $http({
+                    cache: false,
+                    method: "POST",
+                    url: makeHealowInsightsAPIURL('hospice/comments/get'),
+                    data: $.param({
+                        patientId: patientid
+                    }),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                }).success(function (response) {
+                    objSuccessCallback(response);
+                }).error(function (response) {
+                    objErrorCallback(response)
+                });
+            },
+            getCommentLogs: function (requestParams, objSuccessCallback, objErrorCallback) {
+                return $http({
+                    method: "POST",
+                    url: makeHealowInsightsAPIURL('hospice/comments/list'),
+                    data: JSON.stringify(requestParams),
+                    cache: false
+                }).success(function (response) {
+                    objSuccessCallback(response);
+                }).error(function (response) {
+                    objErrorCallback(response);
+                });
+            },
+            updateComment: function (reqParams, objSuccessCallback, objErrorCallback) {
+                return $http({
+                    method: "POST",
+                    url: makeHealowInsightsAPIURL('hospice/comments/update'),
+                    data: JSON.stringify(reqParams),
+                    cache: false
+                }).success(function (response) {
+                    objSuccessCallback(response);
+                }).error(function (response) {
+                    objErrorCallback(response)
+                });
+            },
+        };
+    });
+})();

@@ -1,0 +1,37 @@
+       angular.module('timepickerDemo', ['timepickerPop']).controller(
+            'DemoCtrl',
+            function ($scope) {
+                $scope.time1 = new Date().setHours(00, 00, 00);
+                $scope.time2 = new Date().setHours(00, 00, 00);
+                $scope.timeShow1 = "10:00:00";
+                $scope.timeShow2 = "01:00:00";
+                $scope.showMeridian = true;
+                $scope.showSeconds = true;
+                $scope.disabled = false;
+
+                // functionality for input text outside the directive
+                //$scope.currentTime = "00:00:00";
+                $(".only-time-entry").inputmask('[h:s:s]');
+                $scope.selectChangeTime = function (timeEnter) {
+                        var hrs = parseInt(timeEnter.split(":")[0]);
+                        var min = parseInt(timeEnter.split(":")[1]);
+                        var sec = parseInt(timeEnter.split(":")[2]);
+                        if (!isNaN(hrs) && !isNaN(min) && !isNaN(sec)) {
+                            $scope.time1 = new Date().setHours(hrs, min, sec);
+                        }
+                    }
+                    // When we changed the value from timepicker then we update the input feild    
+                $scope.changed = function () {
+                    $scope.currentTime = addZero($scope.time1.getHours()) + ":" + addZero($scope.time1.getMinutes()) + ":" + addZero($scope.time1.getSeconds());
+                };
+                $scope.checkValue = function (timeEnter) {
+                    var hrs = parseInt(timeEnter.split(":")[0]);
+                    var min = parseInt(timeEnter.split(":")[1]);
+                    var sec = parseInt(timeEnter.split(":")[2]);
+                    if (isNaN(hrs) || isNaN(min) || isNaN(sec)) {
+                        $scope.time1 = new Date().setHours(00, 00, 00);
+                        $scope.currentTime = "00:00:00";
+                    }
+                }
+            });
+

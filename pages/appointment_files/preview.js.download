@@ -1,0 +1,89 @@
+(function (a) {
+  var module = a.module("ecw.directive.fileviewermodal",['ecw.dir.patientidentifier',healowSignDependency.injectFileViewer()])
+  module.directive('previewModal',["$modal","$ocLazyLoad","$timeout",previewModalDirective]);
+  function previewModalDirective($modal,$ocLazyLoad,$timeout) {
+    return {
+      restrict: 'A',
+      scope: {
+        filename: '=',
+        path: '=',
+        xfdfData: '=',
+        topclass: '@',
+        beforeLoad: '&',
+        modalTitle:'@?',
+        patientId:"=?",
+        hasFormFields:"@"
+      },
+      link: function(scope, element, attributes) {
+        scope.isBeforeCallback=attributes.beforeLoad?true:false;
+        scope.modalTitle = scope.modalTitle && scope.modalTitle.trim() ? scope.modalTitle : "Template";
+        scope.hasFormFields = scope.hasFormFields && scope.hasFormFields==='true'?true:false;
+        scope.beforeLoadedCallback=function(){
+          if(scope.isBeforeCallback){
+            return scope.beforeLoad();
+          }
+        };
+        scope.viewMode = scope.hasFormFields?1:2;
+        scope.previewNow = function () {
+          $ocLazyLoad.load({
+            files: [],
+          }).then(function() {
+            var modalInstance = $modal.open({
+              templateUrl:'/mobiledoc/jsp/healowsign/manage/directives/preview.html',
+              resolve:{
+                previewViewer : function () {
+                  return {
+                    xfdfData:scope.xfdfData,
+                    filename:scope.filename,
+                    path:scope.path,
+                    viewMode:scope.viewMode,
+                    modalTitle:scope.modalTitle,
+                    patientId:scope.patientId
+                  }
+                }
+              },
+              controller : function ($scope,$modalInstance,previewViewer) {
+                $scope.previewViewer = previewViewer;
+                if($scope.previewViewer){
+                  $scope.previewViewer.viewerStyle={height:"80vh"};
+                }
+                $scope.close = function() {
+                  $modalInstance.dismiss('cancel');
+                };
+                $scope.ok = function () {
+                  $modalInstance.close();
+                };
+              },
+              windowClass	: 'app-modal-window bluetheme letter-width',
+              backdrop: "static",
+            });
+            modalInstance.result.then(function(){
+
+            },function(response){
+              if(response && response.status===1 && response.action==="Refresh"){
+                lmc.reloadLetter();
+              }
+            },function(response){
+              ecwAlert(response,"ERROR");
+            });
+
+          }, function(e) {
+            ecwAlert('Something went wrong. Please try again after sometime.', 'ErrorMsg');
+          });
+        }
+        element.on("click",function(){
+          if(scope.isBeforeCallback){
+            scope.beforeLoadedCallback().then(function(){
+              $timeout(scope.previewNow,1);
+            });
+          }else{
+            scope.previewNow();
+          }
+        });
+        scope.$on('$destroy', function() {
+          element.off('click', scope.previewNow);
+        });
+      },
+    }
+  }
+})(angular);

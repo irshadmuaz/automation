@@ -1,0 +1,65 @@
+angular.module('patientEnrollmentDisenrollment', ['ecw.dir.patientidentifier']).directive('rpmPatientDisenrollment',
+    function($http, $modal, $ocLazyLoad) {
+        return {
+            restrict : 'AE',
+            replace : 'true',
+            scope : {
+                patientId : '=',
+                callingFrom : '=',
+                insuaranceList : '=',
+                ptContactNo : '=',
+                ptaCoId :'=',
+                isTimerRunning:'=',
+                programEndDate:'=',
+                callbackFunction: '&',
+                facilityName:'='
+            },
+            link : function(scope, element, attrs, ngModelCtrl) {
+                element.click(function(){
+                    $('.action-hub-modal').remove();                    $ocLazyLoad.load({
+                        name: 'rpmPatientEnrollment',
+                        files: [
+                            '/mobiledoc/jsp/webemr/ccmr/rpm/enrollment/js/controller/rpmPatientDisenrollmentModalCtrl.js',
+                            '/mobiledoc/jsp/webemr/js/ecw.dir.patientidentifier.js',
+                            '/mobiledoc/jsp/webemr/ccmr/rpm/enrollment/css/program-disenrollment.css',
+                            '/mobiledoc/jsp/webemr/ccmr/rpm/enrollment/js/service/enrollmentService.js',
+                            '/mobiledoc/jsp/webemr/ccmr/rpm/css/rpm-global-style.css',
+                            '/mobiledoc/jsp/webemr/ccmr/rpm/timer/directive/rpmViewFullNotes-tpl.js',
+                            '/mobiledoc/jsp/webemr/templates/keywords-tpl.js',
+                            '/mobiledoc/jsp/webemr/js/globalframeworkService.js',
+                            '/mobiledoc/jsp/webemr/ccm/userfacing/dashboard/js/ccmEnrollmentBridgeService.js',
+                        ]
+                    }).then(function() {
+                        scope.rpmPatientDisenrollmentData = {
+                            patientId : scope.patientId,
+                            callingFrom : scope.callingFrom,
+                            insuaranceList:scope.insuaranceList,
+                            ptContactNo:scope.ptContactNo,
+                            callbackFunction : scope.callbackFunction,
+                            ptaCoId:scope.ptaCoId,
+                            programEndDate:scope.programEndDate,
+                            facilityName:scope.facilityName
+                        };
+                        var windowClassName='modal fade bluetheme medium-width in';
+                        if(scope.callingFrom && scope.callingFrom.toUpperCase() === 'CCM'){
+                            windowClassName ='disenroll custom-modal w1000 hide ccm-dnsenrollment-modal';
+                        }
+                        var modalInstance =   $modal.open({
+                            templateUrl: makeURL('/mobiledoc/jsp/webemr/ccmr/rpm/enrollment/views/patient-disEnrollment-modal.html?'),
+                            controller: 'patientDisenrollmentModalCtrl',
+                            controllerAs:'ptDisEnrl',
+                            windowClass:windowClassName,
+                            backdrop: "static",
+                            animation: true,
+                            resolve : {
+                                rpmPatientDisenrollmentData: function() {
+                                    return scope.rpmPatientDisenrollmentData;
+                                }
+                            }
+                        });
+                    }, function(e) {
+                    });
+                });
+            }
+        };
+    });

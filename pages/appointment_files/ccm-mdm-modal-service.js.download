@@ -1,0 +1,14 @@
+
+angular.module('ccmMdmModalService', []).service('ccmMdmModalService', ['$http', '$log', '$q', ccmMdmModalService])
+function ccmMdmModalService($http) {
+    var updateCcmMdmValue = function (bodyData) {
+        return $http({
+            method: 'POST',
+            url: '/mobiledoc/phm/ccmProgramEnrollment/updateCcmMdmValue',
+            data: bodyData,
+        });
+    };
+    return {
+        updateCcmMdmValue: updateCcmMdmValue
+    }
+}

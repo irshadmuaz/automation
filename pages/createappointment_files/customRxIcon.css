@@ -1,0 +1,30 @@
+.customrx-icon {
+    background-image: url(/mobiledoc/jsp/catalog/Images/cRx.png);
+    width: 17px;
+    height: 17px;
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 3px !important;
+}
+
+.cRx-div {
+    width: 25px !important;
+    padding-left: 0px;
+}
+
+.custrxtooltip-custom .tooltip-inner {
+    background: #FFF;
+    color: #000;
+    border: 1px solid #000;
+    max-width: 300px !important;
+    text-align: justify;
+    font-size: 12px;
+}
+
+.custrxtooltip-custom.tooltip.in {
+    opacity: 1 !important;
+}
+
+.custrxtooltip-custom .tooltip-inner div div{
+    text-align: center;
+}
