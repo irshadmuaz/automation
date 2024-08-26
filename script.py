@@ -29,10 +29,10 @@ class Automation:
     
     def get_time(self):
         # Set the start and end times
-        start_time = datetime.strptime("10:00 AM", "%I:%M %p")
-        end_time = datetime.strptime("05:00 PM", "%I:%M %p")
-        current_time =  start_time + timedelta(minutes=30*self.hour)
-        self.hour+=1
+        start_time = datetime.strptime("8:00 AM", "%I:%M %p")
+        end_time = datetime.strptime("10:00 PM", "%I:%M %p")
+        current_time =  start_time + timedelta(minutes=15*self.hour)
+ 
         if current_time > end_time:
             self.hour = 1
         return current_time.strftime("%I:%M %p")
@@ -85,7 +85,7 @@ class Automation:
         #self.driver.get('https://caazadhaw3mrvlx9ayapp.ecwcloud.com/mobiledoc/jsp/webemr/login/newLogin.jsp#/mobiledoc/jsp/webemr/jellybean/officevisit/officeVisits.jsp')
         
     
-    def followAppointment(self):
+    def followAppointment(self, date):
         #click autocomplete follow up
         self.click('//input[@id="visit-type-lookupIpt1"]')
 
@@ -98,7 +98,7 @@ class Automation:
         print('found date box')
         datebox.click()
         datebox.clear()
-        datebox.send_keys('08/27/2024')
+        datebox.send_keys(date + Keys.ENTER)
         print('set date')
         timestart = self.find('//input[@placeholder="Start Time"]')
         print('found time start')
@@ -106,7 +106,9 @@ class Automation:
         print('found time end')
         timestart.click()
         timestart.clear()
+        
         timestart.send_keys(self.get_time())
+        self.hour+=1
         timeend.click()
         timeend.clear()
         timeend.send_keys(self.get_time())
@@ -114,9 +116,10 @@ class Automation:
 
         time.sleep(1)
 
-    def createAppointment(self, name):
+    def createAppointment(self, name, date):
         self.click('//a[@id="jellybean-panelLink65"]')
         #variable
+        time.sleep(1)
         searchbox = self.find('//input[@id="searchText"]')
         searchbox.send_keys(name)
         time.sleep(1)
@@ -129,30 +132,15 @@ class Automation:
         print('clicked new appointment')
 
         # try cancel popup
-        time.sleep(5)
+        time.sleep(2)
         self.tryClick('//button[@id="billingAlertBtn6"]')
 
-        #set date
-        # try:
-        #     print('attempting to set date')
-        #     datebox = self.find('//input[@id="Appt_startDate"]')
-        #     datebox.send_keys('08/27/2024' + Keys.ENTER)
-        #     time.sleep(1)
-        #     timestart = self.find('//input[@id="time-lookup_timeLookup2788_Ipt1"]')
-        #     timeend = self.find('//input[@id="time-lookup_timeLookup0232_Ipt1"]')
-        #     timestart.send_keys(self.get_time() + Keys.ENTER)
-        #     timeend.send_keys(self.get_time() + Keys.ENTER)
-        #     print('set time and date')
-        # except:
-        #     print('something went wrong here')
-
+        self.followAppointment(date)
 
         # click ok
         self.click('//button[@id="newAppointmentBtn51"]')
         print('clicked ok to create appointment')
 
-        # try dismiss popup
-        self.tryClick('//button[@data-bb-handler="confirm"]')
         # try dismiss second popup
         time.sleep(5)
         self.tryClick('//button[@data-bb-handler="confirm"]')
@@ -186,17 +174,22 @@ automation = Automation()
 # automation.extract_vitals('MostRecentVitals')
 # automation.extract_vitals('Medications')
 
-# automation.eclinic()
-# automation.createAppointment('carpenter, diana')
-# automation.createAppointment('jones, nancy')
-# automation.createAppointment('shu, edna')
-# automation.createAppointment('thompson, linda')
-
 # THIS COULD BE OUR THREAD TO HANDLE POPUPS EVERY SECOND
-# monitor_thread = threading.Thread(target=automation.handle_popup_thread)
-# monitor_thread.daemon = True
-# monitor_thread.start()
+monitor_thread = threading.Thread(target=automation.handle_popup_thread)
+monitor_thread.daemon = True
+monitor_thread.start()
 
-for i in range(10):
-    automation.followAppointment()
+#people = ['carpenter, diana', 'jones, nancy', 'shu, edna', 'thompson, linda']
+people = ['carpenter, diana', 'jones, nancy']
+for person in people:
+    automation.createAppointment(person, '08/23/2024')
+
+automation.hour = 1
+for person in people:
+    automation.createAppointment(person, '08/24/2024')
+
+
+
+
+#automation.followAppointment()
 time.sleep(30)
