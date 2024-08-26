@@ -4,16 +4,19 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait 
+from selenium.webdriver.chrome.options import Options
 import datetime
 import time
-import json
+import threading
+from datetime import datetime, timedelta
 
-
+#  & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222 --user-data-dir="C:\selenium\ChromeProfile"
 class Automation:
     def __init__(self):
+        chrome_options = Options()
+        chrome_options.add_experimental_option("debuggerAddress", "localhost:9222")
         self.service = Service('chromedriver.exe')
-        self.driver = webdriver.Chrome(service=self.service)
-        self.driver.window_handles
+        self.driver = webdriver.Chrome(service=self.service, options=chrome_options)
         self.hour = 1
     
     def click(self,xpath, wait=1000):
@@ -25,26 +28,22 @@ class Automation:
                 continue
     
     def get_time(self):
-        return '0{0}:00 pm'.format(self.hour)
+        # Set the start and end times
+        start_time = datetime.strptime("10:00 AM", "%I:%M %p")
+        end_time = datetime.strptime("05:00 PM", "%I:%M %p")
+        current_time =  start_time + timedelta(minutes=30*self.hour)
         self.hour+=1
+        if current_time > end_time:
+            self.hour = 1
+        return current_time.strftime("%I:%M %p")
     
-    def save_cookies(self):
-        cookies = self.driver.get_cookies()
-        # Store cookies in a file
-        with open('cookies.json', 'w') as file:
-            json.dump(cookies, file)
-    
-    def get_url(self, url):
-        #cookies = {}
-        #with open('cookies.json', 'r') as file:
-            #cookies = json.load(file)
-
-        # Goto the same URL
-        self.driver.get(url)
-
-        # Set stored cookies to maintain the session
-        #for cookie in cookies:
-            #self.driver.add_cookie(cookie)
+    def handle_popup_thread(self):
+        while True:
+            # try dismiss popup
+            self.tryClick('//button[@data-bb-handler="confirm"]')
+            print('second thread working')
+            time.sleep(1)
+            
     
     def find(self, xpath, wait=100):
         return WebDriverWait(self.driver, wait).until(lambda x:x.find_element(By.XPATH, xpath))
@@ -82,12 +81,40 @@ class Automation:
             return
         
     def eclinic(self):
-        self.get_url('https://caazadhaw3mrvlx9ayapp.ecwcloud.com/mobiledoc/jsp/webemr/login/newLogin.jsp#/mobiledoc/jsp/webemr/jellybean/officevisit/officeVisits.jsp')
+        pass
+        #self.driver.get('https://caazadhaw3mrvlx9ayapp.ecwcloud.com/mobiledoc/jsp/webemr/login/newLogin.jsp#/mobiledoc/jsp/webemr/jellybean/officevisit/officeVisits.jsp')
         
     
+    def followAppointment(self):
+        #click autocomplete follow up
+        self.click('//input[@id="visit-type-lookupIpt1"]')
+
+        # select follow up
+        self.click('//a[@id="visit-type-lookupLink1ngR12"]')
+        #set date
+      
+        print('attempting to set date')
+        datebox = self.find('//input[@id="Appt_startDate"]')
+        print('found date box')
+        datebox.click()
+        datebox.clear()
+        datebox.send_keys('08/27/2024')
+        print('set date')
+        timestart = self.find('//input[@placeholder="Start Time"]')
+        print('found time start')
+        timeend = self.find('//input[@placeholder="End Time"]')
+        print('found time end')
+        timestart.click()
+        timestart.clear()
+        timestart.send_keys(self.get_time())
+        timeend.click()
+        timeend.clear()
+        timeend.send_keys(self.get_time())
+        print('set time and date')
+
+        time.sleep(1)
+
     def createAppointment(self, name):
-        #self.driver.get('file:///C:/Users/abdul/Documents/GitHub/automation/pages/createappointment.html')
-        #self.save_cookies()
         self.click('//a[@id="jellybean-panelLink65"]')
         #variable
         searchbox = self.find('//input[@id="searchText"]')
@@ -104,12 +131,6 @@ class Automation:
         # try cancel popup
         time.sleep(5)
         self.tryClick('//button[@id="billingAlertBtn6"]')
-
-        #click autocomplete follow up
-        self.click('//input[@id="visit-type-lookupIpt1"]')
-
-        # select follow up
-        self.click('//a[@id="visit-type-lookupLink1ngR12"]')
 
         #set date
         # try:
@@ -165,8 +186,17 @@ automation = Automation()
 # automation.extract_vitals('MostRecentVitals')
 # automation.extract_vitals('Medications')
 
-automation.eclinic()
-automation.createAppointment('carpenter, diana')
-automation.createAppointment('jones, nancy')
-automation.createAppointment('shu, edna')
-automation.createAppointment('thompson, linda')
+# automation.eclinic()
+# automation.createAppointment('carpenter, diana')
+# automation.createAppointment('jones, nancy')
+# automation.createAppointment('shu, edna')
+# automation.createAppointment('thompson, linda')
+
+# THIS COULD BE OUR THREAD TO HANDLE POPUPS EVERY SECOND
+# monitor_thread = threading.Thread(target=automation.handle_popup_thread)
+# monitor_thread.daemon = True
+# monitor_thread.start()
+
+for i in range(10):
+    automation.followAppointment()
+time.sleep(30)
