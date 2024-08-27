@@ -9,6 +9,7 @@ import datetime
 import time
 import threading
 from datetime import datetime, timedelta
+import json
 
 #  & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222 --user-data-dir="C:\selenium\ChromeProfile"
 class Automation:
@@ -18,6 +19,7 @@ class Automation:
         self.service = Service('chromedriver.exe')
         self.driver = webdriver.Chrome(service=self.service, options=chrome_options)
         self.hour = 1
+        self.store = {}
     
     def click(self,xpath, wait=1000):
         elements = WebDriverWait(self.driver, wait).until(lambda x:x.find_elements(By.XPATH, xpath))
@@ -54,17 +56,26 @@ class Automation:
     def sendkeys(self, element, keys):
         element.send_keys(keys + Keys.ENTER)
     
-    def execute(self):
+    def copy_vitals(self, name):
         # Go to point click 
-        self.driver.get('https://pointclickcare.com/')
+        #self.driver.get('https://pointclickcare.com/')
         # Click login
-        self.click('//span[@class="menu-text"]')
+        #self.click('//span[@class="menu-text"]')
 
         # variable
-        name = "jones"
         element = self.find('//input[@id="searchField"]')
-        time.sleep(2)
+        time.sleep(1)
         element.send_keys(name + Keys.ENTER)
+        time.sleep(1)
+        print('starting extraction')
+        
+        vitals = self.extract_vitals('MostRecentVitals')
+        medication = self.extract_vitals('Medications')
+        self.store[name] = {'vitals':vitals, 'medication': medication}
+    
+    def write_to_file(self):
+        with open('data.json', 'w') as json_file:
+            json.dump(self.store, json_file, indent=4)
 
         #todo copy medications and vitals
     def tryClose(self):
@@ -85,38 +96,6 @@ class Automation:
         #self.driver.get('https://caazadhaw3mrvlx9ayapp.ecwcloud.com/mobiledoc/jsp/webemr/login/newLogin.jsp#/mobiledoc/jsp/webemr/jellybean/officevisit/officeVisits.jsp')
         
     
-    def followAppointment(self, date):
-        #click autocomplete follow up
-        self.click('//input[@id="visit-type-lookupIpt1"]')
-
-        # select follow up
-        self.click('//a[@id="visit-type-lookupLink1ngR12"]')
-        #set date
-      
-        print('attempting to set date')
-        datebox = self.find('//input[@id="Appt_startDate"]')
-        print('found date box')
-        datebox.click()
-        datebox.clear()
-        datebox.send_keys(date + Keys.ENTER)
-        print('set date')
-        timestart = self.find('//input[@placeholder="Start Time"]')
-        print('found time start')
-        timeend = self.find('//input[@placeholder="End Time"]')
-        print('found time end')
-        timestart.click()
-        timestart.clear()
-        
-        timestart.send_keys(self.get_time())
-        self.hour+=1
-        timeend.click()
-        timeend.clear()
-        timeend.send_keys(self.get_time())
-        print('set time and date')
-
-        time.sleep(1)
-
-    def createAppointment(self, name, date):
         self.click('//a[@id="jellybean-panelLink65"]')
         #variable
         time.sleep(1)
@@ -154,8 +133,9 @@ class Automation:
     def extract_vitals(self, iframeName):
         #self.driver.get('file:///C:/Users/irsha/Documents/Github/selenium/dash.html')
         vitals_frame = self.find('//iframe[@name="{0}"]'.format(iframeName))
+        print('found vitals frame')
         self.driver.switch_to.frame(vitals_frame)
-
+        print('switched to frame')
         cols = self.driver.find_elements(By.XPATH,'//td[@class="detailColHeader"]')
         columns = [c.text for c in cols]
         rows = [columns]
@@ -165,51 +145,18 @@ class Automation:
         
         for row in rows:
             print(row)
-
         self.driver.switch_to.default_content()
+        return rows
 
-    def get_patients_list(self):
-        elements = self.driver.find_elements(By.XPATH, "//span[starts-with(@id, 'officeVisitsLink')]")
-        dictionary = {}
-        for element in elements:
-            dictionary[element.text]=element
-        print(dictionary.keys())
-        
-        elements[3].click()
-        self.click('//b[@onclick="pnSectionClicked(\'Medical History:\', event)"]')
-        textbox = self.find('//input[@placeholder="Write text and Press Enter"]')
-        textbox.send_keys('Medical history variable' + Keys.ENTER)
-        textbox.send_keys('Vitals variable' + Keys.ENTER)
-        # close modal
-        self.click('//button[@id="pnModalBtn1"]')
-    
-        
 
-def test_create_appointment():
+def test_copy_vitals():
     automation = Automation()
-    # automation.execute()
-    # automation.extract_vitals('MostRecentVitals')
-    # automation.extract_vitals('Medications')
+    automation.copy_vitals('carpenter')
+    time.sleep(1)
+    automation.copy_vitals('cox')
+    automation.copy_vitals('shu')
+    automation.copy_vitals('lombardi')
+    automation.write_to_file()
 
-    # THIS COULD BE OUR THREAD TO HANDLE POPUPS EVERY SECOND
-    monitor_thread = threading.Thread(target=automation.handle_popup_thread)
-    monitor_thread.daemon = True
-    monitor_thread.start()
-
-    #people = ['carpenter, diana', 'jones, nancy', 'shu, edna', 'thompson, linda']
-    people = ['carpenter, diana', 'jones, nancy']
-    for person in people:
-        automation.createAppointment(person, '08/23/2024')
-
-    automation.hour = 1
-    for person in people:
-        automation.createAppointment(person, '08/24/2024')
-
-def test_proceed():
-    automation = Automation()
-    automation.get_patients_list()
-
-
-#automation.followAppointment()
-test_proceed()
+test_copy_vitals()
 time.sleep(30)
