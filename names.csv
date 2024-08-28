@@ -1,4 +1,9 @@
-first_name,last_name
-Baked,Beans
-Lovely,Spam
-Wonderful,Spam
+name,appt_date,vitals,medication,status,appt_status
+"Carpenter, Diana",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Saeyang, Maiseng",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Shu, Edna",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Smyth, Annette",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Salmer, Casandra",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Guiet, Michael",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Mulvehill, Daniel",8/24/2024,vitals been updated,medication has been updated,in progress,created
+"Polse, James",8/24/2024,vitals been updated,medication has been updated,in progress,created

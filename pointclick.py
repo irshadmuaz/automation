@@ -10,7 +10,7 @@ import time
 import threading
 from datetime import datetime, timedelta
 import json
-
+from filereader import read,write
 #  & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222 --user-data-dir="C:\selenium\ChromeProfile"
 class Automation:
     def __init__(self):
@@ -71,7 +71,9 @@ class Automation:
         
         vitals = self.extract_vitals('MostRecentVitals')
         medication = self.extract_vitals('Medications')
-        self.store[name] = {'vitals':vitals, 'medication': medication}
+        extract = {'vitals':vitals, 'medication': medication}
+        self.store[name] = extract
+        return extract
     
     def write_to_file(self):
         with open('data.json', 'w') as json_file:
@@ -149,14 +151,20 @@ class Automation:
         return rows
 
 
-def test_copy_vitals():
+def execute():
+    store = read()
     automation = Automation()
-    automation.copy_vitals('carpenter')
-    time.sleep(1)
-    automation.copy_vitals('cox')
-    automation.copy_vitals('shu')
-    automation.copy_vitals('lombardi')
-    automation.write_to_file()
+    print('store', store)
+    for row in store:
+        [first,last] = row['name'].split(',')
+        print('extracting for', first, last)
+        extract = automation.copy_vitals(first.strip())
+        row['vitals'] = extract['vitals']
+        row['medication'] = extract['medication']
+    
+    write(store)
+        
 
-test_copy_vitals()
+#test_copy_vitals()
+#execute()
 time.sleep(30)

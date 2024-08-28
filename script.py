@@ -9,6 +9,7 @@ import datetime
 import time
 import threading
 from datetime import datetime, timedelta
+from filereader import read, write
 
 #  & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222 --user-data-dir="C:\selenium\ChromeProfile"
 class Automation:
@@ -142,31 +143,14 @@ class Automation:
         print('clicked ok to create appointment')
 
         # try dismiss second popup
-        time.sleep(5)
+        time.sleep(2)
         self.tryClick('//button[@data-bb-handler="confirm"]')
         
 
         # close patient modal
         self.click('//button[@id="patient-hubBtn1"]')
         print('closed appointment modal')
-        time.sleep(5)
-    
-    def extract_vitals(self, iframeName):
-        #self.driver.get('file:///C:/Users/irsha/Documents/Github/selenium/dash.html')
-        vitals_frame = self.find('//iframe[@name="{0}"]'.format(iframeName))
-        self.driver.switch_to.frame(vitals_frame)
-
-        cols = self.driver.find_elements(By.XPATH,'//td[@class="detailColHeader"]')
-        columns = [c.text for c in cols]
-        rows = [columns]
-        tablerows = self.driver.find_elements(By.XPATH, '//tr[@class="normalRow"]')
-        for row in tablerows:
-            rows.append([c.text for c in row.find_elements(By.TAG_NAME, 'td')])
-        
-        for row in rows:
-            print(row)
-
-        self.driver.switch_to.default_content()
+        time.sleep(2)
 
     def get_patients_list(self):
         elements = self.driver.find_elements(By.XPATH, "//span[starts-with(@id, 'officeVisitsLink')]")
@@ -209,7 +193,33 @@ def test_proceed():
     automation = Automation()
     automation.get_patients_list()
 
+def create_appointment():
+    print('starting create appointment')
+    store = read()
+    automation = Automation()
+    
+    # THIS COULD BE OUR THREAD TO HANDLE POPUPS EVERY SECOND
+    monitor_thread = threading.Thread(target=automation.handle_popup_thread)
+    monitor_thread.daemon = True
+    monitor_thread.start()
+    
+    try:
+        for row in store:
+            name = row['name']
+            date = row['appt_date']
+            print('old date', date)
+            date = datetime.strptime(date, "%m/%d/%Y").strftime("%m/%d/%Y")
 
+            print('creating appointment for', name, 'at', date)
+            automation.createAppointment(name,date)
+            row['appt_status'] = 'created'
+    except Exception as e:
+        print('something went wrong', e)
+    finally:
+        write(store)
+        
+    
+    
 #automation.followAppointment()
-test_proceed()
+create_appointment()
 time.sleep(30)
