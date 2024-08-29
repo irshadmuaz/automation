@@ -56,7 +56,7 @@ class Automation:
     def sendkeys(self, element, keys):
         element.send_keys(keys + Keys.ENTER)
     
-    def copy_vitals(self, name):
+    def copy_vitals(self, name, id):
         # Go to point click 
         #self.driver.get('https://pointclickcare.com/')
         # Click login
@@ -65,6 +65,8 @@ class Automation:
         # variable
         element = self.find('//input[@id="searchField"]')
         time.sleep(1)
+        query = "//a[contains(text(), '{0}')]".format(id)
+        self.tryClick(query, 1)
         element.send_keys(name + Keys.ENTER)
         time.sleep(1)
         print('starting extraction')
@@ -86,9 +88,9 @@ class Automation:
         except:
             return
         
-    def tryClick(self, xpath):
+    def tryClick(self, xpath, wait = 10):
         try:
-            self.click(xpath, 10)
+            self.click(xpath, wait)
             print('successfully closed popup ' + xpath, str(datetime.datetime.now()))
         except: 
             return
@@ -154,13 +156,22 @@ class Automation:
 def execute():
     store = read()
     automation = Automation()
-    print('store', store)
     for row in store:
-        [first,last] = row['name'].split(',')
-        print('extracting for', first, last)
-        extract = automation.copy_vitals(first.strip())
-        row['vitals'] = extract['vitals']
-        row['medication'] = extract['medication']
+        try:
+            [first,last] = row['name'].split(',')
+            appt_type = row['appointment_type']
+            print(first, last)
+            if appt_type.lower() != 'f':
+                continue
+            print('extracting for', first, last)
+            extract = automation.copy_vitals(first.strip(), row['name'])
+            row['vitals'] = extract['vitals']
+            row['medication'] = extract['medication']
+        except Exception as e:
+            print('something went wrong', e)
+            row['vitals'] = 'error'
+            row['medication'] = 'error'
+            continue
     
     write(store)
         

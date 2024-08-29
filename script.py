@@ -41,7 +41,8 @@ class Automation:
     def handle_popup_thread(self):
         while True:
             # try dismiss popup
-            self.tryClick('//button[@data-bb-handler="confirm"]')
+            self.tryClick('//button[@data-bb-handler="confirm"]',1)
+            self.tryClick('//button[@data-bb-handler="No"]',1)
             print('second thread working')
             time.sleep(1)
             
@@ -74,9 +75,9 @@ class Automation:
         except:
             return
         
-    def tryClick(self, xpath):
+    def tryClick(self, xpath, wait=10):
         try:
-            self.click(xpath, 10)
+            self.click(xpath, wait)
             print('successfully closed popup ' + xpath, str(datetime.datetime.now()))
         except: 
             return
@@ -151,21 +152,54 @@ class Automation:
         self.click('//button[@id="patient-hubBtn1"]')
         print('closed appointment modal')
         time.sleep(2)
+    
+    def parse_meds(self, med):
+        lst = eval(med)
+        format = []
+        for r in lst:
+            format.append(' '.join(r[:len(r)-3]))
+        return '\n'.join(format)
 
-    def get_patients_list(self):
+    def parse_vitals(self, vit):
+        lst = eval(vit)
+        format = []
+        for r in lst:
+            format.append(' '.join(r[:len(r)-2]))
+        return '\n'.join(format)
+
+    def populate_records(self, store):
+        
         elements = self.driver.find_elements(By.XPATH, "//span[starts-with(@id, 'officeVisitsLink')]")
         dictionary = {}
         for element in elements:
             dictionary[element.text]=element
         print(dictionary.keys())
-        
-        elements[3].click()
-        self.click('//b[@onclick="pnSectionClicked(\'Medical History:\', event)"]')
-        textbox = self.find('//input[@placeholder="Write text and Press Enter"]')
-        textbox.send_keys('Medical history variable' + Keys.ENTER)
-        textbox.send_keys('Vitals variable' + Keys.ENTER)
-        # close modal
-        self.click('//button[@id="pnModalBtn1"]')
+        for row in store:
+            name = row['name']
+            parts = name.split(' ')
+            parts.pop()
+            name = ' '.join(parts)
+            appt_type = row['appointment_type']
+            for key in dictionary.keys():
+                try:
+                    if key.lower().startswith(name.lower()) and appt_type.lower() == 'f':
+                        print('found name', key)
+                        dictionary[key].click()
+                        self.click('//b[@onclick="pnSectionClicked(\'Medical History:\', event)"]')
+                        textbox = self.find('//input[@placeholder="Write text and Press Enter"]')
+                        medications = self.parse_meds(row['medication'])
+                        vitals = self.parse_vitals(row['vitals'])
+
+                        textbox.send_keys(medications + Keys.ENTER)
+                        textbox.send_keys(vitals + Keys.ENTER)
+                        # close modal
+                        self.click('//button[@id="pnModalBtn1"]')
+                        # go back
+                        self.click('//i[@id="styleSJellyBean"]')
+                        row['paste_status'] = 'pasted'
+                except Exception as e:
+                    print('something went wrong', e)
+                    row['paste_status'] ='error'
     
         
 
@@ -190,8 +224,9 @@ def test_create_appointment():
         automation.createAppointment(person, '08/24/2024')
 
 def test_proceed():
+    print('starting populating medical history')
     automation = Automation()
-    automation.get_patients_list()
+    automation.populate_records()
 
 def create_appointment():
     print('starting create appointment')
@@ -203,23 +238,47 @@ def create_appointment():
     monitor_thread.daemon = True
     monitor_thread.start()
     
-    try:
-        for row in store:
+    for row in store:
+        try:
+            appt_type = row['appointment_type']
+            if appt_type.lower() != 'f':
+                continue
             name = row['name']
             date = row['appt_date']
-            print('old date', date)
+            parts = name.split(' ')
+            parts.pop()
+            name = ' '.join(parts)
+            
+            print(name, date)
+            
             date = datetime.strptime(date, "%m/%d/%Y").strftime("%m/%d/%Y")
-
             print('creating appointment for', name, 'at', date)
             automation.createAppointment(name,date)
             row['appt_status'] = 'created'
+        except Exception as e:
+            print('something went wrong', e)
+            row['appt_status'] = 'error'
+            continue
+
+
+def populate_records():
+    automation = Automation()
+    
+    # THIS COULD BE OUR THREAD TO HANDLE POPUPS EVERY SECOND
+    monitor_thread = threading.Thread(target=automation.handle_popup_thread)
+    monitor_thread.daemon = True
+    monitor_thread.start()
+    
+    store = read()
+    try:
+        automation.populate_records(store)
     except Exception as e:
-        print('something went wrong', e)
-    finally:
         write(store)
+                
         
     
     
-#automation.followAppointment()
-create_appointment()
+
+#create_appointment()
+populate_records()
 time.sleep(30)
