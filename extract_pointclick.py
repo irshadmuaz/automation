@@ -41,8 +41,8 @@ def copy_vitals(automation, name, id):
     time.sleep(1)
     print('starting extraction')
     
-    vitals = automation.extract_vitals('MostRecentVitals')
-    medication = automation.extract_vitals('Medications')
+    vitals = extract_vitals('MostRecentVitals')
+    medication = extract_vitals('Medications')
 
     return [vitals, medication]
 
