@@ -1,0 +1,65 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait 
+from selenium.webdriver.chrome.options import Options
+import datetime
+import time
+import threading
+from datetime import datetime, timedelta
+import json
+from filereader import read,write
+
+def extract_vitals(automation, iframeName):
+    #automation.driver.get('file:///C:/Users/irsha/Documents/Github/selenium/dash.html')
+    automation.switch_to_frame('//iframe[@name="{0}"]'.format(iframeName))
+    print('switched to frame')
+    cols = automation.find_all('//td[@class="detailColHeader"]')
+    columns = [c.text for c in cols]
+    rows = [columns]
+    tablerows = automation.find_all('//tr[@class="normalRow"]')
+    for row in tablerows:
+        rows.append([c.text for c in row.find_elements(By.TAG_NAME, 'td')])
+    
+    automation.driver.switch_to.default_content()
+    return rows
+
+def copy_vitals(automation, name, id):
+    # Go to point click 
+    #automation.driver.get('https://pointclickcare.com/')
+    # Click login
+    #automation.click('//span[@class="menu-text"]')
+
+    # variable
+    element = automation.find('//input[@id="searchField"]')
+    time.sleep(1)
+    query = "//a[contains(text(), '{0}')]".format(id)
+    automation.tryClick(query, 1)
+    element.send_keys(name + Keys.ENTER)
+    time.sleep(1)
+    print('starting extraction')
+    
+    vitals = automation.extract_vitals('MostRecentVitals')
+    medication = automation.extract_vitals('Medications')
+
+    return [vitals, medication]
+
+def copy_all_vitals(automation):
+    store = read()
+    for row in store:
+        try:
+            [first,last] = row['name'].split(',')
+            appt_type = row['appointment_type'].lower()
+            if appt_type != 'f' or (row.has('vitals') and row.has('medication')):
+                print('skipping', first,last)
+                continue
+            [vitals, medication] = copy_vitals(first.strip(), row['name'])
+            row['vitals'] = vitals
+            row['medication'] = medication
+        except:
+            print('something went wrong copying vitals')
+            automation.driver.refresh()
+    
+    write(store)

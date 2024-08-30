@@ -69,12 +69,6 @@ class Automation:
         element.send_keys(name + Keys.ENTER)
 
         #todo copy medications and vitals
-    def tryClose(self):
-        try:
-            self.click('//button[@data-dismiss="modal"]',1)
-        except:
-            return
-        
     def tryClick(self, xpath, wait=10):
         try:
             self.click(xpath, wait)
@@ -125,7 +119,7 @@ class Automation:
         searchbox = self.find('//input[@id="searchText"]')
         searchbox.send_keys(name)
         time.sleep(1)
-        self.tryClose()
+        self.tryClick('//button[@data-dismiss="modal"]',2)
         self.click('//span[@id="patientLName1"]')
         print('searched ' + name)
 
