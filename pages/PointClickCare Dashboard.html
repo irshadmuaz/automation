@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://accounts.pointclickcare.com/#/dashboard -->
+<html class="md-theme-default"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./PointClickCare Dashboard_files/pendo.js.download"></script><script async="" src="./PointClickCare Dashboard_files/pendo.js.download"></script><script src="chrome-extension://fgddmllnllkalaagkghckoinaemmogpe/scripts/content/gps.js"></script><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=edge"><link rel="shortcut icon" type="image/png" href="https://accounts.pointclickcare.com/static/favicon.ico"><link rel="stylesheet" href="./PointClickCare Dashboard_files/font-awesome.min.css"><link rel="stylesheet" href="./PointClickCare Dashboard_files/css"><link rel="stylesheet" href="./PointClickCare Dashboard_files/materialdesignicons.min.css"><link href="./PointClickCare Dashboard_files/css(1)" rel="stylesheet"><script type="text/javascript" src="./PointClickCare Dashboard_files/datadog-logs-us.js.download"></script><script>DD_LOGS.init({
+        clientToken: 'pub1aaf9b20e1bfc20d2c48d725b3e07226',
+        forwardErrorsToLogs: true,
+    });</script><title>PointClickCare Dashboard</title><link href="./PointClickCare Dashboard_files/vendor.a3239e301acce88feb81.css" rel="stylesheet"><link href="./PointClickCare Dashboard_files/app.073391d311cb1c0c4428.css" rel="stylesheet"><style type="text/css">.notifications{display:block;position:fixed;z-index:5000}.notification-wrapper{display:block;overflow:hidden;width:100%;margin:0;padding:0}.notification{display:block;box-sizing:border-box;background:#fff;text-align:left}.notification-title{font-weight:600}.vue-notification{font-size:12px;padding:10px;margin:0 5px 5px;color:#fff;background:#44a4fc;border-left:5px solid #187fe7}.vue-notification.warn{background:#ffb648;border-left-color:#f48a06}.vue-notification.error{background:#e54d42;border-left-color:#b82e24}.vue-notification.success{background:#68cd86;border-left-color:#42a85f}.vn-fade-enter-active,.vn-fade-leave-active,.vn-fade-move{transition:all .5s}.vn-fade-enter,.vn-fade-leave-to{opacity:0}</style><style type="text/css">.vue-js-switch[data-v-25adc6c0]{display:inline-block;position:relative;overflow:hidden;vertical-align:middle;user-select:none;font-size:10px;cursor:pointer}.vue-js-switch .v-switch-input[data-v-25adc6c0]{display:none}.vue-js-switch .v-switch-label[data-v-25adc6c0]{position:absolute;top:0;font-weight:600;color:#fff}.vue-js-switch .v-switch-label.v-left[data-v-25adc6c0]{left:10px}.vue-js-switch .v-switch-label.v-right[data-v-25adc6c0]{right:10px}.vue-js-switch .v-switch-core[data-v-25adc6c0]{display:block;position:relative;box-sizing:border-box;outline:0;margin:0;transition:border-color .3s,background-color .3s;user-select:none}.vue-js-switch .v-switch-core .v-switch-button[data-v-25adc6c0]{display:block;position:absolute;overflow:hidden;top:0;left:0;transform:translate3d(3px,3px,0);border-radius:100%;background-color:#fff}.vue-js-switch.disabled[data-v-25adc6c0]{pointer-events:none;opacity:.6}</style><style type="text/css" id="vuetify-theme-stylesheet">.v-application a { color: #00a0af; }
+.v-application .primary {
+  background-color: #00a0af !important;
+  border-color: #00a0af !important;
+}
+.v-application .primary--text {
+  color: #00a0af !important;
+  caret-color: #00a0af !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #bbffff !important;
+  border-color: #bbffff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #bbffff !important;
+  caret-color: #bbffff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #9dffff !important;
+  border-color: #9dffff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #9dffff !important;
+  caret-color: #9dffff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #7ff4ff !important;
+  border-color: #7ff4ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #7ff4ff !important;
+  caret-color: #7ff4ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #5fd7e7 !important;
+  border-color: #5fd7e7 !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #5fd7e7 !important;
+  caret-color: #5fd7e7 !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #3dbbca !important;
+  border-color: #3dbbca !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #3dbbca !important;
+  caret-color: #3dbbca !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #008694 !important;
+  border-color: #008694 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #008694 !important;
+  caret-color: #008694 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #006c7b !important;
+  border-color: #006c7b !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #006c7b !important;
+  caret-color: #006c7b !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #005362 !important;
+  border-color: #005362 !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #005362 !important;
+  caret-color: #005362 !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #003c4a !important;
+  border-color: #003c4a !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #003c4a !important;
+  caret-color: #003c4a !important;
+}
+.v-application .secondary {
+  background-color: #05576f !important;
+  border-color: #05576f !important;
+}
+.v-application .secondary--text {
+  color: #05576f !important;
+  caret-color: #05576f !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #9ddaf6 !important;
+  border-color: #9ddaf6 !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #9ddaf6 !important;
+  caret-color: #9ddaf6 !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #81beda !important;
+  border-color: #81beda !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #81beda !important;
+  caret-color: #81beda !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #66a3be !important;
+  border-color: #66a3be !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #66a3be !important;
+  caret-color: #66a3be !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #4a89a3 !important;
+  border-color: #4a89a3 !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #4a89a3 !important;
+  caret-color: #4a89a3 !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #2d6f88 !important;
+  border-color: #2d6f88 !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #2d6f88 !important;
+  caret-color: #2d6f88 !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #004057 !important;
+  border-color: #004057 !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #004057 !important;
+  caret-color: #004057 !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #002a3f !important;
+  border-color: #002a3f !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #002a3f !important;
+  caret-color: #002a3f !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #001629 !important;
+  border-color: #001629 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #001629 !important;
+  caret-color: #001629 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #000016 !important;
+  border-color: #000016 !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #000016 !important;
+  caret-color: #000016 !important;
+}
+.v-application .accent {
+  background-color: #b3e3e7 !important;
+  border-color: #b3e3e7 !important;
+}
+.v-application .accent--text {
+  color: #b3e3e7 !important;
+  caret-color: #b3e3e7 !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #ecffff !important;
+  border-color: #ecffff !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #ecffff !important;
+  caret-color: #ecffff !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #cfffff !important;
+  border-color: #cfffff !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #cfffff !important;
+  caret-color: #cfffff !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #98c7cb !important;
+  border-color: #98c7cb !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #98c7cb !important;
+  caret-color: #98c7cb !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #7dacaf !important;
+  border-color: #7dacaf !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #7dacaf !important;
+  caret-color: #7dacaf !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #639195 !important;
+  border-color: #639195 !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #639195 !important;
+  caret-color: #639195 !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #4a777b !important;
+  border-color: #4a777b !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #4a777b !important;
+  caret-color: #4a777b !important;
+}
+.v-application .error {
+  background-color: #d60027 !important;
+  border-color: #d60027 !important;
+}
+.v-application .error--text {
+  color: #d60027 !important;
+  caret-color: #d60027 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffb1a2 !important;
+  border-color: #ffb1a2 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffb1a2 !important;
+  caret-color: #ffb1a2 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ff9487 !important;
+  border-color: #ff9487 !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ff9487 !important;
+  caret-color: #ff9487 !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ff766e !important;
+  border-color: #ff766e !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ff766e !important;
+  caret-color: #ff766e !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff5855 !important;
+  border-color: #ff5855 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff5855 !important;
+  caret-color: #ff5855 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #f7373d !important;
+  border-color: #f7373d !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #f7373d !important;
+  caret-color: #f7373d !important;
+}
+.v-application .error.darken-1 {
+  background-color: #b60012 !important;
+  border-color: #b60012 !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #b60012 !important;
+  caret-color: #b60012 !important;
+}
+.v-application .error.darken-2 {
+  background-color: #960000 !important;
+  border-color: #960000 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #960000 !important;
+  caret-color: #960000 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #770000 !important;
+  border-color: #770000 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #770000 !important;
+  caret-color: #770000 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #5c0000 !important;
+  border-color: #5c0000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #5c0000 !important;
+  caret-color: #5c0000 !important;
+}
+.v-application .info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.v-application .info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #d4ffff !important;
+  border-color: #d4ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #d4ffff !important;
+  caret-color: #d4ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #b5ffff !important;
+  border-color: #b5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #b5ffff !important;
+  caret-color: #b5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #95e8ff !important;
+  border-color: #95e8ff !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #95e8ff !important;
+  caret-color: #95e8ff !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #75ccff !important;
+  border-color: #75ccff !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #75ccff !important;
+  caret-color: #75ccff !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #51b0ff !important;
+  border-color: #51b0ff !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #51b0ff !important;
+  caret-color: #51b0ff !important;
+}
+.v-application .info.darken-1 {
+  background-color: #007cd6 !important;
+  border-color: #007cd6 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #007cd6 !important;
+  caret-color: #007cd6 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #0064ba !important;
+  border-color: #0064ba !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #0064ba !important;
+  caret-color: #0064ba !important;
+}
+.v-application .info.darken-3 {
+  background-color: #004d9f !important;
+  border-color: #004d9f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #004d9f !important;
+  caret-color: #004d9f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #003784 !important;
+  border-color: #003784 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #003784 !important;
+  caret-color: #003784 !important;
+}
+.v-application .success {
+  background-color: #00a0af !important;
+  border-color: #00a0af !important;
+}
+.v-application .success--text {
+  color: #00a0af !important;
+  caret-color: #00a0af !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #bbffff !important;
+  border-color: #bbffff !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #bbffff !important;
+  caret-color: #bbffff !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #9dffff !important;
+  border-color: #9dffff !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #9dffff !important;
+  caret-color: #9dffff !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #7ff4ff !important;
+  border-color: #7ff4ff !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #7ff4ff !important;
+  caret-color: #7ff4ff !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #5fd7e7 !important;
+  border-color: #5fd7e7 !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #5fd7e7 !important;
+  caret-color: #5fd7e7 !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #3dbbca !important;
+  border-color: #3dbbca !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #3dbbca !important;
+  caret-color: #3dbbca !important;
+}
+.v-application .success.darken-1 {
+  background-color: #008694 !important;
+  border-color: #008694 !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #008694 !important;
+  caret-color: #008694 !important;
+}
+.v-application .success.darken-2 {
+  background-color: #006c7b !important;
+  border-color: #006c7b !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #006c7b !important;
+  caret-color: #006c7b !important;
+}
+.v-application .success.darken-3 {
+  background-color: #005362 !important;
+  border-color: #005362 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #005362 !important;
+  caret-color: #005362 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #003c4a !important;
+  border-color: #003c4a !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #003c4a !important;
+  caret-color: #003c4a !important;
+}
+.v-application .warning {
+  background-color: #f59a00 !important;
+  border-color: #f59a00 !important;
+}
+.v-application .warning--text {
+  color: #f59a00 !important;
+  caret-color: #f59a00 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffffa1 !important;
+  border-color: #ffffa1 !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffffa1 !important;
+  caret-color: #ffffa1 !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #ffff85 !important;
+  border-color: #ffff85 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #ffff85 !important;
+  caret-color: #ffff85 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffed69 !important;
+  border-color: #ffed69 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffed69 !important;
+  caret-color: #ffed69 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #ffd14d !important;
+  border-color: #ffd14d !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #ffd14d !important;
+  caret-color: #ffd14d !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffb52f !important;
+  border-color: #ffb52f !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffb52f !important;
+  caret-color: #ffb52f !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #d58000 !important;
+  border-color: #d58000 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #d58000 !important;
+  caret-color: #d58000 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #b66700 !important;
+  border-color: #b66700 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #b66700 !important;
+  caret-color: #b66700 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #984e00 !important;
+  border-color: #984e00 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #984e00 !important;
+  caret-color: #984e00 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #7c3600 !important;
+  border-color: #7c3600 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #7c3600 !important;
+  caret-color: #7c3600 !important;
+}</style><link type="text/css" rel="stylesheet" href="./PointClickCare Dashboard_files/guide.-323232.1723573742394.css" id="_pendo-css_"><link type="text/css" rel="stylesheet" href="./PointClickCare Dashboard_files/4EIVnOD7laepQeBIvJDy33CpO-o.guide.css"><link type="text/css" rel="stylesheet" href="./PointClickCare Dashboard_files/HSkl-ovjJ6IVy5a93rl47TRskM8.guide.css"><link type="text/css" rel="stylesheet" href="./PointClickCare Dashboard_files/FT6Z8X83V6W7Eehx2wJrpeDGGNU.guide.css"><link type="text/css" rel="stylesheet" href="./PointClickCare Dashboard_files/g96R_Qvhc9a74VGbi6DQiCmVE88.guide.css"></head><body class=""><div data-app="true" class="v-application v-application--is-ltr theme--light" id="app"><div class="v-application--wrap"><main class="v-main v-content" data-booted="true" style="padding: 64px 0px 0px 256px;"><div class="v-main__wrap v-content__wrap"><div><nav data-v-33013c58=""><header data-v-33013c58="" class="v-sheet theme--light v-toolbar v-app-bar v-app-bar--clipped v-app-bar--fixed" data-test="appBar" style="height: 3rem; margin-top: 0px; transform: translateY(0px); left: 0px; right: 0px; background-color: white;" data-booted="true"><div class="v-toolbar__content" style="height: 64px;"><!----> <a data-v-33013c58="" href="https://accounts.pointclickcare.com/#/dashboard" class="router-underline router-link-exact-active router-link-active" align="middle"><div data-v-33013c58="" class="v-toolbar__title black--text"><img data-v-33013c58="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzkwIDMzNyI+PGcgZmlsbD0iIzM3M0EzNiI+PHBhdGggZD0iTTI3NTguNTQgNTQuNmEzMC4xMSAzMC4xMSAwIDExLS4xNyA2MC4yMWMtMTcuMjkgMC0zMS4xOC0xMy4zNi0zMS4xOC0zMC4yOCAwLTE2LjU3IDEzLjg5LTI5LjkzIDMxLjE4LTI5LjkzaC4xN3ptLS41MyA3Yy0xMi42NCAwLTIyLjI4IDEwLjE1LTIyLjI4IDIzLjE1IDAgMTIuODQgOS42NCAyMy4xNyAyMi40NSAyMy4xNyAxMi44My4xOCAyMi4yOC0xMC4zMyAyMi4yOC0yMy4xNyAwLTEzLTkuNDUtMjMuMTUtMjIuMjgtMjMuMTVoLS4xN3ptLTMuOTMgMzcuOTVoLThWNzAuODRhNTYuMTkgNTYuMTkgMCAwMTExLjkyLTEuMWM2IDAgOC43NS44OSAxMC42OSAyLjMyYTYuNzkgNi43OSAwIDAxMyA2LjA2YzAgMy4yLTIuNjggNS42OS02LjI0IDYuNzd2LjM1YzMgMS4wNyA0LjYzIDMuMzggNS41MiA3LjMxYTM0LjE2IDM0LjE2IDAgMDAyIDYuOTVoLTguNTVjLS44OS0xLjA4LTEuNDItMy41Ny0yLjEyLTYuNi0uNy0zLjAzLTIuMTYtNC4yOC01LjM2LTQuMjhoLTIuODZ2MTAuOTN6bS4xOC0xNi4zOWgyLjg2YzMuMzggMCA1Ljg4LTEuMjUgNS44OC0zLjkzIDAtMi40OS0xLjc4LTMuOTItNS41Mi0zLjkyLTEuNDIgMC0yLjQ5LjE4LTMuMjIuMTh2Ny42N3pNLjYyIDIxLjA0YzIxLjkyLTMuNzMgNTIuNzEtNi41MiA5Ni4wOC02LjUyIDQzLjg0IDAgNzUuMDkgOC4zOSA5Ni4wOCAyNS4xOCAyMC4wNiAxNS44NSAzMy41OSA0MiAzMy41OSA3Mi43NiAwIDMwLjc2LTEwLjI3IDU2LjkxLTI4LjkyIDc0LjYzLTI0LjI2IDIyLjg1LTYwLjE3IDMzLjEyLTEwMi4xNSAzMy4xMmExNzkuMzggMTc5LjM4IDAgMDEtMjQuMjUtMS40djExMi40SC42MlYyMS4wNHptNzAuNDMgMTQyLjczYzYuMDYgMS40IDEzLjUzIDEuODYgMjMuNzkgMS44NiAzNy43NyAwIDYxLjEtMTkuMTIgNjEuMS01MS4zIDAtMjguOTItMjAuMDYtNDYuMTgtNTUuNS00Ni4xOC0xNC40NyAwLTI0LjI2IDEuNC0yOS4zOSAyLjh2OTIuODJ6Ii8+PHBhdGggZD0iTTQ0OC4zNiAyMTQuNjFjMCA4My40OC01OS4yMyAxMjEuNzMtMTIwLjMzIDEyMS43My02Ni43IDAtMTE4LTQzLjg0LTExOC0xMTcuNTNTMjU4LjU0IDk4IDMzMS43NyA5OGM2OS45NiAwIDExNi41OSA0OC4wNSAxMTYuNTkgMTE2LjYxem0tMTY1LjExIDIuMzNjMCAzOS4xOCAxNi4zMiA2OC41NiA0Ni42NSA2OC41NiAyNy41MiAwIDQ1LjI0LTI3LjUyIDQ1LjI0LTY4LjU2IDAtMzQtMTMuMDYtNjguNTctNDUuMjQtNjguNTctMzQuMDUgMC00Ni42NSAzNC45OC00Ni42NSA2OC41N3pNNTQ2Ljc1IDM5LjdjMCAxOS41OS0xNC45MiAzNS40NS0zOC4yNCAzNS40NS0yMi4zOSAwLTM3LjMxLTE1Ljg2LTM2Ljg1LTM1LjQ1QzQ3MS4yIDE5LjE4IDQ4Ni4xMiAzLjg0IDUwOSAzLjg0YzIyLjg4IDAgMzcuMyAxNS4zNCAzNy43NSAzNS44NnptLTczLjIyIDI5MS41MVYxMDMuMTNoNzAuOXYyMjguMDhoLTcwLjl6bTEwOS4xMy0xNTUuMzJjMC0yOC40NC0uOTMtNTIuNy0xLjg2LTcyLjc2aDYxLjU2bDMuMjYgMzEuMjVINjQ3QzY1Ni4zMyAxMTkuOTIgNjc5LjY1IDk4IDcxNy40MyA5OGM0Ni42NSAwIDgxLjYyIDMwLjc4IDgxLjYyIDk4djEzNS4yMWgtNzAuODdWMjA0Ljg0YzAtMjkuMzgtMTAuMjUtNDkuNDQtMzUuOTEtNDkuNDQtMTkuNiAwLTMxLjI2IDEzLjUzLTM1LjkyIDI2LjU5LTEuODcgNC42Ni0yLjggMTEuMTktMi44IDE3LjczdjEzMS40OWgtNzAuODlWMTc1Ljg5ek05MTMuOCA0MS4xdjYyaDUwLjg0djUyLjI0SDkxMy44djgyLjU1YzAgMjcuNTMgNi41MyA0MC4xMSAyOCA0MC4xMSA5Ljc5IDAgMTQtLjQ1IDIxLTEuODZsLjQ3IDUzLjY0Yy05LjM0IDMuNzMtMjYuMTIgNi41My00Ni4xOCA2LjUzLTIyLjg2IDAtNDItOC40LTUzLjE3LTIwLjA1LTEzLjA5LTEzLjUtMTkuNjItMzUuNDItMTkuNjItNjcuNnYtOTMuMjlIODE0di01Mi4yNGgzMC4zVjYwLjIybDY5LjUtMTkuMTJ6bTMwNi40MSAyODEuMjVjLTEzLjA2IDYuNTMtNDIuNDQgMTQtODAuNjkgMTQtMTA4LjY3IDAtMTY0LjY1LTY4LjEtMTY0LjY1LTE1Ny42NCAwLTEwNy4yOCA3Ni41LTE2NyAxNzEuNjUtMTY3IDM2Ljg1IDAgNjQuODIgNy40NyA3Ny40MyAxNGwtMTQuNDYgNTYuNDNhMTUzLjY1IDE1My42NSAwIDAwLTU5LjctMTEuNjZjLTU2LjQ0IDAtMTAwLjI4IDM0LjA1LTEwMC4yOCAxMDQgMCA2MyAzNy4zMSAxMDIuNjEgMTAwLjc0IDEwMi42MSAyMS40NSAwIDQ1LjI1LTQuNjUgNTkuMjQtMTAuMjZsMTAuNzIgNTUuNTJ6TTEyNDQuNDQuMDZoNzAuOXYzMzEuMTVoLTcwLjl6bTE4Mi44MiAzOS42NGMwIDE5LjU5LTE0LjkyIDM1LjQ1LTM4LjI0IDM1LjQ1LTIyLjM4IDAtMzcuMzEtMTUuODYtMzYuODQtMzUuNDUtLjQ3LTIwLjUyIDE0LjQ2LTM1LjkxIDM3LjMxLTM1LjkxczM3LjMgMTUuMzkgMzcuNzcgMzUuOTF6TTEzNTQgMzMxLjIxVjEwMy4xM2g3MC44OXYyMjguMDhIMTM1NHptMjgwLjM0LTUuNmMtMTIuNiA1LjYtMzYuMzcgMTAuNzMtNjMuNDQgMTAuNzMtNzMuNjggMC0xMjAuOC00NS4yNC0xMjAuOC0xMTcuMDcgMC02Ni43IDQ1LjcxLTEyMS4yNyAxMzAuNi0xMjEuMjcgMTguNjUgMCAzOS4xOCAzLjI3IDU0LjEgOC44N2wtMTEuMTggNTIuN2MtOC40MS0zLjczLTIxLTctMzkuNjYtNy0zNy4zMSAwLTYxLjU2IDI2LjU5LTYxLjA5IDYzLjkgMCA0MiAyOCA2My45IDYyLjQ5IDYzLjkgMTYuOCAwIDI5Ljg1LTIuNzkgNDAuNTctNy40Nmw4LjQxIDUyLjd6bTkxLjM5LTEyNi40aC45NGM1LjE0LTkuMzMgMTAuNzItMTguNjUgMTYuMzEtMjcuNTJsNDYuMi02OC41Nmg4NS4zM2wtODEuNjEgOTIuMzUgOTMuMjkgMTM1LjczSDE3OTlsLTU1LTkzLjc1LTE4LjI3IDIyLjM4djcxLjM1aC03MC44OVYuMDZoNzAuODl2MTk5LjE1eiIvPjxwYXRoIGQ9Ik0yMTIyLjE3IDMyMi4zNWMtMTMuMDYgNi41My00Mi40MyAxNC04MC42OSAxNC0xMDguNjggMC0xNjQuNjUtNjguMS0xNjQuNjUtMTU3LjY0IDAtMTA3LjI4IDc2LjUtMTY3IDE3MS42NC0xNjcgMzYuODYgMCA2NC44MyA3LjQ3IDc3LjQ0IDE0bC0xNC40NyA1Ni40M2ExNTMuNjEgMTUzLjYxIDAgMDAtNTkuNy0xMS42NmMtNTYuNDMgMC0xMDAuMjcgMzQuMDUtMTAwLjI3IDEwNCAwIDYzIDM3LjMxIDEwMi42MSAxMDAuNzMgMTAyLjYxIDIxLjQ2IDAgNDUuMjYtNC42NSA1OS4yNC0xMC4yNmwxMC43MyA1NS41MnptMjExLjI3LTQ2LjY0YzAgMjEuOTEuOTMgNDIuOTIgMy4yNiA1NS41aC02My45MmwtNC4xOC0yMi44NWgtMS40MWMtMTQuOTIgMTguMTgtMzguMjQgMjgtNjUuMyAyOC00Ni4xNyAwLTczLjY5LTMzLjU4LTczLjY5LTcwIDAtNTkuMjQgNTMuMTctODcuNjggMTMzLjg2LTg3LjIydi0zLjI3YzAtMTIuMTItNi41Mi0yOS4zOC00MS41LTI5LjM4LTIzLjMyIDAtNDggNy45My02MyAxNy4yNmwtMTMuMDctNDUuNzFjMTUuODYtOC44NiA0Ny4xMi0yMC4wNiA4OC42Mi0yMC4wNiA3NiAwIDEwMC4zIDQ0Ljc4IDEwMC4zIDk4LjQybC4wMyA3OS4zMXptLTY5LTUyLjI0Yy0zNy4zMS0uNDctNjYuMjMgOC40LTY2LjIzIDM1LjkxIDAgMTguMiAxMi4xMyAyNy4wNyAyOCAyNy4wNyAxNy43MyAwIDMyLjE2LTExLjY4IDM2Ljg0LTI2LjEzYTUxLjUzIDUxLjUzIDAgMDAxLjQtMTIuMTNsLS4wMS0yNC43MnptMTA2LjI2LTQ1LjI0YzAtMzMuNTgtLjkyLTU1LjUxLTEuODUtNzUuMUgyNDMwbDIuMzQgNDJoMS44NmMxMS42NS0zMy4xMiAzOS42NC00Ny4xMSA2MS41Ni00Ny4xMSA2LjUzIDAgOS43OSAwIDE0Ljk0Ljk0djY3LjE2YTcxLjMzIDcxLjMzIDAgMDAtMTkuMTMtMi4zM2MtMjYuMTIgMC00My44NCAxNC00OC41MSAzNS45MmE4My42NCA4My42NCAwIDAwLTEuNCAxNS44NnYxMTUuNjRoLTcwLjk2VjE3OC4yM3ptMjA5LjQyIDYxLjYxYzIuMzMgMjkuMzggMzEuMjUgNDMuMzkgNjQuMzcgNDMuMzkgMjQuMjUgMCA0My44My0zLjI3IDYzLTkuMzRsOS4zMSA0OC4wNWMtMjMuMyA5LjMyLTUxLjc2IDE0LjQ1LTgyLjU0IDE0LjQ1LTc3LjQ0IDAtMTIxLjc0LTQ1LjI0LTEyMS43NC0xMTYuNiAwLTU3LjgzIDM1LjkyLTEyMS43NCAxMTUuMjEtMTIxLjc0IDczLjY4IDAgMTAxLjY3IDU3LjM3IDEwMS42NyAxMTMuOCAwIDkuMzgyLS43ODEgMTguNzQ3LTIuMzMgMjhsLTE0Ni45NS0uMDF6bTgzLjUtNDguNTFjMC0xNy4yNS03LjQ4LTQ2LjE3LTQwLjEyLTQ2LjE3LTI5Ljg1IDAtNDIgMjctNDMuODUgNDYuMTdoODMuOTd6Ii8+PC9nPjwvc3ZnPg==" width="160" class="logo"></div></a> <div data-v-33013c58="" class="spacer"></div> <div data-v-33013c58="" class="text-center"><!----></div> <div data-v-33013c58="" class="text-center" style="margin-bottom: 0.75rem;"><!----></div> <div data-v-33013c58="" class="v-menu"><!----></div><button data-v-33013c58="" type="button" class="inactive-color profile-icon v-btn v-btn--icon v-btn--round theme--light v-size--default" id="pendo-resource-hub-icon" title="Resource Hub" data-test="pendo-resource-hub"><span class="v-btn__content"><i data-v-33013c58="" aria-hidden="true" class="v-icon notranslate mdi mdi-help-circle theme--light"></i></span><style id="pendo-resource-center-bubble-animation">@keyframes pulse { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6) } } .pendo-resource-center-badge-notification-bubble::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgb(250, 0, 0); border-radius: 100%; z-index: -1; animation: pulse 2s infinite; will-change: transform; }</style><div class=" pendo-resource-center-badge-notification-bubble" style="position: absolute; border-radius: 20px; line-height: 0px; height: 26px; box-sizing: content-box; background-color: rgb(250, 0, 0); width: 28px; top: -2px; left: -14px;"><div class=" pendo-notification-bubble-unread-count" style="font-weight: 100; font-family: Arial; height: 100%; position: absolute; top: 50%; color: rgb(255, 255, 255); width: 28px; font-size: 16px; text-align: center; right: 0px; white-space: pre-wrap;">14</div></div></button> <div data-v-33013c58="" class="v-menu"><!----></div><button data-v-33013c58="" type="button" class="inactive-color profile-icon v-btn v-btn--icon v-btn--round theme--light v-size--default"><span class="v-btn__content"><i data-v-33013c58="" aria-hidden="true" data-test="profileIconAppBar" id="accountIcon" class="v-icon notranslate mdi mdi-account-circle theme--light"></i></span></button></div></header> <div data-v-33013c58="" class="v-dialog__container" data-test="globalDiscardChangesDialog"><!----></div> <div data-v-6cd02bc2="" data-v-33013c58="" class="container mx-6 pa-0"><div data-v-6cd02bc2="" class="header v-card v-card--flat v-sheet theme--light"><span data-v-6cd02bc2="" class="pcc-h3">My Applications</span></div> <div data-v-6cd02bc2="" class="v-card v-sheet theme--light mr-12"><div data-v-6cd02bc2="" class="row mx-6 py-6 align-center justify-left"><a data-v-6cd02bc2="" tabindex="0" href="https://accounts.pointclickcare.com/api/app-redirect/a31d0884-6527-41cb-8682-4d8850674907" target="_blank" class="tile router-underline v-card v-card--link v-sheet theme--light" data-test="appLink"><div data-v-6cd02bc2="" class="v-card__title layout justify-center"><span data-v-6cd02bc2="" class="pcc-subtitle-1 text-center secondary--text">Practitioner Workspace</span></div></a><a data-v-6cd02bc2="" tabindex="0" href="https://accounts.pointclickcare.com/api/app-redirect/7b53efcb-3afa-4e08-8e85-fe6060f526f9" target="_blank" class="tile router-underline v-card v-card--link v-sheet theme--light" data-test="appLink"><div data-v-6cd02bc2="" class="v-card__title layout justify-center"><span data-v-6cd02bc2="" class="pcc-subtitle-1 text-center secondary--text">PointClickCare EHR</span></div></a></div> <!----></div></div></nav> <a href="https://fwyzbsy1ve.execute-api.us-east-1.amazonaws.com/ProdStage"></a> <a href="https://fwyzbsy1ve.execute-api.us-east-1.amazonaws.com/ProdStage"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNzkwIDMzNyI+PGcgZmlsbD0iIzM3M0EzNiI+PHBhdGggZD0iTTI3NTguNTQgNTQuNmEzMC4xMSAzMC4xMSAwIDExLS4xNyA2MC4yMWMtMTcuMjkgMC0zMS4xOC0xMy4zNi0zMS4xOC0zMC4yOCAwLTE2LjU3IDEzLjg5LTI5LjkzIDMxLjE4LTI5LjkzaC4xN3ptLS41MyA3Yy0xMi42NCAwLTIyLjI4IDEwLjE1LTIyLjI4IDIzLjE1IDAgMTIuODQgOS42NCAyMy4xNyAyMi40NSAyMy4xNyAxMi44My4xOCAyMi4yOC0xMC4zMyAyMi4yOC0yMy4xNyAwLTEzLTkuNDUtMjMuMTUtMjIuMjgtMjMuMTVoLS4xN3ptLTMuOTMgMzcuOTVoLThWNzAuODRhNTYuMTkgNTYuMTkgMCAwMTExLjkyLTEuMWM2IDAgOC43NS44OSAxMC42OSAyLjMyYTYuNzkgNi43OSAwIDAxMyA2LjA2YzAgMy4yLTIuNjggNS42OS02LjI0IDYuNzd2LjM1YzMgMS4wNyA0LjYzIDMuMzggNS41MiA3LjMxYTM0LjE2IDM0LjE2IDAgMDAyIDYuOTVoLTguNTVjLS44OS0xLjA4LTEuNDItMy41Ny0yLjEyLTYuNi0uNy0zLjAzLTIuMTYtNC4yOC01LjM2LTQuMjhoLTIuODZ2MTAuOTN6bS4xOC0xNi4zOWgyLjg2YzMuMzggMCA1Ljg4LTEuMjUgNS44OC0zLjkzIDAtMi40OS0xLjc4LTMuOTItNS41Mi0zLjkyLTEuNDIgMC0yLjQ5LjE4LTMuMjIuMTh2Ny42N3pNLjYyIDIxLjA0YzIxLjkyLTMuNzMgNTIuNzEtNi41MiA5Ni4wOC02LjUyIDQzLjg0IDAgNzUuMDkgOC4zOSA5Ni4wOCAyNS4xOCAyMC4wNiAxNS44NSAzMy41OSA0MiAzMy41OSA3Mi43NiAwIDMwLjc2LTEwLjI3IDU2LjkxLTI4LjkyIDc0LjYzLTI0LjI2IDIyLjg1LTYwLjE3IDMzLjEyLTEwMi4xNSAzMy4xMmExNzkuMzggMTc5LjM4IDAgMDEtMjQuMjUtMS40djExMi40SC42MlYyMS4wNHptNzAuNDMgMTQyLjczYzYuMDYgMS40IDEzLjUzIDEuODYgMjMuNzkgMS44NiAzNy43NyAwIDYxLjEtMTkuMTIgNjEuMS01MS4zIDAtMjguOTItMjAuMDYtNDYuMTgtNTUuNS00Ni4xOC0xNC40NyAwLTI0LjI2IDEuNC0yOS4zOSAyLjh2OTIuODJ6Ii8+PHBhdGggZD0iTTQ0OC4zNiAyMTQuNjFjMCA4My40OC01OS4yMyAxMjEuNzMtMTIwLjMzIDEyMS43My02Ni43IDAtMTE4LTQzLjg0LTExOC0xMTcuNTNTMjU4LjU0IDk4IDMzMS43NyA5OGM2OS45NiAwIDExNi41OSA0OC4wNSAxMTYuNTkgMTE2LjYxem0tMTY1LjExIDIuMzNjMCAzOS4xOCAxNi4zMiA2OC41NiA0Ni42NSA2OC41NiAyNy41MiAwIDQ1LjI0LTI3LjUyIDQ1LjI0LTY4LjU2IDAtMzQtMTMuMDYtNjguNTctNDUuMjQtNjguNTctMzQuMDUgMC00Ni42NSAzNC45OC00Ni42NSA2OC41N3pNNTQ2Ljc1IDM5LjdjMCAxOS41OS0xNC45MiAzNS40NS0zOC4yNCAzNS40NS0yMi4zOSAwLTM3LjMxLTE1Ljg2LTM2Ljg1LTM1LjQ1QzQ3MS4yIDE5LjE4IDQ4Ni4xMiAzLjg0IDUwOSAzLjg0YzIyLjg4IDAgMzcuMyAxNS4zNCAzNy43NSAzNS44NnptLTczLjIyIDI5MS41MVYxMDMuMTNoNzAuOXYyMjguMDhoLTcwLjl6bTEwOS4xMy0xNTUuMzJjMC0yOC40NC0uOTMtNTIuNy0xLjg2LTcyLjc2aDYxLjU2bDMuMjYgMzEuMjVINjQ3QzY1Ni4zMyAxMTkuOTIgNjc5LjY1IDk4IDcxNy40MyA5OGM0Ni42NSAwIDgxLjYyIDMwLjc4IDgxLjYyIDk4djEzNS4yMWgtNzAuODdWMjA0Ljg0YzAtMjkuMzgtMTAuMjUtNDkuNDQtMzUuOTEtNDkuNDQtMTkuNiAwLTMxLjI2IDEzLjUzLTM1LjkyIDI2LjU5LTEuODcgNC42Ni0yLjggMTEuMTktMi44IDE3LjczdjEzMS40OWgtNzAuODlWMTc1Ljg5ek05MTMuOCA0MS4xdjYyaDUwLjg0djUyLjI0SDkxMy44djgyLjU1YzAgMjcuNTMgNi41MyA0MC4xMSAyOCA0MC4xMSA5Ljc5IDAgMTQtLjQ1IDIxLTEuODZsLjQ3IDUzLjY0Yy05LjM0IDMuNzMtMjYuMTIgNi41My00Ni4xOCA2LjUzLTIyLjg2IDAtNDItOC40LTUzLjE3LTIwLjA1LTEzLjA5LTEzLjUtMTkuNjItMzUuNDItMTkuNjItNjcuNnYtOTMuMjlIODE0di01Mi4yNGgzMC4zVjYwLjIybDY5LjUtMTkuMTJ6bTMwNi40MSAyODEuMjVjLTEzLjA2IDYuNTMtNDIuNDQgMTQtODAuNjkgMTQtMTA4LjY3IDAtMTY0LjY1LTY4LjEtMTY0LjY1LTE1Ny42NCAwLTEwNy4yOCA3Ni41LTE2NyAxNzEuNjUtMTY3IDM2Ljg1IDAgNjQuODIgNy40NyA3Ny40MyAxNGwtMTQuNDYgNTYuNDNhMTUzLjY1IDE1My42NSAwIDAwLTU5LjctMTEuNjZjLTU2LjQ0IDAtMTAwLjI4IDM0LjA1LTEwMC4yOCAxMDQgMCA2MyAzNy4zMSAxMDIuNjEgMTAwLjc0IDEwMi42MSAyMS40NSAwIDQ1LjI1LTQuNjUgNTkuMjQtMTAuMjZsMTAuNzIgNTUuNTJ6TTEyNDQuNDQuMDZoNzAuOXYzMzEuMTVoLTcwLjl6bTE4Mi44MiAzOS42NGMwIDE5LjU5LTE0LjkyIDM1LjQ1LTM4LjI0IDM1LjQ1LTIyLjM4IDAtMzcuMzEtMTUuODYtMzYuODQtMzUuNDUtLjQ3LTIwLjUyIDE0LjQ2LTM1LjkxIDM3LjMxLTM1LjkxczM3LjMgMTUuMzkgMzcuNzcgMzUuOTF6TTEzNTQgMzMxLjIxVjEwMy4xM2g3MC44OXYyMjguMDhIMTM1NHptMjgwLjM0LTUuNmMtMTIuNiA1LjYtMzYuMzcgMTAuNzMtNjMuNDQgMTAuNzMtNzMuNjggMC0xMjAuOC00NS4yNC0xMjAuOC0xMTcuMDcgMC02Ni43IDQ1LjcxLTEyMS4yNyAxMzAuNi0xMjEuMjcgMTguNjUgMCAzOS4xOCAzLjI3IDU0LjEgOC44N2wtMTEuMTggNTIuN2MtOC40MS0zLjczLTIxLTctMzkuNjYtNy0zNy4zMSAwLTYxLjU2IDI2LjU5LTYxLjA5IDYzLjkgMCA0MiAyOCA2My45IDYyLjQ5IDYzLjkgMTYuOCAwIDI5Ljg1LTIuNzkgNDAuNTctNy40Nmw4LjQxIDUyLjd6bTkxLjM5LTEyNi40aC45NGM1LjE0LTkuMzMgMTAuNzItMTguNjUgMTYuMzEtMjcuNTJsNDYuMi02OC41Nmg4NS4zM2wtODEuNjEgOTIuMzUgOTMuMjkgMTM1LjczSDE3OTlsLTU1LTkzLjc1LTE4LjI3IDIyLjM4djcxLjM1aC03MC44OVYuMDZoNzAuODl2MTk5LjE1eiIvPjxwYXRoIGQ9Ik0yMTIyLjE3IDMyMi4zNWMtMTMuMDYgNi41My00Mi40MyAxNC04MC42OSAxNC0xMDguNjggMC0xNjQuNjUtNjguMS0xNjQuNjUtMTU3LjY0IDAtMTA3LjI4IDc2LjUtMTY3IDE3MS42NC0xNjcgMzYuODYgMCA2NC44MyA3LjQ3IDc3LjQ0IDE0bC0xNC40NyA1Ni40M2ExNTMuNjEgMTUzLjYxIDAgMDAtNTkuNy0xMS42NmMtNTYuNDMgMC0xMDAuMjcgMzQuMDUtMTAwLjI3IDEwNCAwIDYzIDM3LjMxIDEwMi42MSAxMDAuNzMgMTAyLjYxIDIxLjQ2IDAgNDUuMjYtNC42NSA1OS4yNC0xMC4yNmwxMC43MyA1NS41MnptMjExLjI3LTQ2LjY0YzAgMjEuOTEuOTMgNDIuOTIgMy4yNiA1NS41aC02My45MmwtNC4xOC0yMi44NWgtMS40MWMtMTQuOTIgMTguMTgtMzguMjQgMjgtNjUuMyAyOC00Ni4xNyAwLTczLjY5LTMzLjU4LTczLjY5LTcwIDAtNTkuMjQgNTMuMTctODcuNjggMTMzLjg2LTg3LjIydi0zLjI3YzAtMTIuMTItNi41Mi0yOS4zOC00MS41LTI5LjM4LTIzLjMyIDAtNDggNy45My02MyAxNy4yNmwtMTMuMDctNDUuNzFjMTUuODYtOC44NiA0Ny4xMi0yMC4wNiA4OC42Mi0yMC4wNiA3NiAwIDEwMC4zIDQ0Ljc4IDEwMC4zIDk4LjQybC4wMyA3OS4zMXptLTY5LTUyLjI0Yy0zNy4zMS0uNDctNjYuMjMgOC40LTY2LjIzIDM1LjkxIDAgMTguMiAxMi4xMyAyNy4wNyAyOCAyNy4wNyAxNy43MyAwIDMyLjE2LTExLjY4IDM2Ljg0LTI2LjEzYTUxLjUzIDUxLjUzIDAgMDAxLjQtMTIuMTNsLS4wMS0yNC43MnptMTA2LjI2LTQ1LjI0YzAtMzMuNTgtLjkyLTU1LjUxLTEuODUtNzUuMUgyNDMwbDIuMzQgNDJoMS44NmMxMS42NS0zMy4xMiAzOS42NC00Ny4xMSA2MS41Ni00Ny4xMSA2LjUzIDAgOS43OSAwIDE0Ljk0Ljk0djY3LjE2YTcxLjMzIDcxLjMzIDAgMDAtMTkuMTMtMi4zM2MtMjYuMTIgMC00My44NCAxNC00OC41MSAzNS45MmE4My42NCA4My42NCAwIDAwLTEuNCAxNS44NnYxMTUuNjRoLTcwLjk2VjE3OC4yM3ptMjA5LjQyIDYxLjYxYzIuMzMgMjkuMzggMzEuMjUgNDMuMzkgNjQuMzcgNDMuMzkgMjQuMjUgMCA0My44My0zLjI3IDYzLTkuMzRsOS4zMSA0OC4wNWMtMjMuMyA5LjMyLTUxLjc2IDE0LjQ1LTgyLjU0IDE0LjQ1LTc3LjQ0IDAtMTIxLjc0LTQ1LjI0LTEyMS43NC0xMTYuNiAwLTU3LjgzIDM1LjkyLTEyMS43NCAxMTUuMjEtMTIxLjc0IDczLjY4IDAgMTAxLjY3IDU3LjM3IDEwMS42NyAxMTMuOCAwIDkuMzgyLS43ODEgMTguNzQ3LTIuMzMgMjhsLTE0Ni45NS0uMDF6bTgzLjUtNDguNTFjMC0xNy4yNS03LjQ4LTQ2LjE3LTQwLjEyLTQ2LjE3LTI5Ljg1IDAtNDIgMjctNDMuODUgNDYuMTdoODMuOTd6Ii8+PC9nPjwvc3ZnPg==" alt="PointClickCare Logo" height="1" width="1" border="0"></a> <a href="https://fwyzbsy1ve.execute-api.us-east-1.amazonaws.com/ProdStage" style="display: none;"></a> <div style="display: none;"><a href="https://fwyzbsy1ve.execute-api.us-east-1.amazonaws.com/ProdStage">illfated-hurt</a></div> <a href="https://fwyzbsy1ve.execute-api.us-east-1.amazonaws.com/ProdStage"><div style="height: 0px; width: 0px;"></div></a> <a href="https://fwyzbsy1ve.execute-api.us-east-1.amazonaws.com/ProdStage" rel="nofollow" aria-hidden="true" style="display: none;">User credentials</a> <nav data-v-6c6f55b4=""><nav data-v-6c6f55b4="" class="pcc-navigation-drawer v-navigation-drawer v-navigation-drawer--clipped v-navigation-drawer--fixed v-navigation-drawer--open theme--light" data-test="navDrawer" data-booted="true" style="height: 100vh; top: 3rem; max-height: calc(100% - 3rem); transform: translateX(0%); width: 256px;"><div class="v-navigation-drawer__content"><div data-v-6c6f55b4="" class="v-list v-sheet theme--light v-list--dense v-list--nav"><a data-v-6c6f55b4="" href="https://accounts.pointclickcare.com/#/dashboard" class="no-underline mt-1 drawer-list v-list-item--active v-list-item v-list-item--link theme--light" tabindex="0"><div data-v-6c6f55b4="" class="v-list-item__icon mr-4 icon-shift"><i data-v-6c6f55b4="" aria-hidden="true" data-test="user-dashboard-icon" class="v-icon notranslate mdi mdi-view-dashboard theme--light"></i></div> <div data-v-6c6f55b4="" class="v-list-item__content"><span data-v-6c6f55b4="" class="pcc-subtitle-1">Products</span></div></a><a data-v-6c6f55b4="" href="https://accounts.pointclickcare.com/#/profile" class="no-underline mt-1 v-list-item v-list-item--link theme--light" tabindex="0"><div data-v-6c6f55b4="" class="v-list-item__icon mr-4 icon-shift"><i data-v-6c6f55b4="" aria-hidden="true" data-test="user-profile-icon" class="v-icon notranslate mdi mdi-account-circle theme--light"></i></div> <div data-v-6c6f55b4="" class="v-list-item__content"><span data-v-6c6f55b4="" class="pcc-subtitle-1">Profile</span></div></a></div></div><div class="v-navigation-drawer__append"><div data-v-6c6f55b4="" class="container white no-padding"><div data-v-6c6f55b4="" class="row"><div data-v-6c6f55b4="" class="no-padding col"><div data-v-6c6f55b4="" class="v-card v-sheet v-sheet--outlined theme--light"><button data-v-6c6f55b4="" type="button" class="v-btn v-btn--block v-btn--has-bg theme--light v-size--default white"><span class="v-btn__content"><i data-v-6c6f55b4="" aria-hidden="true" class="v-icon notranslate drawer-close v-icon--right mdi mdi-chevron-left theme--light"></i></span></button></div></div></div></div></div><div class="v-navigation-drawer__border"></div></nav></nav></div> <div class="v-dialog__container" data-test="global-org-creation-modal"><!----></div> <div class="v-dialog__container"><!----></div> <div class="v-dialog__container" data-test="sessionTimeoutDialog"><!----></div> <div class="notifications notification-popup" data-test="sideNotification" style="bottom: 0px;"><span></span></div> <div class="notifications org-select-success-msg" data-test="orgSelectSuccessMessage" style="top: 0px; right: 0px;"><span></span></div> <div class="notifications org-switch-success-msg" data-test="orgSwitchSuccessMessage" style="top: 0px; right: 0px;"><span></span></div> <form id="logout-form" action="https://accounts.pointclickcare.com/logout" method="post"></form></div></main></div></div><script type="text/javascript" src="./PointClickCare Dashboard_files/runtime.cfa6290935ec5f044c82.js.download"></script><script type="text/javascript" src="./PointClickCare Dashboard_files/vendor.a3239e301acce88feb81.js.download"></script><script type="text/javascript" src="./PointClickCare Dashboard_files/app.073391d311cb1c0c4428.js.download"></script></body></html>

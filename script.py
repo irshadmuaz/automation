@@ -154,52 +154,80 @@ class Automation:
         time.sleep(2)
     
     def parse_meds(self, med):
-        lst = eval(med)
-        format = []
-        for r in lst:
-            format.append(' '.join(r[:len(r)-3]))
-        return '\n'.join(format)
+        try:
+            lst = eval(med)
+            format = []
+            for r in lst:
+                format.append(' '.join(r[:len(r)-3]))
+            return '\n'.join(format)
+        except:
+            return 'error'
 
     def parse_vitals(self, vit):
-        lst = eval(vit)
-        format = []
-        for r in lst:
-            format.append(' '.join(r[:len(r)-2]))
-        return '\n'.join(format)
+        try:
+            lst = eval(vit)
+            format = []
+            for r in lst:
+                format.append(' '.join(r[:len(r)-2]))
+            return '\n'.join(format)
+        except:
+            return 'error'
+    
+    def set_vitals_box(self,xpath, text):
+        print('looking for iframe')
+        iframe = self.find(xpath)
+        print('found iframe ', iframe)
+        self.driver.switch_to.frame(iframe)
+        body = self.find('//body')
+        print('found iframe body', body.text)
+        body.clear()
+        body.send_keys(text)
+        print('sent keys')
+        self.driver.switch_to.default_content()
 
     def populate_records(self, store):
-        
-        elements = self.driver.find_elements(By.XPATH, "//span[starts-with(@id, 'officeVisitsLink')]")
-        dictionary = {}
-        for element in elements:
-            dictionary[element.text]=element
-        print(dictionary.keys())
         for row in store:
+            
             name = row['name']
             parts = name.split(' ')
             parts.pop()
             name = ' '.join(parts)
             appt_type = row['appointment_type']
+            paste_status = row['paste_status']
+            print(name, paste_status)
+            if appt_type.lower() != 'f' or paste_status == 'done' or paste_status == 'error':
+                print('skipping')
+                continue
+            # go back
+            self.click('//i[@id="styleSJellyBean"]')
+            elements = self.driver.find_elements(By.XPATH, "//span[starts-with(@id, 'officeVisitsLink')]")
+            dictionary = {}
+            for element in elements:
+                dictionary[element.text]=element
             for key in dictionary.keys():
                 try:
-                    if key.lower().startswith(name.lower()) and appt_type.lower() == 'f':
+                    if key.lower().startswith(name.lower()):
                         print('found name', key)
+                        self.driver.execute_script("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", dictionary[key])
+                        print('scrolled into view')
                         dictionary[key].click()
-                        self.click('//b[@onclick="pnSectionClicked(\'Medical History:\', event)"]')
-                        textbox = self.find('//input[@placeholder="Write text and Press Enter"]')
-                        medications = self.parse_meds(row['medication'])
-                        vitals = self.parse_vitals(row['vitals'])
+                        self.click('//b[@onclick="pnSectionClicked(\'Vitals:\', event)"]')
 
-                        textbox.send_keys(medications + Keys.ENTER)
-                        textbox.send_keys(vitals + Keys.ENTER)
+                        vitals = self.parse_vitals(row['vitals'])
+                        self.set_vitals_box('//iframe[@class="wysihtml5-sandbox managed-iframe hk-iframe"]', vitals)
                         # close modal
                         self.click('//button[@id="pnModalBtn1"]')
                         # go back
                         self.click('//i[@id="styleSJellyBean"]')
-                        row['paste_status'] = 'pasted'
+                        time.sleep(2)
+                        row['paste_status'] = 'done'
+                        break
                 except Exception as e:
                     print('something went wrong', e)
                     row['paste_status'] ='error'
+                    break
+            
+
     
         
 
@@ -273,12 +301,16 @@ def populate_records():
     try:
         automation.populate_records(store)
     except Exception as e:
+        print('something went wrong')
+    finally:
         write(store)
                 
-        
+
+
     
     
 
 #create_appointment()
 populate_records()
+#find_box()
 time.sleep(30)
