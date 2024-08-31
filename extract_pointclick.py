@@ -34,32 +34,37 @@ def copy_vitals(automation, name, id):
 
     # variable
     element = automation.find('//input[@id="searchField"]')
+    print('found search field')
+    element.send_keys(name + Keys.ENTER)
     time.sleep(1)
     query = "//a[contains(text(), '{0}')]".format(id)
     automation.tryClick(query, 1)
-    element.send_keys(name + Keys.ENTER)
+
     time.sleep(1)
     print('starting extraction')
     
-    vitals = extract_vitals('MostRecentVitals')
-    medication = extract_vitals('Medications')
+    vitals = extract_vitals(automation, 'MostRecentVitals')
+    medication = extract_vitals(automation,'Medications')
 
     return [vitals, medication]
 
 def copy_all_vitals(automation):
     store = read()
+    print('here')
     for row in store:
         try:
             [first,last] = row['name'].split(',')
             appt_type = row['appointment_type'].lower()
-            if appt_type != 'f' or (row.has('vitals') and row.has('medication')):
+            if appt_type != 'f':
                 print('skipping', first,last)
                 continue
-            [vitals, medication] = copy_vitals(first.strip(), row['name'])
+            print('working on ', first)
+            [vitals, medication] = copy_vitals(automation, first.strip(), row['name'])
             row['vitals'] = vitals
             row['medication'] = medication
-        except:
-            print('something went wrong copying vitals')
+        except Exception as e:
+            print('something went wrong copying vitals', e)
             automation.driver.refresh()
-    
+            time.sleep(5)
+    print('Finished copying all vitals from pointclick')
     write(store)

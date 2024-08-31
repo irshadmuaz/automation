@@ -20,7 +20,7 @@ class Automation:
         self.driver = webdriver.Chrome(service=self.service, options=chrome_options)
         self.hour = 1
     
-    def click(self,xpath, wait=1000):
+    def click(self,xpath, wait=100):
         elements = WebDriverWait(self.driver, wait).until(lambda x:x.find_elements(By.XPATH, xpath))
         for element in elements:
             try:
@@ -61,7 +61,7 @@ class Automation:
             return
     
     def start_thread(self):
-        monitor_thread = threading.Thread(target=automation.handle_popup_thread)
+        monitor_thread = threading.Thread(target=self.handle_popup_thread)
         monitor_thread.daemon = True
         monitor_thread.start()
     
@@ -73,5 +73,7 @@ class Automation:
     
     def switch_to_frame(self, xpath):
         iframe = self.find(xpath)
+        print('found iframe', iframe)
         self.driver.switch_to.frame(iframe)
+        print('switched to iframe')
     
