@@ -13,4 +13,7 @@ def parse_records(med, take, header=None):
         return 'error'
 
 def parse_name(name):
-    return ' '.join(name.split(' ')[:-1])
+    splits = name.split(' ')
+    if len(splits) > 2:
+        splits.pop()
+    return ' '.join(splits)

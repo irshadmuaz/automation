@@ -3,6 +3,7 @@ from create_appointment import create_all_appointments, createAppointment, follo
 from populate_appointment import fill_all_appointments, fill_appointment, set_iframe_box
 from extract_pointclick import copy_all_vitals, copy_vitals, extract_vitals
 import sys
+from datetime import datetime, timedelta
 
 def execute():
     automation = Automation()
@@ -21,6 +22,10 @@ def execute():
     elif (command == 'fill'):
         automation.start_thread()
         fill_all_appointments(automation)
+    elif (command == 'test'):
+        date = '09/20/2024'
+        formatted = datetime.strptime(date, "%m/%d/%Y").strftime("%m/%d/%Y")
+        followAppointment(automation, formatted, 'reason', 'roseville care')
 
 
 execute()

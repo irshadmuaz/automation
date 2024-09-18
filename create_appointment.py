@@ -13,14 +13,19 @@ from filereader import read, write
 from automation import Automation
 from parsers import parse_name, parse_records
 # private helper 
-def followAppointment(automation, date, reason):
+def followAppointment(automation, date, reason, location):
     #click autocomplete follow up
     automation.click('//input[@id="visit-type-lookupIpt1"]')
 
     # select follow up
     automation.click('//a[@id="visit-type-lookupLink1ngR12"]')
     #set date
-    
+    print('attempting to set location')
+    location_box = automation.find('//input[@placeholder="Facility"]')
+    location_box.clear()
+    location_box.send_keys(location)
+    automation.click('//span[@ng-bind="facility.Name"]')
+
     print('attempting to set date')
     datebox = automation.find('//input[@id="Appt_startDate"]')
     print('found date box')
@@ -48,7 +53,7 @@ def followAppointment(automation, date, reason):
     time.sleep(1)
 
 # main function to create appointment
-def createAppointment(automation, name, date, reason):
+def createAppointment(automation, name, date, reason, location):
     automation.click('//a[@id="jellybean-panelLink65"]')
     #variable
     time.sleep(1)
@@ -67,7 +72,7 @@ def createAppointment(automation, name, date, reason):
     time.sleep(2)
     automation.tryClick('//button[@id="billingAlertBtn6"]')
 
-    followAppointment(automation, date, reason)
+    followAppointment(automation, date, reason, location)
 
     # click ok
     automation.click('//button[@id="newAppointmentBtn51"]')
@@ -92,11 +97,12 @@ def create_all_appointments(automation):
             date = datetime.strptime(row['appt_date'], "%m/%d/%Y").strftime("%m/%d/%Y")
             reason = row['reason']
             status = row['appt_status']
+            location = row['location']
             if appt_type != 'f' or status in ('created', 'error'):
                 print('skipping appointment for', name)
                 continue
 
-            createAppointment(automation, name, date, reason)
+            createAppointment(automation, name, date, reason,location)
             row['appt_status'] = 'created'
         except Exception as e:
             print('something went wrong creating appointment for', name, e)
