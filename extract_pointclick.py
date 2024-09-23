@@ -55,7 +55,8 @@ def copy_all_vitals(automation):
         try:
             [first,last] = row['name'].split(',')
             appt_type = row['appointment_type'].lower()
-            if appt_type != 'f':
+            # Do not retry if it already has vitals and medications
+            if appt_type != 'f' or (row['vitals'] and row['medication']):
                 print('skipping', first,last)
                 continue
             print('working on ', first)

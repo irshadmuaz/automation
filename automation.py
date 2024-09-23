@@ -46,6 +46,8 @@ class Automation:
             print('second thread working')
             time.sleep(1)
             
+    def findOf(self, element, xpath, wait=100):
+        return WebDriverWait(element, wait).until(lambda x:x.find_element(By.XPATH, xpath))
     
     def find(self, xpath, wait=100):
         return WebDriverWait(self.driver, wait).until(lambda x:x.find_element(By.XPATH, xpath))

@@ -1,6 +1,8 @@
 import time
 from filereader import read, write
 from parsers import parse_name, parse_records
+from selenium.webdriver.common.by import By
+import re
 
 # finds the iframe and sends text to it
 def set_iframe_box(automation, text):
@@ -67,3 +69,67 @@ def fill_all_appointments(automation):
     print('Filled all appointments')
     write(store)
 
+def copy_encounters(automation):
+    # click encounter
+    automation.click('//a[@id="topPanelLink22"]')
+    table = automation.find('//*[@id="Encounter-lookupTbl2"]/tbody')
+    time.sleep(2)
+    rows = table.find_elements(By.XPATH, './tr')
+
+    for row in rows:
+        date = row.find_element(By.XPATH, './td[@ng-bind="enc.date"]')
+        try:
+            locked = row.find_element(By.XPATH, './td/i[@class="icon icon-lock"]')
+            name = row.find_element(By.XPATH, './td[@ng-bind="enc.doctorname" and @title="Khan, Abdulhalim"]')
+            # ATTENTION: use followup as criteria
+            followup = row.find_element(By.XPATH, './td/span[@title="F/U : Follow Up Visit"]')
+            followup.click()
+            break
+        except:
+            continue
+
+    #copy details
+    chiefComplaint = automation.find('//*[@id="encounterPreviewContent"]/table[1]/tbody/tr[1]/td/table[5]/tbody/tr[1]/td[2]/div')
+    cctext = chiefComplaint.text
+    ccfixed = cctext.split('ROS:')[0].strip()
+    assessment = automation.find('//*[@id="encounterPreviewContent"]/table[1]/tbody/tr[1]/td/table[10]/tbody/tr[3]/td[2]')
+    asstext = assessment.text
+    print(assessment.text)
+    #close modal
+    automation.click('//*[@id="encounterPreviewApp"]/div/div/div[1]/button')
+    time.sleep(1)
+    # close encounters
+    automation.click('//button[@id="Encounter-lookupBtn1"]')
+    time.sleep(2)
+    # go to hpi
+    automation.click('//a[@ng-click="loadProgressNotePopup(\'HPI:\');"]')
+    set_iframe_box(automation, ccfixed)
+    automation.click('//button[@id="pnModalBtn1"]')
+    time.sleep(2)
+
+    codes = re.findall(r'-\s*([A-Z]\d+\.\d+)', asstext)
+    if 'I10' in asstext:
+        codes.append('I10')
+    print('codes', codes)
+    for code in codes:
+        add_assessment(automation, code)
+        time.sleep(3)
+    print('completed pasting hpi and assessment')
+
+def add_assessment(automation, code):
+    
+    table = automation.find('//table[@id="overview_rpTbl12"]')
+    rows = table.find_elements(By.XPATH, './tbody/tr[1]')
+    for row in rows:
+        try:
+            #//*[@id="prolist294075"]/td[4]/div
+            #//*[@id="prolist295343"]/td[4]/div
+            el = row.find_element(By.XPATH, f'./td/div[@title="{code}"]')
+            addbtn = automation.findOf(row,'./td/button[@title="Add problem list to notes"]')
+            addbtn.click()
+            print('found', code)
+            break
+        except:
+            #print('not found', code)
+            continue
+    
