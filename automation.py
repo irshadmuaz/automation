@@ -43,7 +43,7 @@ class Automation:
             # try dismiss popup
             self.tryClick('//button[@data-bb-handler="confirm"]',1)
             self.tryClick('//button[@data-bb-handler="No"]',1)
-            print('second thread working')
+
             time.sleep(1)
             
     def findOf(self, element, xpath, wait=100):

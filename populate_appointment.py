@@ -28,7 +28,7 @@ def fill_appointment(automation, name, vitals, medication):
             automation.scroll_to(element)
             element.click()
             
-            if vitals:
+            if vitals not in ['','error']:
                 # click vitals
                 automation.click('//b[@onclick="pnSectionClicked(\'Vitals:\', event)"]')
                 set_iframe_box(automation, vitals)
@@ -36,7 +36,7 @@ def fill_appointment(automation, name, vitals, medication):
                 automation.click('//button[@id="pnModalBtn1"]')
                 time.sleep(1)
             
-            if medication:
+            if medication not in ['', 'error']:
                 automation.click('//b[@onclick="pnSectionClicked(\'ROS:\', event)"]')
                 set_iframe_box(automation, medication)
                 automation.click('//button[@id="pnModalBtn1"]')
@@ -68,7 +68,7 @@ def fill_all_appointments(automation):
             print('some thing went wrong', e)
             row['paste_status']='error'
             automation.driver.refresh()
-            time.sleep(5)
+            time.sleep(10)
         finally:
             # go back to appointment list
             automation.click('//i[@id="styleSJellyBean"]')
@@ -89,17 +89,16 @@ def copy_encounters(automation):
             locked = row.find_element(By.XPATH, './td/i[@class="icon icon-lock"]')
             name = row.find_element(By.XPATH, './td[@ng-bind="enc.doctorname" and @title="Khan, Abdulhalim"]')
             # ATTENTION: use followup as criteria
-            try:
-                followup = row.find_element(By.XPATH, './td/span[@title="F/U : Follow Up Visit"]')
-                followup.click()
-            except:
-                pass
-            try:
-                #title="NP : New Patient"
-                followup = row.find_element(By.XPATH, './td/span[@title="NP : New Patient"]')
-                followup.click()
-            except:
-                pass
+            
+            followup = row.find_element(By.XPATH, './td/span[@title="F/U : Follow Up Visit"]')
+            followup.click()
+           
+            # try:
+            #     #title="NP : New Patient"
+            #     followup = row.find_element(By.XPATH, './td/span[@title="NP : New Patient"]')
+            #     followup.click()
+            # except:
+            #     pass
             break
         except:
             continue
@@ -128,7 +127,7 @@ def copy_encounters(automation):
     # go to hpi
     automation.click('//a[@ng-click="loadProgressNotePopup(\'HPI:\');"]')
     time.sleep(1)
-    automation.click('//[@id="pnPanelLink2"]/span/span[@title="Constitutional"]')
+    automation.click('//a/span/span[@title="Constitutional"]')
     time.sleep(1)
     set_iframe_box(automation, ccfixed)
     automation.click('//button[@id="pnModalBtn1"]')
