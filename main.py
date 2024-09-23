@@ -22,6 +22,15 @@ def execute():
     elif (command == 'fill'):
         automation.start_thread()
         fill_all_appointments(automation)
+    elif (command == 'appointment+fill'):
+        automation.start_thread()
+        create_all_appointments(automation)
+        time.sleep(1)
+        automation.driver.refresh()
+        time.sleep(1)
+        fill_all_appointments(automation)
+
+        
     elif (command == 'test'):
         # date = '09/20/2024'
         # formatted = datetime.strptime(date, "%m/%d/%Y").strftime("%m/%d/%Y")

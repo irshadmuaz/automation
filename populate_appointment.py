@@ -15,7 +15,7 @@ def set_iframe_box(automation, text):
     print('pasted vitals')
     automation.driver.switch_to.default_content()
 
-# patient name, vitals and medication when on patients list page
+# patient name, vitals and medication and copy hpi when on patients list page
 def fill_appointment(automation, name, vitals, medication):
     elements = automation.find_all("//span[starts-with(@id, 'officeVisitsLink')]")
     dictionary = {}
@@ -28,16 +28,23 @@ def fill_appointment(automation, name, vitals, medication):
             automation.scroll_to(element)
             element.click()
             
-            # click vitals
-            automation.click('//b[@onclick="pnSectionClicked(\'Vitals:\', event)"]')
-            set_iframe_box(automation, vitals)
-            # close modal
-            automation.click('//button[@id="pnModalBtn1"]')
-            time.sleep(1)
+            if vitals:
+                # click vitals
+                automation.click('//b[@onclick="pnSectionClicked(\'Vitals:\', event)"]')
+                set_iframe_box(automation, vitals)
+                # close modal
+                automation.click('//button[@id="pnModalBtn1"]')
+                time.sleep(1)
             
-            automation.click('//b[@onclick="pnSectionClicked(\'ROS:\', event)"]')
-            set_iframe_box(automation, medication)
-            automation.click('//button[@id="pnModalBtn1"]')
+            if medication:
+                automation.click('//b[@onclick="pnSectionClicked(\'ROS:\', event)"]')
+                set_iframe_box(automation, medication)
+                automation.click('//button[@id="pnModalBtn1"]')
+                time.sleep(1)
+            
+            # copy encounters
+            copy_encounters(automation)
+            time.sleep(1)
             # go back
             automation.click('//i[@id="styleSJellyBean"]')
             time.sleep(2)
@@ -82,8 +89,17 @@ def copy_encounters(automation):
             locked = row.find_element(By.XPATH, './td/i[@class="icon icon-lock"]')
             name = row.find_element(By.XPATH, './td[@ng-bind="enc.doctorname" and @title="Khan, Abdulhalim"]')
             # ATTENTION: use followup as criteria
-            followup = row.find_element(By.XPATH, './td/span[@title="F/U : Follow Up Visit"]')
-            followup.click()
+            try:
+                followup = row.find_element(By.XPATH, './td/span[@title="F/U : Follow Up Visit"]')
+                followup.click()
+            except:
+                pass
+            try:
+                #title="NP : New Patient"
+                followup = row.find_element(By.XPATH, './td/span[@title="NP : New Patient"]')
+                followup.click()
+            except:
+                pass
             break
         except:
             continue
@@ -91,7 +107,15 @@ def copy_encounters(automation):
     #copy details
     chiefComplaint = automation.find('//*[@id="encounterPreviewContent"]/table[1]/tbody/tr[1]/td/table[5]/tbody/tr[1]/td[2]/div')
     cctext = chiefComplaint.text
-    ccfixed = cctext.split('ROS:')[0].strip()
+    
+    ccfixed = ''
+    index = cctext.find('ROS:')
+    secondindex =cctext.find('ROS:',index+1)
+    if secondindex != -1:
+        ccfixed = cctext[:secondindex+4]
+    else:
+        ccfixed = cctext.split('Medical History:')[0].strip()
+        
     assessment = automation.find('//*[@id="encounterPreviewContent"]/table[1]/tbody/tr[1]/td/table[10]/tbody/tr[3]/td[2]')
     asstext = assessment.text
     print(assessment.text)
@@ -103,6 +127,9 @@ def copy_encounters(automation):
     time.sleep(2)
     # go to hpi
     automation.click('//a[@ng-click="loadProgressNotePopup(\'HPI:\');"]')
+    time.sleep(1)
+    automation.click('//[@id="pnPanelLink2"]/span/span[@title="Constitutional"]')
+    time.sleep(1)
     set_iframe_box(automation, ccfixed)
     automation.click('//button[@id="pnModalBtn1"]')
     time.sleep(2)
