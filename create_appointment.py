@@ -24,6 +24,7 @@ def followAppointment(automation, date, reason, location):
     location_box = automation.find('//input[@placeholder="Facility"]')
     location_box.clear()
     location_box.send_keys(location)
+    time.sleep(1)
     automation.click('//span[@ng-bind="facility.Name"]')
 
     print('attempting to set date')

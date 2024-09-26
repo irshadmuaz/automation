@@ -49,6 +49,15 @@ class Automation:
     def findOf(self, element, xpath, wait=100):
         return WebDriverWait(element, wait).until(lambda x:x.find_element(By.XPATH, xpath))
     
+    def has(self, xpath, element=None):
+        if element is None:
+            element = self.driver
+        try:
+            element.find_element(By.XPATH, xpath)
+            return True
+        except:
+            return False
+    
     def find(self, xpath, wait=100):
         return WebDriverWait(self.driver, wait).until(lambda x:x.find_element(By.XPATH, xpath))
     

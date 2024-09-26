@@ -10,7 +10,7 @@ def parse_records(med, take, header=None):
             format[0] = header
         return '\n'.join(format)
     except:
-        return 'error'
+        return ''
 
 def parse_name(name):
     splits = name.split(' ')

@@ -28,7 +28,7 @@ def fill_appointment(automation, name, vitals, medication):
             automation.scroll_to(element)
             element.click()
             
-            if vitals not in ['','error']:
+            if vitals:
                 # click vitals
                 automation.click('//b[@onclick="pnSectionClicked(\'Vitals:\', event)"]')
                 set_iframe_box(automation, vitals)
@@ -36,7 +36,7 @@ def fill_appointment(automation, name, vitals, medication):
                 automation.click('//button[@id="pnModalBtn1"]')
                 time.sleep(1)
             
-            if medication not in ['', 'error']:
+            if medication:
                 automation.click('//b[@onclick="pnSectionClicked(\'ROS:\', event)"]')
                 set_iframe_box(automation, medication)
                 automation.click('//button[@id="pnModalBtn1"]')
@@ -67,6 +67,9 @@ def fill_all_appointments(automation):
         except Exception as e:
             print('some thing went wrong', e)
             row['paste_status']='error'
+            # go back
+            automation.click('//i[@id="styleSJellyBean"]')
+            time.sleep(2)
             automation.driver.refresh()
             time.sleep(10)
         finally:
@@ -89,22 +92,18 @@ def copy_encounters(automation):
             locked = row.find_element(By.XPATH, './td/i[@class="icon icon-lock"]')
             name = row.find_element(By.XPATH, './td[@ng-bind="enc.doctorname" and @title="Khan, Abdulhalim"]')
             # ATTENTION: use followup as criteria
-            
-            followup = row.find_element(By.XPATH, './td/span[@title="F/U : Follow Up Visit"]')
-            followup.click()
-           
-            # try:
-            #     #title="NP : New Patient"
-            #     followup = row.find_element(By.XPATH, './td/span[@title="NP : New Patient"]')
-            #     followup.click()
-            # except:
-            #     pass
+            if automation.has('./td/span[@title="F/U : Follow Up Visit"]',row):
+                followup =  automation.findOf(row,'./td/span[@title="F/U : Follow Up Visit"]')
+                followup.click()
+            elif automation.has('./td/span[@title="NP : New Patient"]',row):
+                np = automation.findOf(row, './td/span[@title="NP : New Patient"]')
+                np.click()
             break
         except:
             continue
 
     #copy details
-    chiefComplaint = automation.find('//*[@id="encounterPreviewContent"]/table[1]/tbody/tr[1]/td/table[5]/tbody/tr[1]/td[2]/div')
+    chiefComplaint = automation.find('//table[@prisma-section="HPI"]/tbody/tr[1]/td[2]/div')
     cctext = chiefComplaint.text
     
     ccfixed = ''
@@ -115,7 +114,7 @@ def copy_encounters(automation):
     else:
         ccfixed = cctext.split('Medical History:')[0].strip()
         
-    assessment = automation.find('//*[@id="encounterPreviewContent"]/table[1]/tbody/tr[1]/td/table[10]/tbody/tr[3]/td[2]')
+    assessment = automation.find('//table[@prisma-section="Assessment"]')
     asstext = assessment.text
     print(assessment.text)
     #close modal
