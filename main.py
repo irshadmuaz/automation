@@ -27,7 +27,7 @@ def execute():
         create_all_appointments(automation)
         time.sleep(1)
         automation.driver.refresh()
-        time.sleep(1)
+        time.sleep(5)
         fill_all_appointments(automation)
 
         

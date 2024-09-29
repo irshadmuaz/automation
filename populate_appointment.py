@@ -85,7 +85,7 @@ def copy_encounters(automation):
     table = automation.find('//*[@id="Encounter-lookupTbl2"]/tbody')
     time.sleep(2)
     rows = table.find_elements(By.XPATH, './tr')
-
+    found = False
     for row in rows:
         date = row.find_element(By.XPATH, './td[@ng-bind="enc.date"]')
         try:
@@ -99,9 +99,14 @@ def copy_encounters(automation):
                 np = automation.findOf(row, './td/span[@title="NP : New Patient"]')
                 np.click()
             break
+            found = True
         except:
             continue
 
+    if not found:
+        # close encounters
+        automation.click('//button[@id="Encounter-lookupBtn1"]')
+        return
     #copy details
     chiefComplaint = automation.find('//table[@prisma-section="HPI"]/tbody/tr[1]/td[2]/div')
     cctext = chiefComplaint.text
