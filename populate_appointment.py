@@ -98,11 +98,13 @@ def copy_encounters(automation):
             elif automation.has('./td/span[@title="NP : New Patient"]',row):
                 np = automation.findOf(row, './td/span[@title="NP : New Patient"]')
                 np.click()
-            break
             found = True
+            break
+            
         except:
             continue
 
+    print(found)
     if not found:
         # close encounters
         automation.click('//button[@id="Encounter-lookupBtn1"]')
@@ -110,18 +112,9 @@ def copy_encounters(automation):
     #copy details
     chiefComplaint = automation.find('//table[@prisma-section="HPI"]/tbody/tr[1]/td[2]/div')
     cctext = chiefComplaint.text
-    
-    ccfixed = ''
-    index = cctext.find('ROS:')
-    secondindex =cctext.find('ROS:',index+1)
-    if secondindex != -1:
-        ccfixed = cctext[:secondindex+4]
-    else:
-        ccfixed = cctext.split('Medical History:')[0].strip()
-        
+
     assessment = automation.find('//table[@prisma-section="Assessment"]')
     asstext = assessment.text
-    print(assessment.text)
     #close modal
     automation.click('//*[@id="encounterPreviewApp"]/div/div/div[1]/button')
     time.sleep(1)
@@ -133,7 +126,7 @@ def copy_encounters(automation):
     time.sleep(1)
     automation.click('//a/span/span[@title="Constitutional"]')
     time.sleep(1)
-    set_iframe_box(automation, ccfixed)
+    set_iframe_box(automation, cctext)
     automation.click('//button[@id="pnModalBtn1"]')
     time.sleep(2)
 
