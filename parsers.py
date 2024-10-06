@@ -17,3 +17,6 @@ def parse_name(name):
     if len(splits) > 2:
         splits.pop()
     return ' '.join(splits)
+
+def to_consider(val):
+    return to_consider in ('f','n')

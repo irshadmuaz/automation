@@ -1,6 +1,6 @@
 import time
 from filereader import read, write
-from parsers import parse_name, parse_records
+from parsers import parse_name, parse_records, to_consider
 from selenium.webdriver.common.by import By
 import re
 
@@ -59,7 +59,7 @@ def fill_all_appointments(automation):
             vitals = parse_records(row['vitals'],1)
             medication = parse_records(row['medication'],3, 'Current medications')
             
-            if appt_type != 'f' or paste_status in ('done', 'error'):
+            if not to_consider(appt_type) or paste_status in ('done', 'error'):
                 print('skipping', name, 'pasted:', paste_status, 'appt:', appt_type)
                 continue
             fill_appointment(automation,name,vitals, medication)

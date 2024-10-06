@@ -10,6 +10,7 @@ import time
 import threading
 from datetime import datetime, timedelta
 from filereader import read, write
+from parsers import to_consider
 
 #  & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222 --user-data-dir="C:\selenium\ChromeProfile"
 class Automation:
@@ -189,7 +190,7 @@ class Automation:
             appt_type = row['appointment_type']
             paste_status = row['paste_status']
             print(name, paste_status)
-            if appt_type.lower() != 'f' or paste_status == 'done' or paste_status == 'error':
+            if not to_consider(appt_type) or paste_status == 'done' or paste_status == 'error':
                 print('skipping')
                 continue
             # go back
@@ -263,7 +264,7 @@ def create_appointment():
     for row in store:
         try:
             appt_type = row['appointment_type']
-            if appt_type.lower() != 'f':
+            if not to_consider(appt_type):
                 continue
             name = row['name']
             date = row['appt_date']

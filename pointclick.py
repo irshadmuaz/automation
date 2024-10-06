@@ -11,6 +11,7 @@ import threading
 from datetime import datetime, timedelta
 import json
 from filereader import read,write
+from parsers import to_consider
 #  & 'C:\Program Files\Google\Chrome\Application\chrome.exe' --remote-debugging-port=9222 --user-data-dir="C:\selenium\ChromeProfile"
 class Automation:
     def __init__(self):
@@ -161,7 +162,7 @@ def execute():
             [first,last] = row['name'].split(',')
             appt_type = row['appointment_type']
             print(first, last)
-            if appt_type.lower() != 'f':
+            if not to_consider(appt_type):
                 continue
             print('extracting for', first, last)
             extract = automation.copy_vitals(first.strip(), row['name'])

@@ -11,6 +11,7 @@ import threading
 from datetime import datetime, timedelta
 import json
 from filereader import read,write
+from parsers import to_consider
 
 def extract_vitals(automation, iframeName):
     #automation.driver.get('file:///C:/Users/irsha/Documents/Github/selenium/dash.html')
@@ -56,7 +57,7 @@ def copy_all_vitals(automation):
             [first,last] = row['name'].split(',')
             appt_type = row['appointment_type'].lower()
             # Do not retry if it already has vitals and medications
-            if appt_type != 'f' or (row['vitals'] and row['medication']):
+            if not to_consider(appt_type) or (row['vitals'] and row['medication']):
                 print('skipping', first,last)
                 continue
             print('working on ', first)
