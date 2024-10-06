@@ -83,7 +83,7 @@ def createAppointment(automation, name, appt_type, date, reason, location):
     print('clicked ok to create appointment')
 
     # try dismiss second popup
-    time.sleep(2)
+    time.sleep(5)
     automation.tryClick('//button[@data-bb-handler="confirm"]')
     
 

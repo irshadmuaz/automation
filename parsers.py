@@ -19,4 +19,4 @@ def parse_name(name):
     return ' '.join(splits)
 
 def to_consider(val):
-    return to_consider in ('f','n')
+    return val in ('f','n')
